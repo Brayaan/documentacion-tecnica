@@ -1,0 +1,148 @@
+\doxysection{Referencia de la clase Energy\+System\+Tests}
+\hypertarget{class_energy_system_tests}{}\label{class_energy_system_tests}\index{EnergySystemTests@{EnergySystemTests}}
+
+
+TEST SUITE:\+ \doxylink{class_energy_system}{Energy\+System}.  
+
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_energy_system_tests_a4dce2b1cfd16ec2c6f757028999bed7b}{Tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Limpia el Game\+Object después de cada test para evitar interferencia entre pruebas. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_energy_system_tests_a1649205144d7a5e572d110850b5abcd6}{Gain\+Energy\+From\+Attack\+\_\+\+Increases\+Energy\+By\+Correct\+Amount}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que diferentes ataques generan distinta cantidad de energía:\+ \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_energy_system_tests_ab5b4b0c7316ea0101b4265cf3ffd31f2}{Gain\+Energy\+From\+Damage\+\_\+\+Increases\+Energy\+By\+Two}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que recibir daño también genera energía (+2). \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_energy_system_tests_a8ae214ed37fcc1bf18fad259ebcd61ff}{Gain\+Energy\+From\+Block\+\_\+\+Increases\+Energy\+By\+Three}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que bloquear genera energía (+3). \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_energy_system_tests_a443f647f38c0dbf8b0bac58bb4a79912}{Energy\+\_\+\+Does\+Not\+Exceed\+Max\+Energy}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que la energía no puede superar max\+Energy. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_energy_system_tests_a8a5cdbdf1d54db7def59d3699e3695ec}{Energy\+\_\+\+Does\+Not\+Go\+Below\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que la energía nunca baja de 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_energy_system}{Energy\+System}} \doxymbox{\hyperlink{class_energy_system_tests_ae16e3b6236916f4c43c46b7cef5c52d9}{Create\+Energy\+System}} ()
+\begin{DoxyCompactList}\small\item\em Crea un jugador simulado con \doxylink{class_energy_system}{Energy\+System}. No se asigna UI intencionalmente (energy\+Image = null), ya que no se está probando la interfaz. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_energy_system_tests_a5e165833d62dedc15f34f92fb32e0f03}{\+\_\+player\+GO}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+TEST SUITE:\+ \doxylink{class_energy_system}{Energy\+System}. 
+
+PROPÓ\+SITO:\+ Validar el sistema de energía del jugador en combate.
+
+Este sistema controla cómo se gana y consume energía a través de:\+
+\begin{DoxyItemize}
+\item Ataques (puñetazo, patada)
+\item Recibir daño
+\item Bloquear
+\end{DoxyItemize}
+
+También valida límites:\+
+\begin{DoxyItemize}
+\item No puede superar el máximo de energía
+\item No puede bajar de 0
+\end{DoxyItemize}
+
+DEPENDENCIA IMPORTANTE:\+ \doxylink{class_energy_system}{Energy\+System} depende de UI (energy\+Image), pero en tests se deja null. Esto genera Log\+Error controlado que se ignora con Log\+Assert. 
+
+\label{doc-func-members}
+\Hypertarget{class_energy_system_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_energy_system_tests_ae16e3b6236916f4c43c46b7cef5c52d9}\index{EnergySystemTests@{EnergySystemTests}!CreateEnergySystem@{CreateEnergySystem}}
+\index{CreateEnergySystem@{CreateEnergySystem}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{CreateEnergySystem()}{CreateEnergySystem()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_ae16e3b6236916f4c43c46b7cef5c52d9} 
+\doxymbox{\hyperlink{class_energy_system}{Energy\+System}} Energy\+System\+Tests.\+Create\+Energy\+System (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea un jugador simulado con \doxylink{class_energy_system}{Energy\+System}. No se asigna UI intencionalmente (energy\+Image = null), ya que no se está probando la interfaz. 
+
+\Hypertarget{class_energy_system_tests_a443f647f38c0dbf8b0bac58bb4a79912}\index{EnergySystemTests@{EnergySystemTests}!Energy\_DoesNotExceedMaxEnergy@{Energy\_DoesNotExceedMaxEnergy}}
+\index{Energy\_DoesNotExceedMaxEnergy@{Energy\_DoesNotExceedMaxEnergy}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{Energy\_DoesNotExceedMaxEnergy()}{Energy\_DoesNotExceedMaxEnergy()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_a443f647f38c0dbf8b0bac58bb4a79912} 
+IEnumerator Energy\+System\+Tests.\+Energy\+\_\+\+Does\+Not\+Exceed\+Max\+Energy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que la energía no puede superar max\+Energy. 
+
+\Hypertarget{class_energy_system_tests_a8a5cdbdf1d54db7def59d3699e3695ec}\index{EnergySystemTests@{EnergySystemTests}!Energy\_DoesNotGoBelowZero@{Energy\_DoesNotGoBelowZero}}
+\index{Energy\_DoesNotGoBelowZero@{Energy\_DoesNotGoBelowZero}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{Energy\_DoesNotGoBelowZero()}{Energy\_DoesNotGoBelowZero()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_a8a5cdbdf1d54db7def59d3699e3695ec} 
+IEnumerator Energy\+System\+Tests.\+Energy\+\_\+\+Does\+Not\+Go\+Below\+Zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que la energía nunca baja de 0. 
+
+\Hypertarget{class_energy_system_tests_a1649205144d7a5e572d110850b5abcd6}\index{EnergySystemTests@{EnergySystemTests}!GainEnergyFromAttack\_IncreasesEnergyByCorrectAmount@{GainEnergyFromAttack\_IncreasesEnergyByCorrectAmount}}
+\index{GainEnergyFromAttack\_IncreasesEnergyByCorrectAmount@{GainEnergyFromAttack\_IncreasesEnergyByCorrectAmount}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{GainEnergyFromAttack\_IncreasesEnergyByCorrectAmount()}{GainEnergyFromAttack\_IncreasesEnergyByCorrectAmount()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_a1649205144d7a5e572d110850b5abcd6} 
+IEnumerator Energy\+System\+Tests.\+Gain\+Energy\+From\+Attack\+\_\+\+Increases\+Energy\+By\+Correct\+Amount (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que diferentes ataques generan distinta cantidad de energía:\+ 
+
+
+\begin{DoxyItemize}
+\item Puñetazo → +5
+\item Patada → +10
+\item Desconocido → +0 
+\end{DoxyItemize}\Hypertarget{class_energy_system_tests_a8ae214ed37fcc1bf18fad259ebcd61ff}\index{EnergySystemTests@{EnergySystemTests}!GainEnergyFromBlock\_IncreasesEnergyByThree@{GainEnergyFromBlock\_IncreasesEnergyByThree}}
+\index{GainEnergyFromBlock\_IncreasesEnergyByThree@{GainEnergyFromBlock\_IncreasesEnergyByThree}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{GainEnergyFromBlock\_IncreasesEnergyByThree()}{GainEnergyFromBlock\_IncreasesEnergyByThree()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_a8ae214ed37fcc1bf18fad259ebcd61ff} 
+IEnumerator Energy\+System\+Tests.\+Gain\+Energy\+From\+Block\+\_\+\+Increases\+Energy\+By\+Three (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que bloquear genera energía (+3). 
+
+\Hypertarget{class_energy_system_tests_ab5b4b0c7316ea0101b4265cf3ffd31f2}\index{EnergySystemTests@{EnergySystemTests}!GainEnergyFromDamage\_IncreasesEnergyByTwo@{GainEnergyFromDamage\_IncreasesEnergyByTwo}}
+\index{GainEnergyFromDamage\_IncreasesEnergyByTwo@{GainEnergyFromDamage\_IncreasesEnergyByTwo}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{GainEnergyFromDamage\_IncreasesEnergyByTwo()}{GainEnergyFromDamage\_IncreasesEnergyByTwo()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_ab5b4b0c7316ea0101b4265cf3ffd31f2} 
+IEnumerator Energy\+System\+Tests.\+Gain\+Energy\+From\+Damage\+\_\+\+Increases\+Energy\+By\+Two (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que recibir daño también genera energía (+2). 
+
+\Hypertarget{class_energy_system_tests_a4dce2b1cfd16ec2c6f757028999bed7b}\index{EnergySystemTests@{EnergySystemTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_a4dce2b1cfd16ec2c6f757028999bed7b} 
+void Energy\+System\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Limpia el Game\+Object después de cada test para evitar interferencia entre pruebas. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_energy_system_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_energy_system_tests_a5e165833d62dedc15f34f92fb32e0f03}\index{EnergySystemTests@{EnergySystemTests}!\_playerGO@{\_playerGO}}
+\index{\_playerGO@{\_playerGO}!EnergySystemTests@{EnergySystemTests}}
+\doxysubsubsection{\texorpdfstring{\_playerGO}{\_playerGO}}
+{\footnotesize\ttfamily \label{class_energy_system_tests_a5e165833d62dedc15f34f92fb32e0f03} 
+Game\+Object Energy\+System\+Tests.\+\_\+player\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_energy_system_tests_8cs}{Energy\+System\+Tests.\+cs}}\end{DoxyCompactItemize}

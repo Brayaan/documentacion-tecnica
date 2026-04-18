@@ -1,0 +1,174 @@
+\doxysection{Extended\+Hitbox.\+cs}
+\hypertarget{_extended_hitbox_8cs_source}{}\label{_extended_hitbox_8cs_source}\index{spritesheets/Scripts/ExtendedHitbox.cs@{spritesheets/Scripts/ExtendedHitbox.cs}}
+\doxymbox{\hyperlink{_extended_hitbox_8cs}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00001}00001\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00002}00002\ \textcolor{comment}{//\ ARCHIVO:\ ExtendedHitbox.cs}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00003}00003\ \textcolor{comment}{//\ PROPÓSITO:\ Hitbox\ auxiliar\ que\ amplía\ el\ alcance\ de\ un\ ataque}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ reutilizando\ la\ configuración\ del\ Hitbox\ principal.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00005}00005\ \textcolor{comment}{//\ RESPONSABILIDAD:\ Detectar\ enemigos\ en\ un\ área\ extendida\ durante\ ataques\ activos}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ y\ aplicar\ daño\ con\ los\ mismos\ valores\ del\ Hitbox\ padre.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00007}00007\ \textcolor{comment}{//\ SISTEMA:\ Combate\ —\ Detección\ de\ Golpes\ (Hitbox\ Extendido)}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00008}00008\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00010}00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00011}00011\ \textcolor{comment}{\ *\ DESCRIPCIÓN\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00012}00012\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00013}00013\ \textcolor{comment}{\ *\ ExtendedHitbox\ es\ un\ hitbox\ secundario\ que\ complementa\ al\ Hitbox\ principal.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00014}00014\ \textcolor{comment}{\ *\ Comparte\ el\ valor\ de\ daño\ del\ Hitbox\ padre\ para\ garantizar\ consistencia,}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00015}00015\ \textcolor{comment}{\ *\ pero\ tiene\ su\ propio\ Collider2D\ con\ mayor\ alcance\ (configurado\ en\ la\ escena).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00016}00016\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00017}00017\ \textcolor{comment}{\ *\ A\ diferencia\ de\ Hitbox.cs\ (que\ usa\ OnTriggerStay2D\ para\ daño\ continuo),}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00018}00018\ \textcolor{comment}{\ *\ este\ script\ usa\ OnTriggerEnter2D\ para\ registrar\ el\ golpe\ solo\ al\ momento}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00019}00019\ \textcolor{comment}{\ *\ del\ primer\ contacto.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00020}00020\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00021}00021\ \textcolor{comment}{\ *\ Solo\ procesa\ golpes\ cuando\ PlayerAttack\ reporta\ un\ ataque\ activo,}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00022}00022\ \textcolor{comment}{\ *\ evitando\ detecciones\ falsas\ fuera\ de\ la\ animación\ de\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00023}00023\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00024}00024\ \textcolor{comment}{\ *\ SISTEMA:\ Combate\ /\ Detección\ de\ Golpes}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00025}00025\ \textcolor{comment}{\ *\ INTERACTÚA\ CON:\ Hitbox.cs,\ PlayerAttack.cs,\ EnemyHealthSystem.cs,\ EnergySystem.cs}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00026}00026\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00028}00028\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00030}\doxymbox{\hyperlink{class_extended_hitbox}{00030}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_extended_hitbox}{ExtendedHitbox}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ VARIABLES\ PRIVADAS}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00035}00035\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00036}00036\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00037}00037\ \textcolor{comment}{\ \ \ \ ///\ Referencia\ al\ Hitbox\ principal\ del\ mismo\ GameObject.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00038}00038\ \textcolor{comment}{\ \ \ \ ///\ Se\ usa\ para\ leer\ el\ valor\ de\ daño\ (originalHitbox.damage)}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00039}00039\ \textcolor{comment}{\ \ \ \ ///\ en\ lugar\ de\ duplicarlo,\ manteniendo\ un\ único\ punto\ de\ configuración.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00040}00040\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00041}\doxymbox{\hyperlink{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}{00041}}\ \ \ \ \ \textcolor{keyword}{private}\ \doxymbox{\hyperlink{class_hitbox}{Hitbox}}\ \doxymbox{\hyperlink{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}{originalHitbox}};}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00042}00042\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00043}00043\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00044}00044\ \textcolor{comment}{\ \ \ \ ///\ Referencia\ al\ PlayerAttack\ en\ la\ raíz\ de\ la\ jerarquía\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00045}00045\ \textcolor{comment}{\ \ \ \ ///\ Necesario\ para\ verificar\ si\ hay\ un\ ataque\ activo\ antes\ de\ procesar\ golpes.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00046}00046\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00047}\doxymbox{\hyperlink{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}{00047}}\ \ \ \ \ \textcolor{keyword}{private}\ \doxymbox{\hyperlink{class_player_attack}{PlayerAttack}}\ \doxymbox{\hyperlink{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}{playerAttack}};}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00049}00049\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00050}00050\ \ \ \ \ \textcolor{comment}{//\ EVENTOS\ DE\ UNITY}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00051}00051\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00052}00052\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00053}00053\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00054}00054\ \textcolor{comment}{\ \ \ \ ///\ Start()\ —\ Se\ ejecuta\ una\ vez\ al\ activarse\ el\ objeto.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00055}00055\ \textcolor{comment}{\ \ \ \ ///\ Obtiene\ referencias\ a\ Hitbox\ (mismo\ objeto)\ y\ PlayerAttack\ (raíz\ de\ jerarquía).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00056}00056\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00057}00057\ \textcolor{comment}{\ \ \ \ ///\ NOTA:\ Si\ el\ objeto\ no\ es\ hijo\ del\ jugador,\ transform.root.GetComponent}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00058}00058\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ puede\ devolver\ null\ y\ el\ hitbox\ quedará\ inactivo.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00059}00059\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00060}\doxymbox{\hyperlink{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e}{00060}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e}{Start}}()}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00061}00061\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00062}00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obtener\ el\ Hitbox\ principal\ del\ mismo\ GameObject}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00063}00063\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}{originalHitbox}}\ =\ GetComponent<Hitbox>();}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obtener\ PlayerAttack\ desde\ la\ raíz\ de\ la\ jerarquía\ del\ jugador}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00066}00066\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}{playerAttack}}\ =\ transform.root.GetComponent<\doxymbox{\hyperlink{class_player_attack}{PlayerAttack}}>();}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00068}00068\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00069}00069\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00070}00070\ \textcolor{comment}{\ \ \ \ ///\ OnTriggerEnter2D\ —\ Se\ ejecuta\ una\ vez\ al\ entrar\ en\ contacto\ con\ otro\ Collider2D.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00071}00071\ \textcolor{comment}{\ \ \ \ ///\ Registra\ el\ impacto\ al\ PRIMER\ frame\ de\ contacto\ (no\ continuo\ como\ OnTriggerStay2D).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00072}00072\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00073}00073\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ EJECUTA:\ Cuando\ el\ Collider2D\ de\ este\ hitbox\ toca\ otro\ collider.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00074}00074\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ CONTROLA:\ Validaciones\ de\ ataque\ activo,\ aplicación\ de\ daño\ y\ ganancia\ de\ energía.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00075}00075\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00076}00076\ \textcolor{comment}{\ \ \ \ ///\ FLUJO\ INTERNO:}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00077}00077\ \textcolor{comment}{\ \ \ \ ///\ 1.\ Verificar\ que\ las\ referencias\ críticas\ existen.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00078}00078\ \textcolor{comment}{\ \ \ \ ///\ 2.\ Verificar\ que\ PlayerAttack\ está\ en\ estado\ de\ ataque\ activo.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00079}00079\ \textcolor{comment}{\ \ \ \ ///\ 3.\ Verificar\ que\ el\ collider\ tocado\ tiene\ el\ tag\ "{}Enemy"{}.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00080}00080\ \textcolor{comment}{\ \ \ \ ///\ 4.\ Obtener\ EnemyHealthSystem\ y\ aplicar\ daño\ con\ el\ valor\ del\ Hitbox\ padre.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00081}00081\ \textcolor{comment}{\ \ \ \ ///\ 5.\ Otorgar\ energía\ al\ atacante\ por\ conectar\ el\ golpe.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00082}00082\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00083}\doxymbox{\hyperlink{class_extended_hitbox_a882b862d14952075d8d09592e0700d27}{00083}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_extended_hitbox_a882b862d14952075d8d09592e0700d27}{OnTriggerEnter2D}}(Collider2D\ other)}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00084}00084\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancelar\ si\ faltan\ componentes\ críticos\ del\ sistema}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}{originalHitbox}}\ ==\ \textcolor{keyword}{null}\ ||\ \doxymbox{\hyperlink{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}{playerAttack}}\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solo\ procesar\ durante\ un\ ataque\ activo\ y\ con\ el\ hitbox\ habilitado}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}{playerAttack}}.IsAttacking()\ ||\ !gameObject.activeSelf)}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (other.CompareTag(\textcolor{stringliteral}{"{}Enemy"{}}))}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00094}00094\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_enemy_health_system}{EnemyHealthSystem}}\ enemyHealth\ =\ other.GetComponent<\doxymbox{\hyperlink{class_enemy_health_system}{EnemyHealthSystem}}>();}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (enemyHealth\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Posición\ del\ atacante\ para\ calcular\ la\ dirección\ del\ knockback\ en\ el\ enemigo}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ attackerPosition\ =\ transform.root.position;}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Usar\ el\ daño\ del\ Hitbox\ padre\ para\ no\ duplicar\ la\ configuración}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ damage\ =\ \doxymbox{\hyperlink{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}{originalHitbox}}.damage;}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ enemyHealth.\doxymbox{\hyperlink{class_enemy_health_system_ac4e5fa0e0b56b27487df52b825bc4d8c}{TakeDamage}}(damage,\ attackerPosition);}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otorgar\ energía\ al\ atacante\ por\ conectar\ el\ golpe\ exitosamente}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_energy_system}{EnergySystem}}\ attackerEnergy\ =\ transform.root.GetComponent<\doxymbox{\hyperlink{class_energy_system}{EnergySystem}}>();}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (attackerEnergy\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}Puñetazo"{}\ es\ el\ tipo\ de\ ataque\ fijo\ para\ el\ hitbox\ extendido}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attackerEnergy.\doxymbox{\hyperlink{class_energy_system_a217bd9ce2943ac554a443d9c096196ca}{GainEnergyFromAttack}}(\textcolor{stringliteral}{"{}Puñetazo"{}});}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.Log(\$\textcolor{stringliteral}{"{}Golpe\ a\ enemigo!"{}});}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00120}00120\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00121}00121\ \ \ \ \ \textcolor{comment}{//\ FLUJO\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00122}00122\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00123}00123\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00124}00124\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ PlayerAttack\ activa\ el\ hitbox\ extendido\ (SetActive(true)).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00125}00125\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ El\ Collider2D\ entra\ en\ contacto\ con\ un\ enemigo\ →\ OnTriggerEnter2D().}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00126}00126\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ Se\ verifican:\ referencias,\ ataque\ activo,\ tag\ "{}Enemy"{}.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00127}00127\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ EnemyHealthSystem.TakeDamage()\ se\ llama\ con\ el\ daño\ del\ Hitbox\ padre.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00128}00128\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ EnergySystem\ del\ atacante\ recibe\ +5\ por\ "{}Puñetazo"{}.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00129}00129\ \textcolor{comment}{\ \ \ \ \ *\ 6.\ PlayerAttack\ desactiva\ el\ hitbox\ (SetActive(false))\ al\ terminar\ el\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00130}00130\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00132}00132\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00133}00133\ \ \ \ \ \textcolor{comment}{//\ INTERACCIONES\ CON\ OTROS\ SISTEMAS}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00134}00134\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00135}00135\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00136}00136\ \textcolor{comment}{\ \ \ \ \ *\ DEPENDE\ DE:}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00137}00137\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Hitbox.cs\ (mismo\ objeto)\ →\ para\ leer\ el\ valor\ de\ daño.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00138}00138\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ PlayerAttack.cs\ (raíz\ de\ jerarquía)\ →\ para\ verificar\ estado\ de\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00139}00139\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ EnemyHealthSystem.cs\ (en\ el\ enemigo)\ →\ para\ aplicar\ el\ daño.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00140}00140\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ EnergySystem.cs\ (raíz\ de\ jerarquía)\ →\ para\ dar\ energía\ al\ atacante.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00141}00141\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00142}00142\ \textcolor{comment}{\ \ \ \ \ *\ ES\ ACTIVADO/DESACTIVADO\ POR:}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00143}00143\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ PlayerAttack.cs\ →\ ActivarHitbox()\ /\ DesactivarHitbox()}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00145}00145\ \textcolor{comment}{\ \ \ \ \ *\ DIFERENCIA\ CON\ Hitbox.cs:}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00146}00146\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Hitbox.cs\ usa\ OnTriggerStay2D\ (daño\ continuo\ mientras\ hay\ contacto).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00147}00147\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ ExtendedHitbox\ usa\ OnTriggerEnter2D\ (daño\ único\ al\ primer\ contacto).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00148}00148\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ ExtendedHitbox\ solo\ afecta\ a\ "{}Enemy"{},\ no\ a\ "{}Player"{}.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00149}00149\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ NOTAS\ /\ ADVERTENCIAS}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00153}00153\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00154}00154\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00155}00155\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ El\ tipo\ de\ ataque\ para\ la\ energía\ está\ hardcodeado\ como\ "{}Puñetazo"{}.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00156}00156\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Si\ este\ hitbox\ se\ reutiliza\ para\ patadas\ u\ otros\ ataques,\ la\ energía}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00157}00157\ \textcolor{comment}{\ \ \ \ \ *\ \ \ ganada\ siempre\ será\ la\ del\ puñetazo\ (+5).\ Considerar\ exponer}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00158}00158\ \textcolor{comment}{\ \ \ \ \ *\ \ \ attackName\ como\ variable\ pública\ para\ mayor\ flexibilidad.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00159}00159\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00160}00160\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ No\ tiene\ cooldown\ propio\ (a\ diferencia\ de\ Hitbox.cs).}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00161}00161\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Un\ enemigo\ puede\ recibir\ daño\ múltiple\ si\ múltiples\ hitboxes}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00162}00162\ \textcolor{comment}{\ \ \ \ \ *\ \ \ extendidos\ lo\ tocan\ en\ el\ mismo\ frame.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00163}00163\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00164}00164\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Si\ originalHitbox\ es\ null\ (porque\ el\ Hitbox.cs\ se\ eliminó),}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \ *\ \ \ el\ script\ retorna\ silenciosamente\ sin\ daño.\ Verificar\ en\ el\ Inspector}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00166}00166\ \textcolor{comment}{\ \ \ \ \ *\ \ \ que\ ambos\ componentes\ estén\ en\ el\ mismo\ GameObject.}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00167}00167\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_extended_hitbox_8cs_source_l00168}00168\ \}}
+
+\end{DoxyCode}

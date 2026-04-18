@@ -1,0 +1,45 @@
+/* Tema profesional claro */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #ffffff;
+    color: #1e293b;
+}
+
+h1, h2, h3 {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+h1 {
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+code, pre {
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.memitem {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    padding: 12px;
+}
+
+.memtitle {
+    font-weight: bold;
+    color: #0f172a;
+}

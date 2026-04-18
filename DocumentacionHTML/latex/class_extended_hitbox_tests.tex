@@ -1,0 +1,140 @@
+\doxysection{Referencia de la clase Extended\+Hitbox\+Tests}
+\hypertarget{class_extended_hitbox_tests}{}\label{class_extended_hitbox_tests}\index{ExtendedHitboxTests@{ExtendedHitboxTests}}
+
+
+TESTS:\+ \doxylink{class_extended_hitbox}{Extended\+Hitbox}.  
+
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_extended_hitbox_tests_af2aa47b4963caac3bbc92cd0b693d730}{Tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Limpieza automática después de cada test. Garantiza que no haya contaminación entre pruebas. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_extended_hitbox_tests_a2e8aa175851c6a3436025a02c0ecc9d2}{Extended\+Hitbox\+\_\+\+Only\+Damages\+When\+Attack\+Is\+Active}} ()
+\begin{DoxyCompactList}\small\item\em CASO 1:\+ El hitbox SOLO debe hacer daño cuando el ataque está activo. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_extended_hitbox_tests_a286832f539a68adf4a3280dcacf63d16}{Extended\+Hitbox\+\_\+\+Does\+Not\+Damage\+Own\+Character}} ()
+\begin{DoxyCompactList}\small\item\em CASO 2:\+ El sistema no debe permitir auto-\/daño al propio atacante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_extended_hitbox}{Extended\+Hitbox}} \doxymbox{\hyperlink{class_extended_hitbox_tests_a94aff50a909f8f6abbc4fce812f7d67c}{Create\+Attacker}} ()
+\begin{DoxyCompactList}\small\item\em Crea el atacante con:\+ \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_enemy_health_system}{Enemy\+Health\+System}} \doxymbox{\hyperlink{class_extended_hitbox_tests_a08c8497c1b4f779eea6525acc24d3fd6}{Create\+Enemy}} ()
+\begin{DoxyCompactList}\small\item\em Crea un enemigo estándar con:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_extended_hitbox_tests_ac78173977f402f6807167ffb349169c2}{\+\_\+attacker\+GO}}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_extended_hitbox_tests_a73e24de81f49b94d1b32286e4107fb5c}{\+\_\+target\+GO}}
+\item 
+Method\+Info \doxymbox{\hyperlink{class_extended_hitbox_tests_a12a740519df2325cf6c71e5dfc6006e9}{\+\_\+on\+Trigger\+Enter2D}}
+\item 
+Field\+Info \doxymbox{\hyperlink{class_extended_hitbox_tests_ac1928c4f33dbe55ded1639bde05c79fd}{\+\_\+is\+Attacking\+Field}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+TESTS:\+ \doxylink{class_extended_hitbox}{Extended\+Hitbox}. 
+
+PROPÓ\+SITO:\+ Validar el comportamiento del sistema de hitbox extendido durante ataques. Se usa reflexión para simular estados internos sin depender del input real.
+
+USO:\+ Estas pruebas se ejecutan en Unity Test Runner (Play\+Mode). No requieren escena previa porque crean sus propios Game\+Objects. 
+
+\label{doc-func-members}
+\Hypertarget{class_extended_hitbox_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_extended_hitbox_tests_a94aff50a909f8f6abbc4fce812f7d67c}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!CreateAttacker@{CreateAttacker}}
+\index{CreateAttacker@{CreateAttacker}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{CreateAttacker()}{CreateAttacker()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_a94aff50a909f8f6abbc4fce812f7d67c} 
+\doxymbox{\hyperlink{class_extended_hitbox}{Extended\+Hitbox}} Extended\+Hitbox\+Tests.\+Create\+Attacker (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea el atacante con:\+ 
+
+
+\begin{DoxyItemize}
+\item Rigidbody2D sin gravedad (determinismo)
+\item \doxylink{class_player_attack}{Player\+Attack} (estado de ataque)
+\item \doxylink{class_extended_hitbox}{Extended\+Hitbox} en un hijo con collider trigger 
+\end{DoxyItemize}\Hypertarget{class_extended_hitbox_tests_a08c8497c1b4f779eea6525acc24d3fd6}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!CreateEnemy@{CreateEnemy}}
+\index{CreateEnemy@{CreateEnemy}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{CreateEnemy()}{CreateEnemy()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_a08c8497c1b4f779eea6525acc24d3fd6} 
+\doxymbox{\hyperlink{class_enemy_health_system}{Enemy\+Health\+System}} Extended\+Hitbox\+Tests.\+Create\+Enemy (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea un enemigo estándar con:\+ 
+
+
+\begin{DoxyItemize}
+\item Rigidbody2D sin gravedad
+\item Collider 2D
+\item \doxylink{class_enemy_health_system}{Enemy\+Health\+System} 
+\end{DoxyItemize}\Hypertarget{class_extended_hitbox_tests_a286832f539a68adf4a3280dcacf63d16}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!ExtendedHitbox\_DoesNotDamageOwnCharacter@{ExtendedHitbox\_DoesNotDamageOwnCharacter}}
+\index{ExtendedHitbox\_DoesNotDamageOwnCharacter@{ExtendedHitbox\_DoesNotDamageOwnCharacter}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{ExtendedHitbox\_DoesNotDamageOwnCharacter()}{ExtendedHitbox\_DoesNotDamageOwnCharacter()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_a286832f539a68adf4a3280dcacf63d16} 
+IEnumerator Extended\+Hitbox\+Tests.\+Extended\+Hitbox\+\_\+\+Does\+Not\+Damage\+Own\+Character (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 2:\+ El sistema no debe permitir auto-\/daño al propio atacante. 
+
+\Hypertarget{class_extended_hitbox_tests_a2e8aa175851c6a3436025a02c0ecc9d2}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!ExtendedHitbox\_OnlyDamagesWhenAttackIsActive@{ExtendedHitbox\_OnlyDamagesWhenAttackIsActive}}
+\index{ExtendedHitbox\_OnlyDamagesWhenAttackIsActive@{ExtendedHitbox\_OnlyDamagesWhenAttackIsActive}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{ExtendedHitbox\_OnlyDamagesWhenAttackIsActive()}{ExtendedHitbox\_OnlyDamagesWhenAttackIsActive()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_a2e8aa175851c6a3436025a02c0ecc9d2} 
+IEnumerator Extended\+Hitbox\+Tests.\+Extended\+Hitbox\+\_\+\+Only\+Damages\+When\+Attack\+Is\+Active (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 1:\+ El hitbox SOLO debe hacer daño cuando el ataque está activo. 
+
+\Hypertarget{class_extended_hitbox_tests_af2aa47b4963caac3bbc92cd0b693d730}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_af2aa47b4963caac3bbc92cd0b693d730} 
+void Extended\+Hitbox\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Limpieza automática después de cada test. Garantiza que no haya contaminación entre pruebas. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_extended_hitbox_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_extended_hitbox_tests_ac78173977f402f6807167ffb349169c2}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!\_attackerGO@{\_attackerGO}}
+\index{\_attackerGO@{\_attackerGO}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_attackerGO}{\_attackerGO}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_ac78173977f402f6807167ffb349169c2} 
+Game\+Object Extended\+Hitbox\+Tests.\+\_\+attacker\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_extended_hitbox_tests_ac1928c4f33dbe55ded1639bde05c79fd}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!\_isAttackingField@{\_isAttackingField}}
+\index{\_isAttackingField@{\_isAttackingField}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_isAttackingField}{\_isAttackingField}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_ac1928c4f33dbe55ded1639bde05c79fd} 
+Field\+Info Extended\+Hitbox\+Tests.\+\_\+is\+Attacking\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_extended_hitbox_tests_a12a740519df2325cf6c71e5dfc6006e9}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!\_onTriggerEnter2D@{\_onTriggerEnter2D}}
+\index{\_onTriggerEnter2D@{\_onTriggerEnter2D}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_onTriggerEnter2D}{\_onTriggerEnter2D}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_a12a740519df2325cf6c71e5dfc6006e9} 
+Method\+Info Extended\+Hitbox\+Tests.\+\_\+on\+Trigger\+Enter2D\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_extended_hitbox_tests_a73e24de81f49b94d1b32286e4107fb5c}\index{ExtendedHitboxTests@{ExtendedHitboxTests}!\_targetGO@{\_targetGO}}
+\index{\_targetGO@{\_targetGO}!ExtendedHitboxTests@{ExtendedHitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_targetGO}{\_targetGO}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_tests_a73e24de81f49b94d1b32286e4107fb5c} 
+Game\+Object Extended\+Hitbox\+Tests.\+\_\+target\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_extended_hitbox_tests_8cs}{Extended\+Hitbox\+Tests.\+cs}}\end{DoxyCompactItemize}

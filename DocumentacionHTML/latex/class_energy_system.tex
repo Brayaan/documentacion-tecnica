@@ -1,0 +1,272 @@
+\doxysection{Referencia de la clase Energy\+System}
+\hypertarget{class_energy_system}{}\label{class_energy_system}\index{EnergySystem@{EnergySystem}}
+Diagrama de herencia de Energy\+System\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_energy_system}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_energy_system_a5fa12bb870c6f582b8977b8ae705deb5}{Gain\+Energy\+From\+Damage}} ()
+\begin{DoxyCompactList}\small\item\em Otorga energía al jugador cuando recibe un golpe del oponente. Incremento fijo de 2 puntos. Representa la mecánica de "{}cargarse al absorber daño"{}, común en juegos de pelea. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_energy_system_a217bd9ce2943ac554a443d9c096196ca}{Gain\+Energy\+From\+Attack}} (string attack\+Name)
+\begin{DoxyCompactList}\small\item\em Otorga energía al jugador según el tipo de ataque que conectó. Cada tipo de ataque da una cantidad diferente:\+ \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_energy_system_a4c7d6a044c95a505e8fcef59c5e66c41}{Gain\+Energy\+From\+Block}} ()
+\begin{DoxyCompactList}\small\item\em Otorga energía al jugador al activar el bloqueo (+3 puntos). Se llama solo al inicio del bloqueo, no mientras se mantiene presionado. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_energy_system_a5947be603354d8cc0373260c50532fe4}{Is\+Full}} ()
+\begin{DoxyCompactList}\small\item\em Devuelve true si la barra de energía está completamente llena. Útil para verificar si el jugador puede activar una habilidad especial. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_energy_system_a24656364aba30c23a7d1633b3e033e72}{Consume\+Energy}} (int amount)
+\begin{DoxyCompactList}\small\item\em Consume una cantidad de energía al usar una habilidad especial. Clampea current\+Energy a 0 para evitar valores negativos. Actualiza la UI inmediatamente después. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_energy_system_aca7d5efb6e2d73e5f3eec0d7b5b836f5}{max\+Energy}} = 100
+\begin{DoxyCompactList}\small\item\em Energía máxima acumulable. Define el techo del recurso. Configurable desde el Inspector. No debe ser 0 o negativo. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_energy_system_abae1465aeb0788cf7cb41842c39e9348}{current\+Energy}}
+\begin{DoxyCompactList}\small\item\em Energía actual del jugador en tiempo real. Se inicializa en 0 al comenzar la partida. Visible en Inspector para debug. \end{DoxyCompactList}\item 
+Image \doxymbox{\hyperlink{class_energy_system_ab6810737bca1b8bbeba29134986c1bfb}{energy\+Image}}
+\begin{DoxyCompactList}\small\item\em Componente Image de Unity UI que muestra visualmente la barra de energía. Debe asignarse desde el Inspector. Si es null, la UI no se actualiza. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_energy_system_afb2126c0f8b3e5063c1a4926cd45c818}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_energy_system_afb2126c0f8b3e5063c1a4926cd45c818}{Start()} — Se ejecuta una vez al iniciar. Carga el spritesheet de energía desde Resources, inicializa current\+Energy en 0 y actualiza la UI. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_energy_system_acf3d4f056a1e3ca78abcf3b29841cd38}{Update\+Energy\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el sprite de la barra de energía en la UI según current\+Energy. Calcula el índice proporcional en el spritesheet e invierte el orden para que el sprite 0 del array corresponda a energía llena. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Sprite\+[$\,$]\+ \doxymbox{\hyperlink{class_energy_system_ac4a2a2e81468b196916273857d589d34}{energy\+Sprites}}
+\begin{DoxyCompactList}\small\item\em Array de sprites cargados desde el spritesheet de energía. Se cargan automáticamente desde Resources/\+\+Energy\+Bar/\+emerald\+\_\+counter-\/\+Sheet. Cada elemento corresponde a un frame del estado de la barra. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00027}{27}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_energy_system_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_energy_system_a24656364aba30c23a7d1633b3e033e72}\index{EnergySystem@{EnergySystem}!ConsumeEnergy@{ConsumeEnergy}}
+\index{ConsumeEnergy@{ConsumeEnergy}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{ConsumeEnergy()}{ConsumeEnergy()}}
+{\footnotesize\ttfamily \label{class_energy_system_a24656364aba30c23a7d1633b3e033e72} 
+void Energy\+System.\+Consume\+Energy (\begin{DoxyParamCaption}\item[{int}]{amount}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Consume una cantidad de energía al usar una habilidad especial. Clampea current\+Energy a 0 para evitar valores negativos. Actualiza la UI inmediatamente después. 
+
+CUÁ\+NDO SE LLAMA:\+ Por scripts de habilidades o ataques especiales.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em amount} & Cantidad de energía a consumir.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00157}{157}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+\Hypertarget{class_energy_system_a217bd9ce2943ac554a443d9c096196ca}\index{EnergySystem@{EnergySystem}!GainEnergyFromAttack@{GainEnergyFromAttack}}
+\index{GainEnergyFromAttack@{GainEnergyFromAttack}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{GainEnergyFromAttack()}{GainEnergyFromAttack()}}
+{\footnotesize\ttfamily \label{class_energy_system_a217bd9ce2943ac554a443d9c096196ca} 
+void Energy\+System.\+Gain\+Energy\+From\+Attack (\begin{DoxyParamCaption}\item[{string}]{attack\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Otorga energía al jugador según el tipo de ataque que conectó. Cada tipo de ataque da una cantidad diferente:\+ 
+
+
+\begin{DoxyItemize}
+\item "{}\+Puñetazo"{} → +5 de energía
+\item "{}\+Patada"{} → +10 de energía
+\end{DoxyItemize}
+
+CUÁ\+NDO SE LLAMA:\+ Desde \doxylink{_hitbox_8cs}{Hitbox.\+cs} y \doxylink{_extended_hitbox_8cs}{Extended\+Hitbox.\+cs} al conectar un golpe.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em attack\+Name} & Nombre del ataque ejecutado ("{}\+Puñetazo"{} o "{}\+Patada"{}).\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00110}{110}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00083}{Extended\+Hitbox.\+On\+Trigger\+Enter2\+D()}} y \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{Hitbox.\+On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_energy_system_a4c7d6a044c95a505e8fcef59c5e66c41}\index{EnergySystem@{EnergySystem}!GainEnergyFromBlock@{GainEnergyFromBlock}}
+\index{GainEnergyFromBlock@{GainEnergyFromBlock}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{GainEnergyFromBlock()}{GainEnergyFromBlock()}}
+{\footnotesize\ttfamily \label{class_energy_system_a4c7d6a044c95a505e8fcef59c5e66c41} 
+void Energy\+System.\+Gain\+Energy\+From\+Block (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Otorga energía al jugador al activar el bloqueo (+3 puntos). Se llama solo al inicio del bloqueo, no mientras se mantiene presionado. 
+
+CUÁ\+NDO SE LLAMA:\+ Desde \doxylink{_player_defense_8cs}{Player\+Defense.\+cs} en el frame en que is\+Blocking cambia a true. 
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00128}{128}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_defense_8cs_source_l00110}{Player\+Defense.\+Update()}}.
+
+\Hypertarget{class_energy_system_a5fa12bb870c6f582b8977b8ae705deb5}\index{EnergySystem@{EnergySystem}!GainEnergyFromDamage@{GainEnergyFromDamage}}
+\index{GainEnergyFromDamage@{GainEnergyFromDamage}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{GainEnergyFromDamage()}{GainEnergyFromDamage()}}
+{\footnotesize\ttfamily \label{class_energy_system_a5fa12bb870c6f582b8977b8ae705deb5} 
+void Energy\+System.\+Gain\+Energy\+From\+Damage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Otorga energía al jugador cuando recibe un golpe del oponente. Incremento fijo de 2 puntos. Representa la mecánica de "{}cargarse al absorber daño"{}, común en juegos de pelea. 
+
+CUÁ\+NDO SE LLAMA:\+ Desde \doxylink{_hitbox_8cs}{Hitbox.\+cs} cuando un golpe conecta en el jugador. 
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00094}{94}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{Hitbox.\+On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_energy_system_a5947be603354d8cc0373260c50532fe4}\index{EnergySystem@{EnergySystem}!IsFull@{IsFull}}
+\index{IsFull@{IsFull}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{IsFull()}{IsFull()}}
+{\footnotesize\ttfamily \label{class_energy_system_a5947be603354d8cc0373260c50532fe4} 
+bool Energy\+System.\+Is\+Full (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Devuelve true si la barra de energía está completamente llena. Útil para verificar si el jugador puede activar una habilidad especial. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00144}{144}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+\Hypertarget{class_energy_system_afb2126c0f8b3e5063c1a4926cd45c818}\index{EnergySystem@{EnergySystem}!Start@{Start}}
+\index{Start@{Start}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_energy_system_afb2126c0f8b3e5063c1a4926cd45c818} 
+void Energy\+System.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_energy_system_afb2126c0f8b3e5063c1a4926cd45c818}{Start()} — Se ejecuta una vez al iniciar. Carga el spritesheet de energía desde Resources, inicializa current\+Energy en 0 y actualiza la UI. 
+
+DEPENDENCIA:\+ El archivo debe existir en Resources/\+\+Energy\+Bar/\+emerald\+\_\+counter-\/\+Sheet. 
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00074}{74}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+\Hypertarget{class_energy_system_acf3d4f056a1e3ca78abcf3b29841cd38}\index{EnergySystem@{EnergySystem}!UpdateEnergyUI@{UpdateEnergyUI}}
+\index{UpdateEnergyUI@{UpdateEnergyUI}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{UpdateEnergyUI()}{UpdateEnergyUI()}}
+{\footnotesize\ttfamily \label{class_energy_system_acf3d4f056a1e3ca78abcf3b29841cd38} 
+void Energy\+System.\+Update\+Energy\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Actualiza el sprite de la barra de energía en la UI según current\+Energy. Calcula el índice proporcional en el spritesheet e invierte el orden para que el sprite 0 del array corresponda a energía llena. 
+
+CUÁ\+NDO SE EJECUTA:\+ Llamado internamente después de cualquier cambio en current\+Energy.
+
+LÓ\+GICA DE INVERSIÓN:\+ index normal = 0 → energía vacía (sprite de barra vacía) index invertido = (Length-\/1) -\/ index → invierte el mapeo Resultado:\+ index 0 del array = barra llena 
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00180}{180}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_energy_system_8cs_source_l00157}{Consume\+Energy()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00110}{Gain\+Energy\+From\+Attack()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00128}{Gain\+Energy\+From\+Block()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00094}{Gain\+Energy\+From\+Damage()}} y \doxymbox{\hyperlink{_energy_system_8cs_source_l00074}{Start()}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_energy_system_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_energy_system_abae1465aeb0788cf7cb41842c39e9348}\index{EnergySystem@{EnergySystem}!currentEnergy@{currentEnergy}}
+\index{currentEnergy@{currentEnergy}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{currentEnergy}{currentEnergy}}
+{\footnotesize\ttfamily \label{class_energy_system_abae1465aeb0788cf7cb41842c39e9348} 
+int Energy\+System.\+current\+Energy}
+
+
+
+Energía actual del jugador en tiempo real. Se inicializa en 0 al comenzar la partida. Visible en Inspector para debug. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00044}{44}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_energy_system_8cs_source_l00157}{Consume\+Energy()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00110}{Gain\+Energy\+From\+Attack()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00128}{Gain\+Energy\+From\+Block()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00094}{Gain\+Energy\+From\+Damage()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00144}{Is\+Full()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00074}{Start()}} y \doxymbox{\hyperlink{_energy_system_8cs_source_l00180}{Update\+Energy\+UI()}}.
+
+\Hypertarget{class_energy_system_ab6810737bca1b8bbeba29134986c1bfb}\index{EnergySystem@{EnergySystem}!energyImage@{energyImage}}
+\index{energyImage@{energyImage}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{energyImage}{energyImage}}
+{\footnotesize\ttfamily \label{class_energy_system_ab6810737bca1b8bbeba29134986c1bfb} 
+Image Energy\+System.\+energy\+Image}
+
+
+
+Componente Image de Unity UI que muestra visualmente la barra de energía. Debe asignarse desde el Inspector. Si es null, la UI no se actualiza. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00050}{50}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_energy_system_8cs_source_l00180}{Update\+Energy\+UI()}}.
+
+\Hypertarget{class_energy_system_ac4a2a2e81468b196916273857d589d34}\index{EnergySystem@{EnergySystem}!energySprites@{energySprites}}
+\index{energySprites@{energySprites}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{energySprites}{energySprites}}
+{\footnotesize\ttfamily \label{class_energy_system_ac4a2a2e81468b196916273857d589d34} 
+Sprite \+[$\,$]\+ Energy\+System.\+energy\+Sprites\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array de sprites cargados desde el spritesheet de energía. Se cargan automáticamente desde Resources/\+\+Energy\+Bar/\+emerald\+\_\+counter-\/\+Sheet. Cada elemento corresponde a un frame del estado de la barra. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00061}{61}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_energy_system_8cs_source_l00074}{Start()}} y \doxymbox{\hyperlink{_energy_system_8cs_source_l00180}{Update\+Energy\+UI()}}.
+
+\Hypertarget{class_energy_system_aca7d5efb6e2d73e5f3eec0d7b5b836f5}\index{EnergySystem@{EnergySystem}!maxEnergy@{maxEnergy}}
+\index{maxEnergy@{maxEnergy}!EnergySystem@{EnergySystem}}
+\doxysubsubsection{\texorpdfstring{maxEnergy}{maxEnergy}}
+{\footnotesize\ttfamily \label{class_energy_system_aca7d5efb6e2d73e5f3eec0d7b5b836f5} 
+int Energy\+System.\+max\+Energy = 100}
+
+
+
+Energía máxima acumulable. Define el techo del recurso. Configurable desde el Inspector. No debe ser 0 o negativo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_energy_system_8cs_source_l00037}{37}} del archivo \doxymbox{\hyperlink{_energy_system_8cs_source}{Energy\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_energy_system_8cs_source_l00110}{Gain\+Energy\+From\+Attack()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00128}{Gain\+Energy\+From\+Block()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00094}{Gain\+Energy\+From\+Damage()}}, \doxymbox{\hyperlink{_energy_system_8cs_source_l00144}{Is\+Full()}} y \doxymbox{\hyperlink{_energy_system_8cs_source_l00180}{Update\+Energy\+UI()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_energy_system_8cs}{Energy\+System.\+cs}}\end{DoxyCompactItemize}

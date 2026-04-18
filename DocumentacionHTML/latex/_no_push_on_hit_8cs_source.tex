@@ -1,0 +1,198 @@
+\doxysection{No\+Push\+On\+Hit.\+cs}
+\hypertarget{_no_push_on_hit_8cs_source}{}\label{_no_push_on_hit_8cs_source}\index{spritesheets/Scripts/NoPushOnHit.cs@{spritesheets/Scripts/NoPushOnHit.cs}}
+\doxymbox{\hyperlink{_no_push_on_hit_8cs}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00001}00001\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00002}00002\ \textcolor{comment}{//\ ARCHIVO:\ NoPushOnHit.cs}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00003}00003\ \textcolor{comment}{//\ PROPÓSITO:\ Evitar\ que\ el\ jugador\ sea\ desplazado\ físicamente}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ por\ colisiones\ con\ enemigos\ durante\ el\ hit-\/stun.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00005}00005\ \textcolor{comment}{//\ RESPONSABILIDAD:\ Aumentar\ temporalmente\ la\ masa\ del\ Rigidbody2D}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ para\ resistir\ empujes\ físicos\ al\ recibir\ un\ golpe.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00007}00007\ \textcolor{comment}{//\ SISTEMA:\ Combate\ —\ Física\ de\ Impacto\ /\ Hit-\/Stun}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00008}00008\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00010}00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00011}00011\ \textcolor{comment}{\ *\ DESCRIPCIÓN\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00012}00012\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00013}00013\ \textcolor{comment}{\ *\ Cuando\ el\ jugador\ recibe\ un\ golpe\ y\ entra\ en\ hit-\/stun,\ otros\ enemigos}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00014}00014\ \textcolor{comment}{\ *\ que\ lo\ toquen\ físicamente\ podrían\ empujarlo\ accidentalmente,\ acumulando}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00015}00015\ \textcolor{comment}{\ *\ desplazamientos\ no\ deseados.\ Este\ script\ resuelve\ ese\ problema\ aumentando}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00016}00016\ \textcolor{comment}{\ *\ la\ masa\ del\ Rigidbody2D\ a\ un\ valor\ extremo\ (1000f)\ durante\ el\ hit-\/stun,}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00017}00017\ \textcolor{comment}{\ *\ lo\ que\ hace\ que\ las\ fuerzas\ de\ contacto\ sean\ prácticamente\ inefectivas.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00018}00018\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00019}00019\ \textcolor{comment}{\ *\ Al\ terminar\ el\ hit-\/stun,\ la\ masa\ se\ restaura\ al\ valor\ original.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00020}00020\ \textcolor{comment}{\ *\ También\ ignora\ colisiones\ físicas\ con\ enemigos\ mientras\ isHit\ está\ activo.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00021}00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00022}00022\ \textcolor{comment}{\ *\ SISTEMA:\ Combate\ /\ Física}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00023}00023\ \textcolor{comment}{\ *\ INTERACTÚA\ CON:\ HealthSystem.cs\ (debe\ llamar\ OnHitStart/OnHitEnd\ manualmente)}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00024}00024\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00025}00025\ \textcolor{comment}{\ *\ NOTA:\ Este\ script\ expone\ OnHitStart()\ y\ OnHitEnd()\ como\ API\ pública.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00026}00026\ \textcolor{comment}{\ *\ \ \ \ \ \ \ Deben\ ser\ llamados\ externamente\ por\ el\ sistema\ que\ gestiona\ el\ hit-\/stun.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00027}00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00029}00029\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00031}\doxymbox{\hyperlink{class_no_push_on_hit}{00031}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_no_push_on_hit}{NoPushOnHit}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00032}00032\ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ VARIABLES\ PRIVADAS}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00036}00036\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00037}00037\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00038}00038\ \textcolor{comment}{\ \ \ \ ///\ Referencia\ al\ Rigidbody2D\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00039}00039\ \textcolor{comment}{\ \ \ \ ///\ Se\ obtiene\ en\ Start().\ Necesario\ para\ modificar\ la\ masa\ y\ las\ constraints.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00040}00040\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00041}\doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{00041}}\ \ \ \ \ \textcolor{keyword}{private}\ Rigidbody2D\ \doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}};}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00042}00042\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00043}00043\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00044}00044\ \textcolor{comment}{\ \ \ \ ///\ Masa\ original\ del\ Rigidbody2D\ antes\ de\ entrar\ en\ hit-\/stun.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00045}00045\ \textcolor{comment}{\ \ \ \ ///\ Se\ guarda\ en\ Start()\ y\ se\ restaura\ en\ OnHitEnd()\ para\ no\ perder}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00046}00046\ \textcolor{comment}{\ \ \ \ ///\ la\ configuración\ del\ Inspector.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00047}00047\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00048}\doxymbox{\hyperlink{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc}{00048}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc}{originalMass}};}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00049}00049\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00050}00050\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00051}00051\ \textcolor{comment}{\ \ \ \ ///\ Flag\ de\ estado\ de\ hit-\/stun\ activo.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00052}00052\ \textcolor{comment}{\ \ \ \ ///\ true\ =\ el\ jugador\ está\ en\ hit-\/stun;\ colisiones\ con\ enemigos\ se\ ignoran.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00053}00053\ \textcolor{comment}{\ \ \ \ ///\ false\ =\ comportamiento\ físico\ normal.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00054}00054\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00055}\doxymbox{\hyperlink{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}{00055}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}{isHit}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00058}00058\ \ \ \ \ \textcolor{comment}{//\ EVENTOS\ DE\ UNITY}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00059}00059\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00060}00060\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00061}00061\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00062}00062\ \textcolor{comment}{\ \ \ \ ///\ Start()\ —\ Se\ ejecuta\ una\ vez\ al\ iniciar.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00063}00063\ \textcolor{comment}{\ \ \ \ ///\ Obtiene\ el\ Rigidbody2D\ y\ guarda\ la\ masa\ original\ como\ referencia.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00064}00064\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00065}\doxymbox{\hyperlink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{00065}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start}}()}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00066}00066\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00067}00067\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}}\ =\ GetComponent<Rigidbody2D>();}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00069}00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Guardar\ masa\ original\ para\ restaurarla\ al\ terminar\ el\ golpe}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc}{originalMass}}\ =\ \doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}}.mass;}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00074}00074\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00075}00075\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00076}00076\ \textcolor{comment}{\ \ \ \ ///\ OnCollisionEnter2D\ —\ Se\ ejecuta\ al\ entrar\ en\ colisión\ con\ otro\ Collider2D}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00077}00077\ \textcolor{comment}{\ \ \ \ ///\ (colisión\ sólida,\ no\ trigger).}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00078}00078\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00079}00079\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ EJECUTA:\ Al\ primer\ frame\ de\ contacto\ físico\ con\ otro\ collider.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00080}00080\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ CONTROLA:\ Durante\ el\ hit-\/stun,\ ignora\ colisiones\ físicas\ con\ enemigos}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00081}00081\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ para\ evitar\ que\ lo\ empujen\ mientras\ ya\ está\ volando\ por\ el\ knockback.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00082}00082\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00083}00083\ \textcolor{comment}{\ \ \ \ ///\ NOTA:\ Physics2D.IgnoreCollision\ persiste\ entre\ activaciones\ del\ objeto.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00084}00084\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ Si\ el\ enemigo\ cambia\ de\ estado,\ la\ colisión\ permanece\ ignorada}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00085}00085\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ hasta\ que\ se\ reactive\ explícitamente.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00086}00086\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00087}\doxymbox{\hyperlink{class_no_push_on_hit_ad2db13f66e65a64511f5cc5bc74c9089}{00087}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_no_push_on_hit_ad2db13f66e65a64511f5cc5bc74c9089}{OnCollisionEnter2D}}(Collision2D\ collision)}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00088}00088\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Durante\ el\ hit-\/stun:\ ignorar\ colisiones\ físicas\ con\ cualquier\ Enemy}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}{isHit}}\ \&\&\ collision.gameObject.CompareTag(\textcolor{stringliteral}{"{}Enemy"{}}))}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00091}00091\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ Physics2D.IgnoreCollision(GetComponent<Collider2D>(),\ collision.collider,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00096}00096\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00097}00097\ \ \ \ \ \textcolor{comment}{//\ MÉTODOS\ PRINCIPALES\ —\ API\ PÚBLICA}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00099}00099\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00100}00100\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00101}00101\ \textcolor{comment}{\ \ \ \ ///\ Inicia\ el\ estado\ de\ hit-\/stun\ para\ este\ personaje.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00102}00102\ \textcolor{comment}{\ \ \ \ ///\ Aumenta\ la\ masa\ del\ Rigidbody2D\ a\ 1000f\ para\ resistir\ empujes\ físicos}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00103}00103\ \textcolor{comment}{\ \ \ \ ///\ de\ contacto\ con\ otros\ colliders,\ y\ congela\ la\ rotación.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00104}00104\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00105}00105\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ LLAMA:\ Debe\ ser\ llamado\ externamente\ por\ el\ sistema\ de\ hit-\/stun}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00106}00106\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (HealthSystem.cs\ o\ similar)\ al\ inicio\ de\ un\ golpe\ recibido.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00107}00107\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ AFECTA:\ rb.mass\ (modificado\ a\ 1000f),\ rb.constraints,\ flag\ isHit.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00108}00108\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00109}00109\ \textcolor{comment}{\ \ \ \ ///\ ADVERTENCIA:\ Si\ OnHitEnd()\ nunca\ se\ llama,\ el\ jugador\ quedará\ con}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00110}00110\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ masa\ de\ 1000f\ permanentemente,\ rompiendo\ su\ física.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00111}00111\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00112}\doxymbox{\hyperlink{class_no_push_on_hit_aadd19d286e14f7ffb28e0431a4f8ef37}{00112}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_no_push_on_hit_aadd19d286e14f7ffb28e0431a4f8ef37}{OnHitStart}}()}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00113}00113\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Masa\ extrema\ para\ resistir\ desplazamientos\ por\ contacto\ físico}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ rb.mass\ =\ 1000f;}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ rb.constraints\ =\ RigidbodyConstraints2D.FreezeRotation;}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}{isHit}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00122}00122\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00123}00123\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00124}00124\ \textcolor{comment}{\ \ \ \ ///\ Finaliza\ el\ estado\ de\ hit-\/stun\ y\ restaura\ la\ física\ al\ estado\ normal.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00125}00125\ \textcolor{comment}{\ \ \ \ ///\ Restaura\ la\ masa\ original\ guardada\ en\ Start().}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00126}00126\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00127}00127\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ LLAMA:\ Debe\ ser\ llamado\ externamente\ al\ terminar\ el\ hit-\/stun.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00128}00128\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Típicamente\ mediante\ Invoke()\ o\ una\ coroutine\ desde\ el}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00129}00129\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ script\ que\ llamó\ OnHitStart().}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00130}00130\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ AFECTA:\ rb.mass\ (restaurado),\ flag\ isHit.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00131}00131\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00132}\doxymbox{\hyperlink{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}{00132}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}{OnHitEnd}}()}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00133}00133\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00135}00135\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Restaurar\ masa\ original\ al\ salir\ del\ hit-\/stun}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ rb.mass\ =\ \doxymbox{\hyperlink{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc}{originalMass}};}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00138}00138\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00139}00139\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}{isHit}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00140}00140\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00142}00142\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00143}00143\ \ \ \ \ \textcolor{comment}{//\ FLUJO\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00144}00144\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00145}00145\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00146}00146\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ Start()\ →\ guarda\ originalMass\ del\ Rigidbody2D.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00147}00147\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ HealthSystem\ (o\ sistema\ externo)\ detecta\ un\ golpe\ →\ llama\ OnHitStart().}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00148}00148\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ OnHitStart()\ →\ rb.mass\ =\ 1000f,\ isHit\ =\ true.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00149}00149\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ Durante\ el\ hit-\/stun:\ si\ un\ enemigo\ colisiona\ →\ OnCollisionEnter2D()}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00150}00150\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ →\ Physics2D.IgnoreCollision\ activo\ para\ ese\ enemigo.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00151}00151\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ Al\ terminar\ el\ hit-\/stun\ →\ OnHitEnd()\ →\ rb.mass\ =\ originalMass,\ isHit\ =\ false.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00152}00152\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00153}00153\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00155}00155\ \ \ \ \ \textcolor{comment}{//\ INTERACCIONES\ CON\ OTROS\ SISTEMAS}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00156}00156\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00157}00157\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00158}00158\ \textcolor{comment}{\ \ \ \ \ *\ ES\ LLAMADO\ POR:}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00159}00159\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ HealthSystem.cs\ (o\ el\ sistema\ que\ gestione\ el\ hit-\/stun\ del\ jugador)}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00160}00160\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ \ debe\ llamar\ OnHitStart()\ y\ OnHitEnd()\ manualmente.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00161}00161\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00162}00162\ \textcolor{comment}{\ \ \ \ \ *\ AFECTA\ A:}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00163}00163\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Rigidbody2D\ del\ jugador\ (masa\ y\ constraints).}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00164}00164\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Sistema\ de\ colisiones\ de\ Physics2D\ (IgnoreCollision\ con\ enemigos).}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00166}00166\ \textcolor{comment}{\ \ \ \ \ *\ NOTA\ IMPORTANTE:\ En\ la\ versión\ actual\ del\ proyecto,\ HealthSystem.cs}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00167}00167\ \textcolor{comment}{\ \ \ \ \ *\ \ \ NO\ llama\ a\ OnHitStart/OnHitEnd.\ Este\ script\ está\ preparado\ como}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00168}00168\ \textcolor{comment}{\ \ \ \ \ *\ \ \ extensión\ pero\ requiere\ integración\ manual\ para\ funcionar.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00169}00169\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00171}00171\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00172}00172\ \ \ \ \ \textcolor{comment}{//\ NOTAS\ /\ ADVERTENCIAS}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00173}00173\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00174}00174\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00175}00175\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ CRÍTICO:\ OnHitStart()\ y\ OnHitEnd()\ deben\ llamarse\ en\ par.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00176}00176\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Si\ OnHitEnd()\ no\ se\ llama\ (por\ error\ o\ excepción),\ el\ jugador}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00177}00177\ \textcolor{comment}{\ \ \ \ \ *\ \ \ quedará\ con\ rb.mass\ =\ 1000f\ permanentemente,\ haciendo\ que\ la}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00178}00178\ \textcolor{comment}{\ \ \ \ \ *\ \ \ física\ de\ movimiento\ y\ salto\ sea\ incorrecta.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00179}00179\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00180}00180\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Physics2D.IgnoreCollision()\ en\ OnCollisionEnter2D\ persiste}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00181}00181\ \textcolor{comment}{\ \ \ \ \ *\ \ \ indefinidamente.\ Si\ el\ mismo\ enemigo\ vuelve\ a\ colisionar\ después}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00182}00182\ \textcolor{comment}{\ \ \ \ \ *\ \ \ del\ hit-\/stun,\ la\ colisión\ seguirá\ ignorada\ hasta\ que\ se\ reactive}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00183}00183\ \textcolor{comment}{\ \ \ \ \ *\ \ \ con\ Physics2D.IgnoreCollision(col1,\ col2,\ false).}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00184}00184\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00185}00185\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Este\ script\ no\ gestiona\ el\ timer\ del\ hit-\/stun.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00186}00186\ \textcolor{comment}{\ \ \ \ \ *\ \ \ El\ control\ de\ duración\ debe\ hacerse\ desde\ el\ script\ que\ lo\ llama.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00187}00187\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00188}00188\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ La\ masa\ de\ 1000f\ es\ un\ valor\ hardcodeado.\ Si\ la\ masa\ original\ del}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00189}00189\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Rigidbody2D\ es\ muy\ alta\ (ej:\ 500f),\ la\ diferencia\ puede\ no\ ser}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00190}00190\ \textcolor{comment}{\ \ \ \ \ *\ \ \ suficiente.\ Considerar\ usar\ rb.isKinematic\ =\ true\ en\ su\ lugar.}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00191}00191\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_no_push_on_hit_8cs_source_l00192}00192\ \}}
+
+\end{DoxyCode}

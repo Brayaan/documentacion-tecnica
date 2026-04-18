@@ -1,0 +1,98 @@
+\doxysection{Referencia de la clase Player\+Movement\+Tests}
+\hypertarget{class_player_movement_tests}{}\label{class_player_movement_tests}\index{PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_movement_tests_a8e2286fc403c10c4a49e32bc4d12f8c3}{Tear\+Down}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_movement_tests_ae228698b16113af60b8f88666c7af566}{Apply\+Knockback\+\_\+\+Disables\+Movement\+During\+Knockback}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_movement_tests_aca843f19ae8b1538ad04b67dadb14a53}{Apply\+Knockback\+\_\+\+Attacker\+On\+Left\+\_\+\+Pushes\+Player\+Right}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_movement_tests_a560a213e1e751168080257b9b505ccb6}{Apply\+Knockback\+\_\+\+Attacker\+On\+Right\+\_\+\+Pushes\+Player\+Left}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} \doxymbox{\hyperlink{class_player_movement_tests_aef37c4797fa456e817600ed2e03bbab9}{Create\+Player}} (Vector3 position=default)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_player_movement_tests_ab324179419de4394fab0520ac97ec4c1}{\+\_\+player\+GO}}
+\item 
+Field\+Info \doxymbox{\hyperlink{class_player_movement_tests_ae609902d5717542ba9a945d3ee6b2b66}{\+\_\+is\+Knocked\+Back\+Field}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+\hypertarget{class_player_movement_tests_autotoc_md4}{}\doxysubsection{\texorpdfstring{}{}}\label{class_player_movement_tests_autotoc_md4}
+\hypertarget{class_player_movement_tests_autotoc_md5}{}\doxysubsection{\texorpdfstring{SISTEMA:\+ PLAYER MOVEMENT TESTS}{SISTEMA:\+ PLAYER MOVEMENT TESTS}}\label{class_player_movement_tests_autotoc_md5}
+OBJETIVO:\+ Validar el comportamiento del movimiento del jugador durante:\+
+\begin{DoxyItemize}
+\item Knockback (retroceso al recibir daño)
+\item Dirección del empuje según posición del atacante
+\end{DoxyItemize}
+
+LIMITACIONES:\+
+\begin{DoxyItemize}
+\item No se simula input del jugador (A/\+\+D/\+\+Space).
+\item Se prueba únicamente lógica interna (Apply\+Knockback). 
+\end{DoxyItemize}\hypertarget{class_player_movement_tests_autotoc_md6}{}\doxysubsection{\texorpdfstring{-\/ Se usa Reflection para acceder a estados privados.}{-\/ Se usa Reflection para acceder a estados privados.}}\label{class_player_movement_tests_autotoc_md6}
+
+
+\label{doc-func-members}
+\Hypertarget{class_player_movement_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_player_movement_tests_aca843f19ae8b1538ad04b67dadb14a53}\index{PlayerMovementTests@{PlayerMovementTests}!ApplyKnockback\_AttackerOnLeft\_PushesPlayerRight@{ApplyKnockback\_AttackerOnLeft\_PushesPlayerRight}}
+\index{ApplyKnockback\_AttackerOnLeft\_PushesPlayerRight@{ApplyKnockback\_AttackerOnLeft\_PushesPlayerRight}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{ApplyKnockback\_AttackerOnLeft\_PushesPlayerRight()}{ApplyKnockback\_AttackerOnLeft\_PushesPlayerRight()}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_aca843f19ae8b1538ad04b67dadb14a53} 
+IEnumerator Player\+Movement\+Tests.\+Apply\+Knockback\+\_\+\+Attacker\+On\+Left\+\_\+\+Pushes\+Player\+Right (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_movement_tests_a560a213e1e751168080257b9b505ccb6}\index{PlayerMovementTests@{PlayerMovementTests}!ApplyKnockback\_AttackerOnRight\_PushesPlayerLeft@{ApplyKnockback\_AttackerOnRight\_PushesPlayerLeft}}
+\index{ApplyKnockback\_AttackerOnRight\_PushesPlayerLeft@{ApplyKnockback\_AttackerOnRight\_PushesPlayerLeft}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{ApplyKnockback\_AttackerOnRight\_PushesPlayerLeft()}{ApplyKnockback\_AttackerOnRight\_PushesPlayerLeft()}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_a560a213e1e751168080257b9b505ccb6} 
+IEnumerator Player\+Movement\+Tests.\+Apply\+Knockback\+\_\+\+Attacker\+On\+Right\+\_\+\+Pushes\+Player\+Left (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_movement_tests_ae228698b16113af60b8f88666c7af566}\index{PlayerMovementTests@{PlayerMovementTests}!ApplyKnockback\_DisablesMovementDuringKnockback@{ApplyKnockback\_DisablesMovementDuringKnockback}}
+\index{ApplyKnockback\_DisablesMovementDuringKnockback@{ApplyKnockback\_DisablesMovementDuringKnockback}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{ApplyKnockback\_DisablesMovementDuringKnockback()}{ApplyKnockback\_DisablesMovementDuringKnockback()}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_ae228698b16113af60b8f88666c7af566} 
+IEnumerator Player\+Movement\+Tests.\+Apply\+Knockback\+\_\+\+Disables\+Movement\+During\+Knockback (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_movement_tests_aef37c4797fa456e817600ed2e03bbab9}\index{PlayerMovementTests@{PlayerMovementTests}!CreatePlayer@{CreatePlayer}}
+\index{CreatePlayer@{CreatePlayer}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{CreatePlayer()}{CreatePlayer()}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_aef37c4797fa456e817600ed2e03bbab9} 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} Player\+Movement\+Tests.\+Create\+Player (\begin{DoxyParamCaption}\item[{Vector3}]{position}{ = {\ttfamily default}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_movement_tests_a8e2286fc403c10c4a49e32bc4d12f8c3}\index{PlayerMovementTests@{PlayerMovementTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_a8e2286fc403c10c4a49e32bc4d12f8c3} 
+void Player\+Movement\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_movement_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_player_movement_tests_ae609902d5717542ba9a945d3ee6b2b66}\index{PlayerMovementTests@{PlayerMovementTests}!\_isKnockedBackField@{\_isKnockedBackField}}
+\index{\_isKnockedBackField@{\_isKnockedBackField}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{\_isKnockedBackField}{\_isKnockedBackField}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_ae609902d5717542ba9a945d3ee6b2b66} 
+Field\+Info Player\+Movement\+Tests.\+\_\+is\+Knocked\+Back\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_movement_tests_ab324179419de4394fab0520ac97ec4c1}\index{PlayerMovementTests@{PlayerMovementTests}!\_playerGO@{\_playerGO}}
+\index{\_playerGO@{\_playerGO}!PlayerMovementTests@{PlayerMovementTests}}
+\doxysubsubsection{\texorpdfstring{\_playerGO}{\_playerGO}}
+{\footnotesize\ttfamily \label{class_player_movement_tests_ab324179419de4394fab0520ac97ec4c1} 
+Game\+Object Player\+Movement\+Tests.\+\_\+player\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_player_movement_tests_8cs}{Player\+Movement\+Tests.\+cs}}\end{DoxyCompactItemize}

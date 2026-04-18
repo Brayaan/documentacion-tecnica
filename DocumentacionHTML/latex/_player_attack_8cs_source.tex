@@ -1,0 +1,364 @@
+\doxysection{Player\+Attack.\+cs}
+\hypertarget{_player_attack_8cs_source}{}\label{_player_attack_8cs_source}\index{spritesheets/Scripts/PlayerAttack.cs@{spritesheets/Scripts/PlayerAttack.cs}}
+\doxymbox{\hyperlink{_player_attack_8cs}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00001}00001\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00002}00002\ \textcolor{comment}{//\ ARCHIVO:\ PlayerAttack.cs}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00003}00003\ \textcolor{comment}{//\ PROPÓSITO:\ Gestionar\ el\ sistema\ de\ ataques\ del\ jugador:}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ puñetazo\ y\ patada,\ sus\ hitboxes,\ cooldowns\ y\ animaciones.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00005}00005\ \textcolor{comment}{//\ RESPONSABILIDAD:\ Capturar\ input\ de\ ataque,\ activar\ hitboxes\ durante}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ la\ ventana\ de\ daño\ y\ sincronizar\ el\ estado\ de\ ataque}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00007}00007\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ con\ PlayerMovement.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00008}00008\ \textcolor{comment}{//\ SISTEMA:\ Combate\ —\ Input\ y\ Control\ de\ Ataques}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00009}00009\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00011}00011\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00012}00012\ \textcolor{comment}{\ *\ DESCRIPCIÓN\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00013}00013\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00014}00014\ \textcolor{comment}{\ *\ Este\ script\ es\ el\ controlador\ central\ de\ los\ ataques\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00015}00015\ \textcolor{comment}{\ *\ Escucha\ el\ input\ de\ teclado\ para\ puñetazo\ (J)\ y\ patada\ (K),}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00016}00016\ \textcolor{comment}{\ *\ dispara\ las\ animaciones\ correspondientes,\ activa\ el\ hitbox\ durante}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00017}00017\ \textcolor{comment}{\ *\ la\ ventana\ de\ daño\ (attackDuration)\ y\ lo\ desactiva\ al\ terminar.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00018}00018\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00019}00019\ \textcolor{comment}{\ *\ Implementa:}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ -\/\ Cooldown\ independiente\ para\ puñetazo\ y\ patada.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00021}00021\ \textcolor{comment}{\ *\ \ \ -\/\ Flag\ isAttacking\ para\ evitar\ ataques\ superpuestos.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00022}00022\ \textcolor{comment}{\ *\ \ \ -\/\ Sincronización\ del\ estado\ isAttacking\ con\ PlayerMovement.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00023}00023\ \textcolor{comment}{\ *\ \ \ -\/\ API\ pública\ (IsAttacking())\ para\ que\ Hitbox\ y\ ExtendedHitbox}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00024}00024\ \textcolor{comment}{\ *\ \ \ \ \ verifiquen\ si\ deben\ aplicar\ daño.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00025}00025\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00026}00026\ \textcolor{comment}{\ *\ SISTEMA:\ Combate\ /\ Input\ de\ Ataque}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00027}00027\ \textcolor{comment}{\ *\ INTERACTÚA\ CON:\ PlayerMovement.cs,\ Hitbox.cs,\ ExtendedHitbox.cs,\ Animator}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00028}00028\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00030}00030\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00032}\doxymbox{\hyperlink{class_player_attack}{00032}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_player_attack}{PlayerAttack}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00033}00033\ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ REFERENCIAS\ EXTERNAS}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00036}00036\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00037}00037\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00038}00038\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00039}00039\ \textcolor{comment}{\ \ \ \ ///\ Referencia\ al\ script\ de\ movimiento\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00040}00040\ \textcolor{comment}{\ \ \ \ ///\ Necesaria\ para\ sincronizar\ el\ flag\ isAttacking\ con\ PlayerMovement,}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00041}00041\ \textcolor{comment}{\ \ \ \ ///\ que\ puede\ usar\ ese\ dato\ para\ modificar\ el\ comportamiento\ del\ movimiento.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00042}00042\ \textcolor{comment}{\ \ \ \ ///\ Debe\ asignarse\ desde\ el\ Inspector.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00043}00043\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00044}\doxymbox{\hyperlink{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88}{00044}}\ \ \ \ \ \textcolor{keyword}{public}\ \doxymbox{\hyperlink{class_player_movement}{PlayerMovement}}\ \doxymbox{\hyperlink{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88}{playerMovement}};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00047}00047\ \ \ \ \ \textcolor{comment}{//\ HITBOXES}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00048}00048\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00049}00049\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00050}00050\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00051}00051\ \textcolor{comment}{\ \ \ \ ///\ GameObject\ del\ hitbox\ de\ puñetazo.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00052}00052\ \textcolor{comment}{\ \ \ \ ///\ Se\ activa/desactiva\ durante\ la\ ventana\ de\ daño\ del\ puñetazo.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00053}00053\ \textcolor{comment}{\ \ \ \ ///\ Debe\ asignarse\ desde\ el\ Inspector.\ El\ GameObject\ debe\ tener\ un}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00054}00054\ \textcolor{comment}{\ \ \ \ ///\ Collider2D\ en\ modo\ Trigger\ y\ el\ script\ Hitbox.cs.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00055}00055\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00056}\doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{00056}}\ \ \ \ \ \textcolor{keyword}{public}\ GameObject\ \doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00057}00057\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00058}00058\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00059}00059\ \textcolor{comment}{\ \ \ \ ///\ GameObject\ del\ hitbox\ de\ patada.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00060}00060\ \textcolor{comment}{\ \ \ \ ///\ Se\ activa/desactiva\ durante\ la\ ventana\ de\ daño\ de\ la\ patada.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00061}00061\ \textcolor{comment}{\ \ \ \ ///\ Debe\ asignarse\ desde\ el\ Inspector.\ El\ GameObject\ debe\ tener\ un}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00062}00062\ \textcolor{comment}{\ \ \ \ ///\ Collider2D\ en\ modo\ Trigger\ y\ el\ script\ Hitbox.cs.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00063}00063\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00064}\doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{00064}}\ \ \ \ \ \textcolor{keyword}{public}\ GameObject\ \doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00067}00067\ \ \ \ \ \textcolor{comment}{//\ TECLAS\ DE\ INPUT}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00068}00068\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00069}00069\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00070}00070\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00071}00071\ \textcolor{comment}{\ \ \ \ ///\ Tecla\ asignada\ al\ puñetazo.\ Por\ defecto:\ J.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00072}00072\ \textcolor{comment}{\ \ \ \ ///\ Configurable\ desde\ el\ Inspector\ para\ remapeo\ de\ controles.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00073}00073\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00074}\doxymbox{\hyperlink{class_player_attack_aa4f16c2b62e0804898250fa244fdda4f}{00074}}\ \ \ \ \ \textcolor{keyword}{public}\ KeyCode\ \doxymbox{\hyperlink{class_player_attack_aa4f16c2b62e0804898250fa244fdda4f}{punchKey}}\ =\ KeyCode.J;}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00075}00075\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00076}00076\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00077}00077\ \textcolor{comment}{\ \ \ \ ///\ Tecla\ asignada\ a\ la\ patada.\ Por\ defecto:\ K.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00078}00078\ \textcolor{comment}{\ \ \ \ ///\ Configurable\ desde\ el\ Inspector\ para\ remapeo\ de\ controles.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00079}00079\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00080}\doxymbox{\hyperlink{class_player_attack_a94d9fa546a1a4924f97f399919907ea2}{00080}}\ \ \ \ \ \textcolor{keyword}{public}\ KeyCode\ \doxymbox{\hyperlink{class_player_attack_a94d9fa546a1a4924f97f399919907ea2}{kickKey}}\ =\ KeyCode.K;}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00082}00082\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00083}00083\ \ \ \ \ \textcolor{comment}{//\ COOLDOWNS\ Y\ ESTADO}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00084}00084\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00085}00085\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00086}00086\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00087}00087\ \textcolor{comment}{\ \ \ \ ///\ Flag\ que\ indica\ si\ la\ patada\ está\ disponible\ para\ ejecutarse.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00088}00088\ \textcolor{comment}{\ \ \ \ ///\ Se\ pone\ en\ false\ al\ atacar\ y\ vuelve\ a\ true\ después\ de\ kickCooldown\ segundos.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00089}00089\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00090}\doxymbox{\hyperlink{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}{00090}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}{kickReady}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00091}00091\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00092}00092\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00093}00093\ \textcolor{comment}{\ \ \ \ ///\ Tiempo\ en\ segundos\ que\ debe\ pasar\ antes\ de\ poder\ usar\ la\ patada\ de\ nuevo.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00094}00094\ \textcolor{comment}{\ \ \ \ ///\ Configurable\ desde\ el\ Inspector.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00095}00095\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00096}\doxymbox{\hyperlink{class_player_attack_a08c43dc6d48e16d2439e77478432865c}{00096}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_attack_a08c43dc6d48e16d2439e77478432865c}{kickCooldown}}\ =\ 0.5f;}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00097}00097\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00098}00098\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00099}00099\ \textcolor{comment}{\ \ \ \ ///\ Flag\ que\ indica\ si\ el\ puñetazo\ está\ disponible\ para\ ejecutarse.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00100}00100\ \textcolor{comment}{\ \ \ \ ///\ Se\ pone\ en\ false\ al\ atacar\ y\ vuelve\ a\ true\ después\ de\ punchCooldown\ segundos.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00101}00101\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00102}\doxymbox{\hyperlink{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}{00102}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}{punchReady}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00103}00103\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00104}00104\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00105}00105\ \textcolor{comment}{\ \ \ \ ///\ Tiempo\ en\ segundos\ que\ debe\ pasar\ antes\ de\ poder\ usar\ el\ puñetazo\ de\ nuevo.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00106}00106\ \textcolor{comment}{\ \ \ \ ///\ Configurable\ desde\ el\ Inspector.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00107}00107\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00108}\doxymbox{\hyperlink{class_player_attack_af5b081ae192a762efa4ff18a52702486}{00108}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_attack_af5b081ae192a762efa4ff18a52702486}{punchCooldown}}\ =\ 0.3f;}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00109}00109\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00110}00110\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00111}00111\ \textcolor{comment}{\ \ \ \ ///\ Flag\ global\ de\ ataque\ activo.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00112}00112\ \textcolor{comment}{\ \ \ \ ///\ true\ =\ el\ jugador\ está\ ejecutando\ un\ ataque\ y\ no\ puede\ iniciar\ otro.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00113}00113\ \textcolor{comment}{\ \ \ \ ///\ false\ =\ el\ jugador\ puede\ iniciar\ un\ nuevo\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00114}00114\ \textcolor{comment}{\ \ \ \ ///\ También\ se\ sincroniza\ con\ PlayerMovement.isAttacking.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00115}00115\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00116}\doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{00116}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{isAttacking}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00117}00117\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00118}00118\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00119}00119\ \textcolor{comment}{\ \ \ \ ///\ Tiempo\ en\ segundos\ que\ el\ hitbox\ permanece\ activo\ durante\ un\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00120}00120\ \textcolor{comment}{\ \ \ \ ///\ Define\ la\ "{}ventana\ de\ daño"{}:\ cuánto\ tiempo\ puede\ conectar\ el\ golpe.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00121}00121\ \textcolor{comment}{\ \ \ \ ///\ También\ controla\ la\ duración\ del\ estado\ isAttacking.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00122}00122\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00123}\doxymbox{\hyperlink{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}{00123}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}{attackDuration}}\ =\ 0.3f;}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00125}00125\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00126}00126\ \ \ \ \ \textcolor{comment}{//\ REFERENCIAS\ INTERNAS}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00127}00127\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00128}00128\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00129}00129\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00130}00130\ \textcolor{comment}{\ \ \ \ ///\ Referencia\ al\ Animator\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00131}00131\ \textcolor{comment}{\ \ \ \ ///\ Se\ obtiene\ en\ Start().\ Necesario\ para\ disparar\ triggers\ de\ animación.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00132}00132\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00133}\doxymbox{\hyperlink{class_player_attack_a6743019059d6443dbe846db5274a148f}{00133}}\ \ \ \ \ \textcolor{keyword}{private}\ Animator\ \doxymbox{\hyperlink{class_player_attack_a6743019059d6443dbe846db5274a148f}{anim}};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00135}00135\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00136}00136\ \ \ \ \ \textcolor{comment}{//\ EVENTOS\ DE\ UNITY}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00137}00137\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00138}00138\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00139}00139\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00140}00140\ \textcolor{comment}{\ \ \ \ ///\ Start()\ —\ Se\ ejecuta\ una\ vez\ al\ iniciar.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00141}00141\ \textcolor{comment}{\ \ \ \ ///\ Obtiene\ el\ Animator\ y\ asegura\ que\ ambos\ hitboxes\ están\ desactivados.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00142}00142\ \textcolor{comment}{\ \ \ \ ///\ Los\ hitboxes\ SIEMPRE\ deben\ comenzar\ desactivados\ para\ evitar}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00143}00143\ \textcolor{comment}{\ \ \ \ ///\ detecciones\ falsas\ al\ iniciar\ la\ escena.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00144}00144\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00145}\doxymbox{\hyperlink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{00145}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{Start}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00146}00146\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00147}00147\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a6743019059d6443dbe846db5274a148f}{anim}}\ =\ GetComponent<Animator>();}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Asegurar\ que\ los\ hitboxes\ están\ desactivados\ al\ iniciar}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}}.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00153}00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}}.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00155}00155\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00156}00156\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00157}00157\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00158}00158\ \textcolor{comment}{\ \ \ \ ///\ Update()\ —\ Se\ ejecuta\ cada\ frame.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00159}00159\ \textcolor{comment}{\ \ \ \ ///\ Lee\ el\ input\ de\ teclado\ para\ puñetazo\ y\ patada.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00160}00160\ \textcolor{comment}{\ \ \ \ ///\ Verifica\ cooldown,\ flag\ de\ ataque\ activo\ y\ disponibilidad\ antes\ de\ atacar.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00161}00161\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00162}00162\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ EJECUTA:\ Cada\ frame\ durante\ la\ partida.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00163}00163\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ CONTROLA:\ Input\ de\ ataques,\ inicio\ de\ StartAttack(),\ activación\ de\ hitboxes,}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00164}00164\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ triggers\ de\ animación\ y\ cooldowns.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00165}00165\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00166}00166\ \textcolor{comment}{\ \ \ \ ///\ ORDEN\ DE\ VERIFICACIÓN\ (puñetazo):}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00167}00167\ \textcolor{comment}{\ \ \ \ ///\ \ \ 1.\ Input\ detectado\ (GetKeyDown).}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00168}00168\ \textcolor{comment}{\ \ \ \ ///\ \ \ 2.\ No\ hay\ ataque\ en\ curso\ (!isAttacking).}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00169}00169\ \textcolor{comment}{\ \ \ \ ///\ \ \ 3.\ Puñetazo\ disponible\ (punchReady).}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00170}00170\ \textcolor{comment}{\ \ \ \ ///\ \ \ →\ StartAttack()\ +\ animación\ +\ hitbox\ activo\ +\ cooldown.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00171}00171\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00172}\doxymbox{\hyperlink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{00172}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00173}00173\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PUÑETAZO:\ verificar\ input,\ estado\ de\ ataque\ y\ cooldown}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Input.GetKeyDown(\doxymbox{\hyperlink{class_player_attack_aa4f16c2b62e0804898250fa244fdda4f}{punchKey}})\ \&\&\ !\doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{isAttacking}}\ \&\&\ \doxymbox{\hyperlink{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}{punchReady}})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00176}00176\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{StartAttack}}();}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a6743019059d6443dbe846db5274a148f}{anim}}.SetTrigger(\textcolor{stringliteral}{"{}punch"{}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a39e4a351c33a7c368bc59a7ad6813b38}{ActivarHitbox}}();}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ Invoke(nameof(\doxymbox{\hyperlink{class_player_attack_a98980a0f03c90eb2925958da9291c24a}{DesactivarHitbox}}),\ \doxymbox{\hyperlink{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}{attackDuration}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}{punchReady}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ Invoke(nameof(\doxymbox{\hyperlink{class_player_attack_a346cd11bc45e53189bba93dcad8bb6f9}{ResetPunch}}),\ \doxymbox{\hyperlink{class_player_attack_af5b081ae192a762efa4ff18a52702486}{punchCooldown}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00184}00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00186}00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ PATADA:\ verificar\ cooldown,\ input\ y\ estado\ de\ ataque}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Input.GetKeyDown(\doxymbox{\hyperlink{class_player_attack_a94d9fa546a1a4924f97f399919907ea2}{kickKey}})\ \&\&\ \doxymbox{\hyperlink{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}{kickReady}}\ \&\&\ !\doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{isAttacking}})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00188}00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{StartAttack}}();}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a6743019059d6443dbe846db5274a148f}{anim}}.SetTrigger(\textcolor{stringliteral}{"{}kick"{}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a2cd42bfa233d139f791e4aeb0256c4dd}{ActivarKickHitbox}}();}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ Invoke(nameof(\doxymbox{\hyperlink{class_player_attack_a8d57eea8ca6e1759686d5811df9cdbf8}{DesactivarKickHitbox}}),\ \doxymbox{\hyperlink{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}{attackDuration}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}{kickReady}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ Invoke(nameof(\doxymbox{\hyperlink{class_player_attack_a459675c82d206f79c42d1731e7719238}{ResetKick}}),\ \doxymbox{\hyperlink{class_player_attack_a08c43dc6d48e16d2439e77478432865c}{kickCooldown}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00196}00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00199}00199\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00200}00200\ \ \ \ \ \textcolor{comment}{//\ MÉTODOS\ PRINCIPALES}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00201}00201\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00202}00202\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00203}00203\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00204}00204\ \textcolor{comment}{\ \ \ \ ///\ Inicia\ el\ estado\ de\ ataque\ global.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00205}00205\ \textcolor{comment}{\ \ \ \ ///\ Pone\ isAttacking\ en\ true\ y\ lo\ sincroniza\ con\ PlayerMovement.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00206}00206\ \textcolor{comment}{\ \ \ \ ///\ Programa\ EndAttack()\ para\ que\ se\ ejecute\ después\ de\ attackDuration.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00207}00207\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00208}00208\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ LLAMA:\ Al\ inicio\ de\ cada\ ataque\ (puñetazo\ o\ patada).}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00209}00209\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ AFECTA:\ isAttacking,\ PlayerMovement.isAttacking.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00210}00210\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00211}\doxymbox{\hyperlink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{00211}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{StartAttack}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00212}00212\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00213}00213\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{isAttacking}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00215}00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sincronizar\ flag\ de\ ataque\ con\ PlayerMovement}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00216}00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88}{playerMovement}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00217}00217\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ playerMovement.isAttacking\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00219}00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00220}00220\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00221}00221\ \ \ \ \ \ \ \ \ Invoke(nameof(\doxymbox{\hyperlink{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}{EndAttack}}),\ \doxymbox{\hyperlink{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}{attackDuration}});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00222}00222\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00223}00223\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00224}00224\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00225}00225\ \textcolor{comment}{\ \ \ \ ///\ Finaliza\ el\ estado\ de\ ataque\ y\ libera\ el\ sistema\ para\ el\ próximo\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00226}00226\ \textcolor{comment}{\ \ \ \ ///\ Se\ ejecuta\ automáticamente\ mediante\ Invoke()\ al\ vencer\ attackDuration.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00227}00227\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00228}00228\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ LLAMA:\ Después\ de\ attackDuration\ segundos\ desde\ StartAttack().}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00229}00229\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ AFECTA:\ isAttacking,\ PlayerMovement.isAttacking.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00230}00230\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00231}\doxymbox{\hyperlink{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}{00231}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}{EndAttack}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00232}00232\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00233}00233\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{isAttacking}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00235}00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Limpiar\ flag\ de\ ataque\ en\ PlayerMovement}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00236}00236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88}{playerMovement}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00237}00237\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ playerMovement.isAttacking\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00239}00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00240}00240\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00242}00242\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00243}00243\ \ \ \ \ \textcolor{comment}{//\ API\ PÚBLICA}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00244}00244\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00245}00245\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00246}00246\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00247}00247\ \textcolor{comment}{\ \ \ \ ///\ Expone\ el\ estado\ de\ ataque\ para\ que\ Hitbox\ y\ ExtendedHitbox}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00248}00248\ \textcolor{comment}{\ \ \ \ ///\ puedan\ verificar\ si\ deben\ procesar\ colisiones.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00249}00249\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00250}00250\ \textcolor{comment}{\ \ \ \ ///\ <returns>true\ si\ hay\ un\ ataque\ en\ curso;\ false\ en\ caso\ contrario.</returns>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00251}\doxymbox{\hyperlink{class_player_attack_a3996503d35edee7f2bf3020c89f21b2c}{00251}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_attack_a3996503d35edee7f2bf3020c89f21b2c}{IsAttacking}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00252}00252\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00253}00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{isAttacking}};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00254}00254\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00256}00256\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00257}00257\ \ \ \ \ \textcolor{comment}{//\ MÉTODOS\ DE\ HITBOX}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00258}00258\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00259}00259\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00260}00260\ \textcolor{comment}{\ \ \ \ ///\ <summary>Activa\ el\ hitbox\ de\ puñetazo.\ Llamado\ al\ inicio\ del\ puñetazo.</summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00261}\doxymbox{\hyperlink{class_player_attack_a39e4a351c33a7c368bc59a7ad6813b38}{00261}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a39e4a351c33a7c368bc59a7ad6813b38}{ActivarHitbox}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00262}00262\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00263}00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}}.SetActive(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00265}00265\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00266}00266\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00267}00267\ \textcolor{comment}{\ \ \ \ ///\ <summary>Desactiva\ el\ hitbox\ de\ puñetazo.\ Llamado\ al\ terminar\ la\ ventana\ de\ daño.</summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00268}\doxymbox{\hyperlink{class_player_attack_a98980a0f03c90eb2925958da9291c24a}{00268}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a98980a0f03c90eb2925958da9291c24a}{DesactivarHitbox}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00269}00269\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00270}00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00271}00271\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punchHitbox}}.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00272}00272\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00273}00273\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00274}00274\ \textcolor{comment}{\ \ \ \ ///\ <summary>Activa\ el\ hitbox\ de\ patada.\ Llamado\ al\ inicio\ de\ la\ patada.</summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00275}\doxymbox{\hyperlink{class_player_attack_a2cd42bfa233d139f791e4aeb0256c4dd}{00275}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a2cd42bfa233d139f791e4aeb0256c4dd}{ActivarKickHitbox}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00276}00276\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00277}00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00278}00278\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}}.SetActive(\textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00279}00279\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00280}00280\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00281}00281\ \textcolor{comment}{\ \ \ \ ///\ <summary>Desactiva\ el\ hitbox\ de\ patada.\ Llamado\ al\ terminar\ la\ ventana\ de\ daño.</summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00282}\doxymbox{\hyperlink{class_player_attack_a8d57eea8ca6e1759686d5811df9cdbf8}{00282}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a8d57eea8ca6e1759686d5811df9cdbf8}{DesactivarKickHitbox}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00283}00283\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00284}00284\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00285}00285\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kickHitbox}}.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00286}00286\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00288}00288\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00289}00289\ \ \ \ \ \textcolor{comment}{//\ MÉTODOS\ AUXILIARES\ —\ RESET\ DE\ COOLDOWNS}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00290}00290\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00291}00291\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00292}00292\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00293}00293\ \textcolor{comment}{\ \ \ \ ///\ Reactiva\ la\ disponibilidad\ de\ la\ patada\ después\ de\ kickCooldown\ segundos.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00294}00294\ \textcolor{comment}{\ \ \ \ ///\ Se\ ejecuta\ mediante\ Invoke()\ desde\ Update().}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00295}00295\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00296}\doxymbox{\hyperlink{class_player_attack_a459675c82d206f79c42d1731e7719238}{00296}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a459675c82d206f79c42d1731e7719238}{ResetKick}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00297}00297\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00298}00298\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}{kickReady}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00299}00299\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00300}00300\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00301}00301\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00302}00302\ \textcolor{comment}{\ \ \ \ ///\ Reactiva\ la\ disponibilidad\ del\ puñetazo\ después\ de\ punchCooldown\ segundos.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00303}00303\ \textcolor{comment}{\ \ \ \ ///\ Se\ ejecuta\ mediante\ Invoke()\ desde\ Update().}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00304}00304\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00305}\doxymbox{\hyperlink{class_player_attack_a346cd11bc45e53189bba93dcad8bb6f9}{00305}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_attack_a346cd11bc45e53189bba93dcad8bb6f9}{ResetPunch}}()}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00306}00306\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00307}00307\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}{punchReady}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00308}00308\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00309}00309\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00310}00310\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00311}00311\ \ \ \ \ \textcolor{comment}{//\ FLUJO\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00312}00312\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00313}00313\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00314}00314\ \textcolor{comment}{\ \ \ \ \ *\ PUÑETAZO:}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00315}00315\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ GetKeyDown(J)\ +\ !isAttacking\ +\ punchReady\ →\ StartAttack().}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00316}00316\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ anim.SetTrigger("{}punch"{})\ →\ inicia\ animación.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00317}00317\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ punchHitbox.SetActive(true)\ →\ ventana\ de\ daño\ abierta.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00318}00318\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ Después\ de\ attackDuration\ →\ DesactivarHitbox()\ +\ EndAttack().}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00319}00319\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ Después\ de\ punchCooldown\ →\ ResetPunch()\ →\ punchReady\ =\ true.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00320}00320\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00321}00321\ \textcolor{comment}{\ \ \ \ \ *\ PATADA:\ mismo\ flujo\ con\ kickHitbox,\ trigger\ "{}kick"{}\ y\ kickCooldown.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00322}00322\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00323}00323\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00324}00324\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00325}00325\ \ \ \ \ \textcolor{comment}{//\ INTERACCIONES\ CON\ OTROS\ SISTEMAS}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00326}00326\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00327}00327\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00328}00328\ \textcolor{comment}{\ \ \ \ \ *\ AFECTA\ A:}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00329}00329\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ PlayerMovement.isAttacking\ →\ sincronización\ de\ estado.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00330}00330\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Hitbox.cs\ →\ lee\ IsAttacking()\ para\ validar\ golpes.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00331}00331\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ ExtendedHitbox.cs\ →\ lee\ IsAttacking()\ para\ validar\ golpes.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00332}00332\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Animator\ →\ triggers\ "{}punch"{}\ y\ "{}kick"{}.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00333}00333\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ punchHitbox\ /\ kickHitbox\ →\ SetActive\ on/off.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00334}00334\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00335}00335\ \textcolor{comment}{\ \ \ \ \ *\ NO\ DEPENDE\ DE\ ningún\ sistema\ de\ combate\ en\ runtime}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00336}00336\ \textcolor{comment}{\ \ \ \ \ *\ (solo\ necesita\ PlayerMovement,\ Animator\ e\ Inspector).}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00337}00337\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00338}00338\ }
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00339}00339\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00340}00340\ \ \ \ \ \textcolor{comment}{//\ NOTAS\ /\ ADVERTENCIAS}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00341}00341\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00342}00342\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00343}00343\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ attackDuration\ controla\ tanto\ la\ ventana\ de\ daño\ del\ hitbox}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00344}00344\ \textcolor{comment}{\ \ \ \ \ *\ \ \ como\ la\ duración\ del\ estado\ isAttacking.\ Si\ se\ necesita\ que}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00345}00345\ \textcolor{comment}{\ \ \ \ \ *\ \ \ la\ ventana\ de\ daño\ sea\ diferente\ a\ la\ duración\ del\ estado\ de\ ataque,}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00346}00346\ \textcolor{comment}{\ \ \ \ \ *\ \ \ separar\ en\ dos\ variables\ distintas.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00347}00347\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00348}00348\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Invoke()\ no\ se\ cancela\ si\ el\ script\ se\ deshabilita\ durante\ el\ ataque.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00349}00349\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Si\ PlayerAttack\ se\ deshabilita\ a\ mitad\ del\ ataque,\ EndAttack()\ y}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00350}00350\ \textcolor{comment}{\ \ \ \ \ *\ \ \ los\ reset\ de\ hitboxes\ podrían\ no\ ejecutarse,\ dejando\ el\ sistema\ en}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00351}00351\ \textcolor{comment}{\ \ \ \ \ *\ \ \ estado\ inválido.\ Considerar\ usar\ CancelInvoke()\ en\ OnDisable().}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00352}00352\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00353}00353\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Los\ triggers\ de\ Animator\ "{}punch"{}\ y\ "{}kick"{}\ deben\ existir\ en\ el}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00354}00354\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Animator\ Controller.\ Si\ no\ existen,\ Unity\ lanzará\ un\ warning}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00355}00355\ \textcolor{comment}{\ \ \ \ \ *\ \ \ y\ la\ animación\ no\ se\ reproducirá,\ pero\ el\ resto\ del\ sistema\ seguirá}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00356}00356\ \textcolor{comment}{\ \ \ \ \ *\ \ \ funcionando\ normalmente.}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00357}00357\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_player_attack_8cs_source_l00358}00358\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,215 @@
+\doxysection{Player\+Defense.\+cs}
+\hypertarget{_player_defense_8cs_source}{}\label{_player_defense_8cs_source}\index{spritesheets/Scripts/PlayerDefense.cs@{spritesheets/Scripts/PlayerDefense.cs}}
+\doxymbox{\hyperlink{_player_defense_8cs}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00001}00001\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00002}00002\ \textcolor{comment}{//\ ARCHIVO:\ PlayerDefense.cs}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00003}00003\ \textcolor{comment}{//\ PROPÓSITO:\ Gestionar\ el\ sistema\ de\ bloqueo\ del\ jugador:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ input\ de\ bloqueo,\ animación,\ hitbox\ de\ guardia\ y\ ganancia\ de\ energía.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00005}00005\ \textcolor{comment}{//\ RESPONSABILIDAD:\ Detectar\ cuándo\ el\ jugador\ bloquea,\ activar\ el\ hitbox}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ de\ bloqueo,\ sincronizar\ la\ animación\ y\ dar\ energía\ al\ inicio.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00007}00007\ \textcolor{comment}{//\ SISTEMA:\ Combate\ —\ Defensa\ /\ Bloqueo}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00008}00008\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00010}00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00011}00011\ \textcolor{comment}{\ *\ DESCRIPCIÓN\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00012}00012\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00013}00013\ \textcolor{comment}{\ *\ Este\ script\ controla\ la\ mecánica\ de\ defensa\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00014}00014\ \textcolor{comment}{\ *\ Mientras\ se\ mantiene\ presionada\ la\ tecla\ de\ bloqueo\ (L\ por\ defecto),}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00015}00015\ \textcolor{comment}{\ *\ el\ jugador\ entra\ en\ estado\ de\ guardia:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ -\/\ Se\ activa\ el\ hitbox\ de\ bloqueo\ (que\ Hitbox.cs\ detecta\ para\ rebotar\ al\ atacante).}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ -\/\ Se\ dispara\ la\ animación\ de\ bloqueo\ en\ el\ Animator.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ -\/\ Se\ otorga\ energía\ al\ inicio\ del\ bloqueo\ (solo\ una\ vez\ por\ activación).}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00019}00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00020}00020\ \textcolor{comment}{\ *\ Al\ soltar\ la\ tecla,\ todo\ vuelve\ al\ estado\ normal.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00021}00021\ \textcolor{comment}{\ *\ La\ lógica\ solo\ se\ ejecuta\ cuando\ el\ estado\ cambia\ (no\ cada\ frame\ si\ ya\ está\ bloqueando),}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00022}00022\ \textcolor{comment}{\ *\ lo\ que\ evita\ llamadas\ innecesarias\ a\ EnergySystem\ cada\ frame.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00023}00023\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00024}00024\ \textcolor{comment}{\ *\ SISTEMA:\ Combate\ /\ Defensa}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00025}00025\ \textcolor{comment}{\ *\ INTERACTÚA\ CON:\ Hitbox.cs,\ EnergySystem.cs,\ Animator}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00026}00026\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00028}00028\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00030}\doxymbox{\hyperlink{class_player_defense}{00030}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_player_defense}{PlayerDefense}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00031}00031\ \{}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00033}00033\ \ \ \ \ \textcolor{comment}{//\ REFERENCIAS\ EXTERNAS}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00034}00034\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00035}00035\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00036}00036\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00037}00037\ \textcolor{comment}{\ \ \ \ ///\ GameObject\ del\ hitbox\ de\ bloqueo.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00038}00038\ \textcolor{comment}{\ \ \ \ ///\ Cuando\ está\ activo,\ Hitbox.cs\ lo\ detecta\ mediante\ PlayerDefense.IsBlocking()}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00039}00039\ \textcolor{comment}{\ \ \ \ ///\ y\ aplica\ el\ rebote\ al\ atacante\ en\ lugar\ de\ dañar\ al\ bloqueador.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00040}00040\ \textcolor{comment}{\ \ \ \ ///\ Debe\ asignarse\ desde\ el\ Inspector.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00041}00041\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00042}\doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{00042}}\ \ \ \ \ \textcolor{keyword}{public}\ GameObject\ \doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{blockHitbox}};}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00045}00045\ \ \ \ \ \textcolor{comment}{//\ TECLAS\ DE\ INPUT}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00047}00047\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00048}00048\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00049}00049\ \textcolor{comment}{\ \ \ \ ///\ Tecla\ asignada\ al\ bloqueo.\ Por\ defecto:\ L.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00050}00050\ \textcolor{comment}{\ \ \ \ ///\ Configurable\ desde\ el\ Inspector\ para\ remapeo\ de\ controles.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00051}00051\ \textcolor{comment}{\ \ \ \ ///\ Usa\ GetKey\ (no\ GetKeyDown)\ para\ detectar\ pulsación\ continua.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00052}00052\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00053}\doxymbox{\hyperlink{class_player_defense_af7879d0a08a1ce2e63d152f8cfb068fa}{00053}}\ \ \ \ \ \textcolor{keyword}{public}\ KeyCode\ \doxymbox{\hyperlink{class_player_defense_af7879d0a08a1ce2e63d152f8cfb068fa}{blockKey}}\ =\ KeyCode.L;}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ VARIABLES\ PRIVADAS}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00057}00057\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00058}00058\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00059}00059\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00060}00060\ \textcolor{comment}{\ \ \ \ ///\ Estado\ actual\ del\ bloqueo.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00061}00061\ \textcolor{comment}{\ \ \ \ ///\ true\ =\ el\ jugador\ está\ bloqueando\ activamente.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00062}00062\ \textcolor{comment}{\ \ \ \ ///\ false\ =\ el\ jugador\ no\ está\ en\ guardia.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00063}00063\ \textcolor{comment}{\ \ \ \ ///\ Este\ valor\ es\ el\ que\ Hitbox.cs\ consulta\ vía\ IsBlocking().}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00064}00064\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00065}\doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{00065}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00066}00066\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00067}00067\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00068}00068\ \textcolor{comment}{\ \ \ \ ///\ Referencia\ al\ Animator\ del\ jugador.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00069}00069\ \textcolor{comment}{\ \ \ \ ///\ Se\ obtiene\ en\ Start().\ Necesario\ para\ sincronizar\ la\ animación\ de\ bloqueo.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00070}00070\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00071}\doxymbox{\hyperlink{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}{00071}}\ \ \ \ \ \textcolor{keyword}{private}\ Animator\ \doxymbox{\hyperlink{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}{anim}};}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00074}00074\ \ \ \ \ \textcolor{comment}{//\ EVENTOS\ DE\ UNITY}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00075}00075\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00076}00076\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00077}00077\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00078}00078\ \textcolor{comment}{\ \ \ \ ///\ Start()\ —\ Se\ ejecuta\ una\ vez\ al\ iniciar.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00079}00079\ \textcolor{comment}{\ \ \ \ ///\ Obtiene\ el\ Animator\ y\ desactiva\ el\ hitbox\ de\ bloqueo\ para\ asegurar}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00080}00080\ \textcolor{comment}{\ \ \ \ ///\ que\ el\ personaje\ comienza\ sin\ guardia\ activa.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00081}00081\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00082}\doxymbox{\hyperlink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{00082}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{Start}}()}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00083}00083\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}{anim}}\ =\ GetComponent<Animator>();}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00086}00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Desactivar\ hitbox\ de\ bloqueo\ al\ iniciar\ para\ evitar\ guardia\ permanente}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{blockHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{blockHitbox}}.SetActive(\textcolor{keyword}{false});}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00089}00089\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00090}00090\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00091}00091\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00092}00092\ \textcolor{comment}{\ \ \ \ ///\ Update()\ —\ Se\ ejecuta\ cada\ frame.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00093}00093\ \textcolor{comment}{\ \ \ \ ///\ Lee\ el\ input\ de\ bloqueo\ y\ compara\ con\ el\ estado\ anterior\ (isBlocking).}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00094}00094\ \textcolor{comment}{\ \ \ \ ///\ Solo\ ejecuta\ la\ lógica\ de\ cambio\ de\ estado\ cuando\ el\ input\ cambia,}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00095}00095\ \textcolor{comment}{\ \ \ \ ///\ evitando\ llamadas\ repetidas\ a\ EnergySystem\ y\ al\ Animator\ cada\ frame.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00096}00096\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00097}00097\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ EJECUTA:\ Cada\ frame\ durante\ la\ partida.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00098}00098\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ CONTROLA:\ Detección\ de\ cambio\ de\ estado\ de\ bloqueo,}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00099}00099\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ganancia\ de\ energía\ al\ inicio,\ animación\ y\ hitbox.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00100}00100\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00101}00101\ \textcolor{comment}{\ \ \ \ ///\ FLUJO\ DE\ CAMBIO\ DE\ ESTADO:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00102}00102\ \textcolor{comment}{\ \ \ \ ///\ \ \ Input\ presionado\ (isBlocking\ =\ false\ →\ true):}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00103}00103\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ →\ EnergySystem.GainEnergyFromBlock()\ (solo\ una\ vez)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00104}00104\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ →\ Animator.SetBool("{}isBlocking"{},\ true)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00105}00105\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ →\ blockHitbox.SetActive(true)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00106}00106\ \textcolor{comment}{\ \ \ \ ///\ \ \ Input\ soltado\ (isBlocking\ =\ true\ →\ false):}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00107}00107\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ →\ Animator.SetBool("{}isBlocking"{},\ false)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00108}00108\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ →\ blockHitbox.SetActive(false)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00109}00109\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00110}\doxymbox{\hyperlink{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc}{00110}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc}{Update}}()}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00111}00111\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ input\ =\ Input.GetKey(\doxymbox{\hyperlink{class_player_defense_af7879d0a08a1ce2e63d152f8cfb068fa}{blockKey}});}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Solo\ ejecutar\ lógica\ cuando\ el\ estado\ de\ bloqueo\ cambia\ (no\ cada\ frame)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (input\ !=\ \doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}})}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}}\ =\ input;}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otorgar\ energía\ solo\ al\ inicio\ del\ bloqueo\ (transición\ false\ →\ true)}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}})}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_energy_system}{EnergySystem}}\ energy\ =\ GetComponent<EnergySystem>();}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (energy\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ energy.\doxymbox{\hyperlink{class_energy_system_a4c7d6a044c95a505e8fcef59c5e66c41}{GainEnergyFromBlock}}();}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sincronizar\ animación\ con\ el\ estado\ actual\ de\ bloqueo}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}{anim}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}{anim}}.SetBool(\textcolor{stringliteral}{"{}isBlocking"{}},\ \doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}});}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Activar\ o\ desactivar\ el\ hitbox\ de\ bloqueo\ según\ el\ estado}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{blockHitbox}}\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{blockHitbox}}.SetActive(\doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}});}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00135}00135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00137}00137\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00138}00138\ \ \ \ \ \textcolor{comment}{//\ API\ PÚBLICA}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00139}00139\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00140}00140\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00141}00141\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00142}00142\ \textcolor{comment}{\ \ \ \ ///\ Expone\ el\ estado\ de\ bloqueo\ para\ que\ Hitbox.cs\ pueda\ consultarlo}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00143}00143\ \textcolor{comment}{\ \ \ \ ///\ durante\ la\ detección\ de\ colisiones\ y\ decidir\ si\ aplicar\ daño}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00144}00144\ \textcolor{comment}{\ \ \ \ ///\ o\ hacer\ rebotar\ al\ atacante.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00145}00145\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00146}00146\ \textcolor{comment}{\ \ \ \ ///\ <returns>true\ si\ el\ jugador\ está\ bloqueando;\ false\ si\ no.</returns>}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00147}\doxymbox{\hyperlink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{00147}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{IsBlocking}}()}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00148}00148\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00149}00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{isBlocking}};}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00150}00150\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00152}00152\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00153}00153\ \ \ \ \ \textcolor{comment}{//\ FLUJO\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00154}00154\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00155}00155\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00156}00156\ \textcolor{comment}{\ \ \ \ \ *\ ACTIVAR\ BLOQUEO:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00157}00157\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ GetKey(L)\ =\ true\ +\ isBlocking\ =\ false\ →\ cambio\ de\ estado.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00158}00158\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ isBlocking\ =\ true.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00159}00159\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ EnergySystem.GainEnergyFromBlock()\ →\ +3\ de\ energía\ (una\ sola\ vez).}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00160}00160\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ Animator.SetBool("{}isBlocking"{},\ true)\ →\ animación\ de\ guardia.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00161}00161\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ blockHitbox.SetActive(true)\ →\ hitbox\ de\ bloqueo\ activo.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00162}00162\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00163}00163\ \textcolor{comment}{\ \ \ \ \ *\ MIENTRAS\ SE\ BLOQUEA:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00164}00164\ \textcolor{comment}{\ \ \ \ \ *\ 6.\ input\ ==\ isBlocking\ (ambos\ true)\ →\ no\ se\ ejecuta\ nada\ más.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00165}00165\ \textcolor{comment}{\ \ \ \ \ *\ 7.\ Hitbox.cs\ detecta\ colisión\ →\ IsBlocking()\ =\ true\ →\ rebote\ al\ atacante.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00166}00166\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00167}00167\ \textcolor{comment}{\ \ \ \ \ *\ DESACTIVAR\ BLOQUEO:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00168}00168\ \textcolor{comment}{\ \ \ \ \ *\ 8.\ GetKey(L)\ =\ false\ +\ isBlocking\ =\ true\ →\ cambio\ de\ estado.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00169}00169\ \textcolor{comment}{\ \ \ \ \ *\ 9.\ isBlocking\ =\ false.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00170}00170\ \textcolor{comment}{\ \ \ \ \ *\ 10.\ Animator.SetBool("{}isBlocking"{},\ false)\ →\ animación\ normal.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00171}00171\ \textcolor{comment}{\ \ \ \ \ *\ 11.\ blockHitbox.SetActive(false)\ →\ hitbox\ desactivado.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00172}00172\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00174}00174\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00175}00175\ \ \ \ \ \textcolor{comment}{//\ INTERACCIONES\ CON\ OTROS\ SISTEMAS}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00176}00176\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00177}00177\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00178}00178\ \textcolor{comment}{\ \ \ \ \ *\ AFECTA\ A:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00179}00179\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ EnergySystem.cs\ →\ GainEnergyFromBlock()\ al\ inicio\ del\ bloqueo.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00180}00180\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Animator\ →\ SetBool("{}isBlocking"{})\ para\ controlar\ animación.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00181}00181\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ blockHitbox\ (GameObject)\ →\ SetActive\ on/off.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00182}00182\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00183}00183\ \textcolor{comment}{\ \ \ \ \ *\ ES\ CONSULTADO\ POR:}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00184}00184\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Hitbox.cs\ →\ IsBlocking()\ para\ determinar\ si\ aplicar\ daño\ o\ rebote.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00185}00185\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00186}00186\ \textcolor{comment}{\ \ \ \ \ *\ NO\ DEPENDE\ DE\ ningún\ otro\ sistema\ de\ combate\ en\ runtime.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00187}00187\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00189}00189\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00190}00190\ \ \ \ \ \textcolor{comment}{//\ NOTAS\ /\ ADVERTENCIAS}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00191}00191\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00192}00192\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00193}00193\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ La\ ganancia\ de\ energía\ (+3)\ ocurre\ SOLO\ al\ inicio\ del\ bloqueo}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00194}00194\ \textcolor{comment}{\ \ \ \ \ *\ \ \ (transición\ false\ →\ true),\ no\ mientras\ se\ mantiene\ bloqueando.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00195}00195\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Esto\ es\ intencional\ para\ no\ recompensar\ el\ bloqueo\ continuo.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00196}00196\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00197}00197\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ El\ parámetro\ "{}isBlocking"{}\ del\ Animator\ debe\ existir\ como\ Bool}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00198}00198\ \textcolor{comment}{\ \ \ \ \ *\ \ \ en\ el\ Animator\ Controller.\ Si\ no\ existe,\ Unity\ lanzará\ un\ warning}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00199}00199\ \textcolor{comment}{\ \ \ \ \ *\ \ \ pero\ el\ sistema\ seguirá\ funcionando.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00200}00200\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00201}00201\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Este\ script\ no\ bloquea\ el\ input\ de\ ataque\ ni\ de\ movimiento\ mientras}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00202}00202\ \textcolor{comment}{\ \ \ \ \ *\ \ \ se\ está\ bloqueando.\ Si\ se\ desea\ que\ el\ bloqueo\ cancele\ ataques,}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00203}00203\ \textcolor{comment}{\ \ \ \ \ *\ \ \ añadir\ lógica\ en\ PlayerAttack.cs\ para\ verificar\ PlayerDefense.IsBlocking().}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00204}00204\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00205}00205\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ blockHitbox\ debe\ tener\ un\ Collider2D\ en\ modo\ Trigger\ para\ que}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00206}00206\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Hitbox.cs\ pueda\ detectar\ el\ bloqueo\ correctamente\ mediante}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00207}00207\ \textcolor{comment}{\ \ \ \ \ *\ \ \ OnTriggerStay2D.\ Sin\ esto,\ el\ rebote\ al\ atacante\ no\ funcionará.}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00208}00208\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_player_defense_8cs_source_l00209}00209\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,173 @@
+\doxysection{Referencia de la clase Hitbox\+Tests}
+\hypertarget{class_hitbox_tests}{}\label{class_hitbox_tests}\index{HitboxTests@{HitboxTests}}
+
+
+TESTS:\+ \doxylink{class_hitbox}{Hitbox}.  
+
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hitbox_tests_a9a3589564a0cba0de9c1ca7c9ac9f7c6}{Tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Limpieza automática después de cada test. Evita contaminación entre pruebas. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_hitbox_tests_a394d5bdcdcf636b7845b086a34c83d58}{Hitbox\+\_\+\+Does\+Not\+Damage\+Multiple\+Times\+Within\+Cooldown}} ()
+\begin{DoxyCompactList}\small\item\em CASO 1:\+ El hitbox no debe aplicar daño múltiples veces dentro del cooldown. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_hitbox_tests_ab2954a15e8af97f405c96adaab132862}{Hitbox\+\_\+\+Applies\+Damage\+When\+Hitting\+Target}} ()
+\begin{DoxyCompactList}\small\item\em CASO 2:\+ El golpe debe aplicar daño correctamente cuando es válido. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_hitbox_tests_a82e5c18c7104c07379761e74bb477281}{Hitbox\+\_\+\+Does\+Not\+Damage\+Target\+When\+Blocking}} ()
+\begin{DoxyCompactList}\small\item\em CASO 3:\+ Si el objetivo está bloqueando, no debe recibir daño. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_hitbox_tests_ab0c1876e2d446a2a6a84285e1568857e}{Hitbox\+\_\+\+Pushes\+Attacker\+Back\+On\+Block}} ()
+\begin{DoxyCompactList}\small\item\em CASO 4:\+ Si el golpe es bloqueado, el atacante recibe knockback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hitbox}{Hitbox}} \doxymbox{\hyperlink{class_hitbox_tests_a8bc26f85c271db3b510a6354ae8506f6}{Create\+Attacker}} ()
+\begin{DoxyCompactList}\small\item\em Crea el atacante con:\+ \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_health_system}{Health\+System}} \doxymbox{\hyperlink{class_hitbox_tests_a9c31d0e8c389a69593f407d289caffec}{Create\+Target}} (bool with\+Defense=false)
+\begin{DoxyCompactList}\small\item\em Crea el objetivo (jugador o enemigo simulado) con \doxylink{class_health_system}{Health\+System}. Puede incluir sistema de defensa opcional. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_hitbox_tests_ab1da0cdea832e3f0dc1ad1f14f818e11}{\+\_\+attacker\+GO}}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_hitbox_tests_a9c829d2673cd8997ff3833d4eeaaf75d}{\+\_\+target\+GO}}
+\item 
+Method\+Info \doxymbox{\hyperlink{class_hitbox_tests_a440568a96b69aa1b9535cd99830ede4c}{\+\_\+on\+Trigger\+Stay2D}}
+\item 
+Field\+Info \doxymbox{\hyperlink{class_hitbox_tests_af2e806bf1f10d283417f4a4fc9e85e72}{\+\_\+is\+Attacking\+Field}}
+\item 
+Field\+Info \doxymbox{\hyperlink{class_hitbox_tests_aa0ab8e9413961051fd737c80857fd79d}{\+\_\+is\+Blocking\+Field}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+TESTS:\+ \doxylink{class_hitbox}{Hitbox}. 
+
+PROPÓ\+SITO:\+ Validar el sistema de daño cuerpo a cuerpo:\+
+\begin{DoxyItemize}
+\item Aplicación de daño
+\item Control de cooldown
+\item Bloqueo del daño
+\item Knockback al atacante cuando el golpe es bloqueado
+\end{DoxyItemize}
+
+USO:\+ Ejecutar en Unity Test Runner (Play\+Mode). Se utilizan objetos creados dinámicamente (sin escena). Se usa reflexión para simular estados internos del sistema. 
+
+\label{doc-func-members}
+\Hypertarget{class_hitbox_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_hitbox_tests_a8bc26f85c271db3b510a6354ae8506f6}\index{HitboxTests@{HitboxTests}!CreateAttacker@{CreateAttacker}}
+\index{CreateAttacker@{CreateAttacker}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{CreateAttacker()}{CreateAttacker()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a8bc26f85c271db3b510a6354ae8506f6} 
+\doxymbox{\hyperlink{class_hitbox}{Hitbox}} Hitbox\+Tests.\+Create\+Attacker (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea el atacante con:\+ 
+
+
+\begin{DoxyItemize}
+\item Rigidbody2D sin gravedad
+\item \doxylink{class_player_attack}{Player\+Attack} (estado de ataque)
+\item \doxylink{class_hitbox}{Hitbox} hijo con collider trigger 
+\end{DoxyItemize}\Hypertarget{class_hitbox_tests_a9c31d0e8c389a69593f407d289caffec}\index{HitboxTests@{HitboxTests}!CreateTarget@{CreateTarget}}
+\index{CreateTarget@{CreateTarget}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{CreateTarget()}{CreateTarget()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a9c31d0e8c389a69593f407d289caffec} 
+\doxymbox{\hyperlink{class_health_system}{Health\+System}} Hitbox\+Tests.\+Create\+Target (\begin{DoxyParamCaption}\item[{bool}]{with\+Defense}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea el objetivo (jugador o enemigo simulado) con \doxylink{class_health_system}{Health\+System}. Puede incluir sistema de defensa opcional. 
+
+\Hypertarget{class_hitbox_tests_ab2954a15e8af97f405c96adaab132862}\index{HitboxTests@{HitboxTests}!Hitbox\_AppliesDamageWhenHittingTarget@{Hitbox\_AppliesDamageWhenHittingTarget}}
+\index{Hitbox\_AppliesDamageWhenHittingTarget@{Hitbox\_AppliesDamageWhenHittingTarget}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{Hitbox\_AppliesDamageWhenHittingTarget()}{Hitbox\_AppliesDamageWhenHittingTarget()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_ab2954a15e8af97f405c96adaab132862} 
+IEnumerator Hitbox\+Tests.\+Hitbox\+\_\+\+Applies\+Damage\+When\+Hitting\+Target (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 2:\+ El golpe debe aplicar daño correctamente cuando es válido. 
+
+\Hypertarget{class_hitbox_tests_a394d5bdcdcf636b7845b086a34c83d58}\index{HitboxTests@{HitboxTests}!Hitbox\_DoesNotDamageMultipleTimesWithinCooldown@{Hitbox\_DoesNotDamageMultipleTimesWithinCooldown}}
+\index{Hitbox\_DoesNotDamageMultipleTimesWithinCooldown@{Hitbox\_DoesNotDamageMultipleTimesWithinCooldown}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{Hitbox\_DoesNotDamageMultipleTimesWithinCooldown()}{Hitbox\_DoesNotDamageMultipleTimesWithinCooldown()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a394d5bdcdcf636b7845b086a34c83d58} 
+IEnumerator Hitbox\+Tests.\+Hitbox\+\_\+\+Does\+Not\+Damage\+Multiple\+Times\+Within\+Cooldown (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 1:\+ El hitbox no debe aplicar daño múltiples veces dentro del cooldown. 
+
+\Hypertarget{class_hitbox_tests_a82e5c18c7104c07379761e74bb477281}\index{HitboxTests@{HitboxTests}!Hitbox\_DoesNotDamageTargetWhenBlocking@{Hitbox\_DoesNotDamageTargetWhenBlocking}}
+\index{Hitbox\_DoesNotDamageTargetWhenBlocking@{Hitbox\_DoesNotDamageTargetWhenBlocking}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{Hitbox\_DoesNotDamageTargetWhenBlocking()}{Hitbox\_DoesNotDamageTargetWhenBlocking()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a82e5c18c7104c07379761e74bb477281} 
+IEnumerator Hitbox\+Tests.\+Hitbox\+\_\+\+Does\+Not\+Damage\+Target\+When\+Blocking (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 3:\+ Si el objetivo está bloqueando, no debe recibir daño. 
+
+\Hypertarget{class_hitbox_tests_ab0c1876e2d446a2a6a84285e1568857e}\index{HitboxTests@{HitboxTests}!Hitbox\_PushesAttackerBackOnBlock@{Hitbox\_PushesAttackerBackOnBlock}}
+\index{Hitbox\_PushesAttackerBackOnBlock@{Hitbox\_PushesAttackerBackOnBlock}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{Hitbox\_PushesAttackerBackOnBlock()}{Hitbox\_PushesAttackerBackOnBlock()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_ab0c1876e2d446a2a6a84285e1568857e} 
+IEnumerator Hitbox\+Tests.\+Hitbox\+\_\+\+Pushes\+Attacker\+Back\+On\+Block (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 4:\+ Si el golpe es bloqueado, el atacante recibe knockback. 
+
+\Hypertarget{class_hitbox_tests_a9a3589564a0cba0de9c1ca7c9ac9f7c6}\index{HitboxTests@{HitboxTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a9a3589564a0cba0de9c1ca7c9ac9f7c6} 
+void Hitbox\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Limpieza automática después de cada test. Evita contaminación entre pruebas. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hitbox_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_hitbox_tests_ab1da0cdea832e3f0dc1ad1f14f818e11}\index{HitboxTests@{HitboxTests}!\_attackerGO@{\_attackerGO}}
+\index{\_attackerGO@{\_attackerGO}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_attackerGO}{\_attackerGO}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_ab1da0cdea832e3f0dc1ad1f14f818e11} 
+Game\+Object Hitbox\+Tests.\+\_\+attacker\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hitbox_tests_af2e806bf1f10d283417f4a4fc9e85e72}\index{HitboxTests@{HitboxTests}!\_isAttackingField@{\_isAttackingField}}
+\index{\_isAttackingField@{\_isAttackingField}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_isAttackingField}{\_isAttackingField}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_af2e806bf1f10d283417f4a4fc9e85e72} 
+Field\+Info Hitbox\+Tests.\+\_\+is\+Attacking\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hitbox_tests_aa0ab8e9413961051fd737c80857fd79d}\index{HitboxTests@{HitboxTests}!\_isBlockingField@{\_isBlockingField}}
+\index{\_isBlockingField@{\_isBlockingField}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_isBlockingField}{\_isBlockingField}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_aa0ab8e9413961051fd737c80857fd79d} 
+Field\+Info Hitbox\+Tests.\+\_\+is\+Blocking\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hitbox_tests_a440568a96b69aa1b9535cd99830ede4c}\index{HitboxTests@{HitboxTests}!\_onTriggerStay2D@{\_onTriggerStay2D}}
+\index{\_onTriggerStay2D@{\_onTriggerStay2D}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_onTriggerStay2D}{\_onTriggerStay2D}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a440568a96b69aa1b9535cd99830ede4c} 
+Method\+Info Hitbox\+Tests.\+\_\+on\+Trigger\+Stay2D\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_hitbox_tests_a9c829d2673cd8997ff3833d4eeaaf75d}\index{HitboxTests@{HitboxTests}!\_targetGO@{\_targetGO}}
+\index{\_targetGO@{\_targetGO}!HitboxTests@{HitboxTests}}
+\doxysubsubsection{\texorpdfstring{\_targetGO}{\_targetGO}}
+{\footnotesize\ttfamily \label{class_hitbox_tests_a9c829d2673cd8997ff3833d4eeaaf75d} 
+Game\+Object Hitbox\+Tests.\+\_\+target\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_hitbox_tests_8cs}{Hitbox\+Tests.\+cs}}\end{DoxyCompactItemize}

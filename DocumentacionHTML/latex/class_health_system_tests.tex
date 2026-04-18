@@ -1,0 +1,143 @@
+\doxysection{Referencia de la clase Health\+System\+Tests}
+\hypertarget{class_health_system_tests}{}\label{class_health_system_tests}\index{HealthSystemTests@{HealthSystemTests}}
+
+
+TESTS:\+ \doxylink{class_health_system}{Health\+System}.  
+
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_health_system_tests_a6ff7f336bb28c1417e2cc220a76f3d6a}{Tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Limpieza después de cada test para evitar interferencia entre pruebas. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_health_system_tests_a48a12707311a9b9e48959949b6cf5057}{Take\+Damage\+\_\+\+Reduces\+Health\+By\+Damage\+Amount}} ()
+\begin{DoxyCompactList}\small\item\em CASO 1:\+ El daño recibido debe reducir la vida correctamente. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_health_system_tests_a29c481841c3a57901a9a19b4572164a4}{Take\+Damage\+\_\+\+Health\+Does\+Not\+Go\+Below\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em CASO 2:\+ La vida nunca debe ser menor a 0 incluso con daño excesivo. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_health_system_tests_a8d98147f63502ad768e6fb8fb40dd145}{Take\+Damage\+\_\+\+Knockback\+Pushes\+Away\+From\+Attacker}} ()
+\begin{DoxyCompactList}\small\item\em CASO 3:\+ El knockback debe empujar al jugador en dirección opuesta al atacante. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_health_system_tests_a0f6507f3b661b6f695df00e695f2cf6f}{Take\+Damage\+\_\+\+Player\+Movement\+Disabled\+During\+Hit\+Stun}} ()
+\begin{DoxyCompactList}\small\item\em CASO 4:\+ Durante el hitstun, el movimiento del jugador debe quedar deshabilitado. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_health_system_tests_a2d551ebb188040c0158764e2a3dad717}{After\+Knockback\+Duration\+\_\+\+Player\+Movement\+Is\+Reenabled}} ()
+\begin{DoxyCompactList}\small\item\em CASO 5:\+ Después del knockback, el control del jugador debe restaurarse automáticamente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_health_system}{Health\+System}} \doxymbox{\hyperlink{class_health_system_tests_a697660210454b37147a554e4c470c844}{Create\+Player}} (Vector3 position=default)
+\begin{DoxyCompactList}\small\item\em Crea un jugador completo con:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_health_system_tests_ac6dc7d2f4f99df2863d79c64a08b40a3}{\+\_\+player\+GO}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+TESTS:\+ \doxylink{class_health_system}{Health\+System}. 
+
+PROPÓ\+SITO:\+ Validar el sistema de vida del jugador:\+
+\begin{DoxyItemize}
+\item Reducción de vida
+\item Límite mínimo (0)
+\item Knockback físico
+\item Estado de hitstun
+\item Restauración del control del jugador
+\end{DoxyItemize}
+
+USO:\+ Ejecutar en Unity Test Runner (Play\+Mode). Cada test crea su propio jugador aislado. 
+
+\label{doc-func-members}
+\Hypertarget{class_health_system_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_health_system_tests_a2d551ebb188040c0158764e2a3dad717}\index{HealthSystemTests@{HealthSystemTests}!AfterKnockbackDuration\_PlayerMovementIsReenabled@{AfterKnockbackDuration\_PlayerMovementIsReenabled}}
+\index{AfterKnockbackDuration\_PlayerMovementIsReenabled@{AfterKnockbackDuration\_PlayerMovementIsReenabled}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{AfterKnockbackDuration\_PlayerMovementIsReenabled()}{AfterKnockbackDuration\_PlayerMovementIsReenabled()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a2d551ebb188040c0158764e2a3dad717} 
+IEnumerator Health\+System\+Tests.\+After\+Knockback\+Duration\+\_\+\+Player\+Movement\+Is\+Reenabled (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 5:\+ Después del knockback, el control del jugador debe restaurarse automáticamente. 
+
+\Hypertarget{class_health_system_tests_a697660210454b37147a554e4c470c844}\index{HealthSystemTests@{HealthSystemTests}!CreatePlayer@{CreatePlayer}}
+\index{CreatePlayer@{CreatePlayer}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{CreatePlayer()}{CreatePlayer()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a697660210454b37147a554e4c470c844} 
+\doxymbox{\hyperlink{class_health_system}{Health\+System}} Health\+System\+Tests.\+Create\+Player (\begin{DoxyParamCaption}\item[{Vector3}]{position}{ = {\ttfamily default}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea un jugador completo con:\+ 
+
+
+\begin{DoxyItemize}
+\item Rigidbody2D sin gravedad (determinista)
+\item Collider base
+\item \doxylink{class_player_movement}{Player\+Movement} (dependencia del sistema de daño)
+\item \doxylink{class_health_system}{Health\+System} (sistema bajo prueba) 
+\end{DoxyItemize}\Hypertarget{class_health_system_tests_a29c481841c3a57901a9a19b4572164a4}\index{HealthSystemTests@{HealthSystemTests}!TakeDamage\_HealthDoesNotGoBelowZero@{TakeDamage\_HealthDoesNotGoBelowZero}}
+\index{TakeDamage\_HealthDoesNotGoBelowZero@{TakeDamage\_HealthDoesNotGoBelowZero}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_HealthDoesNotGoBelowZero()}{TakeDamage\_HealthDoesNotGoBelowZero()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a29c481841c3a57901a9a19b4572164a4} 
+IEnumerator Health\+System\+Tests.\+Take\+Damage\+\_\+\+Health\+Does\+Not\+Go\+Below\+Zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 2:\+ La vida nunca debe ser menor a 0 incluso con daño excesivo. 
+
+\Hypertarget{class_health_system_tests_a8d98147f63502ad768e6fb8fb40dd145}\index{HealthSystemTests@{HealthSystemTests}!TakeDamage\_KnockbackPushesAwayFromAttacker@{TakeDamage\_KnockbackPushesAwayFromAttacker}}
+\index{TakeDamage\_KnockbackPushesAwayFromAttacker@{TakeDamage\_KnockbackPushesAwayFromAttacker}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_KnockbackPushesAwayFromAttacker()}{TakeDamage\_KnockbackPushesAwayFromAttacker()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a8d98147f63502ad768e6fb8fb40dd145} 
+IEnumerator Health\+System\+Tests.\+Take\+Damage\+\_\+\+Knockback\+Pushes\+Away\+From\+Attacker (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 3:\+ El knockback debe empujar al jugador en dirección opuesta al atacante. 
+
+\Hypertarget{class_health_system_tests_a0f6507f3b661b6f695df00e695f2cf6f}\index{HealthSystemTests@{HealthSystemTests}!TakeDamage\_PlayerMovementDisabledDuringHitStun@{TakeDamage\_PlayerMovementDisabledDuringHitStun}}
+\index{TakeDamage\_PlayerMovementDisabledDuringHitStun@{TakeDamage\_PlayerMovementDisabledDuringHitStun}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_PlayerMovementDisabledDuringHitStun()}{TakeDamage\_PlayerMovementDisabledDuringHitStun()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a0f6507f3b661b6f695df00e695f2cf6f} 
+IEnumerator Health\+System\+Tests.\+Take\+Damage\+\_\+\+Player\+Movement\+Disabled\+During\+Hit\+Stun (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 4:\+ Durante el hitstun, el movimiento del jugador debe quedar deshabilitado. 
+
+\Hypertarget{class_health_system_tests_a48a12707311a9b9e48959949b6cf5057}\index{HealthSystemTests@{HealthSystemTests}!TakeDamage\_ReducesHealthByDamageAmount@{TakeDamage\_ReducesHealthByDamageAmount}}
+\index{TakeDamage\_ReducesHealthByDamageAmount@{TakeDamage\_ReducesHealthByDamageAmount}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_ReducesHealthByDamageAmount()}{TakeDamage\_ReducesHealthByDamageAmount()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a48a12707311a9b9e48959949b6cf5057} 
+IEnumerator Health\+System\+Tests.\+Take\+Damage\+\_\+\+Reduces\+Health\+By\+Damage\+Amount (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO 1:\+ El daño recibido debe reducir la vida correctamente. 
+
+\Hypertarget{class_health_system_tests_a6ff7f336bb28c1417e2cc220a76f3d6a}\index{HealthSystemTests@{HealthSystemTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_health_system_tests_a6ff7f336bb28c1417e2cc220a76f3d6a} 
+void Health\+System\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Limpieza después de cada test para evitar interferencia entre pruebas. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_health_system_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_health_system_tests_ac6dc7d2f4f99df2863d79c64a08b40a3}\index{HealthSystemTests@{HealthSystemTests}!\_playerGO@{\_playerGO}}
+\index{\_playerGO@{\_playerGO}!HealthSystemTests@{HealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{\_playerGO}{\_playerGO}}
+{\footnotesize\ttfamily \label{class_health_system_tests_ac6dc7d2f4f99df2863d79c64a08b40a3} 
+Game\+Object Health\+System\+Tests.\+\_\+player\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_health_system_tests_8cs}{Health\+System\+Tests.\+cs}}\end{DoxyCompactItemize}

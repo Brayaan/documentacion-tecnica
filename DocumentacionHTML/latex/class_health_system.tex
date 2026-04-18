@@ -1,0 +1,388 @@
+\doxysection{Referencia de la clase Health\+System}
+\hypertarget{class_health_system}{}\label{class_health_system}\index{HealthSystem@{HealthSystem}}
+Diagrama de herencia de Health\+System\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_health_system}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_health_system_a83e1997a4cfa9a4200f49e8236887cc9}{Take\+Damage}} (int damage, Vector2 attacker\+Position)
+\begin{DoxyCompactList}\small\item\em Punto de entrada de daño para el jugador. Reduce la vida, actualiza la UI y aplica el hit-\/stun con knockback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_health_system_a8fddc7ffd1f90811c5da801c2fe58d13}{max\+Health}} = 100
+\begin{DoxyCompactList}\small\item\em Vida máxima del jugador. Define el techo de salud posible. Configurable desde el Inspector. No debe ser 0 o negativo. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_health_system_a904d8b0ef078219bbcb49bd686664858}{current\+Health}}
+\begin{DoxyCompactList}\small\item\em Vida actual del jugador en tiempo real. Se inicializa igual a max\+Health en \doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()}. Visible en Inspector para debug durante la partida. \end{DoxyCompactList}\item 
+Image \doxymbox{\hyperlink{class_health_system_a4ecfc031fa13a056a2544b29e4e7a938}{health\+Image}}
+\begin{DoxyCompactList}\small\item\em Componente Image de Unity UI que muestra visualmente la barra de vida. Debe asignarse desde el Inspector. Si es null, la UI no se actualizará. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_health_system_ae42684832324383bf52e078e2ef84946}{knockback\+Force}} = 5f
+\begin{DoxyCompactList}\small\item\em Fuerza del empuje físico al recibir un golpe. Configurable desde el Inspector. Valor más alto = mayor desplazamiento. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_health_system_a847a22922af44f6285490bf1a1a302df}{knockback\+Duration}} = 0.\+05f
+\begin{DoxyCompactList}\small\item\em Duración en segundos del hit-\/stun:\+ tiempo mínimo antes de poder recibir otro knockback y tiempo que el input del jugador permanece deshabilitado. Recomendación:\+ valor bajo (0.\+05f) para respuesta fluida, mayor si se desea un hit-\/stun más pronunciado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()} — Se ejecuta una vez al iniciar la escena. Carga el spritesheet de vida, inicializa current\+Health al máximo, obtiene referencias a Rigidbody2D, \doxylink{class_player_movement}{Player\+Movement} y Animator, y actualiza la UI al estado inicial. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_health_system_afeb7dc5db2cc03269d7e93a2a103e9ab}{Apply\+Hit}} (Vector2 attacker\+Position)
+\begin{DoxyCompactList}\small\item\em Aplica el hit-\/stun al jugador:\+ deshabilita input, activa animación de golpe y aplica knockback físico. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_health_system_a512e0cae006d3267a8fdb93f86cbd20d}{Tiene\+Parametro}} (string nombre)
+\begin{DoxyCompactList}\small\item\em Verifica si el Animator tiene un parámetro registrado por nombre. Evita errores al llamar Set\+Trigger con un nombre que no existe. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_health_system_a5ddcde0c0edeb0980372b00b75a4e16a}{End\+Hit}} ()
+\begin{DoxyCompactList}\small\item\em Finaliza el hit-\/stun:\+ reactiva el input del jugador y restablece is\+Hit. Se llama automáticamente mediante Invoke() al vencer knockback\+Duration. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_health_system_aff13d81daf23b30073f026ed5524abae}{Update\+Health\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Actualiza el sprite de la barra de vida en la UI según current\+Health. Calcula el índice proporcional en el spritesheet e invierte el orden para que el sprite 0 del array corresponda a vida llena. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Rigidbody2D \doxymbox{\hyperlink{class_health_system_a9c8bc46e92e63404aefa2f7b06d3facd}{rb}}
+\begin{DoxyCompactList}\small\item\em Referencia al Rigidbody2D del jugador. Necesario para aplicar el knockback físico. Se obtiene en \doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()}. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} \doxymbox{\hyperlink{class_health_system_a1e0db9d4d645962f3108f831a7398ea4}{movement}}
+\begin{DoxyCompactList}\small\item\em Referencia al script \doxylink{class_player_movement}{Player\+Movement} del jugador. Se deshabilita durante el hit-\/stun para bloquear el input. Se restaura al finalizar el hit-\/stun. \end{DoxyCompactList}\item 
+Animator \doxymbox{\hyperlink{class_health_system_aa16a7f6618a90cc368408e7a951dd60d}{anim}}
+\begin{DoxyCompactList}\small\item\em Referencia al Animator del jugador. Se usa para disparar el trigger "{}\+Hit"{} si el Animator lo tiene registrado. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_health_system_ae77bfe93ed9453e3191d34246f0fc6da}{is\+Hit}} = false
+\begin{DoxyCompactList}\small\item\em Flag de hit-\/stun activo. true = el jugador está en hit-\/stun, no puede moverse ni recibir otro knockback. false = el jugador puede recibir daño con efecto físico completo. \end{DoxyCompactList}\item 
+Sprite\+[$\,$]\+ \doxymbox{\hyperlink{class_health_system_afa39723e458a3d0746441de340f305e2}{health\+Sprites}}
+\begin{DoxyCompactList}\small\item\em Array de sprites cargados desde el spritesheet de corazones. Cargado automáticamente desde Resources/\+\+Heart\+Counter/\+heart\+\_\+counter-\/\+Sheet. Cada elemento corresponde a un nivel de vida diferente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00032}{32}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_health_system_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_health_system_afeb7dc5db2cc03269d7e93a2a103e9ab}\index{HealthSystem@{HealthSystem}!ApplyHit@{ApplyHit}}
+\index{ApplyHit@{ApplyHit}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{ApplyHit()}{ApplyHit()}}
+{\footnotesize\ttfamily \label{class_health_system_afeb7dc5db2cc03269d7e93a2a103e9ab} 
+void Health\+System.\+Apply\+Hit (\begin{DoxyParamCaption}\item[{Vector2}]{attacker\+Position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Aplica el hit-\/stun al jugador:\+ deshabilita input, activa animación de golpe y aplica knockback físico. 
+
+CUÁ\+NDO SE EJECUTA:\+ Llamado internamente desde \doxylink{class_health_system_a83e1997a4cfa9a4200f49e8236887cc9}{Take\+Damage()}. QUÉ AFECTA:\+ \doxylink{class_player_movement}{Player\+Movement} (deshabilitado), Animator (trigger "{}\+Hit"{}), Rigidbody2D (velocidad y fuerza), flag is\+Hit.
+
+NOTA:\+ Si is\+Hit ya está activo, el método retorna sin hacer nada. Esto es intencional para evitar stacking de knockback.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em attacker\+Position} & Posición desde donde vino el ataque.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{179}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00148}{Take\+Damage()}}.
+
+\Hypertarget{class_health_system_a5ddcde0c0edeb0980372b00b75a4e16a}\index{HealthSystem@{HealthSystem}!EndHit@{EndHit}}
+\index{EndHit@{EndHit}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{EndHit()}{EndHit()}}
+{\footnotesize\ttfamily \label{class_health_system_a5ddcde0c0edeb0980372b00b75a4e16a} 
+void Health\+System.\+End\+Hit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Finaliza el hit-\/stun:\+ reactiva el input del jugador y restablece is\+Hit. Se llama automáticamente mediante Invoke() al vencer knockback\+Duration. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00227}{227}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}}.
+
+\Hypertarget{class_health_system_a4b1bc3e4699d109081b60320b4483993}\index{HealthSystem@{HealthSystem}!Start@{Start}}
+\index{Start@{Start}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_health_system_a4b1bc3e4699d109081b60320b4483993} 
+void Health\+System.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()} — Se ejecuta una vez al iniciar la escena. Carga el spritesheet de vida, inicializa current\+Health al máximo, obtiene referencias a Rigidbody2D, \doxylink{class_player_movement}{Player\+Movement} y Animator, y actualiza la UI al estado inicial. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{119}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+\Hypertarget{class_health_system_a83e1997a4cfa9a4200f49e8236887cc9}\index{HealthSystem@{HealthSystem}!TakeDamage@{TakeDamage}}
+\index{TakeDamage@{TakeDamage}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
+{\footnotesize\ttfamily \label{class_health_system_a83e1997a4cfa9a4200f49e8236887cc9} 
+void Health\+System.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{, }\item[{Vector2}]{attacker\+Position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Punto de entrada de daño para el jugador. Reduce la vida, actualiza la UI y aplica el hit-\/stun con knockback. 
+
+CUÁ\+NDO SE LLAMA:\+ Desde \doxylink{_hitbox_8cs}{Hitbox.\+cs} cuando el hitbox de un enemigo o jugador toca el collider del jugador. QUÉ AFECTA:\+ current\+Health, UI de vida, física del Rigidbody2D, input del jugador (\doxylink{class_player_movement}{Player\+Movement}), Animator.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em damage} & Cantidad de puntos de vida a restar.\\
+\hline
+{\em attacker\+Position} & Posición del atacante para calcular dirección del knockback.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00148}{148}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{Hitbox.\+On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_health_system_a512e0cae006d3267a8fdb93f86cbd20d}\index{HealthSystem@{HealthSystem}!TieneParametro@{TieneParametro}}
+\index{TieneParametro@{TieneParametro}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{TieneParametro()}{TieneParametro()}}
+{\footnotesize\ttfamily \label{class_health_system_a512e0cae006d3267a8fdb93f86cbd20d} 
+bool Health\+System.\+Tiene\+Parametro (\begin{DoxyParamCaption}\item[{string}]{nombre}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Verifica si el Animator tiene un parámetro registrado por nombre. Evita errores al llamar Set\+Trigger con un nombre que no existe. 
+
+USO EXCLUSIVO:\+ Solo llamado desde \doxylink{class_health_system_afeb7dc5db2cc03269d7e93a2a103e9ab}{Apply\+Hit()} para validar el parámetro "{}\+Hit"{}.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em nombre} & Nombre del parámetro a buscar en el Animator.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+true si el parámetro existe; false si no.
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00216}{216}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}}.
+
+\Hypertarget{class_health_system_aff13d81daf23b30073f026ed5524abae}\index{HealthSystem@{HealthSystem}!UpdateHealthUI@{UpdateHealthUI}}
+\index{UpdateHealthUI@{UpdateHealthUI}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{UpdateHealthUI()}{UpdateHealthUI()}}
+{\footnotesize\ttfamily \label{class_health_system_aff13d81daf23b30073f026ed5524abae} 
+void Health\+System.\+Update\+Health\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Actualiza el sprite de la barra de vida en la UI según current\+Health. Calcula el índice proporcional en el spritesheet e invierte el orden para que el sprite 0 del array corresponda a vida llena. 
+
+CUÁ\+NDO SE EJECUTA:\+ Llamado desde \doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()} y después de cada \doxylink{class_health_system_a83e1997a4cfa9a4200f49e8236887cc9}{Take\+Damage()}.
+
+LÓ\+GICA DE INVERSIÓN:\+ index normal = proporcional a la vida actual (0 = vacío, max = lleno) index invertido = (Length-\/1) -\/ index → el array comienza desde lleno 
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00247}{247}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00148}{Take\+Damage()}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_health_system_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_health_system_aa16a7f6618a90cc368408e7a951dd60d}\index{HealthSystem@{HealthSystem}!anim@{anim}}
+\index{anim@{anim}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{anim}{anim}}
+{\footnotesize\ttfamily \label{class_health_system_aa16a7f6618a90cc368408e7a951dd60d} 
+Animator Health\+System.\+anim\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al Animator del jugador. Se usa para disparar el trigger "{}\+Hit"{} si el Animator lo tiene registrado. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00093}{93}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}}, \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00216}{Tiene\+Parametro()}}.
+
+\Hypertarget{class_health_system_a904d8b0ef078219bbcb49bd686664858}\index{HealthSystem@{HealthSystem}!currentHealth@{currentHealth}}
+\index{currentHealth@{currentHealth}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{currentHealth}{currentHealth}}
+{\footnotesize\ttfamily \label{class_health_system_a904d8b0ef078219bbcb49bd686664858} 
+int Health\+System.\+current\+Health}
+
+
+
+Vida actual del jugador en tiempo real. Se inicializa igual a max\+Health en \doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()}. Visible en Inspector para debug durante la partida. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00049}{49}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}}, \doxymbox{\hyperlink{_health_system_8cs_source_l00148}{Take\+Damage()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00247}{Update\+Health\+UI()}}.
+
+\Hypertarget{class_health_system_a4ecfc031fa13a056a2544b29e4e7a938}\index{HealthSystem@{HealthSystem}!healthImage@{healthImage}}
+\index{healthImage@{healthImage}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{healthImage}{healthImage}}
+{\footnotesize\ttfamily \label{class_health_system_a4ecfc031fa13a056a2544b29e4e7a938} 
+Image Health\+System.\+health\+Image}
+
+
+
+Componente Image de Unity UI que muestra visualmente la barra de vida. Debe asignarse desde el Inspector. Si es null, la UI no se actualizará. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00055}{55}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00247}{Update\+Health\+UI()}}.
+
+\Hypertarget{class_health_system_afa39723e458a3d0746441de340f305e2}\index{HealthSystem@{HealthSystem}!healthSprites@{healthSprites}}
+\index{healthSprites@{healthSprites}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{healthSprites}{healthSprites}}
+{\footnotesize\ttfamily \label{class_health_system_afa39723e458a3d0746441de340f305e2} 
+Sprite \+[$\,$]\+ Health\+System.\+health\+Sprites\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Array de sprites cargados desde el spritesheet de corazones. Cargado automáticamente desde Resources/\+\+Heart\+Counter/\+heart\+\_\+counter-\/\+Sheet. Cada elemento corresponde a un nivel de vida diferente. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00107}{107}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00247}{Update\+Health\+UI()}}.
+
+\Hypertarget{class_health_system_ae77bfe93ed9453e3191d34246f0fc6da}\index{HealthSystem@{HealthSystem}!isHit@{isHit}}
+\index{isHit@{isHit}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{isHit}{isHit}}
+{\footnotesize\ttfamily \label{class_health_system_ae77bfe93ed9453e3191d34246f0fc6da} 
+bool Health\+System.\+is\+Hit = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag de hit-\/stun activo. true = el jugador está en hit-\/stun, no puede moverse ni recibir otro knockback. false = el jugador puede recibir daño con efecto físico completo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00100}{100}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00227}{End\+Hit()}}.
+
+\Hypertarget{class_health_system_a847a22922af44f6285490bf1a1a302df}\index{HealthSystem@{HealthSystem}!knockbackDuration@{knockbackDuration}}
+\index{knockbackDuration@{knockbackDuration}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{knockbackDuration}{knockbackDuration}}
+{\footnotesize\ttfamily \label{class_health_system_a847a22922af44f6285490bf1a1a302df} 
+float Health\+System.\+knockback\+Duration = 0.\+05f}
+
+
+
+Duración en segundos del hit-\/stun:\+ tiempo mínimo antes de poder recibir otro knockback y tiempo que el input del jugador permanece deshabilitado. Recomendación:\+ valor bajo (0.\+05f) para respuesta fluida, mayor si se desea un hit-\/stun más pronunciado. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00070}{70}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}}.
+
+\Hypertarget{class_health_system_ae42684832324383bf52e078e2ef84946}\index{HealthSystem@{HealthSystem}!knockbackForce@{knockbackForce}}
+\index{knockbackForce@{knockbackForce}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{knockbackForce}{knockbackForce}}
+{\footnotesize\ttfamily \label{class_health_system_ae42684832324383bf52e078e2ef84946} 
+float Health\+System.\+knockback\+Force = 5f}
+
+
+
+Fuerza del empuje físico al recibir un golpe. Configurable desde el Inspector. Valor más alto = mayor desplazamiento. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00061}{61}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}}.
+
+\Hypertarget{class_health_system_a8fddc7ffd1f90811c5da801c2fe58d13}\index{HealthSystem@{HealthSystem}!maxHealth@{maxHealth}}
+\index{maxHealth@{maxHealth}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{maxHealth}{maxHealth}}
+{\footnotesize\ttfamily \label{class_health_system_a8fddc7ffd1f90811c5da801c2fe58d13} 
+int Health\+System.\+max\+Health = 100}
+
+
+
+Vida máxima del jugador. Define el techo de salud posible. Configurable desde el Inspector. No debe ser 0 o negativo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00042}{42}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00247}{Update\+Health\+UI()}}.
+
+\Hypertarget{class_health_system_a1e0db9d4d645962f3108f831a7398ea4}\index{HealthSystem@{HealthSystem}!movement@{movement}}
+\index{movement@{movement}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{movement}{movement}}
+{\footnotesize\ttfamily \label{class_health_system_a1e0db9d4d645962f3108f831a7398ea4} 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} Health\+System.\+movement\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al script \doxylink{class_player_movement}{Player\+Movement} del jugador. Se deshabilita durante el hit-\/stun para bloquear el input. Se restaura al finalizar el hit-\/stun. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00087}{87}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}}, \doxymbox{\hyperlink{_health_system_8cs_source_l00227}{End\+Hit()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}}.
+
+\Hypertarget{class_health_system_a9c8bc46e92e63404aefa2f7b06d3facd}\index{HealthSystem@{HealthSystem}!rb@{rb}}
+\index{rb@{rb}!HealthSystem@{HealthSystem}}
+\doxysubsubsection{\texorpdfstring{rb}{rb}}
+{\footnotesize\ttfamily \label{class_health_system_a9c8bc46e92e63404aefa2f7b06d3facd} 
+Rigidbody2D Health\+System.\+rb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al Rigidbody2D del jugador. Necesario para aplicar el knockback físico. Se obtiene en \doxylink{class_health_system_a4b1bc3e4699d109081b60320b4483993}{Start()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_health_system_8cs_source_l00080}{80}} del archivo \doxymbox{\hyperlink{_health_system_8cs_source}{Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_health_system_8cs_source_l00179}{Apply\+Hit()}} y \doxymbox{\hyperlink{_health_system_8cs_source_l00119}{Start()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_health_system_8cs}{Health\+System.\+cs}}\end{DoxyCompactItemize}

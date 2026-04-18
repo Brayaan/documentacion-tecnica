@@ -1,0 +1,185 @@
+\doxysection{Combat\+Collision\+Manager.\+cs}
+\hypertarget{_combat_collision_manager_8cs_source}{}\label{_combat_collision_manager_8cs_source}\index{spritesheets/Scripts/CombatCollisionManager.cs@{spritesheets/Scripts/CombatCollisionManager.cs}}
+\doxymbox{\hyperlink{_combat_collision_manager_8cs}{Ir a la documentación de este archivo.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00001}00001\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00002}00002\ \textcolor{comment}{//\ ARCHIVO:\ CombatCollisionManager.cs}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00003}00003\ \textcolor{comment}{//\ PROPÓSITO:\ Gestionar\ las\ colisiones\ físicas\ entre\ enemigos}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00004}00004\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ en\ el\ sistema\ de\ combate\ del\ juego.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00005}00005\ \textcolor{comment}{//\ RESPONSABILIDAD:\ Configurar\ la\ física\ de\ los\ enemigos\ al\ iniciar}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00006}00006\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ la\ escena\ para\ evitar\ que\ se\ empujen\ entre\ sí.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00007}00007\ \textcolor{comment}{//\ SISTEMA:\ Combate\ —\ Física\ y\ Colisiones}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00008}00008\ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00010}00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00011}00011\ \textcolor{comment}{\ *\ DESCRIPCIÓN\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00012}00012\ \textcolor{comment}{\ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00013}00013\ \textcolor{comment}{\ *\ Este\ script\ actúa\ como\ inicializador\ global\ del\ comportamiento\ físico}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00014}00014\ \textcolor{comment}{\ *\ de\ todos\ los\ enemigos\ en\ la\ escena.\ Resuelve\ el\ problema\ de\ que\ los}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00015}00015\ \textcolor{comment}{\ *\ enemigos\ se\ empujen\ mutuamente\ al\ acumularse\ cerca\ del\ jugador,}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00016}00016\ \textcolor{comment}{\ *\ lo\ que\ rompe\ la\ lógica\ de\ combate.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00017}00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00018}00018\ \textcolor{comment}{\ *\ Se\ ejecuta\ una\ sola\ vez\ en\ Start()\ y\ configura\ las\ colisiones}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00019}00019\ \textcolor{comment}{\ *\ entre\ todos\ los\ GameObjects\ con\ el\ tag\ "{}Enemy"{}\ usando\ Physics2D.IgnoreCollision.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00020}00020\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00021}00021\ \textcolor{comment}{\ *\ SISTEMA:\ Combate\ /\ Físicas}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00022}00022\ \textcolor{comment}{\ *\ DEPENDE\ DE:\ Collider2D\ y\ Rigidbody2D\ en\ cada\ enemigo}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00023}00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00025}00025\ \textcolor{keyword}{using\ }UnityEngine;}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00027}\doxymbox{\hyperlink{class_combat_collision_manager}{00027}}\ \textcolor{keyword}{public}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_combat_collision_manager}{CombatCollisionManager}}\ :\ MonoBehaviour}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00028}00028\ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00030}00030\ \ \ \ \ \textcolor{comment}{//\ VARIABLES\ PÚBLICAS}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00031}00031\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00032}00032\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00033}00033\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00034}00034\ \textcolor{comment}{\ \ \ \ ///\ Si\ es\ true,\ los\ enemigos\ podrán\ empujarse\ físicamente\ entre\ sí.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00035}00035\ \textcolor{comment}{\ \ \ \ ///\ Si\ es\ false\ (por\ defecto),\ sus\ colisiones\ físicas\ se\ ignorarán.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00036}00036\ \textcolor{comment}{\ \ \ \ ///\ Configurable\ desde\ el\ Inspector\ para\ ajustar\ el\ diseño\ de\ gameplay.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00037}00037\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00038}\doxymbox{\hyperlink{class_combat_collision_manager_af94b74e444f17e3b4aa53b25411827f3}{00038}}\ \ \ \ \ \textcolor{keyword}{public}\ \textcolor{keywordtype}{bool}\ \doxymbox{\hyperlink{class_combat_collision_manager_af94b74e444f17e3b4aa53b25411827f3}{enemiesPushEachOther}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00040}00040\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ EVENTOS\ DE\ UNITY}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00042}00042\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00043}00043\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00044}00044\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00045}00045\ \textcolor{comment}{\ \ \ \ ///\ Start()\ —\ Se\ ejecuta\ una\ sola\ vez\ al\ iniciar\ la\ escena.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00046}00046\ \textcolor{comment}{\ \ \ \ ///\ Dispara\ la\ configuración\ global\ de\ física\ para\ todos\ los\ enemigos.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00047}00047\ \textcolor{comment}{\ \ \ \ ///\ Es\ el\ punto\ de\ entrada\ único\ de\ este\ sistema.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00048}00048\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00049}\doxymbox{\hyperlink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{00049}}\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start}}()}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00050}00050\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00051}00051\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97}{ConfigureAllEnemies}}();}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00052}00052\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00054}00054\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ MÉTODOS\ PRINCIPALES}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00056}00056\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00057}00057\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00058}00058\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00059}00059\ \textcolor{comment}{\ \ \ \ ///\ Busca\ todos\ los\ GameObjects\ con\ el\ tag\ "{}Enemy"{}\ en\ la\ escena}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00060}00060\ \textcolor{comment}{\ \ \ \ ///\ y\ les\ aplica\ la\ configuración\ de\ físicas\ correspondiente.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00061}00061\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00062}00062\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ EJECUTA:\ Una\ sola\ vez\ al\ inicio,\ invocado\ desde\ Start().}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00063}00063\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ AFECTA:\ Todos\ los\ enemigos\ activos\ en\ la\ escena\ al\ momento\ de\ Start().}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00064}00064\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00065}00065\ \textcolor{comment}{\ \ \ \ ///\ NOTA:\ Los\ enemigos\ instanciados\ después\ de\ Start()\ NO\ serán\ configurados.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00066}00066\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ Si\ el\ juego\ usa\ spawn\ dinámico,\ llamar\ ConfigureEnemyPhysics()}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00067}00067\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ manualmente\ al\ instanciar\ cada\ enemigo.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00068}00068\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00069}\doxymbox{\hyperlink{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97}{00069}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97}{ConfigureAllEnemies}}()}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00070}00070\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ FindGameObjectsWithTag\ lanza\ excepción\ si\ el\ tag\ no\ existe}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00072}00072\ \ \ \ \ \ \ \ \ GameObject[]\ enemies;}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00073}00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00074}00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ enemies\ =\ GameObject.FindGameObjectsWithTag(\textcolor{stringliteral}{"{}Enemy"{}});}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (UnityEngine.UnityException)}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00078}00078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogError(\textcolor{stringliteral}{"{}El\ tag\ 'Enemy'\ no\ está\ registrado\ en\ Project\ Settings\ >\ Tags"{}},\ \textcolor{keyword}{this});}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00081}00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obtener\ todos\ los\ colliders\ una\ sola\ vez\ antes\ del\ loop}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ para\ evitar\ llamadas\ repetidas\ costosas\ a\ FindObjectsByType\ dentro\ del\ bucle}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00085}00085\ \ \ \ \ \ \ \ \ Collider2D[]\ allColliders\ =\ FindObjectsByType<Collider2D>(FindObjectsSortMode.None);}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00087}00087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (GameObject\ enemy\ \textcolor{keywordflow}{in}\ enemies)}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00088}00088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075}{ConfigureEnemyPhysics}}(enemy,\ allColliders);}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00090}00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00092}00092\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00093}00093\ \textcolor{comment}{\ \ \ \ ///\ <summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00094}00094\ \textcolor{comment}{\ \ \ \ ///\ Configura\ las\ físicas\ de\ un\ enemigo\ individual:}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00095}00095\ \textcolor{comment}{\ \ \ \ ///\ -\/\ Bloquea\ la\ rotación\ del\ Rigidbody2D.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00096}00096\ \textcolor{comment}{\ \ \ \ ///\ -\/\ Hace\ que\ este\ enemigo\ ignore\ colisiones\ físicas\ con\ todos\ los\ demás\ enemigos.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00097}00097\ \textcolor{comment}{\ \ \ \ ///}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00098}00098\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ HACE:\ Itera\ sobre\ todos\ los\ Collider2D\ de\ la\ escena}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00099}00099\ \textcolor{comment}{\ \ \ \ ///\ \ \ \ \ \ \ \ \ \ \ y\ aplica\ Physics2D.IgnoreCollision\ entre\ enemigos.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00100}00100\ \textcolor{comment}{\ \ \ \ ///\ CUÁNDO\ SE\ EJECUTA:\ Una\ vez\ por\ enemigo,\ llamado\ desde\ ConfigureAllEnemies().}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00101}00101\ \textcolor{comment}{\ \ \ \ ///\ QUÉ\ AFECTA:\ Rigidbody2D\ y\ Collider2D\ del\ enemigo\ recibido\ como\ parámetro.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00102}00102\ \textcolor{comment}{\ \ \ \ ///\ </summary>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00103}00103\ \textcolor{comment}{\ \ \ \ ///\ <param\ name="{}enemy"{}>El\ GameObject\ del\ enemigo\ a\ configurar.</param>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00104}00104\ \textcolor{comment}{\ \ \ \ ///\ <param\ name="{}allColliders"{}>Lista\ de\ todos\ los\ Collider2D\ activos\ en\ la\ escena.</param>}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00105}\doxymbox{\hyperlink{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075}{00105}}\ \ \ \ \ \textcolor{keyword}{private}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075}{ConfigureEnemyPhysics}}(GameObject\ enemy,\ Collider2D[]\ allColliders)}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00106}00106\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00107}00107\ \ \ \ \ \ \ \ \ Rigidbody2D\ rb\ =\ enemy.GetComponent<Rigidbody2D>();}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (rb\ !=\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00110}00110\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\doxymbox{\hyperlink{class_combat_collision_manager_af94b74e444f17e3b4aa53b25411827f3}{enemiesPushEachOther}})}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Prevenir\ que\ la\ física\ rote\ al\ Rigidbody}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rb.constraints\ =\ RigidbodyConstraints2D.FreezeRotation;}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Collider2D\ myCollider\ =\ enemy.GetComponent<Collider2D>();}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Saltar\ enemigos\ sin\ Collider2D\ para\ evitar\ NullReferenceException}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (myCollider\ ==\ \textcolor{keyword}{null})}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Debug.LogWarning(\textcolor{stringliteral}{"{}El\ enemigo\ "{}}\ +\ enemy.name\ +\ \textcolor{stringliteral}{"{}\ no\ tiene\ Collider2D"{}},\ enemy);}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ignorar\ colisiones\ físicas\ entre\ todos\ los\ enemigos\ de\ la\ escena}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{foreach}\ (Collider2D\ other\ \textcolor{keywordflow}{in}\ allColliders)}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (other.gameObject.CompareTag(\textcolor{stringliteral}{"{}Enemy"{}})\ \&\&\ other.gameObject\ !=\ enemy)}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Physics2D.IgnoreCollision(myCollider,\ other,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00135}00135\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00137}00137\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00138}00138\ \ \ \ \ \textcolor{comment}{//\ FLUJO\ DEL\ SISTEMA}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00139}00139\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00140}00140\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00141}00141\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ Start()\ →\ ConfigureAllEnemies()}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00142}00142\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ Se\ obtienen\ todos\ los\ Enemy\ tags\ y\ todos\ los\ Collider2D\ de\ la\ escena.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00143}00143\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ Por\ cada\ enemigo\ →\ ConfigureEnemyPhysics()}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00144}00144\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ Se\ congela\ la\ rotación\ del\ Rigidbody2D\ del\ enemigo.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00145}00145\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ Se\ llama\ Physics2D.IgnoreCollision\ entre\ el\ enemigo\ y\ cada\ otro\ enemigo.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00146}00146\ \textcolor{comment}{\ \ \ \ \ *\ 6.\ El\ sistema\ queda\ configurado\ estáticamente\ para\ toda\ la\ partida.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00147}00147\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00149}00149\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00150}00150\ \ \ \ \ \textcolor{comment}{//\ INTERACCIONES\ CON\ OTROS\ SISTEMAS}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00151}00151\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00152}00152\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00153}00153\ \textcolor{comment}{\ \ \ \ \ *\ DEPENDE\ DE:}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00154}00154\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Rigidbody2D\ en\ cada\ enemigo\ (requerido\ para\ configurar\ constraints).}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00155}00155\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Collider2D\ en\ cada\ enemigo\ (requerido\ para\ IgnoreCollision).}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00156}00156\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ Tag\ "{}Enemy"{}\ registrado\ en\ Project\ Settings\ >\ Tags.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00157}00157\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00158}00158\ \textcolor{comment}{\ \ \ \ \ *\ AFECTA\ A:}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00159}00159\ \textcolor{comment}{\ \ \ \ \ *\ \ \ -\/\ EnemyHealthSystem:\ al\ eliminar\ el\ empuje\ entre\ enemigos,}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00160}00160\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ \ el\ knockback\ recibido\ no\ se\ ve\ interferido\ por\ colisiones\ de\ otros\ enemigos.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00161}00161\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00162}00162\ \textcolor{comment}{\ \ \ \ \ *\ NO\ ES\ AFECTADO\ POR\ ningún\ otro\ script\ en\ runtime.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00163}00163\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00165}00165\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00166}00166\ \ \ \ \ \textcolor{comment}{//\ NOTAS\ /\ ADVERTENCIAS}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00167}00167\ \ \ \ \ \textcolor{comment}{//\ ============================================================}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00168}00168\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00169}00169\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ ADVERTENCIA:\ Solo\ configura\ enemigos\ presentes\ en\ escena\ al\ momento\ de\ Start().}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00170}00170\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Los\ enemigos\ generados\ dinámicamente\ deben\ configurarse\ manualmente.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00171}00171\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00172}00172\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ Si\ se\ agrega\ un\ nuevo\ tag\ para\ variantes\ de\ enemigos\ (ej:\ "{}BossEnemy"{}),}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00173}00173\ \textcolor{comment}{\ \ \ \ \ *\ \ \ este\ script\ no\ los\ cubrirá\ automáticamente.\ Extender\ ConfigureAllEnemies()}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00174}00174\ \textcolor{comment}{\ \ \ \ \ *\ \ \ para\ incluir\ los\ tags\ adicionales.}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00175}00175\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00176}00176\ \textcolor{comment}{\ \ \ \ \ *\ ⚠\ NO\ modificar\ enemiesPushEachOther\ en\ runtime;\ el\ sistema\ no\ reaplica}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00177}00177\ \textcolor{comment}{\ \ \ \ \ *\ \ \ la\ configuración\ después\ de\ Start().}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00178}00178\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{_combat_collision_manager_8cs_source_l00179}00179\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,167 @@
+\doxysection{Referencia de la clase No\+Push\+On\+Hit}
+\hypertarget{class_no_push_on_hit}{}\label{class_no_push_on_hit}\index{NoPushOnHit@{NoPushOnHit}}
+Diagrama de herencia de No\+Push\+On\+Hit\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_no_push_on_hit}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_no_push_on_hit_aadd19d286e14f7ffb28e0431a4f8ef37}{On\+Hit\+Start}} ()
+\begin{DoxyCompactList}\small\item\em Inicia el estado de hit-\/stun para este personaje. Aumenta la masa del Rigidbody2D a 1000f para resistir empujes físicos de contacto con otros colliders, y congela la rotación. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}{On\+Hit\+End}} ()
+\begin{DoxyCompactList}\small\item\em Finaliza el estado de hit-\/stun y restaura la física al estado normal. Restaura la masa original guardada en \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()} — Se ejecuta una vez al iniciar. Obtiene el Rigidbody2D y guarda la masa original como referencia. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_no_push_on_hit_ad2db13f66e65a64511f5cc5bc74c9089}{On\+Collision\+Enter2D}} (Collision2D collision)
+\begin{DoxyCompactList}\small\item\em On\+Collision\+Enter2D — Se ejecuta al entrar en colisión con otro Collider2D (colisión sólida, no trigger). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Rigidbody2D \doxymbox{\hyperlink{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}{rb}}
+\begin{DoxyCompactList}\small\item\em Referencia al Rigidbody2D del jugador. Se obtiene en \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()}. Necesario para modificar la masa y las constraints. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc}{original\+Mass}}
+\begin{DoxyCompactList}\small\item\em Masa original del Rigidbody2D antes de entrar en hit-\/stun. Se guarda en \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()} y se restaura en \doxylink{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}{On\+Hit\+End()} para no perder la configuración del Inspector. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}{is\+Hit}} = false
+\begin{DoxyCompactList}\small\item\em Flag de estado de hit-\/stun activo. true = el jugador está en hit-\/stun; colisiones con enemigos se ignoran. false = comportamiento físico normal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00031}{31}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_no_push_on_hit_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_no_push_on_hit_ad2db13f66e65a64511f5cc5bc74c9089}\index{NoPushOnHit@{NoPushOnHit}!OnCollisionEnter2D@{OnCollisionEnter2D}}
+\index{OnCollisionEnter2D@{OnCollisionEnter2D}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{OnCollisionEnter2D()}{OnCollisionEnter2D()}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_ad2db13f66e65a64511f5cc5bc74c9089} 
+void No\+Push\+On\+Hit.\+On\+Collision\+Enter2D (\begin{DoxyParamCaption}\item[{Collision2D}]{collision}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+On\+Collision\+Enter2D — Se ejecuta al entrar en colisión con otro Collider2D (colisión sólida, no trigger). 
+
+CUÁ\+NDO SE EJECUTA:\+ Al primer frame de contacto físico con otro collider. QUÉ CONTROLA:\+ Durante el hit-\/stun, ignora colisiones físicas con enemigos para evitar que lo empujen mientras ya está volando por el knockback.
+
+NOTA:\+ Physics2\+D.\+Ignore\+Collision persiste entre activaciones del objeto. Si el enemigo cambia de estado, la colisión permanece ignorada hasta que se reactive explícitamente. 
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00087}{87}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+\Hypertarget{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}\index{NoPushOnHit@{NoPushOnHit}!OnHitEnd@{OnHitEnd}}
+\index{OnHitEnd@{OnHitEnd}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{OnHitEnd()}{OnHitEnd()}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e} 
+void No\+Push\+On\+Hit.\+On\+Hit\+End (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Finaliza el estado de hit-\/stun y restaura la física al estado normal. Restaura la masa original guardada en \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()}. 
+
+CUÁ\+NDO SE LLAMA:\+ Debe ser llamado externamente al terminar el hit-\/stun. Típicamente mediante Invoke() o una coroutine desde el script que llamó \doxylink{class_no_push_on_hit_aadd19d286e14f7ffb28e0431a4f8ef37}{On\+Hit\+Start()}. QUÉ AFECTA:\+ rb.\+mass (restaurado), flag is\+Hit. 
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00132}{132}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+\Hypertarget{class_no_push_on_hit_aadd19d286e14f7ffb28e0431a4f8ef37}\index{NoPushOnHit@{NoPushOnHit}!OnHitStart@{OnHitStart}}
+\index{OnHitStart@{OnHitStart}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{OnHitStart()}{OnHitStart()}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_aadd19d286e14f7ffb28e0431a4f8ef37} 
+void No\+Push\+On\+Hit.\+On\+Hit\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Inicia el estado de hit-\/stun para este personaje. Aumenta la masa del Rigidbody2D a 1000f para resistir empujes físicos de contacto con otros colliders, y congela la rotación. 
+
+CUÁ\+NDO SE LLAMA:\+ Debe ser llamado externamente por el sistema de hit-\/stun (\doxylink{_health_system_8cs}{Health\+System.\+cs} o similar) al inicio de un golpe recibido. QUÉ AFECTA:\+ rb.\+mass (modificado a 1000f), rb.\+constraints, flag is\+Hit.
+
+ADVERTENCIA:\+ Si \doxylink{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}{On\+Hit\+End()} nunca se llama, el jugador quedará con masa de 1000f permanentemente, rompiendo su física. 
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00112}{112}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+\Hypertarget{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}\index{NoPushOnHit@{NoPushOnHit}!Start@{Start}}
+\index{Start@{Start}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee} 
+void No\+Push\+On\+Hit.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()} — Se ejecuta una vez al iniciar. Obtiene el Rigidbody2D y guarda la masa original como referencia. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00065}{65}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_no_push_on_hit_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e}\index{NoPushOnHit@{NoPushOnHit}!isHit@{isHit}}
+\index{isHit@{isHit}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{isHit}{isHit}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_a877258c2347ad63974375ba8fdf6287e} 
+bool No\+Push\+On\+Hit.\+is\+Hit = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag de estado de hit-\/stun activo. true = el jugador está en hit-\/stun; colisiones con enemigos se ignoran. false = comportamiento físico normal. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00055}{55}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00087}{On\+Collision\+Enter2\+D()}}, \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00132}{On\+Hit\+End()}} y \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00112}{On\+Hit\+Start()}}.
+
+\Hypertarget{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc}\index{NoPushOnHit@{NoPushOnHit}!originalMass@{originalMass}}
+\index{originalMass@{originalMass}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{originalMass}{originalMass}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_aedf62f73f208f2aac4addad467bd97bc} 
+float No\+Push\+On\+Hit.\+original\+Mass\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Masa original del Rigidbody2D antes de entrar en hit-\/stun. Se guarda en \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()} y se restaura en \doxylink{class_no_push_on_hit_af97c22548c0244680a8225bfa661475e}{On\+Hit\+End()} para no perder la configuración del Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00048}{48}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00132}{On\+Hit\+End()}} y \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00065}{Start()}}.
+
+\Hypertarget{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b}\index{NoPushOnHit@{NoPushOnHit}!rb@{rb}}
+\index{rb@{rb}!NoPushOnHit@{NoPushOnHit}}
+\doxysubsubsection{\texorpdfstring{rb}{rb}}
+{\footnotesize\ttfamily \label{class_no_push_on_hit_ae0b8daae8905b7f72e25896aff403d8b} 
+Rigidbody2D No\+Push\+On\+Hit.\+rb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al Rigidbody2D del jugador. Se obtiene en \doxylink{class_no_push_on_hit_af1114835c702fd933344215a4e5fcfee}{Start()}. Necesario para modificar la masa y las constraints. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00041}{41}} del archivo \doxymbox{\hyperlink{_no_push_on_hit_8cs_source}{No\+Push\+On\+Hit.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00132}{On\+Hit\+End()}}, \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00112}{On\+Hit\+Start()}} y \doxymbox{\hyperlink{_no_push_on_hit_8cs_source_l00065}{Start()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_no_push_on_hit_8cs}{No\+Push\+On\+Hit.\+cs}}\end{DoxyCompactItemize}
