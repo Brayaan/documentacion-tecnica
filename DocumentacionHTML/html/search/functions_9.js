@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['kickcooldown_5fkickreadyrestoresaftercooldown_0',['KickCooldown_KickReadyRestoresAfterCooldown',['../class_player_attack_tests.html#a7be857d133d3b0e3345026dd638a7c02',1,'PlayerAttackTests']]]
+  ['nextcharacter_0',['NextCharacter',['../class_character_selection_manager.html#ad9beaebf200cabe05c04428805815a93',1,'CharacterSelectionManager']]],
+  ['notifyplayerdeath_1',['NotifyPlayerDeath',['../class_combat_manager.html#a16821b4c07dffd85f1c640e65b5ee1fc',1,'CombatManager']]]
 ];

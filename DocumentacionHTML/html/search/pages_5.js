@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['principales_0',['Clases Principales',['../index.html#autotoc_md4',1,'']]],
-  ['proyecto_1',['Estructura del Proyecto',['../index.html#autotoc_md2',1,'']]]
+  ['manualmente_20para_20simular_20el_20ciclo_20real_0',['- Update() se invoca manualmente para simular el ciclo real.',['../class_player_defense_tests.html#autotoc_md6',1,'']]],
+  ['movement_20tests_1',['SISTEMA: PLAYER MOVEMENT TESTS',['../class_player_movement_tests.html#autotoc_md8',1,'']]]
 ];

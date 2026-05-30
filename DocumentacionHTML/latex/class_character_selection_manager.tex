@@ -1,0 +1,72 @@
+\doxysection{Character\+Selection\+Manager Class Reference}
+\hypertarget{class_character_selection_manager}{}\label{class_character_selection_manager}\index{CharacterSelectionManager@{CharacterSelectionManager}}
+
+
+Gestiona la lógica de la interfaz de usuario para la selección de personajes. Implementa un carrusel circular ("{}estilo Netflix"{}) y permite animar al personaje central.  
+
+
+Inheritance diagram for Character\+Selection\+Manager:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_character_selection_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_character_selection_manager_ad9beaebf200cabe05c04428805815a93}\label{class_character_selection_manager_ad9beaebf200cabe05c04428805815a93} 
+void {\bfseries Next\+Character} ()
+\begin{DoxyCompactList}\small\item\em Avanza al siguiente personaje en el carrusel. El carrusel es circular, por lo que vuelve al principio si se pasa del final. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_a8fa62a5f5689d640ee60c4fd8afd3b51}\label{class_character_selection_manager_a8fa62a5f5689d640ee60c4fd8afd3b51} 
+void {\bfseries Previous\+Character} ()
+\begin{DoxyCompactList}\small\item\em Retrocede al personaje anterior en el carrusel. El carrusel es circular, por lo que va al final si se retrocede desde el principio. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_affb99f118182df3e3a0923811baf102a}\label{class_character_selection_manager_affb99f118182df3e3a0923811baf102a} 
+void {\bfseries Select\+Character} ()
+\begin{DoxyCompactList}\small\item\em Confirma la selección del personaje actual y carga la escena de batalla. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_a66248cc161a24de519e4e361f7829d62}\label{class_character_selection_manager_a66248cc161a24de519e4e361f7829d62} 
+void {\bfseries Volver\+Al\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Vuelve a la escena del menú principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_character_selection_manager_a7e30fdcd7e55ce49acf2086f3aeb71db}\label{class_character_selection_manager_a7e30fdcd7e55ce49acf2086f3aeb71db} 
+List$<$ \doxymbox{\hyperlink{class_character_data}{Character\+Data}} $>$ {\bfseries available\+Characters}
+\begin{DoxyCompactList}\small\item\em Lista de datos de los personajes disponibles para la selección. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_a3eaa5b2b190940f607e105e3f10b0c00}\label{class_character_selection_manager_a3eaa5b2b190940f607e105e3f10b0c00} 
+Image {\bfseries left\+Image}
+\begin{DoxyCompactList}\small\item\em Imagen de vista previa del personaje a la izquierda del seleccionado. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_a64709d13031174c425ad2c71b93d5f0b}\label{class_character_selection_manager_a64709d13031174c425ad2c71b93d5f0b} 
+Image {\bfseries center\+Image}
+\begin{DoxyCompactList}\small\item\em Imagen del personaje actual o seleccionado (en el centro). \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_a275b6d609d4678614b88d3a9dd0f6b18}\label{class_character_selection_manager_a275b6d609d4678614b88d3a9dd0f6b18} 
+Image {\bfseries right\+Image}
+\begin{DoxyCompactList}\small\item\em Imagen de vista previa del personaje a la derecha del seleccionado. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_ad6214f6232ab59fe806dd2af4dc8ce52}\label{class_character_selection_manager_ad6214f6232ab59fe806dd2af4dc8ce52} 
+TMP\+\_\+\+Text {\bfseries name\+Text}
+\begin{DoxyCompactList}\small\item\em Texto que muestra el nombre del personaje seleccionado. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_ab02ee84dcfb0e8dd45095f60b4d94ce0}\label{class_character_selection_manager_ab02ee84dcfb0e8dd45095f60b4d94ce0} 
+TMP\+\_\+\+Text {\bfseries description\+Text}
+\begin{DoxyCompactList}\small\item\em Texto que muestra la descripción o historia del personaje seleccionado. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_adfb34f840d3e01ad7f796645a47fa080}\label{class_character_selection_manager_adfb34f840d3e01ad7f796645a47fa080} 
+Button {\bfseries left\+Arrow}
+\begin{DoxyCompactList}\small\item\em Botón para desplazarse al personaje anterior (izquierda). \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_afc63de98c3c8a9e14ab82623d4f0ab2f}\label{class_character_selection_manager_afc63de98c3c8a9e14ab82623d4f0ab2f} 
+Button {\bfseries right\+Arrow}
+\begin{DoxyCompactList}\small\item\em Botón para desplazarse al personaje siguiente (derecha). \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_a81bb5720ea9dde24d50aab3651d2fdd3}\label{class_character_selection_manager_a81bb5720ea9dde24d50aab3651d2fdd3} 
+Button {\bfseries select\+Button}
+\begin{DoxyCompactList}\small\item\em Botón para confirmar la selección del personaje. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_af2cce183afed44019eb88f001d99a128}\label{class_character_selection_manager_af2cce183afed44019eb88f001d99a128} 
+string {\bfseries battle\+Scene\+Name} = "{}Batalla"{}
+\begin{DoxyCompactList}\small\item\em Nombre de la escena a cargar para iniciar la batalla. \end{DoxyCompactList}\item 
+\Hypertarget{class_character_selection_manager_ae5b0ea465923eac4ab5e9dbfb56f7841}\label{class_character_selection_manager_ae5b0ea465923eac4ab5e9dbfb56f7841} 
+string {\bfseries menu\+Scene\+Name} = "{}Menu"{}
+\begin{DoxyCompactList}\small\item\em Nombre de la escena del menú principal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestiona la lógica de la interfaz de usuario para la selección de personajes. Implementa un carrusel circular ("{}estilo Netflix"{}) y permite animar al personaje central. 
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+spritesheets/\+\+Scripts/\+Character\+Selection\+Manager.\+cs\end{DoxyCompactItemize}

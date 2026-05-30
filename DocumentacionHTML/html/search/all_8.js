@@ -1,18 +1,16 @@
 var searchData=
 [
-  ['healthimage_0',['healthImage',['../class_health_system.html#a4ecfc031fa13a056a2544b29e4e7a938',1,'HealthSystem']]],
-  ['healthsprites_1',['healthSprites',['../class_health_system.html#afa39723e458a3d0746441de340f305e2',1,'HealthSystem']]],
-  ['healthsystem_2',['HealthSystem',['../class_health_system.html',1,'']]],
-  ['healthsystem_2ecs_3',['HealthSystem.cs',['../_health_system_8cs.html',1,'']]],
-  ['healthsystemtests_4',['HealthSystemTests',['../class_health_system_tests.html',1,'']]],
-  ['healthsystemtests_2ecs_5',['HealthSystemTests.cs',['../_health_system_tests_8cs.html',1,'']]],
-  ['hitbox_6',['Hitbox',['../class_hitbox.html',1,'']]],
-  ['hitbox_2ecs_7',['Hitbox.cs',['../_hitbox_8cs.html',1,'']]],
-  ['hitbox_5fappliesdamagewhenhittingtarget_8',['Hitbox_AppliesDamageWhenHittingTarget',['../class_hitbox_tests.html#ab2954a15e8af97f405c96adaab132862',1,'HitboxTests']]],
-  ['hitbox_5fdoesnotdamagemultipletimeswithincooldown_9',['Hitbox_DoesNotDamageMultipleTimesWithinCooldown',['../class_hitbox_tests.html#a394d5bdcdcf636b7845b086a34c83d58',1,'HitboxTests']]],
-  ['hitbox_5fdoesnotdamagetargetwhenblocking_10',['Hitbox_DoesNotDamageTargetWhenBlocking',['../class_hitbox_tests.html#a82e5c18c7104c07379761e74bb477281',1,'HitboxTests']]],
-  ['hitbox_5fpushesattackerbackonblock_11',['Hitbox_PushesAttackerBackOnBlock',['../class_hitbox_tests.html#ab0c1876e2d446a2a6a84285e1568857e',1,'HitboxTests']]],
-  ['hitboxtests_12',['HitboxTests',['../class_hitbox_tests.html',1,'']]],
-  ['hitboxtests_2ecs_13',['HitboxTests.cs',['../_hitbox_tests_8cs.html',1,'']]],
-  ['hitcooldown_14',['hitCooldown',['../class_hitbox.html#a5108c59d9d3427b3d8e2ec6bfff68bd2',1,'Hitbox']]]
+  ['idleanimation_0',['idleAnimation',['../class_character_data.html#a8e178a6ed0e4a70f82baceff408b3c58',1,'CharacterData']]],
+  ['impulsohorizontal_1',['impulsoHorizontal',['../class_jump_whit_strike.html#a7452c6a6092f9421bd1bdb80ce77058c',1,'JumpWhitStrike']]],
+  ['instance_2',['Instance',['../class_audio_manager.html#af96f8bc4f9a0ad3f1a63a028bb31f790',1,'AudioManager.Instance'],['../class_combat_manager.html#a12c274566758e606386ee25e7d0cc345',1,'CombatManager.Instance']]],
+  ['invoca_20manualmente_20para_20simular_20el_20ciclo_20real_3',['- Update() se invoca manualmente para simular el ciclo real.',['../class_player_defense_tests.html#autotoc_md6',1,'']]],
+  ['isattacking_4',['IsAttacking',['../class_player_attack.html#a3996503d35edee7f2bf3020c89f21b2c',1,'PlayerAttack']]],
+  ['isattacking_5',['isAttacking',['../class_player_movement.html#a60d650ad178183e34255370ff8435eb4',1,'PlayerMovement']]],
+  ['isblocking_6',['IsBlocking',['../class_player_defense.html#ac63d08c5d9045fc5c84a5d47dd17bc19',1,'PlayerDefense']]],
+  ['iscombatended_7',['isCombatEnded',['../class_combat_manager.html#a5754a6cdf0e63464bce9bfec3d07de3b',1,'CombatManager']]],
+  ['iscrouching_8',['isCrouching',['../class_player_movement.html#ac8aecbf0dc7516f1d6e33f4d4b80fdbf',1,'PlayerMovement']]],
+  ['isfull_9',['IsFull',['../class_energy_system.html#a5947be603354d8cc0373260c50532fe4',1,'EnergySystem']]],
+  ['ishealing_10',['isHealing',['../class_special_attack_data.html#a7f65d41df4415788da17a98533131210',1,'SpecialAttackData']]],
+  ['isroundactive_11',['isRoundActive',['../class_combat_manager.html#a7ceb3185f20a312fa1bee6ddf24b3553',1,'CombatManager']]],
+  ['isusingspecial_12',['IsUsingSpecial',['../class_player_special_attack.html#a55756c57dd4130d9e4aca4bfaa22187a',1,'PlayerSpecialAttack']]]
 ];

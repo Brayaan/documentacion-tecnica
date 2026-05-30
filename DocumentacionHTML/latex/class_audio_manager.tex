@@ -1,0 +1,97 @@
+\doxysection{Audio\+Manager Class Reference}
+\hypertarget{class_audio_manager}{}\label{class_audio_manager}\index{AudioManager@{AudioManager}}
+
+
+Manages the audio playback in the scene, including background music, sound effects, and voice overs. Implements a simple Singleton pattern for easy access.  
+
+
+Inheritance diagram for Audio\+Manager:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_audio_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_audio_manager_a9f2eadb0a9d0a2a1b6cb8c2bcc59d6bc}{Play\+Hit\+Sound}} (string attack\+Name)
+\begin{DoxyCompactList}\small\item\em Plays an attack hit sound based on the attack name, with a slight pitch variation. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a171a7eab976c49f8b00ccdf310efb122}\label{class_audio_manager_a171a7eab976c49f8b00ccdf310efb122} 
+void {\bfseries Play\+Block\+Sound} ()
+\begin{DoxyCompactList}\small\item\em Plays the block sound effect with a slight pitch variation. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a6aa3d5bc032865914b93bce6fb40c116}\label{class_audio_manager_a6aa3d5bc032865914b93bce6fb40c116} 
+void {\bfseries Play\+Round\+Start\+Sound} ()
+\begin{DoxyCompactList}\small\item\em Plays the round start announcement sound (e.\+g., "{}\+Fight!"{}). \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_ac3e42210a37a8ea01e0c14b36be03679}\label{class_audio_manager_ac3e42210a37a8ea01e0c14b36be03679} 
+void {\bfseries Play\+Death\+Sound} ()
+\begin{DoxyCompactList}\small\item\em Plays the death sound effect when a character is defeated. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_audio_manager_a1aff3b4bce724337ac219145b47f7987}\label{class_audio_manager_a1aff3b4bce724337ac219145b47f7987} 
+Audio\+Mixer\+Group {\bfseries music\+Group}
+\begin{DoxyCompactList}\small\item\em The Audio\+Mixer\+Group for music tracks. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_ad0f46db8092127e609ac713803a0bf11}\label{class_audio_manager_ad0f46db8092127e609ac713803a0bf11} 
+Audio\+Mixer\+Group {\bfseries sfx\+Group}
+\begin{DoxyCompactList}\small\item\em The Audio\+Mixer\+Group for sound effects (SFX). \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_ae07cf0d6ca0514f5bb47fbbecba4791a}\label{class_audio_manager_ae07cf0d6ca0514f5bb47fbbecba4791a} 
+Audio\+Clip {\bfseries punch\+Sound}
+\begin{DoxyCompactList}\small\item\em The audio clip to play when a punch attack lands. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a0b6f9a60f7b68c08696cd72d487ba424}\label{class_audio_manager_a0b6f9a60f7b68c08696cd72d487ba424} 
+Audio\+Clip {\bfseries kick\+Sound}
+\begin{DoxyCompactList}\small\item\em The audio clip to play when a kick attack lands. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a477def9e4eb0d51651e3c62a57959e09}\label{class_audio_manager_a477def9e4eb0d51651e3c62a57959e09} 
+Audio\+Clip {\bfseries block\+Sound}
+\begin{DoxyCompactList}\small\item\em The audio clip to play when an attack is blocked. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a32f018bb4040cd680c28c9c18a209c2e}\label{class_audio_manager_a32f018bb4040cd680c28c9c18a209c2e} 
+Audio\+Clip {\bfseries death\+Sound}
+\begin{DoxyCompactList}\small\item\em The audio clip to play when a character dies. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a2f2019e5a252148df1aa47f52a9176a3}\label{class_audio_manager_a2f2019e5a252148df1aa47f52a9176a3} 
+Audio\+Clip {\bfseries round\+Start\+Sound}
+\begin{DoxyCompactList}\small\item\em The audio clip to play when a round starts (e.\+g., "{}\+Fight!"{}). \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a74213d6fb92e317c06cfdc8381047195}\label{class_audio_manager_a74213d6fb92e317c06cfdc8381047195} 
+Audio\+Clip {\bfseries match\+Start\+Jingle}
+\begin{DoxyCompactList}\small\item\em The audio clip to play as an intro jingle before the background music starts. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a09f3bffd5cf854b0c6306667f17db562}\label{class_audio_manager_a09f3bffd5cf854b0c6306667f17db562} 
+Audio\+Clip {\bfseries background\+Music}
+\begin{DoxyCompactList}\small\item\em The main background music to loop during the scene. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_a4e17078bfd0632766b96231a5738f8c3}\label{class_audio_manager_a4e17078bfd0632766b96231a5738f8c3} 
+float {\bfseries pitch\+Min} = 0.\+9f
+\begin{DoxyCompactList}\small\item\em The minimum pitch variation for sound effects. \end{DoxyCompactList}\item 
+\Hypertarget{class_audio_manager_aea8a8d22c4ddb4edb8b094f7ebd9352c}\label{class_audio_manager_aea8a8d22c4ddb4edb8b094f7ebd9352c} 
+float {\bfseries pitch\+Max} = 1.\+1f
+\begin{DoxyCompactList}\small\item\em The maximum pitch variation for sound effects. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_audio_manager_af96f8bc4f9a0ad3f1a63a028bb31f790}\label{class_audio_manager_af96f8bc4f9a0ad3f1a63a028bb31f790} 
+static \doxymbox{\hyperlink{class_audio_manager}{Audio\+Manager}} {\bfseries Instance}
+\begin{DoxyCompactList}\small\item\em Singleton instance of the \doxylink{class_audio_manager}{Audio\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the audio playback in the scene, including background music, sound effects, and voice overs. Implements a simple Singleton pattern for easy access. 
+
+\label{doc-func-members}
+\Hypertarget{class_audio_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_audio_manager_a9f2eadb0a9d0a2a1b6cb8c2bcc59d6bc}\index{AudioManager@{AudioManager}!PlayHitSound@{PlayHitSound}}
+\index{PlayHitSound@{PlayHitSound}!AudioManager@{AudioManager}}
+\doxysubsubsection{\texorpdfstring{PlayHitSound()}{PlayHitSound()}}
+{\footnotesize\ttfamily \label{class_audio_manager_a9f2eadb0a9d0a2a1b6cb8c2bcc59d6bc} 
+void Audio\+Manager.\+Play\+Hit\+Sound (\begin{DoxyParamCaption}\item[{string}]{attack\+Name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Plays an attack hit sound based on the attack name, with a slight pitch variation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attack\+Name} & The name of the attack (e.\+g., "{}\+Kick"{}, "{}\+Punch"{}) to determine the sound clip.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+spritesheets/\+\+Scripts/\+Audio\+Manager.\+cs\end{DoxyCompactItemize}

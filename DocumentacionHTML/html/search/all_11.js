@@ -1,9 +1,26 @@
 var searchData=
 [
-  ['rápida_0',['Guía Rápida',['../index.html#autotoc_md6',1,'']]],
-  ['rb_1',['rb',['../class_enemy_health_system.html#a675aab1c44212a4f9a7cec9131b1798a',1,'EnemyHealthSystem.rb'],['../class_health_system.html#a9c8bc46e92e63404aefa2f7b06d3facd',1,'HealthSystem.rb'],['../class_no_push_on_hit.html#ae0b8daae8905b7f72e25896aff403d8b',1,'NoPushOnHit.rb'],['../class_player_movement.html#acf8b937f61c1e92dfdbd075678f911d1',1,'PlayerMovement.rb']]],
-  ['recursos_20adicionales_2',['Recursos Adicionales',['../index.html#autotoc_md9',1,'']]],
-  ['resetkick_3',['ResetKick',['../class_player_attack.html#a459675c82d206f79c42d1731e7719238',1,'PlayerAttack']]],
-  ['resetpunch_4',['ResetPunch',['../class_player_attack.html#a346cd11bc45e53189bba93dcad8bb6f9',1,'PlayerAttack']]],
-  ['rightkey_5',['rightKey',['../class_player_movement.html#aafffc94a38c75a425ea458d29b16195d',1,'PlayerMovement']]]
+  ['salirjuego_0',['SalirJuego',['../class_jugar.html#ae8f6190126232eb52e917b132d7419a3',1,'Jugar']]],
+  ['scoretext_1',['scoreText',['../class_combat_manager.html#a03530a18ced22546efa55070dfa9de38',1,'CombatManager']]],
+  ['se_20invoca_20manualmente_20para_20simular_20el_20ciclo_20real_2',['- Update() se invoca manualmente para simular el ciclo real.',['../class_player_defense_tests.html#autotoc_md6',1,'']]],
+  ['se_20usa_20reflection_20para_20acceder_20a_20estados_20privados_3',['- Se usa Reflection para acceder a estados privados.',['../class_player_movement_tests.html#autotoc_md9',1,'']]],
+  ['selectbutton_4',['selectButton',['../class_character_selection_manager.html#a81bb5720ea9dde24d50aab3651d2fdd3',1,'CharacterSelectionManager']]],
+  ['selectcharacter_5',['SelectCharacter',['../class_character_selection_manager.html#affb99f118182df3e3a0923811baf102a',1,'CharacterSelectionManager']]],
+  ['setmusicvolume_6',['SetMusicVolume',['../class_jugar.html#a36605ecbcd4e1c73ae6d997cc850f4aa',1,'Jugar.SetMusicVolume()'],['../class_pause_manager.html#a6c736f4b9efaed8cbf31b419a734beac',1,'PauseManager.SetMusicVolume()']]],
+  ['setsfxvolume_7',['SetSFXVolume',['../class_jugar.html#a06fbec412fc6b4704c5ebb1ba84f2b1d',1,'Jugar.SetSFXVolume()'],['../class_pause_manager.html#a87d41c7ed69e8245051d71a29782de6e',1,'PauseManager.SetSFXVolume()']]],
+  ['sfxgroup_8',['sfxGroup',['../class_audio_manager.html#ad0f46db8092127e609ac713803a0bf11',1,'AudioManager']]],
+  ['sfxslider_9',['sfxSlider',['../class_jugar.html#af331e4534dfc0a4d15b4bdb4579c8bad',1,'Jugar.sfxSlider'],['../class_pause_manager.html#a64bb1770608fc17345b815a390d58e60',1,'PauseManager.sfxSlider']]],
+  ['shaderpropanimator_10',['ShaderPropAnimator',['../class_t_m_pro_1_1_examples_1_1_shader_prop_animator.html',1,'TMPro::Examples']]],
+  ['simplescript_11',['SimpleScript',['../class_t_m_pro_1_1_examples_1_1_simple_script.html',1,'TMPro::Examples']]],
+  ['simular_20el_20ciclo_20real_12',['- Update() se invoca manualmente para simular el ciclo real.',['../class_player_defense_tests.html#autotoc_md6',1,'']]],
+  ['sistema_3a_20player_20defense_20tests_13',['SISTEMA: PLAYER DEFENSE TESTS',['../class_player_defense_tests.html#autotoc_md5',1,'']]],
+  ['sistema_3a_20player_20movement_20tests_14',['SISTEMA: PLAYER MOVEMENT TESTS',['../class_player_movement_tests.html#autotoc_md8',1,'']]],
+  ['skewtextexample_15',['SkewTextExample',['../class_t_m_pro_1_1_examples_1_1_skew_text_example.html',1,'TMPro::Examples']]],
+  ['specialattackdata_16',['SpecialAttackData',['../class_special_attack_data.html',1,'']]],
+  ['specialattacks_17',['specialAttacks',['../class_player_special_attack.html#ac6ff81d33859e5f1c82aaa7d8f754a83',1,'PlayerSpecialAttack']]],
+  ['specialhitbox_18',['SpecialHitbox',['../class_special_hitbox.html',1,'']]],
+  ['specialknockbackforce_19',['specialKnockbackForce',['../class_special_hitbox.html#a5c9511a888a56b7e24bb95afbf40d6a7',1,'SpecialHitbox']]],
+  ['speed_20',['speed',['../class_player_movement.html#a6800716352b83358ea16bc706dd88cbb',1,'PlayerMovement']]],
+  ['spriteselectionevent_21',['SpriteSelectionEvent',['../class_t_m_pro_1_1_t_m_p___text_event_handler_1_1_sprite_selection_event.html',1,'TMPro::TMP_TextEventHandler']]],
+  ['startmatch_22',['StartMatch',['../class_combat_manager.html#a1b629604bbeb434d0e7e8bc5f52e8979',1,'CombatManager']]]
 ];

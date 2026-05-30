@@ -1,0 +1,99 @@
+\doxysection{Pause\+Manager Class Reference}
+\hypertarget{class_pause_manager}{}\label{class_pause_manager}\index{PauseManager@{PauseManager}}
+
+
+Administra el estado de pausa del juego, la interfaz de usuario de pausa, submenús de opciones y el volumen a través del Audio\+Mixer.  
+
+
+Inheritance diagram for Pause\+Manager:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_pause_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_pause_manager_aaef28d81c24de2c642efcaee308992b9}\label{class_pause_manager_aaef28d81c24de2c642efcaee308992b9} 
+void {\bfseries Resume} ()
+\begin{DoxyCompactList}\small\item\em Reanuda el juego, ocultando las interfaces de pausa y restaurando la escala de tiempo. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_ad1c0c1c1ce701ad002534a8185e755af}\label{class_pause_manager_ad1c0c1c1ce701ad002534a8185e755af} 
+void {\bfseries Open\+Options} ()
+\begin{DoxyCompactList}\small\item\em Abre el menú de opciones desde el menú de pausa. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_a00de5ed0b0a1869859be00145455fbab}\label{class_pause_manager_a00de5ed0b0a1869859be00145455fbab} 
+void {\bfseries Close\+Options} ()
+\begin{DoxyCompactList}\small\item\em Cierra el menú de opciones y vuelve al menú principal de pausa. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_ae5844675a6f24e9ab21bbeb7a75384c4}\label{class_pause_manager_ae5844675a6f24e9ab21bbeb7a75384c4} 
+void {\bfseries Restart\+Match} ()
+\begin{DoxyCompactList}\small\item\em Reinicia la partida actual delegando al \doxylink{class_combat_manager}{Combat\+Manager}. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_acabf7e067f24b94031aaeac303c01b30}\label{class_pause_manager_acabf7e067f24b94031aaeac303c01b30} 
+void {\bfseries Load\+Main\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Abandona la partida actual y carga la escena del menú principal. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_pause_manager_a6c736f4b9efaed8cbf31b419a734beac}{Set\+Music\+Volume}} (float slider\+Value)
+\begin{DoxyCompactList}\small\item\em Ajusta el volumen de la música transformando escala lineal a decibelios logarítmicos. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_pause_manager_a87d41c7ed69e8245051d71a29782de6e}{Set\+SFXVolume}} (float slider\+Value)
+\begin{DoxyCompactList}\small\item\em Ajusta el volumen de efectos sonoros transformando escala lineal a decibelios logarítmicos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_pause_manager_ad3e1b4dada4ab4567778c1808abe9f40}\label{class_pause_manager_ad3e1b4dada4ab4567778c1808abe9f40} 
+Game\+Object {\bfseries pause\+Menu\+UI}
+\begin{DoxyCompactList}\small\item\em Panel principal mostrado al pausar el juego. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_a78eb562beae8961bcbc91a87c1968a1c}\label{class_pause_manager_a78eb562beae8961bcbc91a87c1968a1c} 
+Game\+Object {\bfseries options\+Menu\+UI}
+\begin{DoxyCompactList}\small\item\em Panel secundario para mostrar ajustes y sliders. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_a24a1b77757e8f7eb34d7187b561a27ec}\label{class_pause_manager_a24a1b77757e8f7eb34d7187b561a27ec} 
+string {\bfseries main\+Menu\+Scene\+Name} = "{}Menu\+Principal"{}
+\begin{DoxyCompactList}\small\item\em Nombre de la escena de menú principal para usar al salir. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_a1de5e14f1055e7b777dd1716c7cc3509}\label{class_pause_manager_a1de5e14f1055e7b777dd1716c7cc3509} 
+Audio\+Mixer {\bfseries audio\+Mixer}
+\begin{DoxyCompactList}\small\item\em Referencia al Audio\+Mixer que controla el volumen global. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_afc7cd9e220dbbd3cee09415f129d51a7}\label{class_pause_manager_afc7cd9e220dbbd3cee09415f129d51a7} 
+Slider {\bfseries music\+Slider}
+\begin{DoxyCompactList}\small\item\em Control deslizante para ajustar la música. \end{DoxyCompactList}\item 
+\Hypertarget{class_pause_manager_a64bb1770608fc17345b815a390d58e60}\label{class_pause_manager_a64bb1770608fc17345b815a390d58e60} 
+Slider {\bfseries sfx\+Slider}
+\begin{DoxyCompactList}\small\item\em Control deslizante para ajustar los efectos de sonido (SFX). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Administra el estado de pausa del juego, la interfaz de usuario de pausa, submenús de opciones y el volumen a través del Audio\+Mixer. 
+
+\label{doc-func-members}
+\Hypertarget{class_pause_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_pause_manager_a6c736f4b9efaed8cbf31b419a734beac}\index{PauseManager@{PauseManager}!SetMusicVolume@{SetMusicVolume}}
+\index{SetMusicVolume@{SetMusicVolume}!PauseManager@{PauseManager}}
+\doxysubsubsection{\texorpdfstring{SetMusicVolume()}{SetMusicVolume()}}
+{\footnotesize\ttfamily \label{class_pause_manager_a6c736f4b9efaed8cbf31b419a734beac} 
+void Pause\+Manager.\+Set\+Music\+Volume (\begin{DoxyParamCaption}\item[{float}]{slider\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ajusta el volumen de la música transformando escala lineal a decibelios logarítmicos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slider\+Value} & Valor del slider a transformar.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_pause_manager_a87d41c7ed69e8245051d71a29782de6e}\index{PauseManager@{PauseManager}!SetSFXVolume@{SetSFXVolume}}
+\index{SetSFXVolume@{SetSFXVolume}!PauseManager@{PauseManager}}
+\doxysubsubsection{\texorpdfstring{SetSFXVolume()}{SetSFXVolume()}}
+{\footnotesize\ttfamily \label{class_pause_manager_a87d41c7ed69e8245051d71a29782de6e} 
+void Pause\+Manager.\+Set\+SFXVolume (\begin{DoxyParamCaption}\item[{float}]{slider\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ajusta el volumen de efectos sonoros transformando escala lineal a decibelios logarítmicos. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slider\+Value} & Valor del slider a transformar.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+spritesheets/\+\+Scripts/\+Pause\+Manager.\+cs\end{DoxyCompactItemize}

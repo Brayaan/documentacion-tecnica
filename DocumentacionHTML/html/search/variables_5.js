@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['enemiespusheachother_0',['enemiesPushEachOther',['../class_combat_collision_manager.html#af94b74e444f17e3b4aa53b25411827f3',1,'CombatCollisionManager']]],
-  ['energyimage_1',['energyImage',['../class_energy_system.html#ab6810737bca1b8bbeba29134986c1bfb',1,'EnergySystem']]],
-  ['energysprites_2',['energySprites',['../class_energy_system.html#ac4a2a2e81468b196916273857d589d34',1,'EnergySystem']]]
+  ['facingright_0',['facingRight',['../class_player_movement.html#a0b88c58ac96a533651c53931623f5591',1,'PlayerMovement']]],
+  ['fuerzasalto_1',['fuerzaSalto',['../class_jump_whit_strike.html#aeb18b206f82dcc825f7633ee21beedcf',1,'JumpWhitStrike']]]
 ];

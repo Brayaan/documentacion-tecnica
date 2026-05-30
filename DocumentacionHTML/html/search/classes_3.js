@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nopushonhit_0',['NoPushOnHit',['../class_no_push_on_hit.html',1,'']]]
+  ['dropdownsample_0',['DropdownSample',['../class_dropdown_sample.html',1,'']]]
 ];

@@ -1,27 +1,5 @@
 var searchData=
 [
-  ['ejemplos_20de_20código_0',['Ejemplos de Código',['../index.html#autotoc_md8',1,'']]],
-  ['endattack_1',['EndAttack',['../class_player_attack.html#af4fc8601a7670a16751ceea0c4e58804',1,'PlayerAttack']]],
-  ['endhit_2',['EndHit',['../class_enemy_health_system.html#a8f942a9c34ff635eb98fdc7633b716b0',1,'EnemyHealthSystem.EndHit()'],['../class_health_system.html#a5ddcde0c0edeb0980372b00b75a4e16a',1,'HealthSystem.EndHit()']]],
-  ['endknockback_3',['EndKnockback',['../class_player_movement.html#aca489416b342babe9591e3acb2b32053',1,'PlayerMovement']]],
-  ['enemiespusheachother_4',['enemiesPushEachOther',['../class_combat_collision_manager.html#af94b74e444f17e3b4aa53b25411827f3',1,'CombatCollisionManager']]],
-  ['enemyhealthsystem_5',['EnemyHealthSystem',['../class_enemy_health_system.html',1,'']]],
-  ['enemyhealthsystem_2ecs_6',['EnemyHealthSystem.cs',['../_enemy_health_system_8cs.html',1,'']]],
-  ['enemyhealthsystemtests_7',['EnemyHealthSystemTests',['../class_enemy_health_system_tests.html',1,'']]],
-  ['enemyhealthsystemtests_2ecs_8',['EnemyHealthSystemTests.cs',['../_enemy_health_system_tests_8cs.html',1,'']]],
-  ['energy_5fdoesnotexceedmaxenergy_9',['Energy_DoesNotExceedMaxEnergy',['../class_energy_system_tests.html#a443f647f38c0dbf8b0bac58bb4a79912',1,'EnergySystemTests']]],
-  ['energy_5fdoesnotgobelowzero_10',['Energy_DoesNotGoBelowZero',['../class_energy_system_tests.html#a8a5cdbdf1d54db7def59d3699e3695ec',1,'EnergySystemTests']]],
-  ['energyimage_11',['energyImage',['../class_energy_system.html#ab6810737bca1b8bbeba29134986c1bfb',1,'EnergySystem']]],
-  ['energysprites_12',['energySprites',['../class_energy_system.html#ac4a2a2e81468b196916273857d589d34',1,'EnergySystem']]],
-  ['energysystem_13',['EnergySystem',['../class_energy_system.html',1,'']]],
-  ['energysystem_2ecs_14',['EnergySystem.cs',['../_energy_system_8cs.html',1,'']]],
-  ['energysystemtests_15',['EnergySystemTests',['../class_energy_system_tests.html',1,'']]],
-  ['energysystemtests_2ecs_16',['EnergySystemTests.cs',['../_energy_system_tests_8cs.html',1,'']]],
-  ['estructura_20del_20proyecto_17',['Estructura del Proyecto',['../index.html#autotoc_md2',1,'']]],
-  ['extendedhitbox_18',['ExtendedHitbox',['../class_extended_hitbox.html',1,'']]],
-  ['extendedhitbox_2ecs_19',['ExtendedHitbox.cs',['../_extended_hitbox_8cs.html',1,'']]],
-  ['extendedhitbox_5fdoesnotdamageowncharacter_20',['ExtendedHitbox_DoesNotDamageOwnCharacter',['../class_extended_hitbox_tests.html#a286832f539a68adf4a3280dcacf63d16',1,'ExtendedHitboxTests']]],
-  ['extendedhitbox_5fonlydamageswhenattackisactive_21',['ExtendedHitbox_OnlyDamagesWhenAttackIsActive',['../class_extended_hitbox_tests.html#a2e8aa175851c6a3436025a02c0ecc9d2',1,'ExtendedHitboxTests']]],
-  ['extendedhitboxtests_22',['ExtendedHitboxTests',['../class_extended_hitbox_tests.html',1,'']]],
-  ['extendedhitboxtests_2ecs_23',['ExtendedHitboxTests.cs',['../_extended_hitbox_tests_8cs.html',1,'']]]
+  ['facingright_0',['facingRight',['../class_player_movement.html#a0b88c58ac96a533651c53931623f5591',1,'PlayerMovement']]],
+  ['fuerzasalto_1',['fuerzaSalto',['../class_jump_whit_strike.html#aeb18b206f82dcc825f7633ee21beedcf',1,'JumpWhitStrike']]]
 ];

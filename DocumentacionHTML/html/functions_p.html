@@ -5,9 +5,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.16.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Documentación Técnica: Class Members</title>
+<title>My Project: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript">var page_layout=1;</script>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
@@ -18,36 +17,19 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(function() { init_search(); });
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<div id="side-nav" class="ui-resizable side-nav-resizable"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Documentación Técnica
+   <div id="projectname">My Project
    </div>
-   <div id="projectbrief">API Reference &amp; Developer Guide</div>
   </td>
  </tr>
-   <tr><td colspan="2">        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
-          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
-          </span>
-        </div>
-</td></tr>
  </tbody>
 </table>
 </div>
@@ -59,7 +41,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 <script type="text/javascript">
 $(function() { codefold.init(); });
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',true,false,'search.php','Search',true);
+  $(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
     <div id="nav-tree-contents">
       <div id="nav-sync" class="sync"></div>
@@ -72,15 +64,8 @@ $(function() { codefold.init(); });
 <script type="text/javascript">
 $(function(){initNavTree('functions_p.html','',''); });
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',false,false,'search.php','Search',true);
-});
-</script>
-<div id="main-nav"></div>
-<div id="container"><div id="doc-content">
+<div id="container">
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -103,17 +88,39 @@ $(function() {
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>playerAttack&#160;:&#160;<a class="el" href="class_extended_hitbox.html#a467ce86a30d8722edb4070529be12b68">ExtendedHitbox</a></li>
-<li>playerMovement&#160;:&#160;<a class="el" href="class_player_attack.html#aff13fa0f28b4d333cd7e3d3ad6214f88">PlayerAttack</a></li>
+<li>panelAudio&#160;:&#160;<a class="el" href="class_jugar.html#a76b59dbaf5dada41e7355279959d8349">Jugar</a></li>
+<li>panelOpcionesBase&#160;:&#160;<a class="el" href="class_jugar.html#a8de747576fce7f9466beb97b6a562290">Jugar</a></li>
+<li>panelPrincipal&#160;:&#160;<a class="el" href="class_jugar.html#a5a68b9b61c3a1f4154288ebde41828de">Jugar</a></li>
+<li>panelTutorial&#160;:&#160;<a class="el" href="class_jugar.html#aae1314c76a00e7da3dfbffcc3120d6c8">Jugar</a></li>
+<li>pauseMenuUI&#160;:&#160;<a class="el" href="class_pause_manager.html#ad3e1b4dada4ab4567778c1808abe9f40">PauseManager</a></li>
+<li>pitchMax&#160;:&#160;<a class="el" href="class_audio_manager.html#aea8a8d22c4ddb4edb8b094f7ebd9352c">AudioManager</a></li>
+<li>pitchMin&#160;:&#160;<a class="el" href="class_audio_manager.html#a4e17078bfd0632766b96231a5738f8c3">AudioManager</a></li>
+<li>PlayBlockSound()&#160;:&#160;<a class="el" href="class_audio_manager.html#a171a7eab976c49f8b00ccdf310efb122">AudioManager</a></li>
+<li>PlayDeathSound()&#160;:&#160;<a class="el" href="class_audio_manager.html#ac3e42210a37a8ea01e0c14b36be03679">AudioManager</a></li>
+<li>player1Attack&#160;:&#160;<a class="el" href="class_combat_manager.html#a55bbc43e17aecbf0aed0dcfe8fb1a34b">CombatManager</a></li>
+<li>player1Health&#160;:&#160;<a class="el" href="class_combat_manager.html#a430b078224ffe790d07a72014d440c52">CombatManager</a></li>
+<li>player1Movement&#160;:&#160;<a class="el" href="class_combat_manager.html#a371a96f2b31902da6ce960c561db5ebc">CombatManager</a></li>
+<li>player1Name&#160;:&#160;<a class="el" href="class_combat_manager.html#a76408683fb3161021c7eefb4ba04cacf">CombatManager</a></li>
+<li>player1Special&#160;:&#160;<a class="el" href="class_combat_manager.html#ac390db1e7124e494b7f222a4d2751852">CombatManager</a></li>
+<li>player2Attack&#160;:&#160;<a class="el" href="class_combat_manager.html#a4726f0dcdfcc1fb2c18c0252254b9873">CombatManager</a></li>
+<li>player2Health&#160;:&#160;<a class="el" href="class_combat_manager.html#a7ffb6d6be27c271af5b1c6dcf10fbd25">CombatManager</a></li>
+<li>player2Movement&#160;:&#160;<a class="el" href="class_combat_manager.html#a35d71ad674a0dcc23d12928a54c0ee0b">CombatManager</a></li>
+<li>player2Name&#160;:&#160;<a class="el" href="class_combat_manager.html#aa3abc621fb52f83aa684c32fcaff4666">CombatManager</a></li>
+<li>player2Special&#160;:&#160;<a class="el" href="class_combat_manager.html#a39967cdf2b679ee16bfac71c6119c088">CombatManager</a></li>
+<li>playerAttack&#160;:&#160;<a class="el" href="class_player_special_attack.html#a697cc49cbcd5034caef91e04225a7015">PlayerSpecialAttack</a></li>
+<li>playerHealth&#160;:&#160;<a class="el" href="class_player_special_attack.html#a22fc16c1d4ab0fb19a9b8c2edbdf2629">PlayerSpecialAttack</a></li>
+<li>playerMovement&#160;:&#160;<a class="el" href="class_player_attack.html#aff13fa0f28b4d333cd7e3d3ad6214f88">PlayerAttack</a>, <a class="el" href="class_player_special_attack.html#a6616437629d6f6652d09461591c25644">PlayerSpecialAttack</a></li>
+<li>PlayHitSound()&#160;:&#160;<a class="el" href="class_audio_manager.html#a9f2eadb0a9d0a2a1b6cb8c2bcc59d6bc">AudioManager</a></li>
+<li>PlayRoundStartSound()&#160;:&#160;<a class="el" href="class_audio_manager.html#a6aa3d5bc032865914b93bce6fb40c116">AudioManager</a></li>
+<li>powerBarUI&#160;:&#160;<a class="el" href="class_player_special_attack.html#ad9122d197826e41b4f44ab5c0db140de">PlayerSpecialAttack</a></li>
+<li>PreviousCharacter()&#160;:&#160;<a class="el" href="class_character_selection_manager.html#a8fa62a5f5689d640ee60c4fd8afd3b51">CharacterSelectionManager</a></li>
 <li>punchCooldown&#160;:&#160;<a class="el" href="class_player_attack.html#af5b081ae192a762efa4ff18a52702486">PlayerAttack</a></li>
-<li>PunchCooldown_PunchReadyRestoresAfterCooldown()&#160;:&#160;<a class="el" href="class_player_attack_tests.html#a2e83e24b4869e75cd02d4f991960f8f2">PlayerAttackTests</a></li>
 <li>punchHitbox&#160;:&#160;<a class="el" href="class_player_attack.html#af460ec9e43a1027044ac9a9b4e706933">PlayerAttack</a></li>
-<li>PunchHitbox_DeactivatesAfterAttackDuration()&#160;:&#160;<a class="el" href="class_player_attack_tests.html#ad05b0e5c7a7698acaadd2c660ad45d08">PlayerAttackTests</a></li>
 <li>punchKey&#160;:&#160;<a class="el" href="class_player_attack.html#aa4f16c2b62e0804898250fa244fdda4f">PlayerAttack</a></li>
-<li>punchReady&#160;:&#160;<a class="el" href="class_player_attack.html#ad1649114de2177e3c3ed68b45fc1f1f9">PlayerAttack</a></li>
+<li>punchSound&#160;:&#160;<a class="el" href="class_audio_manager.html#ae07cf0d6ca0514f5bb47fbbecba4791a">AudioManager</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

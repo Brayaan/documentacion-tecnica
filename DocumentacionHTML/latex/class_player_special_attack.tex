@@ -1,0 +1,65 @@
+\doxysection{Player\+Special\+Attack Class Reference}
+\hypertarget{class_player_special_attack}{}\label{class_player_special_attack}\index{PlayerSpecialAttack@{PlayerSpecialAttack}}
+
+
+Component that handles execution of special attacks, UI updates for power readiness, and interactions with energy, health, and movement systems.  
+
+
+Inheritance diagram for Player\+Special\+Attack:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player_special_attack}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_player_special_attack_a55756c57dd4130d9e4aca4bfaa22187a}{Is\+Using\+Special}} ()
+\begin{DoxyCompactList}\small\item\em Returns whether the player is currently executing a special attack. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_player_special_attack_a42959300f4eb6c0862cdd68237c79f28}\label{class_player_special_attack_a42959300f4eb6c0862cdd68237c79f28} 
+\doxymbox{\hyperlink{class_energy_system}{Energy\+System}} {\bfseries energy\+System}
+\begin{DoxyCompactList}\small\item\em Reference to the energy system for consuming energy. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_special_attack_a697cc49cbcd5034caef91e04225a7015}\label{class_player_special_attack_a697cc49cbcd5034caef91e04225a7015} 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} {\bfseries player\+Attack}
+\begin{DoxyCompactList}\small\item\em Reference to the base attack component. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_special_attack_a6616437629d6f6652d09461591c25644}\label{class_player_special_attack_a6616437629d6f6652d09461591c25644} 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} {\bfseries player\+Movement}
+\begin{DoxyCompactList}\small\item\em Reference to the movement component to lock movement during specials. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_special_attack_a22fc16c1d4ab0fb19a9b8c2edbdf2629}\label{class_player_special_attack_a22fc16c1d4ab0fb19a9b8c2edbdf2629} 
+\doxymbox{\hyperlink{class_health_system}{Health\+System}} {\bfseries player\+Health}
+\begin{DoxyCompactList}\small\item\em Reference to the health system for healing effects. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_special_attack_ad9122d197826e41b4f44ab5c0db140de}\label{class_player_special_attack_ad9122d197826e41b4f44ab5c0db140de} 
+Game\+Object {\bfseries power\+Bar\+UI}
+\begin{DoxyCompactList}\small\item\em UI element displaying when the player has full power/\+energy. \end{DoxyCompactList}\item 
+\Hypertarget{class_player_special_attack_ac6ff81d33859e5f1c82aaa7d8f754a83}\label{class_player_special_attack_ac6ff81d33859e5f1c82aaa7d8f754a83} 
+\doxymbox{\hyperlink{class_special_attack_data}{Special\+Attack\+Data}}\+[$\,$]\+ {\bfseries special\+Attacks} = new \doxymbox{\hyperlink{class_special_attack_data}{Special\+Attack\+Data}}\+[4]\+
+\begin{DoxyCompactList}\small\item\em Array of configurable special attacks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component that handles execution of special attacks, UI updates for power readiness, and interactions with energy, health, and movement systems. 
+
+\label{doc-func-members}
+\Hypertarget{class_player_special_attack_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_player_special_attack_a55756c57dd4130d9e4aca4bfaa22187a}\index{PlayerSpecialAttack@{PlayerSpecialAttack}!IsUsingSpecial@{IsUsingSpecial}}
+\index{IsUsingSpecial@{IsUsingSpecial}!PlayerSpecialAttack@{PlayerSpecialAttack}}
+\doxysubsubsection{\texorpdfstring{IsUsingSpecial()}{IsUsingSpecial()}}
+{\footnotesize\ttfamily \label{class_player_special_attack_a55756c57dd4130d9e4aca4bfaa22187a} 
+bool Player\+Special\+Attack.\+Is\+Using\+Special (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns whether the player is currently executing a special attack. 
+
+\begin{DoxyReturn}{Returns}
+True if a special attack is active, false otherwise.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+spritesheets/\+\+Scripts/\+Player\+Special\+Attack.\+cs\end{DoxyCompactItemize}

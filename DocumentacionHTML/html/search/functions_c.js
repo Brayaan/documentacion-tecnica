@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['punchcooldown_5fpunchreadyrestoresaftercooldown_0',['PunchCooldown_PunchReadyRestoresAfterCooldown',['../class_player_attack_tests.html#a2e83e24b4869e75cd02d4f991960f8f2',1,'PlayerAttackTests']]],
-  ['punchhitbox_5fdeactivatesafterattackduration_1',['PunchHitbox_DeactivatesAfterAttackDuration',['../class_player_attack_tests.html#ad05b0e5c7a7698acaadd2c660ad45d08',1,'PlayerAttackTests']]]
+  ['resetplayer_0',['ResetPlayer',['../class_health_system.html#aecc79a190ea1488d69da1b5c6c452f85',1,'HealthSystem']]],
+  ['restartmatch_1',['RestartMatch',['../class_combat_manager.html#a6546ffcbf4110759db2d7a6b52242342',1,'CombatManager.RestartMatch()'],['../class_pause_manager.html#ae5844675a6f24e9ab21bbeb7a75384c4',1,'PauseManager.RestartMatch()']]],
+  ['resume_2',['Resume',['../class_pause_manager.html#aaef28d81c24de2c642efcaee308992b9',1,'PauseManager']]]
 ];

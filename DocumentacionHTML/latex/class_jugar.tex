@@ -1,0 +1,123 @@
+\doxysection{Jugar Class Reference}
+\hypertarget{class_jugar}{}\label{class_jugar}\index{Jugar@{Jugar}}
+
+
+Clase responsable de gestionar el menú principal, permitiendo iniciar el juego, cambiar configuraciones de audio, visualizar controles y salir de la aplicación.  
+
+
+Inheritance diagram for Jugar:\+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_jugar}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_jugar_a19d9e359ff1d3d389437aef10b83be34}\label{class_jugar_a19d9e359ff1d3d389437aef10b83be34} 
+void {\bfseries Cargar\+Escena} ()
+\begin{DoxyCompactList}\small\item\em Carga la escena del juego especificada en \doxylink{class_jugar_a58bc40bc3eca7d709f6918e63b364ecc}{batalla}. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_ae8f6190126232eb52e917b132d7419a3}\label{class_jugar_ae8f6190126232eb52e917b132d7419a3} 
+void {\bfseries Salir\+Juego} ()
+\begin{DoxyCompactList}\small\item\em Finaliza la ejecución del juego. Funciona tanto en el editor como en la build final. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a97e12f3f8b3775358e2c89fe7247f19c}\label{class_jugar_a97e12f3f8b3775358e2c89fe7247f19c} 
+void {\bfseries Abrir\+Opciones\+Base} ()
+\begin{DoxyCompactList}\small\item\em Oculta el panel principal y muestra el panel base de opciones. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a9bfd9609b0ca4c017f451c4c9d2e90d6}\label{class_jugar_a9bfd9609b0ca4c017f451c4c9d2e90d6} 
+void {\bfseries Cerrar\+Opciones\+Base} ()
+\begin{DoxyCompactList}\small\item\em Oculta el panel base de opciones y vuelve al panel principal. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_ae67852f79bb05c96fecd178371f5e7ee}\label{class_jugar_ae67852f79bb05c96fecd178371f5e7ee} 
+void {\bfseries Abrir\+Tutorial} ()
+\begin{DoxyCompactList}\small\item\em Oculta el panel base de opciones y muestra el panel de tutorial/\+controles. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a2b324049588e5954f1b08b65d626acc7}\label{class_jugar_a2b324049588e5954f1b08b65d626acc7} 
+void {\bfseries Cerrar\+Tutorial} ()
+\begin{DoxyCompactList}\small\item\em Oculta el panel de tutorial/\+controles y regresa al panel base de opciones. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a1cd671d33ea5259f18b5e59fea304722}\label{class_jugar_a1cd671d33ea5259f18b5e59fea304722} 
+void {\bfseries Abrir\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Oculta el panel base de opciones y muestra el panel de ajustes de audio. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_ad51a09dc60d8d3d89a975e1102faca41}\label{class_jugar_ad51a09dc60d8d3d89a975e1102faca41} 
+void {\bfseries Cerrar\+Audio} ()
+\begin{DoxyCompactList}\small\item\em Oculta el panel de ajustes de audio y regresa al panel base de opciones. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_jugar_a36605ecbcd4e1c73ae6d997cc850f4aa}{Set\+Music\+Volume}} (float slider\+Value)
+\begin{DoxyCompactList}\small\item\em Ajusta el volumen de la música en el Audio\+Mixer basado en el valor de un slider. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_jugar_a06fbec412fc6b4704c5ebb1ba84f2b1d}{Set\+SFXVolume}} (float slider\+Value)
+\begin{DoxyCompactList}\small\item\em Ajusta el volumen de los efectos de sonido (SFX) en el Audio\+Mixer basado en el valor de un slider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_jugar_a58bc40bc3eca7d709f6918e63b364ecc}\label{class_jugar_a58bc40bc3eca7d709f6918e63b364ecc} 
+string {\bfseries batalla}
+\begin{DoxyCompactList}\small\item\em Nombre de la escena de batalla o juego a cargar. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_af7e1c811d2df1126b6366e8f1839390b}\label{class_jugar_af7e1c811d2df1126b6366e8f1839390b} 
+Button {\bfseries boton\+Jugar}
+\begin{DoxyCompactList}\small\item\em Referencia al botón para iniciar el juego. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_aafd8260df3868e6347abc80deffb589c}\label{class_jugar_aafd8260df3868e6347abc80deffb589c} 
+Button {\bfseries boton\+Opciones}
+\begin{DoxyCompactList}\small\item\em Referencia al botón para abrir el menú de opciones. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a42a6aab32541fffd21c62014b98ab30d}\label{class_jugar_a42a6aab32541fffd21c62014b98ab30d} 
+Button {\bfseries boton\+Salir}
+\begin{DoxyCompactList}\small\item\em Referencia al botón para salir del juego. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a5a68b9b61c3a1f4154288ebde41828de}\label{class_jugar_a5a68b9b61c3a1f4154288ebde41828de} 
+Game\+Object {\bfseries panel\+Principal}
+\begin{DoxyCompactList}\small\item\em Panel principal que contiene las opciones iniciales del menú. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a8de747576fce7f9466beb97b6a562290}\label{class_jugar_a8de747576fce7f9466beb97b6a562290} 
+Game\+Object {\bfseries panel\+Opciones\+Base}
+\begin{DoxyCompactList}\small\item\em Panel base de opciones que agrupa las categorías (Audio, Controles). \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_aae1314c76a00e7da3dfbffcc3120d6c8}\label{class_jugar_aae1314c76a00e7da3dfbffcc3120d6c8} 
+Game\+Object {\bfseries panel\+Tutorial}
+\begin{DoxyCompactList}\small\item\em Panel que muestra el tutorial y configuración de controles. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a76b59dbaf5dada41e7355279959d8349}\label{class_jugar_a76b59dbaf5dada41e7355279959d8349} 
+Game\+Object {\bfseries panel\+Audio}
+\begin{DoxyCompactList}\small\item\em Panel dedicado a la configuración de volumen. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a06086c3e821a02f137cdea2fee75b311}\label{class_jugar_a06086c3e821a02f137cdea2fee75b311} 
+Audio\+Mixer {\bfseries audio\+Mixer}
+\begin{DoxyCompactList}\small\item\em Mezclador de audio utilizado para controlar niveles de volumen generales. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_a29b1825af01615a349b087f8b9ba09e5}\label{class_jugar_a29b1825af01615a349b087f8b9ba09e5} 
+Slider {\bfseries music\+Slider}
+\begin{DoxyCompactList}\small\item\em Control deslizante (Slider) para ajustar el volumen de la música. \end{DoxyCompactList}\item 
+\Hypertarget{class_jugar_af331e4534dfc0a4d15b4bdb4579c8bad}\label{class_jugar_af331e4534dfc0a4d15b4bdb4579c8bad} 
+Slider {\bfseries sfx\+Slider}
+\begin{DoxyCompactList}\small\item\em Control deslizante (Slider) para ajustar el volumen de los efectos de sonido (SFX). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clase responsable de gestionar el menú principal, permitiendo iniciar el juego, cambiar configuraciones de audio, visualizar controles y salir de la aplicación. 
+
+\label{doc-func-members}
+\Hypertarget{class_jugar_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_jugar_a36605ecbcd4e1c73ae6d997cc850f4aa}\index{Jugar@{Jugar}!SetMusicVolume@{SetMusicVolume}}
+\index{SetMusicVolume@{SetMusicVolume}!Jugar@{Jugar}}
+\doxysubsubsection{\texorpdfstring{SetMusicVolume()}{SetMusicVolume()}}
+{\footnotesize\ttfamily \label{class_jugar_a36605ecbcd4e1c73ae6d997cc850f4aa} 
+void Jugar.\+Set\+Music\+Volume (\begin{DoxyParamCaption}\item[{float}]{slider\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ajusta el volumen de la música en el Audio\+Mixer basado en el valor de un slider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slider\+Value} & Valor lineal del slider a convertir a decibelios.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_jugar_a06fbec412fc6b4704c5ebb1ba84f2b1d}\index{Jugar@{Jugar}!SetSFXVolume@{SetSFXVolume}}
+\index{SetSFXVolume@{SetSFXVolume}!Jugar@{Jugar}}
+\doxysubsubsection{\texorpdfstring{SetSFXVolume()}{SetSFXVolume()}}
+{\footnotesize\ttfamily \label{class_jugar_a06fbec412fc6b4704c5ebb1ba84f2b1d} 
+void Jugar.\+Set\+SFXVolume (\begin{DoxyParamCaption}\item[{float}]{slider\+Value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Ajusta el volumen de los efectos de sonido (SFX) en el Audio\+Mixer basado en el valor de un slider. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slider\+Value} & Valor lineal del slider a convertir a decibelios.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+spritesheets/\+\+Scripts/\+Jugar.\+cs\end{DoxyCompactItemize}

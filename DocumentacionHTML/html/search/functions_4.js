@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['endattack_0',['EndAttack',['../class_player_attack.html#af4fc8601a7670a16751ceea0c4e58804',1,'PlayerAttack']]],
-  ['endhit_1',['EndHit',['../class_enemy_health_system.html#a8f942a9c34ff635eb98fdc7633b716b0',1,'EnemyHealthSystem.EndHit()'],['../class_health_system.html#a5ddcde0c0edeb0980372b00b75a4e16a',1,'HealthSystem.EndHit()']]],
-  ['endknockback_2',['EndKnockback',['../class_player_movement.html#aca489416b342babe9591e3acb2b32053',1,'PlayerMovement']]],
-  ['energy_5fdoesnotexceedmaxenergy_3',['Energy_DoesNotExceedMaxEnergy',['../class_energy_system_tests.html#a443f647f38c0dbf8b0bac58bb4a79912',1,'EnergySystemTests']]],
-  ['energy_5fdoesnotgobelowzero_4',['Energy_DoesNotGoBelowZero',['../class_energy_system_tests.html#a8a5cdbdf1d54db7def59d3699e3695ec',1,'EnergySystemTests']]],
-  ['extendedhitbox_5fdoesnotdamageowncharacter_5',['ExtendedHitbox_DoesNotDamageOwnCharacter',['../class_extended_hitbox_tests.html#a286832f539a68adf4a3280dcacf63d16',1,'ExtendedHitboxTests']]],
-  ['extendedhitbox_5fonlydamageswhenattackisactive_6',['ExtendedHitbox_OnlyDamagesWhenAttackIsActive',['../class_extended_hitbox_tests.html#a2e8aa175851c6a3436025a02c0ecc9d2',1,'ExtendedHitboxTests']]]
+  ['gainenergyfromattack_0',['GainEnergyFromAttack',['../class_energy_system.html#a217bd9ce2943ac554a443d9c096196ca',1,'EnergySystem']]],
+  ['gainenergyfromattack_5fincreasesenergybycorrectamount_1',['GainEnergyFromAttack_IncreasesEnergyByCorrectAmount',['../class_energy_system_tests.html#a1649205144d7a5e572d110850b5abcd6',1,'EnergySystemTests']]],
+  ['gainenergyfromblock_2',['GainEnergyFromBlock',['../class_energy_system.html#a4c7d6a044c95a505e8fcef59c5e66c41',1,'EnergySystem']]],
+  ['gainenergyfromblock_5fincreasesenergybythree_3',['GainEnergyFromBlock_IncreasesEnergyByThree',['../class_energy_system_tests.html#a8ae214ed37fcc1bf18fad259ebcd61ff',1,'EnergySystemTests']]],
+  ['gainenergyfromdamage_4',['GainEnergyFromDamage',['../class_energy_system.html#a5fa12bb870c6f582b8977b8ae705deb5',1,'EnergySystem']]],
+  ['gainenergyfromdamage_5fincreasesenergybytwo_5',['GainEnergyFromDamage_IncreasesEnergyByTwo',['../class_energy_system_tests.html#ab5b4b0c7316ea0101b4265cf3ffd31f2',1,'EnergySystemTests']]]
 ];

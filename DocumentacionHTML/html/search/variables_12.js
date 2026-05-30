@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocidad_0',['velocidad',['../class_prueba.html#a3663ddca89e4775e78317b983a595fc1',1,'Prueba']]]
+  ['timebetweenrounds_0',['timeBetweenRounds',['../class_combat_manager.html#a641956a98289f1f3282700add0f70e9f',1,'CombatManager']]]
 ];

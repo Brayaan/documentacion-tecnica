@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['de_20código_0',['Ejemplos de Código',['../index.html#autotoc_md8',1,'']]],
-  ['de_20documentación_1',['Convenciones de Documentación',['../index.html#autotoc_md11',1,'']]],
-  ['del_20proyecto_2',['Estructura del Proyecto',['../index.html#autotoc_md2',1,'']]],
-  ['documentación_3',['Convenciones de Documentación',['../index.html#autotoc_md11',1,'']]],
-  ['documentación_20técnica_4',['Documentación Técnica',['../index.html',1,'']]]
+  ['de_20player_20attack_0',['PRUEBAS DE PLAYER ATTACK',['../class_player_attack_tests.html#autotoc_md3',1,'']]],
+  ['defense_20tests_1',['SISTEMA: PLAYER DEFENSE TESTS',['../class_player_defense_tests.html#autotoc_md5',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['facingright_0',['facingRight',['../class_player_movement.html#a0b88c58ac96a533651c53931623f5591',1,'PlayerMovement']]]
+  ['groundcheck_0',['groundCheck',['../class_player_movement.html#a4c733d8e1fcc9ffd7223ac3182b380f5',1,'PlayerMovement']]],
+  ['groundlayer_1',['groundLayer',['../class_player_movement.html#a5cd0bdfb2edd218c8cd76f0eee992cb1',1,'PlayerMovement']]]
 ];
