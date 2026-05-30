@@ -24,34 +24,18 @@
 */
 var NAVTREE =
 [
-  [ "Documentación Técnica", "index.html", [
-    [ "Estructura del Proyecto", "index.html#autotoc_md2", null ],
-    [ "Clases Principales", "index.html#autotoc_md4", null ],
-    [ "Guía Rápida", "index.html#autotoc_md6", null ],
-    [ "Ejemplos de Código", "index.html#autotoc_md8", null ],
-    [ "Recursos Adicionales", "index.html#autotoc_md9", null ],
-    [ "Convenciones de Documentación", "index.html#autotoc_md11", null ],
-    [ "Contribución", "index.html#autotoc_md12", null ],
+  [ "My Project", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
-      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
-      [ "Class Members", "functions.html", [
-        [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
-      ] ]
-    ] ],
-    [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "Class Hierarchy", "hierarchy.html", "hierarchy" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_combat_collision_manager_8cs.html",
-"class_player_movement.html#acf8b937f61c1e92dfdbd075678f911d1"
+"annotated.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

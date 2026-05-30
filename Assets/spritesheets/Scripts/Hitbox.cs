@@ -1,15 +1,49 @@
+//-----------------------------------------------------------------------
+// <copyright file="Hitbox.cs">
+//     Copyright (c) 2026. All rights reserved.
+// </copyright>
+// <summary>Handles collision detection and damage application for attacks.</summary>
+//-----------------------------------------------------------------------
+
 using UnityEngine;
 
+/// <summary>
+/// Represents a damage-dealing area activated during an attack animation.
+/// Detects collisions with enemies or players and applies damage, knockback, and energy changes.
+/// </summary>
 public class Hitbox : MonoBehaviour
 {
+    /// <summary>
+    /// The name of the attack associated with this hitbox (e.g., "Punch", "Kick").
+    /// </summary>
     public string attackName;
+
+    /// <summary>
+    /// The amount of health points deducted when this hitbox strikes a valid target.
+    /// </summary>
     public int damage = 1;
+
+    /// <summary>
+    /// Reference to the PlayerAttack component on the root object to check attack state.
+    /// </summary>
     private PlayerAttack attack;
 
+    /// <summary>
+    /// The timestamp of the last successful hit to enforce the hit cooldown.
+    /// </summary>
     private float lastHitTime = float.NegativeInfinity;
+
+    /// <summary>
+    /// The minimum time interval (in seconds) between consecutive hits from this hitbox.
+    /// </summary>
     // Intervalo mínimo entre golpes por activación del hitbox
     public float hitCooldown = 0.2f;
 
+    /// <summary>
+    /// Called every frame a collider remains within the trigger zone.
+    /// Validates the target, checks blocking states, applies damage, and updates energy.
+    /// </summary>
+    /// <param name="other">The collider interacting with the hitbox.</param>
     // OnTriggerStay2D se ejecuta cada frame mientras el collider permanece dentro
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -79,12 +113,18 @@ public class Hitbox : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initializes references to required components.
+    /// </summary>
     void Start()
     {
         // Buscar PlayerAttack en la raíz de la jerarquía
         attack = transform.root.GetComponent<PlayerAttack>();
     }
 
+    /// <summary>
+    /// Resets the hitbox state when deactivated to ensure the next attack sequence starts fresh.
+    /// </summary>
     void OnDisable()
     {
         // Resetear cooldown para que el próximo ataque siempre conecte

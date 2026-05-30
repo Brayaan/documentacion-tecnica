@@ -1,13 +1,38 @@
+//-----------------------------------------------------------------------
+// <copyright file="CrouchAttack.cs" company="DefaultCompany">
+//     Copyright (c) DefaultCompany. All rights reserved.
+// </copyright>
+// <summary>Handles character crouch and crouch attack actions.</summary>
+//-----------------------------------------------------------------------
+
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Controls the crouching state and crouch attack mechanics of the character.
+/// Listens to user input to trigger crouch animations and corresponding attack states.
+/// </summary>
 public class CrouchAttack : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to the character's Animator component to handle animation transitions.
+    /// </summary>
     public Animator animator;
 
+    /// <summary>
+    /// Tracks if the character is currently in a crouching position.
+    /// </summary>
     private bool estaAgachado;
+
+    /// <summary>
+    /// Tracks if the character is currently performing an attack.
+    /// </summary>
     private bool atacando = false;
 
+    /// <summary>
+    /// Called once per frame. Updates crouching state based on player input 
+    /// and triggers the crouch attack if conditions are met.
+    /// </summary>
     void Update()
     {
         // Detectar si está agachado
@@ -23,6 +48,11 @@ public class CrouchAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Executes the crouch attack sequence, including triggering the animation
+    /// and managing the attack state duration.
+    /// </summary>
+    /// <returns>An IEnumerator used for coroutine timing.</returns>
     IEnumerator RealizarAtaque()
     {
         atacando = true;

@@ -1,20 +1,43 @@
+/// -----------------------------------------------------------------------------
+/// <file>WinScreenAnimation.cs</file>
+/// <summary>
+/// Contiene la clase WinScreenAnimation.
+/// </summary>
+/// -----------------------------------------------------------------------------
+
 using UnityEngine;
 using TMPro;
 using System.Collections;
 
-// Requiere un CanvasGroup en el mismo GameObject
+/// <summary>
+/// Gestiona la animación de la pantalla de victoria mediante un CanvasGroup y escalado de texto.
+/// </summary>
 [RequireComponent(typeof(CanvasGroup))]
 public class WinScreenAnimation : MonoBehaviour
 {
+    /// <summary>
+    /// Referencia al componente CanvasGroup usado para modificar la opacidad de la pantalla.
+    /// </summary>
     private CanvasGroup canvasGroup;
-    public TMP_Text resultText; // Texto que se anima al mostrar la pantalla
 
+    /// <summary>
+    /// Componente de texto que muestra el resultado y se anima al aparecer la pantalla.
+    /// </summary>
+    public TMP_Text resultText;
+
+    /// <summary>
+    /// Se llama al inicializar el script antes de que inicie el juego para obtener componentes necesarios.
+    /// </summary>
     void Awake()
     {
         // Obtenemos el CanvasGroup al iniciar
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    /// <summary>
+    /// Se llama cada vez que el objeto es habilitado o activado.
+    /// Reinicia los valores de transparencia y escala del texto y lanza la animación.
+    /// </summary>
     void OnEnable()
     {
         // Cuando el panel se enciende, reiniciamos su estado para animarlo
@@ -27,6 +50,10 @@ public class WinScreenAnimation : MonoBehaviour
         StartCoroutine(AnimateUI()); // Lanzamos la animación
     }
 
+    /// <summary>
+    /// Corrutina que anima la interfaz de usuario con un Fade In de la pantalla oscura y escalado del texto de resultado.
+    /// </summary>
+    /// <returns>El enumerador para la corrutina.</returns>
     IEnumerator AnimateUI()
     {
         float duration = 0.6f; // Duración total de la animación

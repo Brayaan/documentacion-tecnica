@@ -1,24 +1,47 @@
+/// <summary>
+/// Archivo: PauseManager.cs
+/// Sistema de gestión de pausas, opciones en juego y configuración de audio global.
+/// </summary>
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+/// <summary>
+/// Administra el estado de pausa del juego, la interfaz de usuario de pausa, 
+/// submenús de opciones y el volumen a través del AudioMixer.
+/// </summary>
 public class PauseManager : MonoBehaviour
 {
     [Header("UI Menú de Pausa")]
+    /// <summary>Panel principal mostrado al pausar el juego.</summary>
     public GameObject pauseMenuUI;
-    public GameObject optionsMenuUI; // Panel separado para los sliders
+    
+    /// <summary>Panel secundario para mostrar ajustes y sliders.</summary>
+    public GameObject optionsMenuUI;
 
     [Header("Configuración de Escenas")]
+    /// <summary>Nombre de la escena de menú principal para usar al salir.</summary>
     public string mainMenuSceneName = "MenuPrincipal";
 
     [Header("Audio Mixer (Volumen Independiente)")]
+    /// <summary>Referencia al AudioMixer que controla el volumen global.</summary>
     public AudioMixer audioMixer;
+    
+    /// <summary>Control deslizante para ajustar la música.</summary>
     public Slider musicSlider;
+    
+    /// <summary>Control deslizante para ajustar los efectos de sonido (SFX).</summary>
     public Slider sfxSlider;
 
+    /// <summary>Indica si el juego se encuentra actualmente pausado.</summary>
     private bool isPaused = false;
 
+    /// <summary>
+    /// Método de Unity llamado en la inicialización.
+    /// Oculta los menús de pausa y ajusta los sliders a los valores del AudioMixer.
+    /// </summary>
     void Start()
     {
         // Asegurarnos de que el menú de pausa esté oculto al iniciar
@@ -38,6 +61,9 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Actualiza frame a frame, gestionando la entrada del usuario para activar/desactivar la pausa.
+    /// </summary>
     void Update()
     {
         // CA-01: Activar pausa con la tecla Esc
@@ -69,6 +95,9 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Reanuda el juego, ocultando las interfaces de pausa y restaurando la escala de tiempo.
+    /// </summary>
     // CA-02: Reanudar partida
     public void Resume()
     {
@@ -78,6 +107,9 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
     }
 
+    /// <summary>
+    /// Pausa el juego, detiene la escala de tiempo y muestra el menú principal de pausa.
+    /// </summary>
     void Pause()
     {
         if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
@@ -87,18 +119,28 @@ public class PauseManager : MonoBehaviour
     }
 
     // Submenú de Opciones
+
+    /// <summary>
+    /// Abre el menú de opciones desde el menú de pausa.
+    /// </summary>
     public void OpenOptions()
     {
         if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
         if (optionsMenuUI != null) optionsMenuUI.SetActive(true);
     }
 
+    /// <summary>
+    /// Cierra el menú de opciones y vuelve al menú principal de pausa.
+    /// </summary>
     public void CloseOptions()
     {
         if (optionsMenuUI != null) optionsMenuUI.SetActive(false);
         if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
     }
 
+    /// <summary>
+    /// Reinicia la partida actual delegando al <see cref="CombatManager"/>.
+    /// </summary>
     // CA-03: Reiniciar partida
     public void RestartMatch()
     {
@@ -109,6 +151,9 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Abandona la partida actual y carga la escena del menú principal.
+    /// </summary>
     // CA-04: Volver al menú principal
     public void LoadMainMenu()
     {
@@ -116,6 +161,10 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
+    /// <summary>
+    /// Ajusta el volumen de la música transformando escala lineal a decibelios logarítmicos.
+    /// </summary>
+    /// <param name="sliderValue">Valor del slider a transformar.</param>
     // CA-05: Ajuste de volumen (Música)
     public void SetMusicVolume(float sliderValue)
     {
@@ -127,6 +176,10 @@ public class PauseManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ajusta el volumen de efectos sonoros transformando escala lineal a decibelios logarítmicos.
+    /// </summary>
+    /// <param name="sliderValue">Valor del slider a transformar.</param>
     // CA-05: Ajuste de volumen (SFX)
     public void SetSFXVolume(float sliderValue)
     {

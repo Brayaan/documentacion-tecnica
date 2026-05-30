@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['combatcollisionmanager_0',['CombatCollisionManager',['../class_combat_collision_manager.html',1,'']]],
-  ['combatcollisionmanagertests_1',['CombatCollisionManagerTests',['../class_combat_collision_manager_tests.html',1,'']]]
+  ['player_5f_0',['Player_',['../class_player__.html',1,'']]]
 ];

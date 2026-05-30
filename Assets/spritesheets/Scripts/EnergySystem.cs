@@ -1,14 +1,43 @@
+// -----------------------------------------------------------------------
+// <copyright file="EnergySystem.cs">
+// Copyright (c) Standard Company. All rights reserved.
+// </copyright>
+// <author>Auto-generated</author>
+// <summary>Sistema de energía para el jugador.</summary>
+// -----------------------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Gestiona el sistema de energía del personaje, incluyendo la ganancia de energía
+/// por diversas acciones y la actualización de la interfaz de usuario.
+/// </summary>
 public class EnergySystem : MonoBehaviour
 {
+    /// <summary>
+    /// La cantidad máxima de energía que el personaje puede acumular.
+    /// </summary>
     public int maxEnergy = 100;
+
+    /// <summary>
+    /// La cantidad de energía actual del personaje.
+    /// </summary>
     public int currentEnergy;
 
+    /// <summary>
+    /// Componente de imagen de la interfaz de usuario utilizado para mostrar la barra de energía.
+    /// </summary>
     public Image energyImage;
+
+    /// <summary>
+    /// Arreglo de sprites que representan los diferentes niveles de la barra de energía.
+    /// </summary>
     private Sprite[] energySprites;
 
+    /// <summary>
+    /// Inicializa el sistema de energía cargando los sprites y reiniciando la energía actual.
+    /// </summary>
     void Start()
     {
         // Cargar spritesheet de energía desde la carpeta Resources
@@ -18,7 +47,9 @@ public class EnergySystem : MonoBehaviour
         UpdateEnergyUI();
     }
 
-    // Ganancia de energía al recibir un golpe del oponente
+    /// <summary>
+    /// Incrementa la energía cuando el personaje recibe daño del oponente.
+    /// </summary>
     public void GainEnergyFromDamage()
     {
         currentEnergy += 2;
@@ -26,7 +57,10 @@ public class EnergySystem : MonoBehaviour
         UpdateEnergyUI();
     }
 
-    // Ganancia de energía según el tipo de ataque conectado
+    /// <summary>
+    /// Incrementa la energía cuando el personaje conecta un ataque, dependiendo del tipo de ataque.
+    /// </summary>
+    /// <param name="attackName">El nombre del ataque realizado.</param>
     public void GainEnergyFromAttack(string attackName)
     {
         int gain = 0;
@@ -39,7 +73,9 @@ public class EnergySystem : MonoBehaviour
         UpdateEnergyUI();
     }
 
-    // Ganancia de energía al activar el bloqueo
+    /// <summary>
+    /// Incrementa la energía cuando el personaje bloquea un ataque exitosamente.
+    /// </summary>
     public void GainEnergyFromBlock()
     {
         currentEnergy += 3;
@@ -48,6 +84,9 @@ public class EnergySystem : MonoBehaviour
         UpdateEnergyUI();
     }
 
+    /// <summary>
+    /// Actualiza la imagen de la interfaz de usuario para reflejar el nivel de energía actual.
+    /// </summary>
     void UpdateEnergyUI()
     {
         // Guard: evitar división por cero si maxEnergy es inválido
@@ -80,11 +119,19 @@ public class EnergySystem : MonoBehaviour
         energyImage.color = Color.white;
     }
 
+    /// <summary>
+    /// Comprueba si la barra de energía está completamente llena.
+    /// </summary>
+    /// <returns>Verdadero si la energía actual es igual o mayor a la energía máxima.</returns>
     public bool IsFull()
     {
         return currentEnergy >= maxEnergy;
     }
 
+    /// <summary>
+    /// Consume una cantidad específica de energía.
+    /// </summary>
+    /// <param name="amount">La cantidad de energía a consumir.</param>
     public void ConsumeEnergy(int amount)
     {
         currentEnergy -= amount;

@@ -1,36 +1,66 @@
+/**
+ * @file CombatManager.cs
+ * @brief Manages the combat rounds, player scores, UI updates, and match states.
+ * 
+ * This script is responsible for handling the overall flow of the combat match,
+ * including starting rounds, ending rounds, checking for match win conditions,
+ * and managing player inputs during transitions.
+ */
+
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
+/// <summary>
+/// Singleton class that manages the combat flow, round logic, scoring, and UI representation
+/// in a fighting game context.
+/// </summary>
 public class CombatManager : MonoBehaviour
 {
-    // Instancia global accesible desde cualquier script
+    /// <summary>
+    /// Global instance accessible from any script.
+    /// </summary>
     public static CombatManager Instance { get; private set; }
 
     [Header("Jugadores")]
+    /// <summary>Reference to the HealthSystem of Player 1.</summary>
     public HealthSystem player1Health;
+    /// <summary>Reference to the HealthSystem of Player 2.</summary>
     public HealthSystem player2Health;
 
     [Header("Nombres en pantalla")]
+    /// <summary>Display name for Player 1.</summary>
     public string player1Name = "Jugador 1";
+    /// <summary>Display name for Player 2.</summary>
     public string player2Name = "Jugador 2";
 
     [Header("Componentes a desactivar al terminar/iniciar round")]
+    /// <summary>Movement component for Player 1.</summary>
     public PlayerMovement player1Movement;
+    /// <summary>Movement component for Player 2.</summary>
     public PlayerMovement player2Movement;
+    /// <summary>Attack component for Player 1.</summary>
     public PlayerAttack player1Attack;
+    /// <summary>Attack component for Player 2.</summary>
     public PlayerAttack player2Attack;
+    /// <summary>Special attack component for Player 1.</summary>
     public PlayerSpecialAttack player1Special;
+    /// <summary>Special attack component for Player 2.</summary>
     public PlayerSpecialAttack player2Special;
 
     [Header("UI de resultado final")]
+    /// <summary>UI panel displayed at the end of a round or match.</summary>
     public GameObject resultPanel;
+    /// <summary>Text component displaying the result (e.g., winner name or tie).</summary>
     public TMP_Text resultText;
 
     [Header("Sistema de Rondas (NUEVO)")]
+    /// <summary>Text component displaying the current score.</summary>
     public TMP_Text scoreText; // Asignar el texto en el inspector para el marcador
+    /// <summary>Number of rounds a player needs to win to win the match.</summary>
     public int roundsToWin = 2; // Mejor de 3 rounds
+    /// <summary>Time duration between the end of a round and the start of the next one.</summary>
     public float timeBetweenRounds = 2f;
 
     private int player1Wins = 0;
@@ -39,9 +69,16 @@ public class CombatManager : MonoBehaviour
     private bool isFirstRound = true;
 
     private bool combatEnded = false;
+
+    /// <summary>Indicates whether the overall combat match has ended.</summary>
     public bool isCombatEnded => combatEnded;
+
+    /// <summary>Indicates whether a round is currently active and playable.</summary>
     public bool isRoundActive => roundActive;
 
+    /// <summary>
+    /// Initializes the singleton instance.
+    /// </summary>
     void Awake()
     {
         // Singleton: solo existe una instancia a la vez
@@ -51,6 +88,10 @@ public class CombatManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Delays initialization by one frame to ensure dependencies are set up,
+    /// then starts the match.
+    /// </summary>
     IEnumerator Start()
     {
         if (resultPanel != null)
@@ -62,6 +103,9 @@ public class CombatManager : MonoBehaviour
         StartMatch();
     }
 
+    /// <summary>
+    /// Resets match scores and starts the first round.
+    /// </summary>
     public void StartMatch()
     {
         player1Wins = 0;
@@ -70,6 +114,10 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(StartNewRoundCoroutine());
     }
 
+    /// <summary>
+    /// Coroutine that handles the initialization and countdown of a new round.
+    /// </summary>
+    /// <returns>IEnumerator for the coroutine.</returns>
     private IEnumerator StartNewRoundCoroutine()
     {
         roundActive = false;
@@ -110,7 +158,10 @@ public class CombatManager : MonoBehaviour
         roundActive = true;
     }
 
-    // Llamado cuando un jugador muere
+    /// <summary>
+    /// Called when a player's health drops to zero, triggering round end logic.
+    /// </summary>
+    /// <param name="deadPlayer">The HealthSystem of the player who died.</param>
     public void NotifyPlayerDeath(HealthSystem deadPlayer)
     {
         if (combatEnded) return; // Evitar que se ejecute ms de una vez
@@ -122,6 +173,11 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(HandleRoundEndCoroutine());
     }
 
+    /// <summary>
+    /// Coroutine that resolves round outcomes, displays results, and either
+    /// progresses to the next round or ends the match.
+    /// </summary>
+    /// <returns>IEnumerator for the coroutine.</returns>
     private IEnumerator HandleRoundEndCoroutine()
     {
         roundActive = false;
@@ -179,12 +235,19 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Displays the specified result text on the result panel.
+    /// </summary>
+    /// <param name="text">The text to display.</param>
     private void ShowRoundResult(string text)
     {
         if (resultPanel != null) resultPanel.SetActive(true);
         if (resultText != null) resultText.text = text;
     }
 
+    /// <summary>
+    /// Ends the match and displays the overall winner or a tie.
+    /// </summary>
     private void EndMatch()
     {
         if (resultPanel != null)
@@ -205,6 +268,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restarts the match from the beginning, resetting scores and state.
+    /// </summary>
     public void RestartMatch()
     {
         // Reiniciar contadores y UI
@@ -225,12 +291,18 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(StartNewRoundCoroutine());
     }
 
-    // Por compatibilidad con código antiguo
+    /// <summary>
+    /// For backwards compatibility with older code implementations.
+    /// </summary>
+    /// <param name="loserName">The name of the loser.</param>
     public void EndCombat(string loserName)
     {
         // ...
     }
 
+    /// <summary>
+    /// Updates the UI displaying the current match scores and player names.
+    /// </summary>
     private void UpdateScoreUI()
     {
         if (scoreText != null)
@@ -241,6 +313,9 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Disables all player inputs (movement, attacks, special attacks).
+    /// </summary>
     void DisableAllControls()
     {
         if (player1Movement != null) player1Movement.enabled = false;
@@ -251,6 +326,9 @@ public class CombatManager : MonoBehaviour
         if (player2Special  != null) player2Special.enabled  = false;
     }
 
+    /// <summary>
+    /// Enables all player inputs (movement, attacks, special attacks).
+    /// </summary>
     void EnableAllControls()
     {
         if (player1Movement != null) player1Movement.enabled = true;

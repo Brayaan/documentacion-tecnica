@@ -1,30 +1,75 @@
+//-----------------------------------------------------------------------
+// <copyright file="HealthSystem.cs" company="DefaultCompany">
+//     Copyright (c) DefaultCompany. All rights reserved.
+// </copyright>
+// <summary>
+// Manages player or entity health, knockback, and interactions with the UI and CombatManager.
+// </summary>
+//-----------------------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Manages the health, damage processing, and death state of a character or entity.
+/// Handles UI updates and communicates death events to the CombatManager.
+/// </summary>
 public class HealthSystem : MonoBehaviour
 {
+    /// <summary>
+    /// The maximum health of the character.
+    /// </summary>
     public int maxHealth = 100;
+
+    /// <summary>
+    /// The current health of the character.
+    /// </summary>
     public int currentHealth;
 
+    /// <summary>
+    /// The UI Image component representing the health bar or heart counter.
+    /// </summary>
     public Image healthImage;
 
+    /// <summary>
+    /// Array of sprites representing different health states for the UI.
+    /// </summary>
     private Sprite[] healthSprites;
 
+    /// <summary>
+    /// Force applied when the character takes knockback.
+    /// </summary>
     public float knockbackForce = 5f;
+
+    /// <summary>
+    /// Duration of the knockback effect in seconds.
+    /// </summary>
     public float knockbackDuration = 0.05f;
 
     private Rigidbody2D rb;
     private PlayerMovement movement;
     private Animator anim;
 
+    /// <summary>
+    /// Indicates whether the character is currently in a hit-stun state.
+    /// </summary>
     private bool isHit = false;
 
     // ── NUEVO: evitar que TakeDamage se llame tras la muerte ──
+    /// <summary>
+    /// Indicates whether the character is currently dead.
+    /// </summary>
     private bool isDead = false;
 
     // Posición inicial para reiniciar en cada ronda
+    /// <summary>
+    /// The starting position to reset the character at the beginning of each round.
+    /// </summary>
     private Vector3 startPosition;
 
+    /// <summary>
+    /// Initializes components, loads UI resources, and sets starting values.
+    /// </summary>
     void Start()
     {
         startPosition = transform.position;
@@ -39,6 +84,11 @@ public class HealthSystem : MonoBehaviour
         UpdateHealthUI();
     }
 
+    /// <summary>
+    /// Applies damage to the character and triggers knockback if not dead.
+    /// </summary>
+    /// <param name="damage">The amount of damage to subtract from current health.</param>
+    /// <param name="attackerPosition">The world position of the attacker for knockback calculation.</param>
     public void TakeDamage(int damage, Vector2 attackerPosition)
     {
         // ── NUEVO: ignorar daño si ya está muerto ──
@@ -63,6 +113,10 @@ public class HealthSystem : MonoBehaviour
         ApplyHit(attackerPosition);
     }
 
+    /// <summary>
+    /// Heals the character by a specified amount, up to the maximum health.
+    /// </summary>
+    /// <param name="amount">The amount of health to restore.</param>
     public void Heal(int amount)
     {
         if (isDead) return;
@@ -73,6 +127,9 @@ public class HealthSystem : MonoBehaviour
     }
 
     // ── NUEVO: muerte del jugador ──
+    /// <summary>
+    /// Handles character death, triggers death animations, and notifies the CombatManager.
+    /// </summary>
     void Die()
     {
         isDead = true;
@@ -100,6 +157,10 @@ public class HealthSystem : MonoBehaviour
         Debug.Log($"[HealthSystem] {gameObject.name} murió.");
     }
 
+    /// <summary>
+    /// Applies the hit-stun effect and knockback force to the character.
+    /// </summary>
+    /// <param name="attackerPosition">The world position of the attacker to calculate knockback direction.</param>
     void ApplyHit(Vector2 attackerPosition)
     {
         if (isHit) return;
@@ -123,6 +184,11 @@ public class HealthSystem : MonoBehaviour
         Invoke(nameof(EndHit), Mathf.Max(0f, knockbackDuration));
     }
 
+    /// <summary>
+    /// Checks if a parameter exists within the Animator component.
+    /// </summary>
+    /// <param name="nombre">The name of the parameter to search for.</param>
+    /// <returns>True if the parameter exists, false otherwise.</returns>
     bool TieneParametro(string nombre)
     {
         foreach (var param in anim.parameters)
@@ -130,6 +196,9 @@ public class HealthSystem : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// Concludes the hit-stun state, restoring movement if applicable.
+    /// </summary>
     void EndHit()
     {
         isHit = false;
@@ -143,6 +212,9 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the health UI by determining the correct sprite to display based on current health percentage.
+    /// </summary>
     void UpdateHealthUI()
     {
         if (maxHealth <= 0)
@@ -176,6 +248,9 @@ public class HealthSystem : MonoBehaviour
     }
 
     // ── NUEVO: Reinicio para siguientes rondas ──
+    /// <summary>
+    /// Resets the character's health, position, and states for a new round.
+    /// </summary>
     public void ResetPlayer()
     {
         isDead = false;

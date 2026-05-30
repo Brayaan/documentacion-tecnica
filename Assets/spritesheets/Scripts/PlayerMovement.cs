@@ -1,52 +1,118 @@
+/// <summary>
+/// File: PlayerMovement.cs
+/// Description: Handles all aspects of player movement including walking, jumping, crouching, and knockback handling.
+/// </summary>
+
 using UnityEngine;
 
+/// <summary>
+/// Manages player movement physics, input handling, and animation synchronization.
+/// Also handles collision detection for grounded states and obstacle checking.
+/// </summary>
 public class PlayerMovement : MonoBehaviour
 {
+    /// <summary>Base movement speed of the player.</summary>
     public float speed = 3f;
+    
+    /// <summary>Force applied when the player jumps.</summary>
     public float jumpForce = 10f;
 
     [Header("Knockback Settings")]
+    /// <summary>Determines whether the player can be knocked back.</summary>
     public bool canBeKnockedBack = true;
+    
+    /// <summary>The force applied when the player receives a knockback.</summary>
     public float knockbackForce = 5f;
+    
+    /// <summary>The duration in seconds of the knockback effect.</summary>
     public float knockbackDuration = 0.3f;
+    
+    /// <summary>Internal flag to track if the player is currently in a knockback state.</summary>
     // Bloquea Update y FixedUpdate mientras el personaje vuela
     private bool isKnockedBack = false;
 
+    /// <summary>Distance to check for walls in front of the player.</summary>
     public float wallCheckDistance = 0.2f;
+    
+    /// <summary>Movement speed when the player is crouching.</summary>
     public float crouchSpeed = 2f;
 
+    /// <summary>Reference to the player's Rigidbody2D component.</summary>
     [SerializeField] private Rigidbody2D rb;
+    
+    /// <summary>Transform used to check if the player is on the ground.</summary>
     public Transform groundCheck;
+    
+    /// <summary>Transform used to check if there is a ceiling above the player.</summary>
     public Transform ceilingCheck;
+    
+    /// <summary>Layer mask representing what surfaces are considered ground.</summary>
     public LayerMask groundLayer;
+    
+    /// <summary>Layer mask representing what colliders belong to characters.</summary>
     // Debe incluir las capas Player y Duplicate
     public LayerMask characterLayer;
+    
+    /// <summary>Transform used to check for walls in front of the player.</summary>
     public Transform wallCheck;
 
+    /// <summary>Reference to the player's primary BoxCollider2D.</summary>
     public BoxCollider2D boxCollider;
+    
+    /// <summary>Reference to the Animator component for controlling movement animations.</summary>
     public Animator animator;
 
+    /// <summary>Indicates whether the player is currently crouching.</summary>
     public bool isCrouching;
+    
+    /// <summary>Indicates whether the player is facing to the right.</summary>
     public bool facingRight = true;
+    
+    /// <summary>Flag to track if the player is currently attacking.</summary>
     public bool isAttacking;
 
+    /// <summary>Key used to move left.</summary>
     public KeyCode leftKey = KeyCode.A;
+    
+    /// <summary>Key used to move right.</summary>
     public KeyCode rightKey = KeyCode.D;
+    
+    /// <summary>Key used to jump.</summary>
     public KeyCode jumpKey = KeyCode.Space;
+    
+    /// <summary>Key used to crouch.</summary>
     public KeyCode crouchKey = KeyCode.S;
 
+    /// <summary>The calculated horizontal movement input value.</summary>
     private float moveInput;
+    
+    /// <summary>Indicates whether the player is currently touching the ground.</summary>
     private bool isGrounded;
+    
+    /// <summary>Indicates whether standing up is blocked by an overhead obstacle.</summary>
     private bool isBlocked;
+    
+    /// <summary>Indicates whether the player is touching a wall.</summary>
     private bool isTouchingWall;
 
+    /// <summary>Original size of the box collider.</summary>
     private Vector2 originalSize;
+    
+    /// <summary>Modified size of the box collider when crouching.</summary>
     private Vector2 crouchSize;
 
+    /// <summary>Original offset of the box collider.</summary>
     private Vector2 originalOffset;
+    
+    /// <summary>Modified offset of the box collider when crouching.</summary>
     private Vector2 crouchOffset;
+    
+    /// <summary>Original scale of the player transform.</summary>
     private Vector3 originalScale;
 
+    /// <summary>
+    /// Initializes necessary components and dimensions required for movement and crouching.
+    /// </summary>
     void Start()
     {
         // Guard: boxCollider es necesario antes de leer su tamaño
@@ -70,6 +136,9 @@ public class PlayerMovement : MonoBehaviour
             rb = GetComponent<Rigidbody2D>();
     }
 
+    /// <summary>
+    /// Processes player input, manages physical states (grounded, blocked), and updates animations.
+    /// </summary>
     void Update()
     {
         // Bloquear todo input durante el vuelo del knockback
@@ -167,6 +236,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies physics calculations, handling movement and character pushing logic.
+    /// </summary>
     void FixedUpdate()
     {
         if (isKnockedBack) return;
@@ -217,6 +289,9 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(move * speed, rb.linearVelocity.y);
     }
 
+    /// <summary>
+    /// Flips the character's facing direction by modifying local scale.
+    /// </summary>
     void Flip()
     {
         facingRight = !facingRight;
@@ -227,6 +302,10 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = scale;
     }
 
+    /// <summary>
+    /// Applies knockback force to the player away from an attacker's position.
+    /// </summary>
+    /// <param name="attackerPosition">The origin position of the attack causing the knockback.</param>
     public void ApplyKnockback(Vector2 attackerPosition)
     {
         if (!canBeKnockedBack || isKnockedBack) return;
@@ -249,6 +328,9 @@ public class PlayerMovement : MonoBehaviour
         Invoke(nameof(EndKnockback), Mathf.Max(0f, knockbackDuration));
     }
 
+    /// <summary>
+    /// Ends the knockback effect and restores player control.
+    /// </summary>
     private void EndKnockback()
     {
         isKnockedBack = false;

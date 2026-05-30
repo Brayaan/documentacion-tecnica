@@ -1,38 +1,103 @@
+// -----------------------------------------------------------------------------------------
+// <copyright file="CharacterSelectionManager.cs" company="TU_COMPANY">
+//     Copyright (c) TU_COMPANY. All rights reserved.
+// </copyright>
+// <summary>
+//     Gestor de la pantalla de selección de personajes con interfaz estilo carrusel.
+// </summary>
+// -----------------------------------------------------------------------------------------
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Gestiona la lógica de la interfaz de usuario para la selección de personajes.
+/// Implementa un carrusel circular ("estilo Netflix") y permite animar al personaje central.
+/// </summary>
 public class CharacterSelectionManager : MonoBehaviour
 {
     [Header("Base de Datos")]
+    /// <summary>
+    /// Lista de datos de los personajes disponibles para la selección.
+    /// </summary>
     public List<CharacterData> availableCharacters;
 
     [Header("Imágenes del Carrusel (Estilo Netflix)")]
+    /// <summary>
+    /// Imagen de vista previa del personaje a la izquierda del seleccionado.
+    /// </summary>
     public Image leftImage;
-    public Image centerImage; // El personaje actual/seleccionado
+
+    /// <summary>
+    /// Imagen del personaje actual o seleccionado (en el centro).
+    /// </summary>
+    public Image centerImage;
+
+    /// <summary>
+    /// Imagen de vista previa del personaje a la derecha del seleccionado.
+    /// </summary>
     public Image rightImage;
 
     [Header("Textos")]
+    /// <summary>
+    /// Texto que muestra el nombre del personaje seleccionado.
+    /// </summary>
     public TMP_Text nameText;
+
+    /// <summary>
+    /// Texto que muestra la descripción o historia del personaje seleccionado.
+    /// </summary>
     public TMP_Text descriptionText;
 
     [Header("Botones y Flechas")]
+    /// <summary>
+    /// Botón para desplazarse al personaje anterior (izquierda).
+    /// </summary>
     public Button leftArrow;
+
+    /// <summary>
+    /// Botón para desplazarse al personaje siguiente (derecha).
+    /// </summary>
     public Button rightArrow;
+
+    /// <summary>
+    /// Botón para confirmar la selección del personaje.
+    /// </summary>
     public Button selectButton;
 
     [Header("Escenas")]
+    /// <summary>
+    /// Nombre de la escena a cargar para iniciar la batalla.
+    /// </summary>
     public string battleSceneName = "Batalla";
-    public string menuSceneName = "Menu"; // El nombre de tu escena del menú principal
 
+    /// <summary>
+    /// Nombre de la escena del menú principal.
+    /// </summary>
+    public string menuSceneName = "Menu";
+
+    /// <summary>
+    /// Índice actual del personaje seleccionado en la lista <see cref="availableCharacters"/>.
+    /// </summary>
     private int currentIndex = 0;
     
-    // Variables para la animación
+    /// <summary>
+    /// Temporizador para controlar el avance de fotogramas de la animación.
+    /// </summary>
     private float animationTimer = 0f;
+
+    /// <summary>
+    /// Índice del fotograma actual de la animación del personaje central.
+    /// </summary>
     private int currentAnimationFrame = 0;
 
+    /// <summary>
+    /// Método de inicialización de Unity.
+    /// Valida la disponibilidad de personajes y configura la UI del carrusel inicial.
+    /// </summary>
     void Start()
     {
         // Validación CA-04: Sin personajes disponibles
@@ -50,6 +115,10 @@ public class CharacterSelectionManager : MonoBehaviour
         UpdateCarouselUI();
     }
 
+    /// <summary>
+    /// Método de actualización de Unity.
+    /// Escucha la entrada del usuario (teclado) y actualiza la animación del personaje central.
+    /// </summary>
     void Update()
     {
         // Permitir usar flechas del teclado
@@ -77,18 +146,30 @@ public class CharacterSelectionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Avanza al siguiente personaje en el carrusel.
+    /// El carrusel es circular, por lo que vuelve al principio si se pasa del final.
+    /// </summary>
     public void NextCharacter()
     {
         currentIndex = (currentIndex + 1) % availableCharacters.Count;
         UpdateCarouselUI();
     }
 
+    /// <summary>
+    /// Retrocede al personaje anterior en el carrusel.
+    /// El carrusel es circular, por lo que va al final si se retrocede desde el principio.
+    /// </summary>
     public void PreviousCharacter()
     {
         currentIndex = (currentIndex - 1 + availableCharacters.Count) % availableCharacters.Count;
         UpdateCarouselUI();
     }
 
+    /// <summary>
+    /// Actualiza la interfaz de usuario del carrusel con la información e imágenes del personaje seleccionado,
+    /// así como los personajes adyacentes a la izquierda y derecha.
+    /// </summary>
     private void UpdateCarouselUI()
     {
         CharacterData currentCharacter = availableCharacters[currentIndex];
@@ -139,6 +220,9 @@ public class CharacterSelectionManager : MonoBehaviour
         if (rightArrow != null) rightArrow.interactable = true;
     }
 
+    /// <summary>
+    /// Confirma la selección del personaje actual y carga la escena de batalla.
+    /// </summary>
     public void SelectCharacter()
     {
         // Como es solo el catálogo por ahora, el botón Seleccionar simplemente
@@ -147,6 +231,9 @@ public class CharacterSelectionManager : MonoBehaviour
         SceneManager.LoadScene(battleSceneName);
     }
 
+    /// <summary>
+    /// Vuelve a la escena del menú principal.
+    /// </summary>
     public void VolverAlMenu()
     {
         Debug.Log("Volviendo al menú principal...");

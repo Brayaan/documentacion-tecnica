@@ -1,10 +1,34 @@
+//-----------------------------------------------------------------------
+// <copyright file="ExtendedHitbox.cs" company="DefaultCompany">
+//     Copyright (c) DefaultCompany. All rights reserved.
+// </copyright>
+// <summary>Handles collision detection for extended player hitboxes during attacks.</summary>
+//-----------------------------------------------------------------------
+
 using UnityEngine;
 
+/// <summary>
+/// Handles collision detection for extended hitboxes during player attacks.
+/// Evaluates interactions with enemy health systems and defense mechanics.
+/// </summary>
 public class ExtendedHitbox : MonoBehaviour
 {
+    /// <summary>
+    /// The primary Hitbox component attached to the same GameObject.
+    /// Provides attack metadata such as damage and name.
+    /// </summary>
     private Hitbox originalHitbox;
+
+    /// <summary>
+    /// The PlayerAttack component located on the root of the attacker's hierarchy.
+    /// Used to determine if an attack is currently active.
+    /// </summary>
     private PlayerAttack playerAttack;
 
+    /// <summary>
+    /// Initializes references to necessary components on start.
+    /// Retrieves the original hitbox and the player's attack controller.
+    /// </summary>
     void Start()
     {
         // Obtener referencias desde el mismo objeto y la raíz
@@ -12,6 +36,12 @@ public class ExtendedHitbox : MonoBehaviour
         playerAttack = transform.root.GetComponent<PlayerAttack>();
     }
 
+    /// <summary>
+    /// Triggered when another collider enters this trigger collider attached to the object.
+    /// Evaluates if an active attack successfully hits a valid enemy target, applies damage,
+    /// checks for blocking, triggers audio, and updates energy systems.
+    /// </summary>
+    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
         // Cancelar si faltan componentes críticos del sistema
