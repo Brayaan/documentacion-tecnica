@@ -1,0 +1,40 @@
+{
+  "metadata": [
+    {
+      "src": "C:\\Users\\Kevin\\Pictures\\Documentación\\Practica\\Assets",
+      "dest": "api",
+      "includePrivateMembers": true,
+      "properties": {
+        "TargetFramework": "netstandard2.1"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/*.yml",
+          "*.md",
+          "**/*.md"
+        ],
+        "exclude": [
+          "_site/**",
+          "obj/**",
+          "api/**"
+        ]
+      }
+    ],
+    "output": "_site",
+    "globalMetadata": {
+      "_appTitle": "Documentación del Proyecto",
+      "_appFooter": "Generado con DocFX",
+      "_enableSearch": true
+    },
+    "template": ["default"],
+    "postProcessors": [],
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+    "disableGitFeatures": true
+  }
+}

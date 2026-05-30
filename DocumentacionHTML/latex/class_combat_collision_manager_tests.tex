@@ -1,0 +1,120 @@
+\doxysection{Referencia de la clase Combat\+Collision\+Manager\+Tests}
+\hypertarget{class_combat_collision_manager_tests}{}\label{class_combat_collision_manager_tests}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+
+
+TEST SUITE:\+ \doxylink{class_combat_collision_manager}{Combat\+Collision\+Manager}.  
+
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_combat_collision_manager_tests_a4b64ee013744c02682783506a383a680}{Tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Se ejecuta después de cada test. Elimina los objetos creados para evitar contaminación entre pruebas. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_combat_collision_manager_tests_a976c8477e9cca4ff3fa233ca7462dd92}{Combat\+Collision\+Manager\+\_\+\+Enemies\+Do\+Not\+Push\+Each\+Other}} ()
+\begin{DoxyCompactList}\small\item\em CASO DE PRUEBA:\+ Verifica que los enemigos NO se empujen entre sí cuando:\+ enemies\+Push\+Each\+Other = false. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_combat_collision_manager_tests_a59cb3343a8789613fe410698fc3aaeee}{Create\+Enemy}} (string name, Vector3 position)
+\begin{DoxyCompactList}\small\item\em Crea un enemigo simulado con:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_combat_collision_manager_tests_a112b5dcdfce7d9e40c61470680d15e8c}{\+\_\+manager\+GO}}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_combat_collision_manager_tests_a34fdc6f04fc8f1ddfacad092ccccfa20}{\+\_\+enemy1\+GO}}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_combat_collision_manager_tests_aa6492a22695b4fb01c52855d74d52555}{\+\_\+enemy2\+GO}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+TEST SUITE:\+ \doxylink{class_combat_collision_manager}{Combat\+Collision\+Manager}. 
+
+PROPÓ\+SITO:\+ Verificar que el sistema de combate evita la colisión física entre enemigos cuando la configuración enemies\+Push\+Each\+Other está desactivada.
+
+USO:\+ Este test simula dos enemigos en escena y valida que Unity Physics2D ignore la colisión entre ellos cuando el manager lo indica.
+
+LIMITACIONES:\+
+\begin{DoxyItemize}
+\item Depende de Physics2D (motor de físicas de Unity).
+\item No usa escena real; se construye todo en runtime.
+\item Requiere Rigidbody2D + Collider2D para simular interacción. 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{class_combat_collision_manager_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_combat_collision_manager_tests_a976c8477e9cca4ff3fa233ca7462dd92}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}!CombatCollisionManager\_EnemiesDoNotPushEachOther@{CombatCollisionManager\_EnemiesDoNotPushEachOther}}
+\index{CombatCollisionManager\_EnemiesDoNotPushEachOther@{CombatCollisionManager\_EnemiesDoNotPushEachOther}!CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+\doxysubsubsection{\texorpdfstring{CombatCollisionManager\_EnemiesDoNotPushEachOther()}{CombatCollisionManager\_EnemiesDoNotPushEachOther()}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_tests_a976c8477e9cca4ff3fa233ca7462dd92} 
+IEnumerator Combat\+Collision\+Manager\+Tests.\+Combat\+Collision\+Manager\+\_\+\+Enemies\+Do\+Not\+Push\+Each\+Other (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+CASO DE PRUEBA:\+ Verifica que los enemigos NO se empujen entre sí cuando:\+ enemies\+Push\+Each\+Other = false. 
+
+FLUJO:\+
+\begin{DoxyEnumerate}
+\item Se crean dos enemigos en posiciones opuestas
+\item Se crea el \doxylink{class_combat_collision_manager}{Combat\+Collision\+Manager} con colisiones desactivadas
+\item Se espera un frame para que Unity registre físicas
+\item Se valida que Physics2D ignore la colisión entre ambos colliders
+\end{DoxyEnumerate}
+
+RESULTADO ESPERADO:\+ Los enemigos no deben colisionar físicamente entre sí. \Hypertarget{class_combat_collision_manager_tests_a59cb3343a8789613fe410698fc3aaeee}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}!CreateEnemy@{CreateEnemy}}
+\index{CreateEnemy@{CreateEnemy}!CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+\doxysubsubsection{\texorpdfstring{CreateEnemy()}{CreateEnemy()}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_tests_a59cb3343a8789613fe410698fc3aaeee} 
+Game\+Object Combat\+Collision\+Manager\+Tests.\+Create\+Enemy (\begin{DoxyParamCaption}\item[{string}]{name}{, }\item[{Vector3}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea un enemigo simulado con:\+ 
+
+
+\begin{DoxyItemize}
+\item Tag "{}\+Enemy"{} (requisito del sistema)
+\item Rigidbody2D sin gravedad (para evitar caída)
+\item Collider2D para detección de colisiones
+\end{DoxyItemize}
+
+USO:\+ Se usa para generar entidades consistentes en las pruebas sin necesidad de escena Unity. \Hypertarget{class_combat_collision_manager_tests_a4b64ee013744c02682783506a383a680}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_tests_a4b64ee013744c02682783506a383a680} 
+void Combat\+Collision\+Manager\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Se ejecuta después de cada test. Elimina los objetos creados para evitar contaminación entre pruebas. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_combat_collision_manager_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_combat_collision_manager_tests_a34fdc6f04fc8f1ddfacad092ccccfa20}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}!\_enemy1GO@{\_enemy1GO}}
+\index{\_enemy1GO@{\_enemy1GO}!CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+\doxysubsubsection{\texorpdfstring{\_enemy1GO}{\_enemy1GO}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_tests_a34fdc6f04fc8f1ddfacad092ccccfa20} 
+Game\+Object Combat\+Collision\+Manager\+Tests.\+\_\+enemy1\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_combat_collision_manager_tests_aa6492a22695b4fb01c52855d74d52555}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}!\_enemy2GO@{\_enemy2GO}}
+\index{\_enemy2GO@{\_enemy2GO}!CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+\doxysubsubsection{\texorpdfstring{\_enemy2GO}{\_enemy2GO}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_tests_aa6492a22695b4fb01c52855d74d52555} 
+Game\+Object Combat\+Collision\+Manager\+Tests.\+\_\+enemy2\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_combat_collision_manager_tests_a112b5dcdfce7d9e40c61470680d15e8c}\index{CombatCollisionManagerTests@{CombatCollisionManagerTests}!\_managerGO@{\_managerGO}}
+\index{\_managerGO@{\_managerGO}!CombatCollisionManagerTests@{CombatCollisionManagerTests}}
+\doxysubsubsection{\texorpdfstring{\_managerGO}{\_managerGO}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_tests_a112b5dcdfce7d9e40c61470680d15e8c} 
+Game\+Object Combat\+Collision\+Manager\+Tests.\+\_\+manager\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_combat_collision_manager_tests_8cs}{Combat\+Collision\+Manager\+Tests.\+cs}}\end{DoxyCompactItemize}

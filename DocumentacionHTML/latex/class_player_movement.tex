@@ -1,0 +1,804 @@
+\doxysection{Referencia de la clase Player\+Movement}
+\hypertarget{class_player_movement}{}\label{class_player_movement}\index{PlayerMovement@{PlayerMovement}}
+Diagrama de herencia de Player\+Movement\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player_movement}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_movement_a084b9a12e5e7d644cd74737543485bdc}{Apply\+Knockback}} (Vector2 attacker\+Position)
+\begin{DoxyCompactList}\small\item\em Aplica un knockback al jugador desde una posición de atacante. Deshabilita el script completo durante knockback\+Duration para que el input no interfiera con el vuelo del knockback. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+float \doxymbox{\hyperlink{class_player_movement_a6800716352b83358ea16bc706dd88cbb}{speed}} = 3f
+\begin{DoxyCompactList}\small\item\em Velocidad de desplazamiento horizontal normal. Configurable desde el Inspector. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_movement_a55cf4a38e7ce8f9d02715352e55b2de6}{jump\+Force}} = 10f
+\begin{DoxyCompactList}\small\item\em Fuerza aplicada al Rigidbody2D al saltar. Configurable desde el Inspector. Valor más alto = mayor altura de salto. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_movement_ad79d7f66cbc4775dadfda88ddd48b9ce}{crouch\+Speed}} = 2f
+\begin{DoxyCompactList}\small\item\em Velocidad de desplazamiento horizontal mientras el jugador está agachado. Normalmente menor que speed para reflejar la posición comprimida. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_ad90f03ba0060506581ae6acf5c9c64bf}{can\+Be\+Knocked\+Back}} = true
+\begin{DoxyCompactList}\small\item\em Si es true, el jugador puede recibir knockback al ser golpeado. Si es false, el knockback se ignora completamente. Útil para momentos de invencibilidad o personajes especiales. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_movement_a6b0a2289093ba14ff23b7d2e0362029a}{knockback\+Force}} = 5f
+\begin{DoxyCompactList}\small\item\em Fuerza del knockback que este jugador puede aplicar a otros personajes. También se usa en \doxylink{class_player_movement_a084b9a12e5e7d644cd74737543485bdc}{Apply\+Knockback()} como fuerza propia de salida. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_movement_a623fce7a355a8809dbf9f1d95bcb03c7}{knockback\+Duration}} = 0.\+3f
+\begin{DoxyCompactList}\small\item\em Duración en segundos del estado de knockback. Durante este tiempo el script está deshabilitado (input bloqueado). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_movement_aea1774af486571425732623f64ad1f5b}{wall\+Check\+Distance}} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Distancia máxima del raycast para detectar paredes laterales. Configurable desde el Inspector. \end{DoxyCompactList}\item 
+Transform \doxymbox{\hyperlink{class_player_movement_a4c733d8e1fcc9ffd7223ac3182b380f5}{ground\+Check}}
+\begin{DoxyCompactList}\small\item\em Transform del punto de detección de suelo. Debe ser un hijo del jugador posicionado en sus pies. Se usa con Overlap\+Circle para detectar si está en el suelo. \end{DoxyCompactList}\item 
+Transform \doxymbox{\hyperlink{class_player_movement_ad37a27b577edd87b4073cbcf82e2a56d}{ceiling\+Check}}
+\begin{DoxyCompactList}\small\item\em Transform del punto de detección de techo. Debe ser un hijo del jugador posicionado en su cabeza. Bloquea el levantarse del agachado si hay geometría encima. \end{DoxyCompactList}\item 
+Transform \doxymbox{\hyperlink{class_player_movement_a44341df5dbf233aebd46a5788611a393}{wall\+Check}}
+\begin{DoxyCompactList}\small\item\em Transform del punto de detección de pared lateral. Debe ser un hijo del jugador en su costado. Se usa con Raycast para detectar paredes y otros personajes. \end{DoxyCompactList}\item 
+Layer\+Mask \doxymbox{\hyperlink{class_player_movement_a5cd0bdfb2edd218c8cd76f0eee992cb1}{ground\+Layer}}
+\begin{DoxyCompactList}\small\item\em Layer\+Mask de las capas que se consideran suelo y paredes. Usado en ground\+Check, ceiling\+Check y wall\+Check para raycast/\+overlap. Configurar desde el Inspector con la capa Ground. \end{DoxyCompactList}\item 
+Layer\+Mask \doxymbox{\hyperlink{class_player_movement_a09bbabf4fd575ee8ffb645b12f46d28b}{character\+Layer}}
+\begin{DoxyCompactList}\small\item\em Layer\+Mask de las capas que corresponden a personajes (Player, Duplicate). Usado en Fixed\+Update para detectar colisiones con otros jugadores y detener el movimiento al hacer contacto. Debe incluir todas las capas de personajes jugables. \end{DoxyCompactList}\item 
+Box\+Collider2D \doxymbox{\hyperlink{class_player_movement_a9cbf141e546a89060d43a4dce6460dbf}{box\+Collider}}
+\begin{DoxyCompactList}\small\item\em Box\+Collider2D del jugador. Se redimensiona dinámicamente al agacharse (crouch\+Size) y al levantarse (original\+Size). Debe asignarse desde el Inspector. Es requerido:\+ sin él el script se deshabilita en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. \end{DoxyCompactList}\item 
+Animator \doxymbox{\hyperlink{class_player_movement_aa28ee5c780c6cab4092054bbe95b0d10}{animator}}
+\begin{DoxyCompactList}\small\item\em Animator del jugador. Se controla con parámetros:\+ Speed (float), is\+Jumping (bool), is\+Crouching (bool). Debe asignarse desde el Inspector. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_ac8aecbf0dc7516f1d6e33f4d4b80fdbf}{is\+Crouching}}
+\begin{DoxyCompactList}\small\item\em true = el jugador está agachado actualmente. Accesible públicamente por si otros sistemas necesitan conocer este estado. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_a0b88c58ac96a533651c53931623f5591}{facing\+Right}} = true
+\begin{DoxyCompactList}\small\item\em true = el jugador mira hacia la derecha; false = hacia la izquierda. Controla la inversión de escala al voltear el sprite con \doxylink{class_player_movement_a018f31cebe8a12eba0a2c4763cb3f948}{Flip()}. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_a60d650ad178183e34255370ff8435eb4}{is\+Attacking}}
+\begin{DoxyCompactList}\small\item\em true = el jugador está ejecutando un ataque. \doxylink{_player_attack_8cs}{Player\+Attack.\+cs} lo escribe directamente en este campo. Disponible para que otros sistemas (movimiento, animaciones) sepan si el jugador está atacando. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_movement_af0e466215a3e5781ab36be4c7541cb9f}{left\+Key}} = Key\+Code.\+A
+\begin{DoxyCompactList}\small\item\em Tecla para moverse a la izquierda. Por defecto:\+ A. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_movement_aafffc94a38c75a425ea458d29b16195d}{right\+Key}} = Key\+Code.\+D
+\begin{DoxyCompactList}\small\item\em Tecla para moverse a la derecha. Por defecto:\+ D. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_movement_a6eb97d1c3db6660e8a0300c380e61b93}{jump\+Key}} = Key\+Code.\+Space
+\begin{DoxyCompactList}\small\item\em Tecla para saltar. Por defecto:\+ Space. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_movement_a34984d8f63981068e5730b29136a6b40}{crouch\+Key}} = Key\+Code.\+S
+\begin{DoxyCompactList}\small\item\em Tecla para agacharse. Por defecto:\+ S. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()} — Se ejecuta una vez al iniciar. Verifica que box\+Collider esté asignado (requerido), guarda las dimensiones originales del collider y calcula las del agachado. También obtiene el Rigidbody2D si no fue asignado en el Inspector. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} — Se ejecuta cada frame. Procesa todo el input de movimiento, salto, agachado y volteo de sprite. Actualiza el estado del Animator y redimensiona el collider según el estado. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1}{Fixed\+Update}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1}{Fixed\+Update()} — Se ejecuta en el ciclo de física (por defecto 50Hz). Aplica la velocidad horizontal calculada en \doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} al Rigidbody2D. También detecta colisiones con otros personajes y detiene el movimiento al hacer contacto para evitar empujes físicos entre jugadores. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_movement_a018f31cebe8a12eba0a2c4763cb3f948}{Flip}} ()
+\begin{DoxyCompactList}\small\item\em Invierte la dirección del sprite horizontalmente. Cambia facing\+Right y niega la escala X del transform. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_movement_aca489416b342babe9591e3acb2b32053}{End\+Knockback}} ()
+\begin{DoxyCompactList}\small\item\em Finaliza el knockback y restaura el control del jugador. Se llama automáticamente mediante Invoke() al vencer knockback\+Duration. Limpia la velocidad horizontal residual al aterrizar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_player_movement_a3488eab9c422c37f64728749d601bf62}{is\+Knocked\+Back}} = false
+\begin{DoxyCompactList}\small\item\em Flag de knockback activo. true = el jugador está volando por un knockback, Update y Fixed\+Update retornan. false = comportamiento de movimiento normal. \end{DoxyCompactList}\item 
+Rigidbody2D \doxymbox{\hyperlink{class_player_movement_acf8b937f61c1e92dfdbd075678f911d1}{rb}}
+\begin{DoxyCompactList}\small\item\em Rigidbody2D del jugador. Marcado \+[Serialize\+Field]\+ para asignarlo desde el Inspector o fallback a Get\+Component en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_movement_a6120205c9c292267d10fce93dcea11d0}{move\+Input}}
+\begin{DoxyCompactList}\small\item\em Input horizontal procesado del frame actual (-\/1, 0 o 1 multiplicado por velocidad). Se calcula en \doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} y se aplica en \doxylink{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1}{Fixed\+Update()} al Rigidbody2D. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_a27276d8e80bcd5acbb70354b06d66841}{is\+Grounded}}
+\begin{DoxyCompactList}\small\item\em true si el jugador toca el suelo detectado por ground\+Check. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_a4cb8de097cd0541d578d9a284355532b}{is\+Blocked}}
+\begin{DoxyCompactList}\small\item\em true si hay geometría sobre el jugador que bloquea levantarse del agachado. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_movement_acbb23023c44af92c29e396c81782c13d}{is\+Touching\+Wall}}
+\begin{DoxyCompactList}\small\item\em true si el jugador está tocando una pared lateral en la dirección del input. \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_player_movement_a19374179469989b63052fa56135b6b9f}{original\+Size}}
+\begin{DoxyCompactList}\small\item\em Tamaño original del Box\+Collider2D guardado en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_player_movement_ac853a07858fcb46a1dc5f2152a40e552}{crouch\+Size}}
+\begin{DoxyCompactList}\small\item\em Tamaño del Box\+Collider2D reducido a la mitad vertical para el agachado. \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_player_movement_a124a9353e9b1d46216e21e6942ab3164}{original\+Offset}}
+\begin{DoxyCompactList}\small\item\em Offset original del Box\+Collider2D guardado en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_player_movement_ab7d5d14be4b77841e82f5824b845ca5d}{crouch\+Offset}}
+\begin{DoxyCompactList}\small\item\em Offset ajustado del Box\+Collider2D durante el agachado. \end{DoxyCompactList}\item 
+Vector3 \doxymbox{\hyperlink{class_player_movement_afac14f464138873cfbf99dd8f2038853}{original\+Scale}}
+\begin{DoxyCompactList}\small\item\em Escala local original del transform (usada para restaurar después de voltear). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00032}{32}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_player_movement_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_player_movement_a084b9a12e5e7d644cd74737543485bdc}\index{PlayerMovement@{PlayerMovement}!ApplyKnockback@{ApplyKnockback}}
+\index{ApplyKnockback@{ApplyKnockback}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{ApplyKnockback()}{ApplyKnockback()}}
+{\footnotesize\ttfamily \label{class_player_movement_a084b9a12e5e7d644cd74737543485bdc} 
+void Player\+Movement.\+Apply\+Knockback (\begin{DoxyParamCaption}\item[{Vector2}]{attacker\+Position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Aplica un knockback al jugador desde una posición de atacante. Deshabilita el script completo durante knockback\+Duration para que el input no interfiera con el vuelo del knockback. 
+
+CUÁ\+NDO SE LLAMA:\+ Externamente cuando el jugador recibe un golpe (no usado actualmente en el flujo principal; ver \doxylink{class_health_system}{Health\+System}). QUÉ AFECTA:\+ is\+Knocked\+Back, rb (fuerza), this.\+enabled (script deshabilitado).
+
+NOTA:\+ can\+Be\+Knocked\+Back e is\+Knocked\+Back previenen knockback doble.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em attacker\+Position} & Posición del atacante para calcular dirección del vuelo.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{461}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+\Hypertarget{class_player_movement_aca489416b342babe9591e3acb2b32053}\index{PlayerMovement@{PlayerMovement}!EndKnockback@{EndKnockback}}
+\index{EndKnockback@{EndKnockback}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{EndKnockback()}{EndKnockback()}}
+{\footnotesize\ttfamily \label{class_player_movement_aca489416b342babe9591e3acb2b32053} 
+void Player\+Movement.\+End\+Knockback (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Finaliza el knockback y restaura el control del jugador. Se llama automáticamente mediante Invoke() al vencer knockback\+Duration. Limpia la velocidad horizontal residual al aterrizar. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00489}{489}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{Apply\+Knockback()}}.
+
+\Hypertarget{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1}\index{PlayerMovement@{PlayerMovement}!FixedUpdate@{FixedUpdate}}
+\index{FixedUpdate@{FixedUpdate}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{FixedUpdate()}{FixedUpdate()}}
+{\footnotesize\ttfamily \label{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1} 
+void Player\+Movement.\+Fixed\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1}{Fixed\+Update()} — Se ejecuta en el ciclo de física (por defecto 50Hz). Aplica la velocidad horizontal calculada en \doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} al Rigidbody2D. También detecta colisiones con otros personajes y detiene el movimiento al hacer contacto para evitar empujes físicos entre jugadores. 
+
+CUÁ\+NDO SE EJECUTA:\+ Cada paso de física. Si is\+Knocked\+Back = true, retorna. QUÉ CONTROLA:\+
+\begin{DoxyItemize}
+\item Aplicación de velocidad horizontal al Rigidbody2D.
+\item Detección de otros personajes mediante Raycast\+All con character\+Layer.
+\item Bloqueo de movimiento al tocar a otro personaje. 
+\end{DoxyItemize}
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{376}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+\Hypertarget{class_player_movement_a018f31cebe8a12eba0a2c4763cb3f948}\index{PlayerMovement@{PlayerMovement}!Flip@{Flip}}
+\index{Flip@{Flip}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{Flip()}{Flip()}}
+{\footnotesize\ttfamily \label{class_player_movement_a018f31cebe8a12eba0a2c4763cb3f948} 
+void Player\+Movement.\+Flip (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Invierte la dirección del sprite horizontalmente. Cambia facing\+Right y niega la escala X del transform. 
+
+CUÁ\+NDO SE LLAMA:\+ Desde \doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} cuando move\+Input cambia de signo. QUÉ AFECTA:\+ transform.\+local\+Scale.\+x y el flag facing\+Right. 
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00435}{435}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}\index{PlayerMovement@{PlayerMovement}!Start@{Start}}
+\index{Start@{Start}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3} 
+void Player\+Movement.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()} — Se ejecuta una vez al iniciar. Verifica que box\+Collider esté asignado (requerido), guarda las dimensiones originales del collider y calcula las del agachado. También obtiene el Rigidbody2D si no fue asignado en el Inspector. 
+
+NOTA:\+ Si box\+Collider es null, el script se deshabilita automáticamente para evitar Null\+Reference\+Exceptions en Update/\+\+Fixed\+Update. 
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{253}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+\Hypertarget{class_player_movement_aaf9b77d7177d538be9c1447d08191322}\index{PlayerMovement@{PlayerMovement}!Update@{Update}}
+\index{Update@{Update}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_player_movement_aaf9b77d7177d538be9c1447d08191322} 
+void Player\+Movement.\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} — Se ejecuta cada frame. Procesa todo el input de movimiento, salto, agachado y volteo de sprite. Actualiza el estado del Animator y redimensiona el collider según el estado. 
+
+CUÁ\+NDO SE EJECUTA:\+ Cada frame. Si is\+Knocked\+Back = true, retorna inmediatamente. QUÉ CONTROLA:\+
+\begin{DoxyItemize}
+\item Input horizontal → move\+Input
+\item Detección de paredes y agachado
+\item Salto con verificación de suelo
+\item Volteo del sprite (Flip)
+\item Parámetros del Animator (Speed, is\+Jumping, is\+Crouching)
+\item Redimensionado del Box\+Collider2D al agacharse/\+levantarse 
+\end{DoxyItemize}
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{291}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_movement_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_player_movement_aa28ee5c780c6cab4092054bbe95b0d10}\index{PlayerMovement@{PlayerMovement}!animator@{animator}}
+\index{animator@{animator}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{animator}{animator}}
+{\footnotesize\ttfamily \label{class_player_movement_aa28ee5c780c6cab4092054bbe95b0d10} 
+Animator Player\+Movement.\+animator}
+
+
+
+Animator del jugador. Se controla con parámetros:\+ Speed (float), is\+Jumping (bool), is\+Crouching (bool). Debe asignarse desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00160}{160}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a9cbf141e546a89060d43a4dce6460dbf}\index{PlayerMovement@{PlayerMovement}!boxCollider@{boxCollider}}
+\index{boxCollider@{boxCollider}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{boxCollider}{boxCollider}}
+{\footnotesize\ttfamily \label{class_player_movement_a9cbf141e546a89060d43a4dce6460dbf} 
+Box\+Collider2D Player\+Movement.\+box\+Collider}
+
+
+
+Box\+Collider2D del jugador. Se redimensiona dinámicamente al agacharse (crouch\+Size) y al levantarse (original\+Size). Debe asignarse desde el Inspector. Es requerido:\+ sin él el script se deshabilita en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00153}{153}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_ad90f03ba0060506581ae6acf5c9c64bf}\index{PlayerMovement@{PlayerMovement}!canBeKnockedBack@{canBeKnockedBack}}
+\index{canBeKnockedBack@{canBeKnockedBack}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{canBeKnockedBack}{canBeKnockedBack}}
+{\footnotesize\ttfamily \label{class_player_movement_ad90f03ba0060506581ae6acf5c9c64bf} 
+bool Player\+Movement.\+can\+Be\+Knocked\+Back = true}
+
+
+
+Si es true, el jugador puede recibir knockback al ser golpeado. Si es false, el knockback se ignora completamente. Útil para momentos de invencibilidad o personajes especiales. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00067}{67}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{Apply\+Knockback()}}.
+
+\Hypertarget{class_player_movement_ad37a27b577edd87b4073cbcf82e2a56d}\index{PlayerMovement@{PlayerMovement}!ceilingCheck@{ceilingCheck}}
+\index{ceilingCheck@{ceilingCheck}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{ceilingCheck}{ceilingCheck}}
+{\footnotesize\ttfamily \label{class_player_movement_ad37a27b577edd87b4073cbcf82e2a56d} 
+Transform Player\+Movement.\+ceiling\+Check}
+
+
+
+Transform del punto de detección de techo. Debe ser un hijo del jugador posicionado en su cabeza. Bloquea el levantarse del agachado si hay geometría encima. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00120}{120}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a09bbabf4fd575ee8ffb645b12f46d28b}\index{PlayerMovement@{PlayerMovement}!characterLayer@{characterLayer}}
+\index{characterLayer@{characterLayer}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{characterLayer}{characterLayer}}
+{\footnotesize\ttfamily \label{class_player_movement_a09bbabf4fd575ee8ffb645b12f46d28b} 
+Layer\+Mask Player\+Movement.\+character\+Layer}
+
+
+
+Layer\+Mask de las capas que corresponden a personajes (Player, Duplicate). Usado en Fixed\+Update para detectar colisiones con otros jugadores y detener el movimiento al hacer contacto. Debe incluir todas las capas de personajes jugables. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00142}{142}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{Fixed\+Update()}}.
+
+\Hypertarget{class_player_movement_a34984d8f63981068e5730b29136a6b40}\index{PlayerMovement@{PlayerMovement}!crouchKey@{crouchKey}}
+\index{crouchKey@{crouchKey}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{crouchKey}{crouchKey}}
+{\footnotesize\ttfamily \label{class_player_movement_a34984d8f63981068e5730b29136a6b40} 
+Key\+Code Player\+Movement.\+crouch\+Key = Key\+Code.\+S}
+
+
+
+Tecla para agacharse. Por defecto:\+ S. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00200}{200}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_ab7d5d14be4b77841e82f5824b845ca5d}\index{PlayerMovement@{PlayerMovement}!crouchOffset@{crouchOffset}}
+\index{crouchOffset@{crouchOffset}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{crouchOffset}{crouchOffset}}
+{\footnotesize\ttfamily \label{class_player_movement_ab7d5d14be4b77841e82f5824b845ca5d} 
+Vector2 Player\+Movement.\+crouch\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Offset ajustado del Box\+Collider2D durante el agachado. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00235}{235}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_ac853a07858fcb46a1dc5f2152a40e552}\index{PlayerMovement@{PlayerMovement}!crouchSize@{crouchSize}}
+\index{crouchSize@{crouchSize}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{crouchSize}{crouchSize}}
+{\footnotesize\ttfamily \label{class_player_movement_ac853a07858fcb46a1dc5f2152a40e552} 
+Vector2 Player\+Movement.\+crouch\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tamaño del Box\+Collider2D reducido a la mitad vertical para el agachado. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00229}{229}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_ad79d7f66cbc4775dadfda88ddd48b9ce}\index{PlayerMovement@{PlayerMovement}!crouchSpeed@{crouchSpeed}}
+\index{crouchSpeed@{crouchSpeed}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{crouchSpeed}{crouchSpeed}}
+{\footnotesize\ttfamily \label{class_player_movement_ad79d7f66cbc4775dadfda88ddd48b9ce} 
+float Player\+Movement.\+crouch\+Speed = 2f}
+
+
+
+Velocidad de desplazamiento horizontal mientras el jugador está agachado. Normalmente menor que speed para reflejar la posición comprimida. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00054}{54}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a0b88c58ac96a533651c53931623f5591}\index{PlayerMovement@{PlayerMovement}!facingRight@{facingRight}}
+\index{facingRight@{facingRight}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{facingRight}{facingRight}}
+{\footnotesize\ttfamily \label{class_player_movement_a0b88c58ac96a533651c53931623f5591} 
+bool Player\+Movement.\+facing\+Right = true}
+
+
+
+true = el jugador mira hacia la derecha; false = hacia la izquierda. Controla la inversión de escala al voltear el sprite con \doxylink{class_player_movement_a018f31cebe8a12eba0a2c4763cb3f948}{Flip()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00176}{176}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00435}{Flip()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a4c733d8e1fcc9ffd7223ac3182b380f5}\index{PlayerMovement@{PlayerMovement}!groundCheck@{groundCheck}}
+\index{groundCheck@{groundCheck}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{groundCheck}{groundCheck}}
+{\footnotesize\ttfamily \label{class_player_movement_a4c733d8e1fcc9ffd7223ac3182b380f5} 
+Transform Player\+Movement.\+ground\+Check}
+
+
+
+Transform del punto de detección de suelo. Debe ser un hijo del jugador posicionado en sus pies. Se usa con Overlap\+Circle para detectar si está en el suelo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00113}{113}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a5cd0bdfb2edd218c8cd76f0eee992cb1}\index{PlayerMovement@{PlayerMovement}!groundLayer@{groundLayer}}
+\index{groundLayer@{groundLayer}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{groundLayer}{groundLayer}}
+{\footnotesize\ttfamily \label{class_player_movement_a5cd0bdfb2edd218c8cd76f0eee992cb1} 
+Layer\+Mask Player\+Movement.\+ground\+Layer}
+
+
+
+Layer\+Mask de las capas que se consideran suelo y paredes. Usado en ground\+Check, ceiling\+Check y wall\+Check para raycast/\+overlap. Configurar desde el Inspector con la capa Ground. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00134}{134}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a60d650ad178183e34255370ff8435eb4}\index{PlayerMovement@{PlayerMovement}!isAttacking@{isAttacking}}
+\index{isAttacking@{isAttacking}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{isAttacking}{isAttacking}}
+{\footnotesize\ttfamily \label{class_player_movement_a60d650ad178183e34255370ff8435eb4} 
+bool Player\+Movement.\+is\+Attacking}
+
+
+
+true = el jugador está ejecutando un ataque. \doxylink{_player_attack_8cs}{Player\+Attack.\+cs} lo escribe directamente en este campo. Disponible para que otros sistemas (movimiento, animaciones) sepan si el jugador está atacando. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00184}{184}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+\Hypertarget{class_player_movement_a4cb8de097cd0541d578d9a284355532b}\index{PlayerMovement@{PlayerMovement}!isBlocked@{isBlocked}}
+\index{isBlocked@{isBlocked}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{isBlocked}{isBlocked}}
+{\footnotesize\ttfamily \label{class_player_movement_a4cb8de097cd0541d578d9a284355532b} 
+bool Player\+Movement.\+is\+Blocked\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+true si hay geometría sobre el jugador que bloquea levantarse del agachado. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00216}{216}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_ac8aecbf0dc7516f1d6e33f4d4b80fdbf}\index{PlayerMovement@{PlayerMovement}!isCrouching@{isCrouching}}
+\index{isCrouching@{isCrouching}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{isCrouching}{isCrouching}}
+{\footnotesize\ttfamily \label{class_player_movement_ac8aecbf0dc7516f1d6e33f4d4b80fdbf} 
+bool Player\+Movement.\+is\+Crouching}
+
+
+
+true = el jugador está agachado actualmente. Accesible públicamente por si otros sistemas necesitan conocer este estado. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00170}{170}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a27276d8e80bcd5acbb70354b06d66841}\index{PlayerMovement@{PlayerMovement}!isGrounded@{isGrounded}}
+\index{isGrounded@{isGrounded}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{isGrounded}{isGrounded}}
+{\footnotesize\ttfamily \label{class_player_movement_a27276d8e80bcd5acbb70354b06d66841} 
+bool Player\+Movement.\+is\+Grounded\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+true si el jugador toca el suelo detectado por ground\+Check. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00213}{213}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a3488eab9c422c37f64728749d601bf62}\index{PlayerMovement@{PlayerMovement}!isKnockedBack@{isKnockedBack}}
+\index{isKnockedBack@{isKnockedBack}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{isKnockedBack}{isKnockedBack}}
+{\footnotesize\ttfamily \label{class_player_movement_a3488eab9c422c37f64728749d601bf62} 
+bool Player\+Movement.\+is\+Knocked\+Back = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag de knockback activo. true = el jugador está volando por un knockback, Update y Fixed\+Update retornan. false = comportamiento de movimiento normal. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00086}{86}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{Apply\+Knockback()}}, \doxymbox{\hyperlink{_player_movement_8cs_source_l00489}{End\+Knockback()}}, \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{Fixed\+Update()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_acbb23023c44af92c29e396c81782c13d}\index{PlayerMovement@{PlayerMovement}!isTouchingWall@{isTouchingWall}}
+\index{isTouchingWall@{isTouchingWall}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{isTouchingWall}{isTouchingWall}}
+{\footnotesize\ttfamily \label{class_player_movement_acbb23023c44af92c29e396c81782c13d} 
+bool Player\+Movement.\+is\+Touching\+Wall\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+true si el jugador está tocando una pared lateral en la dirección del input. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00219}{219}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a55cf4a38e7ce8f9d02715352e55b2de6}\index{PlayerMovement@{PlayerMovement}!jumpForce@{jumpForce}}
+\index{jumpForce@{jumpForce}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{jumpForce}{jumpForce}}
+{\footnotesize\ttfamily \label{class_player_movement_a55cf4a38e7ce8f9d02715352e55b2de6} 
+float Player\+Movement.\+jump\+Force = 10f}
+
+
+
+Fuerza aplicada al Rigidbody2D al saltar. Configurable desde el Inspector. Valor más alto = mayor altura de salto. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00048}{48}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a6eb97d1c3db6660e8a0300c380e61b93}\index{PlayerMovement@{PlayerMovement}!jumpKey@{jumpKey}}
+\index{jumpKey@{jumpKey}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{jumpKey}{jumpKey}}
+{\footnotesize\ttfamily \label{class_player_movement_a6eb97d1c3db6660e8a0300c380e61b93} 
+Key\+Code Player\+Movement.\+jump\+Key = Key\+Code.\+Space}
+
+
+
+Tecla para saltar. Por defecto:\+ Space. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00197}{197}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a623fce7a355a8809dbf9f1d95bcb03c7}\index{PlayerMovement@{PlayerMovement}!knockbackDuration@{knockbackDuration}}
+\index{knockbackDuration@{knockbackDuration}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{knockbackDuration}{knockbackDuration}}
+{\footnotesize\ttfamily \label{class_player_movement_a623fce7a355a8809dbf9f1d95bcb03c7} 
+float Player\+Movement.\+knockback\+Duration = 0.\+3f}
+
+
+
+Duración en segundos del estado de knockback. Durante este tiempo el script está deshabilitado (input bloqueado). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00079}{79}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{Apply\+Knockback()}}.
+
+\Hypertarget{class_player_movement_a6b0a2289093ba14ff23b7d2e0362029a}\index{PlayerMovement@{PlayerMovement}!knockbackForce@{knockbackForce}}
+\index{knockbackForce@{knockbackForce}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{knockbackForce}{knockbackForce}}
+{\footnotesize\ttfamily \label{class_player_movement_a6b0a2289093ba14ff23b7d2e0362029a} 
+float Player\+Movement.\+knockback\+Force = 5f}
+
+
+
+Fuerza del knockback que este jugador puede aplicar a otros personajes. También se usa en \doxylink{class_player_movement_a084b9a12e5e7d644cd74737543485bdc}{Apply\+Knockback()} como fuerza propia de salida. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00073}{73}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{Apply\+Knockback()}}.
+
+\Hypertarget{class_player_movement_af0e466215a3e5781ab36be4c7541cb9f}\index{PlayerMovement@{PlayerMovement}!leftKey@{leftKey}}
+\index{leftKey@{leftKey}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{leftKey}{leftKey}}
+{\footnotesize\ttfamily \label{class_player_movement_af0e466215a3e5781ab36be4c7541cb9f} 
+Key\+Code Player\+Movement.\+left\+Key = Key\+Code.\+A}
+
+
+
+Tecla para moverse a la izquierda. Por defecto:\+ A. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00191}{191}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a6120205c9c292267d10fce93dcea11d0}\index{PlayerMovement@{PlayerMovement}!moveInput@{moveInput}}
+\index{moveInput@{moveInput}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{moveInput}{moveInput}}
+{\footnotesize\ttfamily \label{class_player_movement_a6120205c9c292267d10fce93dcea11d0} 
+float Player\+Movement.\+move\+Input\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Input horizontal procesado del frame actual (-\/1, 0 o 1 multiplicado por velocidad). Se calcula en \doxylink{class_player_movement_aaf9b77d7177d538be9c1447d08191322}{Update()} y se aplica en \doxylink{class_player_movement_a0caaa871b9ef680c9f02bd0e22c77db1}{Fixed\+Update()} al Rigidbody2D. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00210}{210}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{Fixed\+Update()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a124a9353e9b1d46216e21e6942ab3164}\index{PlayerMovement@{PlayerMovement}!originalOffset@{originalOffset}}
+\index{originalOffset@{originalOffset}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{originalOffset}{originalOffset}}
+{\footnotesize\ttfamily \label{class_player_movement_a124a9353e9b1d46216e21e6942ab3164} 
+Vector2 Player\+Movement.\+original\+Offset\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Offset original del Box\+Collider2D guardado en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00232}{232}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_afac14f464138873cfbf99dd8f2038853}\index{PlayerMovement@{PlayerMovement}!originalScale@{originalScale}}
+\index{originalScale@{originalScale}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{originalScale}{originalScale}}
+{\footnotesize\ttfamily \label{class_player_movement_afac14f464138873cfbf99dd8f2038853} 
+Vector3 Player\+Movement.\+original\+Scale\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Escala local original del transform (usada para restaurar después de voltear). 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00238}{238}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}}.
+
+\Hypertarget{class_player_movement_a19374179469989b63052fa56135b6b9f}\index{PlayerMovement@{PlayerMovement}!originalSize@{originalSize}}
+\index{originalSize@{originalSize}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{originalSize}{originalSize}}
+{\footnotesize\ttfamily \label{class_player_movement_a19374179469989b63052fa56135b6b9f} 
+Vector2 Player\+Movement.\+original\+Size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tamaño original del Box\+Collider2D guardado en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00226}{226}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_acf8b937f61c1e92dfdbd075678f911d1}\index{PlayerMovement@{PlayerMovement}!rb@{rb}}
+\index{rb@{rb}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{rb}{rb}}
+{\footnotesize\ttfamily \label{class_player_movement_acf8b937f61c1e92dfdbd075678f911d1} 
+Rigidbody2D Player\+Movement.\+rb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rigidbody2D del jugador. Marcado \+[Serialize\+Field]\+ para asignarlo desde el Inspector o fallback a Get\+Component en \doxylink{class_player_movement_abf3660ca2b1a352b4a9da98437c61aa3}{Start()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00106}{106}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00461}{Apply\+Knockback()}}, \doxymbox{\hyperlink{_player_movement_8cs_source_l00489}{End\+Knockback()}}, \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{Fixed\+Update()}}, \doxymbox{\hyperlink{_player_movement_8cs_source_l00253}{Start()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_aafffc94a38c75a425ea458d29b16195d}\index{PlayerMovement@{PlayerMovement}!rightKey@{rightKey}}
+\index{rightKey@{rightKey}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{rightKey}{rightKey}}
+{\footnotesize\ttfamily \label{class_player_movement_aafffc94a38c75a425ea458d29b16195d} 
+Key\+Code Player\+Movement.\+right\+Key = Key\+Code.\+D}
+
+
+
+Tecla para moverse a la derecha. Por defecto:\+ D. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00194}{194}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a6800716352b83358ea16bc706dd88cbb}\index{PlayerMovement@{PlayerMovement}!speed@{speed}}
+\index{speed@{speed}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily \label{class_player_movement_a6800716352b83358ea16bc706dd88cbb} 
+float Player\+Movement.\+speed = 3f}
+
+
+
+Velocidad de desplazamiento horizontal normal. Configurable desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00042}{42}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{Fixed\+Update()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_a44341df5dbf233aebd46a5788611a393}\index{PlayerMovement@{PlayerMovement}!wallCheck@{wallCheck}}
+\index{wallCheck@{wallCheck}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{wallCheck}{wallCheck}}
+{\footnotesize\ttfamily \label{class_player_movement_a44341df5dbf233aebd46a5788611a393} 
+Transform Player\+Movement.\+wall\+Check}
+
+
+
+Transform del punto de detección de pared lateral. Debe ser un hijo del jugador en su costado. Se usa con Raycast para detectar paredes y otros personajes. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00127}{127}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00376}{Fixed\+Update()}} y \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+\Hypertarget{class_player_movement_aea1774af486571425732623f64ad1f5b}\index{PlayerMovement@{PlayerMovement}!wallCheckDistance@{wallCheckDistance}}
+\index{wallCheckDistance@{wallCheckDistance}!PlayerMovement@{PlayerMovement}}
+\doxysubsubsection{\texorpdfstring{wallCheckDistance}{wallCheckDistance}}
+{\footnotesize\ttfamily \label{class_player_movement_aea1774af486571425732623f64ad1f5b} 
+float Player\+Movement.\+wall\+Check\+Distance = 0.\+2f}
+
+
+
+Distancia máxima del raycast para detectar paredes laterales. Configurable desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_movement_8cs_source_l00096}{96}} del archivo \doxymbox{\hyperlink{_player_movement_8cs_source}{Player\+Movement.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_movement_8cs_source_l00291}{Update()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_player_movement_8cs}{Player\+Movement.\+cs}}\end{DoxyCompactItemize}

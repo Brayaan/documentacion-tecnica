@@ -1,0 +1,150 @@
+\doxysection{Referencia de la clase Enemy\+Health\+System\+Tests}
+\hypertarget{class_enemy_health_system_tests}{}\label{class_enemy_health_system_tests}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+
+
+TEST SUITE:\+ \doxylink{class_enemy_health_system}{Enemy\+Health\+System}.  
+
+
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_enemy_health_system_tests_a6ca883ba0df6a369535451f3bf5defe8}{Tear\+Down}} ()
+\begin{DoxyCompactList}\small\item\em Se ejecuta después de cada test. Elimina el enemigo creado para evitar contaminación entre pruebas. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_enemy_health_system_tests_aa56db58d85b120005a99eef60dddd2ae}{Take\+Damage\+\_\+\+Reduces\+Health\+By\+Damage\+Amount}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que el enemigo pierde vida correctamente cuando recibe daño. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_enemy_health_system_tests_ad887d96a7669766d4976816bd1af0b5f}{Take\+Damage\+\_\+\+Health\+Does\+Not\+Go\+Below\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que la vida nunca baja de 0, incluso si el daño es mayor que la vida actual. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_enemy_health_system_tests_a4cd38871e3a9b23c4ef71b16dd7f6302}{Take\+Damage\+\_\+\+Knockback\+Pushes\+Away\+From\+Attacker}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que el enemigo es empujado en dirección opuesta al atacante cuando recibe daño. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_enemy_health_system_tests_a571eb43b09fc845cd276004685961f13}{Take\+Damage\+\_\+\+Second\+Hit\+During\+Hit\+Stun\+\_\+\+Does\+Not\+Apply\+Knockback\+Again}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que durante el hit-\/stun el enemigo no recibe un segundo knockback inmediatamente. \end{DoxyCompactList}\item 
+IEnumerator \doxymbox{\hyperlink{class_enemy_health_system_tests_ab0c0be3f728e61f46946aa4b04393590}{Take\+Damage\+\_\+\+Enemy\+Dies\+When\+Health\+Reaches\+Zero}} ()
+\begin{DoxyCompactList}\small\item\em Verifica que el enemigo se destruye cuando su vida llega a 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_enemy_health_system}{Enemy\+Health\+System}} \doxymbox{\hyperlink{class_enemy_health_system_tests_aeb2600a1548fbe2d720924091c1c0a92}{Create\+Enemy}} (Vector3 position=default)
+\begin{DoxyCompactList}\small\item\em Crea un enemigo simulado con:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_enemy_health_system_tests_a5cff92ae367b3b110be8f03215874985}{\+\_\+enemy\+GO}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+TEST SUITE:\+ \doxylink{class_enemy_health_system}{Enemy\+Health\+System}. 
+
+PROPÓ\+SITO:\+ Validar el sistema de vida de los enemigos, incluyendo:\+
+\begin{DoxyItemize}
+\item Aplicación de daño
+\item Límites de vida (no menor a 0)
+\item Knockback al recibir daño
+\item Hit-\/stun (inmunidad temporal)
+\item Muerte del enemigo cuando la vida llega a 0
+\end{DoxyItemize}
+
+USO:\+ Estas pruebas simulan enemigos en runtime y verifican su comportamiento sin necesidad de escena Unity.
+
+DEPENDENCIAS:\+
+\begin{DoxyItemize}
+\item Rigidbody2D (para knockback físico)
+\item Unity Physics2D (Fixed\+Update)
+\item Destrucción de Game\+Objects (Destroy) 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{class_enemy_health_system_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_enemy_health_system_tests_aeb2600a1548fbe2d720924091c1c0a92}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!CreateEnemy@{CreateEnemy}}
+\index{CreateEnemy@{CreateEnemy}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{CreateEnemy()}{CreateEnemy()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_aeb2600a1548fbe2d720924091c1c0a92} 
+\doxymbox{\hyperlink{class_enemy_health_system}{Enemy\+Health\+System}} Enemy\+Health\+System\+Tests.\+Create\+Enemy (\begin{DoxyParamCaption}\item[{Vector3}]{position}{ = {\ttfamily default}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Crea un enemigo simulado con:\+ 
+
+
+\begin{DoxyItemize}
+\item Rigidbody2D sin gravedad (controlado)
+\item \doxylink{class_enemy_health_system}{Enemy\+Health\+System} con knockback configurado
+\end{DoxyItemize}
+
+USO:\+ Permite generar enemigos consistentes para todas las pruebas. \Hypertarget{class_enemy_health_system_tests_ab0c0be3f728e61f46946aa4b04393590}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!TakeDamage\_EnemyDiesWhenHealthReachesZero@{TakeDamage\_EnemyDiesWhenHealthReachesZero}}
+\index{TakeDamage\_EnemyDiesWhenHealthReachesZero@{TakeDamage\_EnemyDiesWhenHealthReachesZero}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_EnemyDiesWhenHealthReachesZero()}{TakeDamage\_EnemyDiesWhenHealthReachesZero()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_ab0c0be3f728e61f46946aa4b04393590} 
+IEnumerator Enemy\+Health\+System\+Tests.\+Take\+Damage\+\_\+\+Enemy\+Dies\+When\+Health\+Reaches\+Zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que el enemigo se destruye cuando su vida llega a 0. 
+
+\Hypertarget{class_enemy_health_system_tests_ad887d96a7669766d4976816bd1af0b5f}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!TakeDamage\_HealthDoesNotGoBelowZero@{TakeDamage\_HealthDoesNotGoBelowZero}}
+\index{TakeDamage\_HealthDoesNotGoBelowZero@{TakeDamage\_HealthDoesNotGoBelowZero}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_HealthDoesNotGoBelowZero()}{TakeDamage\_HealthDoesNotGoBelowZero()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_ad887d96a7669766d4976816bd1af0b5f} 
+IEnumerator Enemy\+Health\+System\+Tests.\+Take\+Damage\+\_\+\+Health\+Does\+Not\+Go\+Below\+Zero (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que la vida nunca baja de 0, incluso si el daño es mayor que la vida actual. 
+
+\Hypertarget{class_enemy_health_system_tests_a4cd38871e3a9b23c4ef71b16dd7f6302}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!TakeDamage\_KnockbackPushesAwayFromAttacker@{TakeDamage\_KnockbackPushesAwayFromAttacker}}
+\index{TakeDamage\_KnockbackPushesAwayFromAttacker@{TakeDamage\_KnockbackPushesAwayFromAttacker}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_KnockbackPushesAwayFromAttacker()}{TakeDamage\_KnockbackPushesAwayFromAttacker()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_a4cd38871e3a9b23c4ef71b16dd7f6302} 
+IEnumerator Enemy\+Health\+System\+Tests.\+Take\+Damage\+\_\+\+Knockback\+Pushes\+Away\+From\+Attacker (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que el enemigo es empujado en dirección opuesta al atacante cuando recibe daño. 
+
+\Hypertarget{class_enemy_health_system_tests_aa56db58d85b120005a99eef60dddd2ae}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!TakeDamage\_ReducesHealthByDamageAmount@{TakeDamage\_ReducesHealthByDamageAmount}}
+\index{TakeDamage\_ReducesHealthByDamageAmount@{TakeDamage\_ReducesHealthByDamageAmount}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_ReducesHealthByDamageAmount()}{TakeDamage\_ReducesHealthByDamageAmount()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_aa56db58d85b120005a99eef60dddd2ae} 
+IEnumerator Enemy\+Health\+System\+Tests.\+Take\+Damage\+\_\+\+Reduces\+Health\+By\+Damage\+Amount (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que el enemigo pierde vida correctamente cuando recibe daño. 
+
+\Hypertarget{class_enemy_health_system_tests_a571eb43b09fc845cd276004685961f13}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!TakeDamage\_SecondHitDuringHitStun\_DoesNotApplyKnockbackAgain@{TakeDamage\_SecondHitDuringHitStun\_DoesNotApplyKnockbackAgain}}
+\index{TakeDamage\_SecondHitDuringHitStun\_DoesNotApplyKnockbackAgain@{TakeDamage\_SecondHitDuringHitStun\_DoesNotApplyKnockbackAgain}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TakeDamage\_SecondHitDuringHitStun\_DoesNotApplyKnockbackAgain()}{TakeDamage\_SecondHitDuringHitStun\_DoesNotApplyKnockbackAgain()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_a571eb43b09fc845cd276004685961f13} 
+IEnumerator Enemy\+Health\+System\+Tests.\+Take\+Damage\+\_\+\+Second\+Hit\+During\+Hit\+Stun\+\_\+\+Does\+Not\+Apply\+Knockback\+Again (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Verifica que durante el hit-\/stun el enemigo no recibe un segundo knockback inmediatamente. 
+
+\Hypertarget{class_enemy_health_system_tests_a6ca883ba0df6a369535451f3bf5defe8}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_a6ca883ba0df6a369535451f3bf5defe8} 
+void Enemy\+Health\+System\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Se ejecuta después de cada test. Elimina el enemigo creado para evitar contaminación entre pruebas. 
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_enemy_health_system_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_enemy_health_system_tests_a5cff92ae367b3b110be8f03215874985}\index{EnemyHealthSystemTests@{EnemyHealthSystemTests}!\_enemyGO@{\_enemyGO}}
+\index{\_enemyGO@{\_enemyGO}!EnemyHealthSystemTests@{EnemyHealthSystemTests}}
+\doxysubsubsection{\texorpdfstring{\_enemyGO}{\_enemyGO}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_tests_a5cff92ae367b3b110be8f03215874985} 
+Game\+Object Enemy\+Health\+System\+Tests.\+\_\+enemy\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_enemy_health_system_tests_8cs}{Enemy\+Health\+System\+Tests.\+cs}}\end{DoxyCompactItemize}

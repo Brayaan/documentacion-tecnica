@@ -106,42 +106,57 @@ $(function() {
   <div class="headertitle"><div class="title">PlayerDefenseTests Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Suite de pruebas para <a class="el" href="class_player_defense.html">PlayerDefense</a>.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3bbf8f41b32694c4475d0026c14f95b" id="r_aa3bbf8f41b32694c4475d0026c14f95b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aa3bbf8f41b32694c4475d0026c14f95b">TearDown</a> ()</td></tr>
+<tr class="memdesc:aa3bbf8f41b32694c4475d0026c14f95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia los recursos después de cada prueba.  <br /></td></tr>
 <tr class="memitem:ad18922e9dd1c926a97bf533556e75f56" id="r_ad18922e9dd1c926a97bf533556e75f56"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#ad18922e9dd1c926a97bf533556e75f56">Block_DeactivatesWhenKeyIsReleased</a> ()</td></tr>
+<tr class="memdesc:ad18922e9dd1c926a97bf533556e75f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el bloqueo se desactiva cuando el input deja de estar activo.  <br /></td></tr>
 <tr class="memitem:a568695a67d631859b7dfcfa7d1cae630" id="r_a568695a67d631859b7dfcfa7d1cae630"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a568695a67d631859b7dfcfa7d1cae630">Block_GrantsEnergyWhenBlockingStarts</a> ()</td></tr>
+<tr class="memdesc:a568695a67d631859b7dfcfa7d1cae630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que bloquear incrementa la energía del jugador.  <br /></td></tr>
 <tr class="memitem:abab2e04999e7e7477cf5a726989105bf" id="r_abab2e04999e7e7477cf5a726989105bf"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#abab2e04999e7e7477cf5a726989105bf">Block_AnimationStateMatchesBlockingState</a> ()</td></tr>
+<tr class="memdesc:abab2e04999e7e7477cf5a726989105bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el estado interno coincide con el estado visual del hitbox.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a85f03bef313f29455ae0d3a2179e3434" id="r_a85f03bef313f29455ae0d3a2179e3434"><td class="memItemLeft"><a class="el" href="class_player_defense.html">PlayerDefense</a>&#160;</td><td class="memItemRight"><a class="el" href="#a85f03bef313f29455ae0d3a2179e3434">CreatePlayer</a> ()</td></tr>
+<tr class="memdesc:a85f03bef313f29455ae0d3a2179e3434"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un jugador simulado completo.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a35e6a517feaa484bf16514e3f75c3657" id="r_a35e6a517feaa484bf16514e3f75c3657"><td class="memItemLeft">GameObject&#160;</td><td class="memItemRight"><a class="el" href="#a35e6a517feaa484bf16514e3f75c3657">_playerGO</a></td></tr>
+<tr class="memdesc:a35e6a517feaa484bf16514e3f75c3657"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject del jugador de prueba.  <br /></td></tr>
 <tr class="memitem:a99ffb57fd8397539196da98ff5de358f" id="r_a99ffb57fd8397539196da98ff5de358f"><td class="memItemLeft">FieldInfo&#160;</td><td class="memItemRight"><a class="el" href="#a99ffb57fd8397539196da98ff5de358f">_isBlockingField</a></td></tr>
+<tr class="memdesc:a99ffb57fd8397539196da98ff5de358f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Campo privado isBlocking del <a class="el" href="class_player_defense.html">PlayerDefense</a>.  <br /></td></tr>
 <tr class="memitem:a2626ea7589a38f192bc165e4a4ab686a" id="r_a2626ea7589a38f192bc165e4a4ab686a"><td class="memItemLeft">MethodInfo&#160;</td><td class="memItemRight"><a class="el" href="#a2626ea7589a38f192bc165e4a4ab686a">_updateMethod</a></td></tr>
+<tr class="memdesc:a2626ea7589a38f192bc165e4a4ab686a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método privado Update del <a class="el" href="class_player_defense.html">PlayerDefense</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
-</h1>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-SISTEMA: PLAYER DEFENSE TESTS</h1>
-<p>OBJETIVO: Validar la lógica del sistema de defensa del jugador:</p><ul>
-<li>Activación/desactivación del bloqueo</li>
-<li>Ganancia de energía al bloquear</li>
-<li>Consistencia del estado visual (hitbox + estado interno)</li>
+<div class="textblock"><p>Suite de pruebas para <a class="el" href="class_player_defense.html">PlayerDefense</a>. </p>
+<p><b>Objetivo:</b></p>
+<p>Validar la lógica del sistema de defensa del jugador: </p><ul>
+<li>
+Activación/desactivación del bloqueo </li>
+<li>
+Ganancia de energía al bloquear </li>
+<li>
+Consistencia del estado visual (hitbox + estado interno) </li>
 </ul>
-<p>LIMITACIONES:</p><ul>
-<li>Input.GetKey no se puede simular en PlayMode.</li>
-<li>Se usa Reflection para forzar estados internos. </li>
+<p><b>Limitaciones:</b></p>
+<ul>
+<li>
+Input.GetKey no se puede simular en PlayMode. </li>
+<li>
+Se usa Reflection para forzar estados internos. </li>
+<li>
+Update() se invoca manualmente para simular el ciclo real. </li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-- Update() se invoca manualmente para simular el ciclo real.</h1>
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00023">23</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00026">26</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="abab2e04999e7e7477cf5a726989105bf" name="abab2e04999e7e7477cf5a726989105bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abab2e04999e7e7477cf5a726989105bf">&#9670;&#160;</a></span>Block_AnimationStateMatchesBlockingState()</h2>
@@ -166,7 +181,21 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00156">156</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Verifica que el estado interno coincide con el estado visual del hitbox. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p><b>Flujo:</b></p>
+<ol>
+<li>
+Estado inicial falso </li>
+<li>
+Forzar bloqueo </li>
+<li>
+Ejecutar Update </li>
+<li>
+Validar sincronización del estado </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00170">170</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
 
 </div>
 </div>
@@ -193,7 +222,19 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00090">90</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Verifica que el bloqueo se desactiva cuando el input deja de estar activo. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p><b>Flujo:</b></p>
+<ol>
+<li>
+Forzar estado de bloqueo </li>
+<li>
+Ejecutar Update manualmente </li>
+<li>
+Validar que el estado vuelve a falso </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00105">105</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
 
 </div>
 </div>
@@ -220,7 +261,12 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00125">125</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Verifica que bloquear incrementa la energía del jugador. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p><b>Regla:</b></p>
+<p>GainEnergyFromBlock() debe aumentar +3 energía. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00139">139</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
 
 </div>
 </div>
@@ -247,9 +293,20 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00042">42</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Crea un jugador simulado completo. </p>
+<dl class="section return"><dt>Returns</dt><dd>Componente <a class="el" href="class_player_defense.html">PlayerDefense</a> del jugador creado.</dd></dl>
+<p>Crea un jugador simulado con: </p><ul>
+<li>
+<a class="el" href="class_energy_system.html">EnergySystem</a> (dependencia del sistema de defensa) </li>
+<li>
+<a class="el" href="class_hitbox.html">Hitbox</a> de bloqueo </li>
+<li>
+<a class="el" href="class_player_defense.html">PlayerDefense</a> configurado manualmente </li>
+</ul>
 
-<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00156">Block_AnimationStateMatchesBlockingState()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00090">Block_DeactivatesWhenKeyIsReleased()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00125">Block_GrantsEnergyWhenBlockingStarts()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00055">55</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00170">Block_AnimationStateMatchesBlockingState()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00105">Block_DeactivatesWhenKeyIsReleased()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00139">Block_GrantsEnergyWhenBlockingStarts()</a>.</p>
 
 </div>
 </div>
@@ -276,7 +333,10 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00072">72</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Limpia los recursos después de cada prueba. </p>
+<p>Evita acumulación de GameObjects en memoria. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00086">86</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
 
 </div>
 </div>
@@ -301,9 +361,11 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00031">31</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Campo privado isBlocking del <a class="el" href="class_player_defense.html">PlayerDefense</a>. </p>
 
-<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00156">Block_AnimationStateMatchesBlockingState()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00090">Block_DeactivatesWhenKeyIsReleased()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00042">CreatePlayer()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00038">38</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00170">Block_AnimationStateMatchesBlockingState()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00105">Block_DeactivatesWhenKeyIsReleased()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00055">CreatePlayer()</a>.</p>
 
 </div>
 </div>
@@ -327,9 +389,11 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00028">28</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>GameObject del jugador de prueba. </p>
 
-<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00125">Block_GrantsEnergyWhenBlockingStarts()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00042">CreatePlayer()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00072">TearDown()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00033">33</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00139">Block_GrantsEnergyWhenBlockingStarts()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00055">CreatePlayer()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00086">TearDown()</a>.</p>
 
 </div>
 </div>
@@ -353,9 +417,11 @@ SISTEMA: PLAYER DEFENSE TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00032">32</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+<p>Método privado Update del <a class="el" href="class_player_defense.html">PlayerDefense</a>. </p>
 
-<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00156">Block_AnimationStateMatchesBlockingState()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00090">Block_DeactivatesWhenKeyIsReleased()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00042">CreatePlayer()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_defense_tests_8cs_source.html#l00041">41</a> of file <a class="el" href="_player_defense_tests_8cs_source.html">PlayerDefenseTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_defense_tests_8cs_source.html#l00170">Block_AnimationStateMatchesBlockingState()</a>, <a class="el" href="_player_defense_tests_8cs_source.html#l00105">Block_DeactivatesWhenKeyIsReleased()</a>, and <a class="el" href="_player_defense_tests_8cs_source.html#l00055">CreatePlayer()</a>.</p>
 
 </div>
 </div>

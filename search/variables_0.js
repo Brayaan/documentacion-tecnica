@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['_5fattack_0',['_attack',['../class_player_attack_tests.html#a4f46a309cffc583952dee2f4fbfdf0e7',1,'PlayerAttackTests']]],
+  ['_5fattackergo_1',['_attackerGO',['../class_extended_hitbox_tests.html#ac78173977f402f6807167ffb349169c2',1,'ExtendedHitboxTests._attackerGO'],['../class_hitbox_tests.html#ab1da0cdea832e3f0dc1ad1f14f818e11',1,'HitboxTests._attackerGO']]],
+  ['_5fenemy1go_2',['_enemy1GO',['../class_combat_collision_manager_tests.html#a34fdc6f04fc8f1ddfacad092ccccfa20',1,'CombatCollisionManagerTests']]],
+  ['_5fenemy2go_3',['_enemy2GO',['../class_combat_collision_manager_tests.html#aa6492a22695b4fb01c52855d74d52555',1,'CombatCollisionManagerTests']]],
+  ['_5fenemygo_4',['_enemyGO',['../class_enemy_health_system_tests.html#a5cff92ae367b3b110be8f03215874985',1,'EnemyHealthSystemTests']]],
+  ['_5fisattackingfield_5',['_isAttackingField',['../class_extended_hitbox_tests.html#ac1928c4f33dbe55ded1639bde05c79fd',1,'ExtendedHitboxTests._isAttackingField'],['../class_hitbox_tests.html#af2e806bf1f10d283417f4a4fc9e85e72',1,'HitboxTests._isAttackingField']]],
+  ['_5fisblockingfield_6',['_isBlockingField',['../class_hitbox_tests.html#aa0ab8e9413961051fd737c80857fd79d',1,'HitboxTests._isBlockingField'],['../class_player_defense_tests.html#a99ffb57fd8397539196da98ff5de358f',1,'PlayerDefenseTests._isBlockingField']]],
+  ['_5fisknockedbackfield_7',['_isKnockedBackField',['../class_player_movement_tests.html#ae609902d5717542ba9a945d3ee6b2b66',1,'PlayerMovementTests']]],
+  ['_5fkickhitboxgo_8',['_kickHitboxGO',['../class_player_attack_tests.html#a44130e6a23cd8966d4a4424dd4be5e41',1,'PlayerAttackTests']]],
+  ['_5fmanagergo_9',['_managerGO',['../class_combat_collision_manager_tests.html#a112b5dcdfce7d9e40c61470680d15e8c',1,'CombatCollisionManagerTests']]],
+  ['_5fontriggerenter2d_10',['_onTriggerEnter2D',['../class_extended_hitbox_tests.html#a12a740519df2325cf6c71e5dfc6006e9',1,'ExtendedHitboxTests']]],
+  ['_5fontriggerstay2d_11',['_onTriggerStay2D',['../class_hitbox_tests.html#a440568a96b69aa1b9535cd99830ede4c',1,'HitboxTests']]],
+  ['_5fplayergo_12',['_playerGO',['../class_energy_system_tests.html#a5e165833d62dedc15f34f92fb32e0f03',1,'EnergySystemTests._playerGO'],['../class_health_system_tests.html#ac6dc7d2f4f99df2863d79c64a08b40a3',1,'HealthSystemTests._playerGO'],['../class_player_attack_tests.html#add6d5bc8c5e168a0e500bf46abd0863a',1,'PlayerAttackTests._playerGO'],['../class_player_defense_tests.html#a35e6a517feaa484bf16514e3f75c3657',1,'PlayerDefenseTests._playerGO'],['../class_player_movement_tests.html#ab324179419de4394fab0520ac97ec4c1',1,'PlayerMovementTests._playerGO']]],
+  ['_5fpunchhitboxgo_13',['_punchHitboxGO',['../class_player_attack_tests.html#a5120f4edb260a90e7241034226a44506',1,'PlayerAttackTests']]],
+  ['_5ftargetgo_14',['_targetGO',['../class_extended_hitbox_tests.html#a73e24de81f49b94d1b32286e4107fb5c',1,'ExtendedHitboxTests._targetGO'],['../class_hitbox_tests.html#a9c829d2673cd8997ff3833d4eeaaf75d',1,'HitboxTests._targetGO']]],
+  ['_5fupdatemethod_15',['_updateMethod',['../class_player_defense_tests.html#a2626ea7589a38f192bc165e4a4ab686a',1,'PlayerDefenseTests']]]
+];

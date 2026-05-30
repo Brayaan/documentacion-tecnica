@@ -1,0 +1,276 @@
+\doxysection{Referencia de la clase Enemy\+Health\+System}
+\hypertarget{class_enemy_health_system}{}\label{class_enemy_health_system}\index{EnemyHealthSystem@{EnemyHealthSystem}}
+Diagrama de herencia de Enemy\+Health\+System\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_enemy_health_system}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_enemy_health_system_ac4e5fa0e0b56b27487df52b825bc4d8c}{Take\+Damage}} (int damage, Vector2 attacker\+Position)
+\begin{DoxyCompactList}\small\item\em Punto de entrada de daño para el enemigo. Reduce la vida, aplica knockback y verifica si el enemigo debe morir. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+int \doxymbox{\hyperlink{class_enemy_health_system_ab56696439135ac8aa4d6b20db127053b}{max\+Health}} = 50
+\begin{DoxyCompactList}\small\item\em Vida máxima del enemigo. Define cuántos puntos de daño puede absorber antes de morir. Configurable por tipo de enemigo desde el Inspector. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_enemy_health_system_a42fd55394f43d01e3b5bbcd77190fea1}{current\+Health}}
+\begin{DoxyCompactList}\small\item\em Vida actual del enemigo en tiempo real. Se inicializa igual a max\+Health en \doxylink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start()}. Visible en el Inspector para debug durante la partida. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_health_system_a0c2431cbd05b9ce249b3b7ca713f8731}{knockback\+Force}} = 5f
+\begin{DoxyCompactList}\small\item\em Fuerza del empuje físico (knockback) que recibe el enemigo al ser golpeado. Configurable desde el Inspector. Valor más alto = mayor desplazamiento. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_enemy_health_system_ab24d5870e9c2be0904d56e9b958df7e3}{knockback\+Duration}} = 0.\+3f
+\begin{DoxyCompactList}\small\item\em Duración en segundos del hit-\/stun:\+ tiempo mínimo que debe pasar antes de que el enemigo pueda recibir otro knockback. Evita que golpes rápidos apilen fuerzas y lo lancen fuera de la pantalla. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start()} — Se ejecuta una vez al activarse el enemigo en escena. Inicializa la vida al máximo y obtiene el Rigidbody2D. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_health_system_a9ed3b53c97496b5168d2960f27c16f31}{Apply\+Hit}} (Vector2 attacker\+Position)
+\begin{DoxyCompactList}\small\item\em Aplica el knockback físico al enemigo cuando recibe un golpe. Controla el hit-\/stun para evitar que fuerzas se acumulen. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_health_system_a8f942a9c34ff635eb98fdc7633b716b0}{End\+Hit}} ()
+\begin{DoxyCompactList}\small\item\em Finaliza el hit-\/stun y permite que el enemigo reciba knockback nuevamente. Se llama automáticamente mediante Invoke() al vencer knockback\+Duration. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_enemy_health_system_ad589068290a143580f1924e71ab0b40d}{Die}} ()
+\begin{DoxyCompactList}\small\item\em Destruye el enemigo al quedarse sin vida. Usa un delay de 0.\+5 segundos para permitir efectos visuales de muerte (animaciones, partículas, sonidos) antes de eliminar el objeto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Rigidbody2D \doxymbox{\hyperlink{class_enemy_health_system_a675aab1c44212a4f9a7cec9131b1798a}{rb}}
+\begin{DoxyCompactList}\small\item\em Referencia al Rigidbody2D del enemigo. Se obtiene automáticamente en \doxylink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start()}. Necesario para aplicar knockback. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_enemy_health_system_a42263fa7364bb38280642fb12244d684}{is\+Hit}} = false
+\begin{DoxyCompactList}\small\item\em Flag de hit-\/stun activo. true = el enemigo está en hit-\/stun y no puede recibir otro knockback. false = el enemigo puede recibir daño con efecto físico completo. Previene el "{}stacking"{} de fuerzas por golpes consecutivos rápidos. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00026}{26}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_enemy_health_system_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_enemy_health_system_a9ed3b53c97496b5168d2960f27c16f31}\index{EnemyHealthSystem@{EnemyHealthSystem}!ApplyHit@{ApplyHit}}
+\index{ApplyHit@{ApplyHit}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{ApplyHit()}{ApplyHit()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a9ed3b53c97496b5168d2960f27c16f31} 
+void Enemy\+Health\+System.\+Apply\+Hit (\begin{DoxyParamCaption}\item[{Vector2}]{attacker\+Position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Aplica el knockback físico al enemigo cuando recibe un golpe. Controla el hit-\/stun para evitar que fuerzas se acumulen. 
+
+CUÁ\+NDO SE EJECUTA:\+ Llamado internamente desde \doxylink{class_enemy_health_system_ac4e5fa0e0b56b27487df52b825bc4d8c}{Take\+Damage()}. QUÉ AFECTA:\+ Rigidbody2D (velocidad y fuerza), flag is\+Hit.
+
+NOTA:\+ Si is\+Hit ya está activo, el método retorna sin hacer nada. Esto es intencional para evitar stacking de knockback.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em attacker\+Position} & Posición desde donde vino el ataque.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00135}{135}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00103}{Take\+Damage()}}.
+
+\Hypertarget{class_enemy_health_system_ad589068290a143580f1924e71ab0b40d}\index{EnemyHealthSystem@{EnemyHealthSystem}!Die@{Die}}
+\index{Die@{Die}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{Die()}{Die()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_ad589068290a143580f1924e71ab0b40d} 
+void Enemy\+Health\+System.\+Die (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Destruye el enemigo al quedarse sin vida. Usa un delay de 0.\+5 segundos para permitir efectos visuales de muerte (animaciones, partículas, sonidos) antes de eliminar el objeto. 
+
+CUÁ\+NDO SE EJECUTA:\+ Llamado desde \doxylink{class_enemy_health_system_ac4e5fa0e0b56b27487df52b825bc4d8c}{Take\+Damage()} cuando current\+Health llega a 0. 
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00172}{172}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00103}{Take\+Damage()}}.
+
+\Hypertarget{class_enemy_health_system_a8f942a9c34ff635eb98fdc7633b716b0}\index{EnemyHealthSystem@{EnemyHealthSystem}!EndHit@{EndHit}}
+\index{EndHit@{EndHit}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{EndHit()}{EndHit()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a8f942a9c34ff635eb98fdc7633b716b0} 
+void Enemy\+Health\+System.\+End\+Hit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Finaliza el hit-\/stun y permite que el enemigo reciba knockback nuevamente. Se llama automáticamente mediante Invoke() al vencer knockback\+Duration. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00160}{160}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00135}{Apply\+Hit()}}.
+
+\Hypertarget{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}\index{EnemyHealthSystem@{EnemyHealthSystem}!Start@{Start}}
+\index{Start@{Start}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd} 
+void Enemy\+Health\+System.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start()} — Se ejecuta una vez al activarse el enemigo en escena. Inicializa la vida al máximo y obtiene el Rigidbody2D. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00084}{84}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+\Hypertarget{class_enemy_health_system_ac4e5fa0e0b56b27487df52b825bc4d8c}\index{EnemyHealthSystem@{EnemyHealthSystem}!TakeDamage@{TakeDamage}}
+\index{TakeDamage@{TakeDamage}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{TakeDamage()}{TakeDamage()}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_ac4e5fa0e0b56b27487df52b825bc4d8c} 
+void Enemy\+Health\+System.\+Take\+Damage (\begin{DoxyParamCaption}\item[{int}]{damage}{, }\item[{Vector2}]{attacker\+Position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Punto de entrada de daño para el enemigo. Reduce la vida, aplica knockback y verifica si el enemigo debe morir. 
+
+CUÁ\+NDO SE LLAMA:\+ Desde \doxylink{_hitbox_8cs}{Hitbox.\+cs} o \doxylink{_extended_hitbox_8cs}{Extended\+Hitbox.\+cs} cuando un golpe conecta. QUÉ AFECTA:\+ current\+Health, física del Rigidbody2D, y destrucción del objeto.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em damage} & Cantidad de puntos de vida a restar.\\
+\hline
+{\em attacker\+Position} & Posición del atacante para calcular dirección del knockback.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00103}{103}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00083}{Extended\+Hitbox.\+On\+Trigger\+Enter2\+D()}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_enemy_health_system_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_enemy_health_system_a42fd55394f43d01e3b5bbcd77190fea1}\index{EnemyHealthSystem@{EnemyHealthSystem}!currentHealth@{currentHealth}}
+\index{currentHealth@{currentHealth}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{currentHealth}{currentHealth}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a42fd55394f43d01e3b5bbcd77190fea1} 
+int Enemy\+Health\+System.\+current\+Health}
+
+
+
+Vida actual del enemigo en tiempo real. Se inicializa igual a max\+Health en \doxylink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start()}. Visible en el Inspector para debug durante la partida. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00043}{43}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00084}{Start()}} y \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00103}{Take\+Damage()}}.
+
+\Hypertarget{class_enemy_health_system_a42263fa7364bb38280642fb12244d684}\index{EnemyHealthSystem@{EnemyHealthSystem}!isHit@{isHit}}
+\index{isHit@{isHit}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{isHit}{isHit}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a42263fa7364bb38280642fb12244d684} 
+bool Enemy\+Health\+System.\+is\+Hit = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag de hit-\/stun activo. true = el enemigo está en hit-\/stun y no puede recibir otro knockback. false = el enemigo puede recibir daño con efecto físico completo. Previene el "{}stacking"{} de fuerzas por golpes consecutivos rápidos. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00074}{74}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00135}{Apply\+Hit()}} y \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00160}{End\+Hit()}}.
+
+\Hypertarget{class_enemy_health_system_ab24d5870e9c2be0904d56e9b958df7e3}\index{EnemyHealthSystem@{EnemyHealthSystem}!knockbackDuration@{knockbackDuration}}
+\index{knockbackDuration@{knockbackDuration}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{knockbackDuration}{knockbackDuration}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_ab24d5870e9c2be0904d56e9b958df7e3} 
+float Enemy\+Health\+System.\+knockback\+Duration = 0.\+3f}
+
+
+
+Duración en segundos del hit-\/stun:\+ tiempo mínimo que debe pasar antes de que el enemigo pueda recibir otro knockback. Evita que golpes rápidos apilen fuerzas y lo lancen fuera de la pantalla. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00056}{56}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00135}{Apply\+Hit()}}.
+
+\Hypertarget{class_enemy_health_system_a0c2431cbd05b9ce249b3b7ca713f8731}\index{EnemyHealthSystem@{EnemyHealthSystem}!knockbackForce@{knockbackForce}}
+\index{knockbackForce@{knockbackForce}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{knockbackForce}{knockbackForce}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a0c2431cbd05b9ce249b3b7ca713f8731} 
+float Enemy\+Health\+System.\+knockback\+Force = 5f}
+
+
+
+Fuerza del empuje físico (knockback) que recibe el enemigo al ser golpeado. Configurable desde el Inspector. Valor más alto = mayor desplazamiento. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00049}{49}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00135}{Apply\+Hit()}}.
+
+\Hypertarget{class_enemy_health_system_ab56696439135ac8aa4d6b20db127053b}\index{EnemyHealthSystem@{EnemyHealthSystem}!maxHealth@{maxHealth}}
+\index{maxHealth@{maxHealth}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{maxHealth}{maxHealth}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_ab56696439135ac8aa4d6b20db127053b} 
+int Enemy\+Health\+System.\+max\+Health = 50}
+
+
+
+Vida máxima del enemigo. Define cuántos puntos de daño puede absorber antes de morir. Configurable por tipo de enemigo desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00036}{36}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00084}{Start()}}.
+
+\Hypertarget{class_enemy_health_system_a675aab1c44212a4f9a7cec9131b1798a}\index{EnemyHealthSystem@{EnemyHealthSystem}!rb@{rb}}
+\index{rb@{rb}!EnemyHealthSystem@{EnemyHealthSystem}}
+\doxysubsubsection{\texorpdfstring{rb}{rb}}
+{\footnotesize\ttfamily \label{class_enemy_health_system_a675aab1c44212a4f9a7cec9131b1798a} 
+Rigidbody2D Enemy\+Health\+System.\+rb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al Rigidbody2D del enemigo. Se obtiene automáticamente en \doxylink{class_enemy_health_system_a2c08dc6dca0b76d12cba1e3a2c4456fd}{Start()}. Necesario para aplicar knockback. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00066}{66}} del archivo \doxymbox{\hyperlink{_enemy_health_system_8cs_source}{Enemy\+Health\+System.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00135}{Apply\+Hit()}} y \doxymbox{\hyperlink{_enemy_health_system_8cs_source_l00084}{Start()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_enemy_health_system_8cs}{Enemy\+Health\+System.\+cs}}\end{DoxyCompactItemize}

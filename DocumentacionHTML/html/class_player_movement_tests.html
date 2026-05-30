@@ -106,40 +106,53 @@ $(function() {
   <div class="headertitle"><div class="title">PlayerMovementTests Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Suite de pruebas para <a class="el" href="class_player_movement.html">PlayerMovement</a>.  
+ <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a8e2286fc403c10c4a49e32bc4d12f8c3" id="r_a8e2286fc403c10c4a49e32bc4d12f8c3"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8e2286fc403c10c4a49e32bc4d12f8c3">TearDown</a> ()</td></tr>
+<tr class="memdesc:a8e2286fc403c10c4a49e32bc4d12f8c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia los recursos después de cada prueba.  <br /></td></tr>
 <tr class="memitem:ae228698b16113af60b8f88666c7af566" id="r_ae228698b16113af60b8f88666c7af566"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#ae228698b16113af60b8f88666c7af566">ApplyKnockback_DisablesMovementDuringKnockback</a> ()</td></tr>
+<tr class="memdesc:ae228698b16113af60b8f88666c7af566"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el jugador no puede moverse mientras está en knockback.  <br /></td></tr>
 <tr class="memitem:aca843f19ae8b1538ad04b67dadb14a53" id="r_aca843f19ae8b1538ad04b67dadb14a53"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#aca843f19ae8b1538ad04b67dadb14a53">ApplyKnockback_AttackerOnLeft_PushesPlayerRight</a> ()</td></tr>
+<tr class="memdesc:aca843f19ae8b1538ad04b67dadb14a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el jugador es empujado hacia la derecha cuando el atacante está a la izquierda.  <br /></td></tr>
 <tr class="memitem:a560a213e1e751168080257b9b505ccb6" id="r_a560a213e1e751168080257b9b505ccb6"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a560a213e1e751168080257b9b505ccb6">ApplyKnockback_AttackerOnRight_PushesPlayerLeft</a> ()</td></tr>
+<tr class="memdesc:a560a213e1e751168080257b9b505ccb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el jugador es empujado hacia la izquierda cuando el atacante está a la derecha.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aef37c4797fa456e817600ed2e03bbab9" id="r_aef37c4797fa456e817600ed2e03bbab9"><td class="memItemLeft"><a class="el" href="class_player_movement.html">PlayerMovement</a>&#160;</td><td class="memItemRight"><a class="el" href="#aef37c4797fa456e817600ed2e03bbab9">CreatePlayer</a> (Vector3 position=default)</td></tr>
+<tr class="memdesc:aef37c4797fa456e817600ed2e03bbab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un jugador simulado completo.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ab324179419de4394fab0520ac97ec4c1" id="r_ab324179419de4394fab0520ac97ec4c1"><td class="memItemLeft">GameObject&#160;</td><td class="memItemRight"><a class="el" href="#ab324179419de4394fab0520ac97ec4c1">_playerGO</a></td></tr>
+<tr class="memdesc:ab324179419de4394fab0520ac97ec4c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject del jugador de prueba.  <br /></td></tr>
 <tr class="memitem:ae609902d5717542ba9a945d3ee6b2b66" id="r_ae609902d5717542ba9a945d3ee6b2b66"><td class="memItemLeft">FieldInfo&#160;</td><td class="memItemRight"><a class="el" href="#ae609902d5717542ba9a945d3ee6b2b66">_isKnockedBackField</a></td></tr>
+<tr class="memdesc:ae609902d5717542ba9a945d3ee6b2b66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Campo privado isKnockedBack del <a class="el" href="class_player_movement.html">PlayerMovement</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><h1 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-</h1>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md5"></a>
-SISTEMA: PLAYER MOVEMENT TESTS</h1>
-<p>OBJETIVO: Validar el comportamiento del movimiento del jugador durante:</p><ul>
-<li>Knockback (retroceso al recibir daño)</li>
-<li>Dirección del empuje según posición del atacante</li>
+<div class="textblock"><p>Suite de pruebas para <a class="el" href="class_player_movement.html">PlayerMovement</a>. </p>
+<p><b>Objetivo:</b></p>
+<p>Validar el comportamiento del movimiento del jugador durante: </p><ul>
+<li>
+Knockback (retroceso al recibir daño) </li>
+<li>
+Dirección del empuje según posición del atacante </li>
 </ul>
-<p>LIMITACIONES:</p><ul>
-<li>No se simula input del jugador (A/D/Space).</li>
-<li>Se prueba únicamente lógica interna (ApplyKnockback). </li>
+<p><b>Limitaciones:</b></p>
+<ul>
+<li>
+No se simula input del jugador (A/D/Space). </li>
+<li>
+Se prueba únicamente lógica interna (ApplyKnockback). </li>
+<li>
+Se usa Reflection para acceder a estados privados. </li>
 </ul>
-<h1 class="doxsection"><a class="anchor" id="autotoc_md6"></a>
-- Se usa Reflection para acceder a estados privados.</h1>
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00022">22</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00025">25</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aca843f19ae8b1538ad04b67dadb14a53" name="aca843f19ae8b1538ad04b67dadb14a53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca843f19ae8b1538ad04b67dadb14a53">&#9670;&#160;</a></span>ApplyKnockback_AttackerOnLeft_PushesPlayerRight()</h2>
@@ -164,7 +177,11 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00118">118</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>Verifica que el jugador es empujado hacia la derecha cuando el atacante está a la izquierda. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>El jugador debe ser empujado hacia la derecha si el atacante está a la izquierda. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00131">131</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
 
 </div>
 </div>
@@ -191,7 +208,11 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00143">143</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>Verifica que el jugador es empujado hacia la izquierda cuando el atacante está a la derecha. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>El jugador debe ser empujado hacia la izquierda si el atacante está a la derecha. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00157">157</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
 
 </div>
 </div>
@@ -218,7 +239,21 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00086">86</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>Verifica que el jugador no puede moverse mientras está en knockback. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p><b>Flujo:</b></p>
+<ol>
+<li>
+Crear jugador </li>
+<li>
+Aplicar knockback </li>
+<li>
+Validar que el script se desactiva </li>
+<li>
+Verificar estado interno y física </li>
+</ol>
+
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00098">98</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
 
 </div>
 </div>
@@ -245,9 +280,26 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00040">40</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>Crea un jugador simulado completo. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>Posición inicial del jugador (opcional).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Componente <a class="el" href="class_player_movement.html">PlayerMovement</a> del jugador creado.</dd></dl>
+<p>Construye un jugador falso con: </p><ul>
+<li>
+Rigidbody2D (simulación física) </li>
+<li>
+BoxCollider2D (requerido por el script) </li>
+<li>
+<a class="el" href="class_player_movement.html">PlayerMovement</a> (sistema bajo prueba) </li>
+</ul>
 
-<p class="reference">Referenced by <a class="el" href="_player_movement_tests_8cs_source.html#l00118">ApplyKnockback_AttackerOnLeft_PushesPlayerRight()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00143">ApplyKnockback_AttackerOnRight_PushesPlayerLeft()</a>, and <a class="el" href="_player_movement_tests_8cs_source.html#l00086">ApplyKnockback_DisablesMovementDuringKnockback()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00050">50</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_movement_tests_8cs_source.html#l00131">ApplyKnockback_AttackerOnLeft_PushesPlayerRight()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00157">ApplyKnockback_AttackerOnRight_PushesPlayerLeft()</a>, and <a class="el" href="_player_movement_tests_8cs_source.html#l00098">ApplyKnockback_DisablesMovementDuringKnockback()</a>.</p>
 
 </div>
 </div>
@@ -274,7 +326,10 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00067">67</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>Limpia los recursos después de cada prueba. </p>
+<p>Elimina el GameObject para evitar acumulación en memoria. </p>
+
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00078">78</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
 
 </div>
 </div>
@@ -299,9 +354,11 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00030">30</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>Campo privado isKnockedBack del <a class="el" href="class_player_movement.html">PlayerMovement</a>. </p>
 
-<p class="reference">Referenced by <a class="el" href="_player_movement_tests_8cs_source.html#l00086">ApplyKnockback_DisablesMovementDuringKnockback()</a>, and <a class="el" href="_player_movement_tests_8cs_source.html#l00040">CreatePlayer()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00035">35</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_movement_tests_8cs_source.html#l00098">ApplyKnockback_DisablesMovementDuringKnockback()</a>, and <a class="el" href="_player_movement_tests_8cs_source.html#l00050">CreatePlayer()</a>.</p>
 
 </div>
 </div>
@@ -325,9 +382,11 @@ SISTEMA: PLAYER MOVEMENT TESTS</h1>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00027">27</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+<p>GameObject del jugador de prueba. </p>
 
-<p class="reference">Referenced by <a class="el" href="_player_movement_tests_8cs_source.html#l00118">ApplyKnockback_AttackerOnLeft_PushesPlayerRight()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00143">ApplyKnockback_AttackerOnRight_PushesPlayerLeft()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00086">ApplyKnockback_DisablesMovementDuringKnockback()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00040">CreatePlayer()</a>, and <a class="el" href="_player_movement_tests_8cs_source.html#l00067">TearDown()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_movement_tests_8cs_source.html#l00032">32</a> of file <a class="el" href="_player_movement_tests_8cs_source.html">PlayerMovementTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_player_movement_tests_8cs_source.html#l00131">ApplyKnockback_AttackerOnLeft_PushesPlayerRight()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00157">ApplyKnockback_AttackerOnRight_PushesPlayerLeft()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00098">ApplyKnockback_DisablesMovementDuringKnockback()</a>, <a class="el" href="_player_movement_tests_8cs_source.html#l00050">CreatePlayer()</a>, and <a class="el" href="_player_movement_tests_8cs_source.html#l00078">TearDown()</a>.</p>
 
 </div>
 </div>

@@ -107,38 +107,44 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>TESTS: <a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a>.  
+<p>Suite de pruebas para <a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a>.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af2aa47b4963caac3bbc92cd0b693d730" id="r_af2aa47b4963caac3bbc92cd0b693d730"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#af2aa47b4963caac3bbc92cd0b693d730">TearDown</a> ()</td></tr>
-<tr class="memdesc:af2aa47b4963caac3bbc92cd0b693d730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpieza automática después de cada test. Garantiza que no haya contaminación entre pruebas.  <br /></td></tr>
+<tr class="memdesc:af2aa47b4963caac3bbc92cd0b693d730"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia los recursos después de cada prueba.  <br /></td></tr>
 <tr class="memitem:a2e8aa175851c6a3436025a02c0ecc9d2" id="r_a2e8aa175851c6a3436025a02c0ecc9d2"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a2e8aa175851c6a3436025a02c0ecc9d2">ExtendedHitbox_OnlyDamagesWhenAttackIsActive</a> ()</td></tr>
-<tr class="memdesc:a2e8aa175851c6a3436025a02c0ecc9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 1: El hitbox SOLO debe hacer daño cuando el ataque está activo.  <br /></td></tr>
+<tr class="memdesc:a2e8aa175851c6a3436025a02c0ecc9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el hitbox solo hace daño cuando el ataque está activo.  <br /></td></tr>
 <tr class="memitem:a286832f539a68adf4a3280dcacf63d16" id="r_a286832f539a68adf4a3280dcacf63d16"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a286832f539a68adf4a3280dcacf63d16">ExtendedHitbox_DoesNotDamageOwnCharacter</a> ()</td></tr>
-<tr class="memdesc:a286832f539a68adf4a3280dcacf63d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 2: El sistema no debe permitir auto-daño al propio atacante.  <br /></td></tr>
+<tr class="memdesc:a286832f539a68adf4a3280dcacf63d16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el sistema no permite auto-daño al propio atacante.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a94aff50a909f8f6abbc4fce812f7d67c" id="r_a94aff50a909f8f6abbc4fce812f7d67c"><td class="memItemLeft"><a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a>&#160;</td><td class="memItemRight"><a class="el" href="#a94aff50a909f8f6abbc4fce812f7d67c">CreateAttacker</a> ()</td></tr>
-<tr class="memdesc:a94aff50a909f8f6abbc4fce812f7d67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea el atacante con:  <br /></td></tr>
+<tr class="memdesc:a94aff50a909f8f6abbc4fce812f7d67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea el atacante con todos los componentes necesarios.  <br /></td></tr>
 <tr class="memitem:a08c8497c1b4f779eea6525acc24d3fd6" id="r_a08c8497c1b4f779eea6525acc24d3fd6"><td class="memItemLeft"><a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a08c8497c1b4f779eea6525acc24d3fd6">CreateEnemy</a> ()</td></tr>
-<tr class="memdesc:a08c8497c1b4f779eea6525acc24d3fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un enemigo estándar con:  <br /></td></tr>
+<tr class="memdesc:a08c8497c1b4f779eea6525acc24d3fd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un enemigo estándar con todos los componentes necesarios.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac78173977f402f6807167ffb349169c2" id="r_ac78173977f402f6807167ffb349169c2"><td class="memItemLeft">GameObject&#160;</td><td class="memItemRight"><a class="el" href="#ac78173977f402f6807167ffb349169c2">_attackerGO</a></td></tr>
+<tr class="memdesc:ac78173977f402f6807167ffb349169c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencia al GameObject del atacante (jugador).  <br /></td></tr>
 <tr class="memitem:a73e24de81f49b94d1b32286e4107fb5c" id="r_a73e24de81f49b94d1b32286e4107fb5c"><td class="memItemLeft">GameObject&#160;</td><td class="memItemRight"><a class="el" href="#a73e24de81f49b94d1b32286e4107fb5c">_targetGO</a></td></tr>
+<tr class="memdesc:a73e24de81f49b94d1b32286e4107fb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencia al GameObject del objetivo (enemigo).  <br /></td></tr>
 <tr class="memitem:a12a740519df2325cf6c71e5dfc6006e9" id="r_a12a740519df2325cf6c71e5dfc6006e9"><td class="memItemLeft">MethodInfo&#160;</td><td class="memItemRight"><a class="el" href="#a12a740519df2325cf6c71e5dfc6006e9">_onTriggerEnter2D</a></td></tr>
+<tr class="memdesc:a12a740519df2325cf6c71e5dfc6006e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Método privado OnTriggerEnter2D del hitbox.  <br /></td></tr>
 <tr class="memitem:ac1928c4f33dbe55ded1639bde05c79fd" id="r_ac1928c4f33dbe55ded1639bde05c79fd"><td class="memItemLeft">FieldInfo&#160;</td><td class="memItemRight"><a class="el" href="#ac1928c4f33dbe55ded1639bde05c79fd">_isAttackingField</a></td></tr>
+<tr class="memdesc:ac1928c4f33dbe55ded1639bde05c79fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Campo privado isAttacking del <a class="el" href="class_player_attack.html">PlayerAttack</a>.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>TESTS: <a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a>. </p>
-<p>PROPÓSITO: Validar el comportamiento del sistema de hitbox extendido durante ataques. Se usa reflexión para simular estados internos sin depender del input real.</p>
-<p>USO: Estas pruebas se ejecutan en Unity Test Runner (PlayMode). No requieren escena previa porque crean sus propios GameObjects. </p>
+<div class="textblock"><p>Suite de pruebas para <a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a>. </p>
+<p><b>Propósito:</b></p>
+<p>Validar el comportamiento del sistema de hitbox extendido durante ataques. Se usa reflexión para simular estados internos sin depender del input real.</p>
+<p><b>Uso:</b></p>
+<p>Estas pruebas se ejecutan en Unity Test Runner (PlayMode). No requieren escena previa porque crean sus propios GameObjects. </p>
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00018">18</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00019">19</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a94aff50a909f8f6abbc4fce812f7d67c" name="a94aff50a909f8f6abbc4fce812f7d67c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a94aff50a909f8f6abbc4fce812f7d67c">&#9670;&#160;</a></span>CreateAttacker()</h2>
@@ -163,16 +169,20 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea el atacante con: </p>
-<ul>
-<li>Rigidbody2D sin gravedad (determinismo)</li>
-<li><a class="el" href="class_player_attack.html">PlayerAttack</a> (estado de ataque)</li>
-<li><a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a> en un hijo con collider trigger </li>
+<p>Crea el atacante con todos los componentes necesarios. </p>
+<dl class="section return"><dt>Returns</dt><dd>Componente <a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a> del atacante creado.</dd></dl>
+<p>El atacante incluye: </p><ul>
+<li>
+Rigidbody2D sin gravedad (determinismo) </li>
+<li>
+<a class="el" href="class_player_attack.html">PlayerAttack</a> (estado de ataque) </li>
+<li>
+<a class="el" href="class_extended_hitbox.html">ExtendedHitbox</a> en un hijo con collider trigger </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00034">34</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00047">47</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
 
 </div>
 </div>
@@ -199,16 +209,20 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea un enemigo estándar con: </p>
-<ul>
-<li>Rigidbody2D sin gravedad</li>
-<li>Collider 2D</li>
-<li><a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a> </li>
+<p>Crea un enemigo estándar con todos los componentes necesarios. </p>
+<dl class="section return"><dt>Returns</dt><dd>Componente <a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a> del enemigo creado.</dd></dl>
+<p>El enemigo incluye: </p><ul>
+<li>
+Rigidbody2D sin gravedad </li>
+<li>
+Collider 2D </li>
+<li>
+<a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00075">75</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00094">94</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
 
 </div>
 </div>
@@ -235,9 +249,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 2: El sistema no debe permitir auto-daño al propio atacante. </p>
+<p>Verifica que el sistema no permite auto-daño al propio atacante. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p><b>Casos validados:</b></p>
+<ol>
+<li>
+Colisión con el propio atacante → no afecta enemigos </li>
+<li>
+El atacante no tiene sistema de vida de enemigo </li>
+<li>
+Golpe a enemigo real → sí aplica daño </li>
+</ol>
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">141</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">178</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
 
 </div>
 </div>
@@ -264,9 +288,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 1: El hitbox SOLO debe hacer daño cuando el ataque está activo. </p>
+<p>Verifica que el hitbox solo hace daño cuando el ataque está activo. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p><b>Casos validados:</b></p>
+<ol>
+<li>
+Ataque desactivado → no debe hacer daño </li>
+<li>
+Ataque activo → debe aplicar daño </li>
+</ol>
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">107</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">136</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
 
 </div>
 </div>
@@ -293,9 +325,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Limpieza automática después de cada test. Garantiza que no haya contaminación entre pruebas. </p>
+<p>Limpia los recursos después de cada prueba. </p>
+<p>Garantiza que no haya contaminación entre pruebas. Se ejecuta automáticamente después de cada test. </p>
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00096">96</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00118">118</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
 
 </div>
 </div>
@@ -320,9 +353,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00021">21</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p>Referencia al GameObject del atacante (jugador). </p>
 
-<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00034">CreateAttacker()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00096">TearDown()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00022">22</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00047">CreateAttacker()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00118">TearDown()</a>.</p>
 
 </div>
 </div>
@@ -346,9 +381,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00026">26</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p>Campo privado isAttacking del <a class="el" href="class_player_attack.html">PlayerAttack</a>. </p>
 
-<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00034">CreateAttacker()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00033">33</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00047">CreateAttacker()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
 
 </div>
 </div>
@@ -372,9 +409,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00025">25</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p>Método privado OnTriggerEnter2D del hitbox. </p>
 
-<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00034">CreateAttacker()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00030">30</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00047">CreateAttacker()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>.</p>
 
 </div>
 </div>
@@ -398,9 +437,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00022">22</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+<p>Referencia al GameObject del objetivo (enemigo). </p>
 
-<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00075">CreateEnemy()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00141">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00107">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00096">TearDown()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00025">25</a> of file <a class="el" href="_extended_hitbox_tests_8cs_source.html">ExtendedHitboxTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00094">CreateEnemy()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00178">ExtendedHitbox_DoesNotDamageOwnCharacter()</a>, <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00136">ExtendedHitbox_OnlyDamagesWhenAttackIsActive()</a>, and <a class="el" href="_extended_hitbox_tests_8cs_source.html#l00118">TearDown()</a>.</p>
 
 </div>
 </div>

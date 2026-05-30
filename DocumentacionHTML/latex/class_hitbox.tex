@@ -1,0 +1,198 @@
+\doxysection{Referencia de la clase Hitbox}
+\hypertarget{class_hitbox}{}\label{class_hitbox}\index{Hitbox@{Hitbox}}
+Diagrama de herencia de Hitbox\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_hitbox}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+string \doxymbox{\hyperlink{class_hitbox_af7c8a5894010450435a360fa027a82cd}{attack\+Name}}
+\begin{DoxyCompactList}\small\item\em Nombre del ataque asociado a este hitbox (ej:\+ "{}\+Puñetazo"{}, "{}\+Patada"{}). Se usa para calcular la ganancia de energía en \doxylink{class_energy_system_a217bd9ce2943ac554a443d9c096196ca}{Energy\+System.\+Gain\+Energy\+From\+Attack()}. Configurable desde el Inspector por tipo de hitbox. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_hitbox_aebf888f2480129c66a6cdbd0574fac62}{damage}} = 1
+\begin{DoxyCompactList}\small\item\em Cantidad de daño que este hitbox inflige por golpe. Configurable desde el Inspector. También lo lee \doxylink{_extended_hitbox_8cs}{Extended\+Hitbox.\+cs}. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_hitbox_a5108c59d9d3427b3d8e2ec6bfff68bd2}{hit\+Cooldown}} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Tiempo mínimo en segundos entre golpes consecutivos mientras el Collider permanece en contacto. Evita que un solo ataque quite vida múltiple veces por frame durante el contacto. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_hitbox_a9778b8fd43ff102adde6235e5d99a77a}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_hitbox_a9778b8fd43ff102adde6235e5d99a77a}{Start()} — Se ejecuta una vez al activarse el hitbox en escena. Obtiene la referencia a \doxylink{class_player_attack}{Player\+Attack} desde la raíz de la jerarquía. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hitbox_a7778dcbafa0d1fd281a1494581ffad06}{On\+Disable}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_hitbox_a7778dcbafa0d1fd281a1494581ffad06}{On\+Disable()} — Se ejecuta cuando el hitbox se desactiva (Set\+Active(false)). Resetea el cooldown para que el próximo ataque siempre conecte en el primer frame, independientemente del tiempo transcurrido. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_hitbox_aa7ccf9ce3c6f346325460d87bc9612a2}{On\+Trigger\+Stay2D}} (Collider2D other)
+\begin{DoxyCompactList}\small\item\em On\+Trigger\+Stay2D — Se ejecuta cada frame mientras otro Collider2D permanece dentro del área del hitbox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} \doxymbox{\hyperlink{class_hitbox_a72a6c736156117bd4957ec238d5b8e7b}{attack}}
+\begin{DoxyCompactList}\small\item\em Referencia al \doxylink{class_player_attack}{Player\+Attack} en la raíz de la jerarquía. Necesaria para verificar si hay un ataque activo antes de aplicar daño. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_hitbox_a4391ba6b0d5da0402a2f8f75d9e21f5d}{last\+Hit\+Time}} = float.\+Negative\+Infinity
+\begin{DoxyCompactList}\small\item\em Timestamp del último golpe registrado (Time.\+time en el momento del impacto). Inicializado en float.\+Negative\+Infinity para que el primer golpe siempre conecte. Usado para calcular el cooldown entre golpes en On\+Trigger\+Stay2D. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00032}{32}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_hitbox_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_hitbox_a7778dcbafa0d1fd281a1494581ffad06}\index{Hitbox@{Hitbox}!OnDisable@{OnDisable}}
+\index{OnDisable@{OnDisable}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{OnDisable()}{OnDisable()}}
+{\footnotesize\ttfamily \label{class_hitbox_a7778dcbafa0d1fd281a1494581ffad06} 
+void Hitbox.\+On\+Disable (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_hitbox_a7778dcbafa0d1fd281a1494581ffad06}{On\+Disable()} — Se ejecuta cuando el hitbox se desactiva (Set\+Active(false)). Resetea el cooldown para que el próximo ataque siempre conecte en el primer frame, independientemente del tiempo transcurrido. 
+
+IMPORTANTE:\+ Sin este reset, si el jugador ataca rápido, el cooldown podría bloquear el golpe del siguiente ataque. 
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00100}{100}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+\Hypertarget{class_hitbox_aa7ccf9ce3c6f346325460d87bc9612a2}\index{Hitbox@{Hitbox}!OnTriggerStay2D@{OnTriggerStay2D}}
+\index{OnTriggerStay2D@{OnTriggerStay2D}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{OnTriggerStay2D()}{OnTriggerStay2D()}}
+{\footnotesize\ttfamily \label{class_hitbox_aa7ccf9ce3c6f346325460d87bc9612a2} 
+void Hitbox.\+On\+Trigger\+Stay2D (\begin{DoxyParamCaption}\item[{Collider2D}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+On\+Trigger\+Stay2D — Se ejecuta cada frame mientras otro Collider2D permanece dentro del área del hitbox. 
+
+CUÁ\+NDO SE EJECUTA:\+ Cada frame de contacto con un collider en trigger mode. QUÉ CONTROLA:\+ Validaciones de ataque activo, bloqueo del objetivo, cooldown de golpe, aplicación de daño y energía.
+
+FLUJO INTERNO:\+
+\begin{DoxyEnumerate}
+\item Verificar que \doxylink{class_player_attack}{Player\+Attack} existe y hay ataque activo.
+\item Verificar tag del objetivo ("{}\+Player"{} o "{}\+Enemy"{}).
+\item Ignorar autogolpe (mismo root Game\+Object).
+\item Verificar si el objetivo está bloqueando → rebote al atacante.
+\item Verificar cooldown de golpe.
+\item Aplicar daño vía \doxylink{class_health_system}{Health\+System}.
+\item Dar energía al objetivo (Gain\+Energy\+From\+Damage) y al atacante (Gain\+Energy\+From\+Attack). 
+\end{DoxyEnumerate}
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{123}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+\Hypertarget{class_hitbox_a9778b8fd43ff102adde6235e5d99a77a}\index{Hitbox@{Hitbox}!Start@{Start}}
+\index{Start@{Start}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_hitbox_a9778b8fd43ff102adde6235e5d99a77a} 
+void Hitbox.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_hitbox_a9778b8fd43ff102adde6235e5d99a77a}{Start()} — Se ejecuta una vez al activarse el hitbox en escena. Obtiene la referencia a \doxylink{class_player_attack}{Player\+Attack} desde la raíz de la jerarquía. 
+
+NOTA:\+ El hitbox generalmente es hijo del jugador, por lo que transform.\+root apunta al Game\+Object raíz del jugador. 
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00086}{86}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_hitbox_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_hitbox_a72a6c736156117bd4957ec238d5b8e7b}\index{Hitbox@{Hitbox}!attack@{attack}}
+\index{attack@{attack}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{attack}{attack}}
+{\footnotesize\ttfamily \label{class_hitbox_a72a6c736156117bd4957ec238d5b8e7b} 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} Hitbox.\+attack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al \doxylink{class_player_attack}{Player\+Attack} en la raíz de la jerarquía. Necesaria para verificar si hay un ataque activo antes de aplicar daño. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00066}{66}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{On\+Trigger\+Stay2\+D()}} y \doxymbox{\hyperlink{_hitbox_8cs_source_l00086}{Start()}}.
+
+\Hypertarget{class_hitbox_af7c8a5894010450435a360fa027a82cd}\index{Hitbox@{Hitbox}!attackName@{attackName}}
+\index{attackName@{attackName}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{attackName}{attackName}}
+{\footnotesize\ttfamily \label{class_hitbox_af7c8a5894010450435a360fa027a82cd} 
+string Hitbox.\+attack\+Name}
+
+
+
+Nombre del ataque asociado a este hitbox (ej:\+ "{}\+Puñetazo"{}, "{}\+Patada"{}). Se usa para calcular la ganancia de energía en \doxylink{class_energy_system_a217bd9ce2943ac554a443d9c096196ca}{Energy\+System.\+Gain\+Energy\+From\+Attack()}. Configurable desde el Inspector por tipo de hitbox. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00043}{43}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_hitbox_aebf888f2480129c66a6cdbd0574fac62}\index{Hitbox@{Hitbox}!damage@{damage}}
+\index{damage@{damage}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{damage}{damage}}
+{\footnotesize\ttfamily \label{class_hitbox_aebf888f2480129c66a6cdbd0574fac62} 
+int Hitbox.\+damage = 1}
+
+
+
+Cantidad de daño que este hitbox inflige por golpe. Configurable desde el Inspector. También lo lee \doxylink{_extended_hitbox_8cs}{Extended\+Hitbox.\+cs}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00049}{49}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_hitbox_a5108c59d9d3427b3d8e2ec6bfff68bd2}\index{Hitbox@{Hitbox}!hitCooldown@{hitCooldown}}
+\index{hitCooldown@{hitCooldown}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{hitCooldown}{hitCooldown}}
+{\footnotesize\ttfamily \label{class_hitbox_a5108c59d9d3427b3d8e2ec6bfff68bd2} 
+float Hitbox.\+hit\+Cooldown = 0.\+2f}
+
+
+
+Tiempo mínimo en segundos entre golpes consecutivos mientras el Collider permanece en contacto. Evita que un solo ataque quite vida múltiple veces por frame durante el contacto. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00056}{56}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_hitbox_a4391ba6b0d5da0402a2f8f75d9e21f5d}\index{Hitbox@{Hitbox}!lastHitTime@{lastHitTime}}
+\index{lastHitTime@{lastHitTime}!Hitbox@{Hitbox}}
+\doxysubsubsection{\texorpdfstring{lastHitTime}{lastHitTime}}
+{\footnotesize\ttfamily \label{class_hitbox_a4391ba6b0d5da0402a2f8f75d9e21f5d} 
+float Hitbox.\+last\+Hit\+Time = float.\+Negative\+Infinity\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Timestamp del último golpe registrado (Time.\+time en el momento del impacto). Inicializado en float.\+Negative\+Infinity para que el primer golpe siempre conecte. Usado para calcular el cooldown entre golpes en On\+Trigger\+Stay2D. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_hitbox_8cs_source_l00073}{73}} del archivo \doxymbox{\hyperlink{_hitbox_8cs_source}{Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00100}{On\+Disable()}} y \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{On\+Trigger\+Stay2\+D()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_hitbox_8cs}{Hitbox.\+cs}}\end{DoxyCompactItemize}

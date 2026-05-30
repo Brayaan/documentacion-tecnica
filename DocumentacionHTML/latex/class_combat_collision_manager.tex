@@ -1,0 +1,129 @@
+\doxysection{Referencia de la clase Combat\+Collision\+Manager}
+\hypertarget{class_combat_collision_manager}{}\label{class_combat_collision_manager}\index{CombatCollisionManager@{CombatCollisionManager}}
+Diagrama de herencia de Combat\+Collision\+Manager\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_combat_collision_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_combat_collision_manager_af94b74e444f17e3b4aa53b25411827f3}{enemies\+Push\+Each\+Other}} = false
+\begin{DoxyCompactList}\small\item\em Si es true, los enemigos podrán empujarse físicamente entre sí. Si es false (por defecto), sus colisiones físicas se ignorarán. Configurable desde el Inspector para ajustar el diseño de gameplay. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start()} — Se ejecuta una sola vez al iniciar la escena. Dispara la configuración global de física para todos los enemigos. Es el punto de entrada único de este sistema. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97}{Configure\+All\+Enemies}} ()
+\begin{DoxyCompactList}\small\item\em Busca todos los Game\+Objects con el tag "{}\+Enemy"{} en la escena y les aplica la configuración de físicas correspondiente. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075}{Configure\+Enemy\+Physics}} (Game\+Object enemy, Collider2D\+[$\,$]\+ all\+Colliders)
+\begin{DoxyCompactList}\small\item\em Configura las físicas de un enemigo individual:\+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00027}{27}} del archivo \doxymbox{\hyperlink{_combat_collision_manager_8cs_source}{Combat\+Collision\+Manager.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_combat_collision_manager_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97}\index{CombatCollisionManager@{CombatCollisionManager}!ConfigureAllEnemies@{ConfigureAllEnemies}}
+\index{ConfigureAllEnemies@{ConfigureAllEnemies}!CombatCollisionManager@{CombatCollisionManager}}
+\doxysubsubsection{\texorpdfstring{ConfigureAllEnemies()}{ConfigureAllEnemies()}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97} 
+void Combat\+Collision\+Manager.\+Configure\+All\+Enemies (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Busca todos los Game\+Objects con el tag "{}\+Enemy"{} en la escena y les aplica la configuración de físicas correspondiente. 
+
+CUÁ\+NDO SE EJECUTA:\+ Una sola vez al inicio, invocado desde \doxylink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start()}. QUÉ AFECTA:\+ Todos los enemigos activos en la escena al momento de \doxylink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start()}.
+
+NOTA:\+ Los enemigos instanciados después de \doxylink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start()} NO serán configurados. Si el juego usa spawn dinámico, llamar \doxylink{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075}{Configure\+Enemy\+Physics()} manualmente al instanciar cada enemigo. 
+
+Definición en la línea \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00069}{69}} del archivo \doxymbox{\hyperlink{_combat_collision_manager_8cs_source}{Combat\+Collision\+Manager.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00049}{Start()}}.
+
+\Hypertarget{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075}\index{CombatCollisionManager@{CombatCollisionManager}!ConfigureEnemyPhysics@{ConfigureEnemyPhysics}}
+\index{ConfigureEnemyPhysics@{ConfigureEnemyPhysics}!CombatCollisionManager@{CombatCollisionManager}}
+\doxysubsubsection{\texorpdfstring{ConfigureEnemyPhysics()}{ConfigureEnemyPhysics()}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_af1cc08818fede0b5b10a5194f29d8075} 
+void Combat\+Collision\+Manager.\+Configure\+Enemy\+Physics (\begin{DoxyParamCaption}\item[{Game\+Object}]{enemy}{, }\item[{Collider2D\+[$\,$]\+}]{all\+Colliders}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Configura las físicas de un enemigo individual:\+ 
+
+
+\begin{DoxyItemize}
+\item Bloquea la rotación del Rigidbody2D.
+\item Hace que este enemigo ignore colisiones físicas con todos los demás enemigos.
+\end{DoxyItemize}
+
+QUÉ HACE:\+ Itera sobre todos los Collider2D de la escena y aplica Physics2\+D.\+Ignore\+Collision entre enemigos. CUÁ\+NDO SE EJECUTA:\+ Una vez por enemigo, llamado desde \doxylink{class_combat_collision_manager_a8b78447c2c0809e0e3bf23811ff73a97}{Configure\+All\+Enemies()}. QUÉ AFECTA:\+ Rigidbody2D y Collider2D del enemigo recibido como parámetro.
+
+
+\begin{DoxyParams}{Parámetros}
+{\em enemy} & El Game\+Object del enemigo a configurar.\\
+\hline
+{\em all\+Colliders} & Lista de todos los Collider2D activos en la escena.\\
+\hline
+\end{DoxyParams}
+
+
+Definición en la línea \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00105}{105}} del archivo \doxymbox{\hyperlink{_combat_collision_manager_8cs_source}{Combat\+Collision\+Manager.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00069}{Configure\+All\+Enemies()}}.
+
+\Hypertarget{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}\index{CombatCollisionManager@{CombatCollisionManager}!Start@{Start}}
+\index{Start@{Start}!CombatCollisionManager@{CombatCollisionManager}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc} 
+void Combat\+Collision\+Manager.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_combat_collision_manager_a9ac9fba636755b84da1b5e8279f2b3dc}{Start()} — Se ejecuta una sola vez al iniciar la escena. Dispara la configuración global de física para todos los enemigos. Es el punto de entrada único de este sistema. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00049}{49}} del archivo \doxymbox{\hyperlink{_combat_collision_manager_8cs_source}{Combat\+Collision\+Manager.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_combat_collision_manager_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_combat_collision_manager_af94b74e444f17e3b4aa53b25411827f3}\index{CombatCollisionManager@{CombatCollisionManager}!enemiesPushEachOther@{enemiesPushEachOther}}
+\index{enemiesPushEachOther@{enemiesPushEachOther}!CombatCollisionManager@{CombatCollisionManager}}
+\doxysubsubsection{\texorpdfstring{enemiesPushEachOther}{enemiesPushEachOther}}
+{\footnotesize\ttfamily \label{class_combat_collision_manager_af94b74e444f17e3b4aa53b25411827f3} 
+bool Combat\+Collision\+Manager.\+enemies\+Push\+Each\+Other = false}
+
+
+
+Si es true, los enemigos podrán empujarse físicamente entre sí. Si es false (por defecto), sus colisiones físicas se ignorarán. Configurable desde el Inspector para ajustar el diseño de gameplay. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00038}{38}} del archivo \doxymbox{\hyperlink{_combat_collision_manager_8cs_source}{Combat\+Collision\+Manager.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_combat_collision_manager_8cs_source_l00105}{Configure\+Enemy\+Physics()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_combat_collision_manager_8cs}{Combat\+Collision\+Manager.\+cs}}\end{DoxyCompactItemize}

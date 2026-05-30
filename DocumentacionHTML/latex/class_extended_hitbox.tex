@@ -1,0 +1,117 @@
+\doxysection{Referencia de la clase Extended\+Hitbox}
+\hypertarget{class_extended_hitbox}{}\label{class_extended_hitbox}\index{ExtendedHitbox@{ExtendedHitbox}}
+Diagrama de herencia de Extended\+Hitbox\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_extended_hitbox}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e}{Start()} — Se ejecuta una vez al activarse el objeto. Obtiene referencias a \doxylink{class_hitbox}{Hitbox} (mismo objeto) y \doxylink{class_player_attack}{Player\+Attack} (raíz de jerarquía). \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_extended_hitbox_a882b862d14952075d8d09592e0700d27}{On\+Trigger\+Enter2D}} (Collider2D other)
+\begin{DoxyCompactList}\small\item\em On\+Trigger\+Enter2D — Se ejecuta una vez al entrar en contacto con otro Collider2D. Registra el impacto al PRIMER frame de contacto (no continuo como On\+Trigger\+Stay2D). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_hitbox}{Hitbox}} \doxymbox{\hyperlink{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}{original\+Hitbox}}
+\begin{DoxyCompactList}\small\item\em Referencia al \doxylink{class_hitbox}{Hitbox} principal del mismo Game\+Object. Se usa para leer el valor de daño (original\+Hitbox.\+damage) en lugar de duplicarlo, manteniendo un único punto de configuración. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} \doxymbox{\hyperlink{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}{player\+Attack}}
+\begin{DoxyCompactList}\small\item\em Referencia al \doxylink{class_player_attack}{Player\+Attack} en la raíz de la jerarquía del jugador. Necesario para verificar si hay un ataque activo antes de procesar golpes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00030}{30}} del archivo \doxymbox{\hyperlink{_extended_hitbox_8cs_source}{Extended\+Hitbox.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_extended_hitbox_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_extended_hitbox_a882b862d14952075d8d09592e0700d27}\index{ExtendedHitbox@{ExtendedHitbox}!OnTriggerEnter2D@{OnTriggerEnter2D}}
+\index{OnTriggerEnter2D@{OnTriggerEnter2D}!ExtendedHitbox@{ExtendedHitbox}}
+\doxysubsubsection{\texorpdfstring{OnTriggerEnter2D()}{OnTriggerEnter2D()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_a882b862d14952075d8d09592e0700d27} 
+void Extended\+Hitbox.\+On\+Trigger\+Enter2D (\begin{DoxyParamCaption}\item[{Collider2D}]{other}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+On\+Trigger\+Enter2D — Se ejecuta una vez al entrar en contacto con otro Collider2D. Registra el impacto al PRIMER frame de contacto (no continuo como On\+Trigger\+Stay2D). 
+
+CUÁ\+NDO SE EJECUTA:\+ Cuando el Collider2D de este hitbox toca otro collider. QUÉ CONTROLA:\+ Validaciones de ataque activo, aplicación de daño y ganancia de energía.
+
+FLUJO INTERNO:\+
+\begin{DoxyEnumerate}
+\item Verificar que las referencias críticas existen.
+\item Verificar que \doxylink{class_player_attack}{Player\+Attack} está en estado de ataque activo.
+\item Verificar que el collider tocado tiene el tag "{}\+Enemy"{}.
+\item Obtener \doxylink{class_enemy_health_system}{Enemy\+Health\+System} y aplicar daño con el valor del \doxylink{class_hitbox}{Hitbox} padre.
+\item Otorgar energía al atacante por conectar el golpe. 
+\end{DoxyEnumerate}
+
+Definición en la línea \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00083}{83}} del archivo \doxymbox{\hyperlink{_extended_hitbox_8cs_source}{Extended\+Hitbox.\+cs}}.
+
+\Hypertarget{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e}\index{ExtendedHitbox@{ExtendedHitbox}!Start@{Start}}
+\index{Start@{Start}!ExtendedHitbox@{ExtendedHitbox}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e} 
+void Extended\+Hitbox.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_extended_hitbox_a3a46efeb5e44ec7e2b5a2d67acfba60e}{Start()} — Se ejecuta una vez al activarse el objeto. Obtiene referencias a \doxylink{class_hitbox}{Hitbox} (mismo objeto) y \doxylink{class_player_attack}{Player\+Attack} (raíz de jerarquía). 
+
+NOTA:\+ Si el objeto no es hijo del jugador, transform.\+root.\+Get\+Component puede devolver null y el hitbox quedará inactivo. 
+
+Definición en la línea \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00060}{60}} del archivo \doxymbox{\hyperlink{_extended_hitbox_8cs_source}{Extended\+Hitbox.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_extended_hitbox_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9}\index{ExtendedHitbox@{ExtendedHitbox}!originalHitbox@{originalHitbox}}
+\index{originalHitbox@{originalHitbox}!ExtendedHitbox@{ExtendedHitbox}}
+\doxysubsubsection{\texorpdfstring{originalHitbox}{originalHitbox}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_a26f46b77e37e1b9e1cc525e06a091fc9} 
+\doxymbox{\hyperlink{class_hitbox}{Hitbox}} Extended\+Hitbox.\+original\+Hitbox\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al \doxylink{class_hitbox}{Hitbox} principal del mismo Game\+Object. Se usa para leer el valor de daño (original\+Hitbox.\+damage) en lugar de duplicarlo, manteniendo un único punto de configuración. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00041}{41}} del archivo \doxymbox{\hyperlink{_extended_hitbox_8cs_source}{Extended\+Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00083}{On\+Trigger\+Enter2\+D()}} y \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00060}{Start()}}.
+
+\Hypertarget{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68}\index{ExtendedHitbox@{ExtendedHitbox}!playerAttack@{playerAttack}}
+\index{playerAttack@{playerAttack}!ExtendedHitbox@{ExtendedHitbox}}
+\doxysubsubsection{\texorpdfstring{playerAttack}{playerAttack}}
+{\footnotesize\ttfamily \label{class_extended_hitbox_a467ce86a30d8722edb4070529be12b68} 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} Extended\+Hitbox.\+player\+Attack\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al \doxylink{class_player_attack}{Player\+Attack} en la raíz de la jerarquía del jugador. Necesario para verificar si hay un ataque activo antes de procesar golpes. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00047}{47}} del archivo \doxymbox{\hyperlink{_extended_hitbox_8cs_source}{Extended\+Hitbox.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00083}{On\+Trigger\+Enter2\+D()}} y \doxymbox{\hyperlink{_extended_hitbox_8cs_source_l00060}{Start()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_extended_hitbox_8cs}{Extended\+Hitbox.\+cs}}\end{DoxyCompactItemize}

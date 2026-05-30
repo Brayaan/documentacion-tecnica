@@ -1,0 +1,14 @@
+digraph "CombatCollisionManager.Start"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="CombatCollisionManager.Start",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Start() — Se ejecuta una sola vez al iniciar la escena. Dispara la configuración global de física par..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="CombatCollisionManager.Configure\lAllEnemies",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d69/class_combat_collision_manager.html#a8b78447c2c0809e0e3bf23811ff73a97",tooltip="Busca todos los GameObjects con el tag \"Enemy\" en la escena y les aplica la configuración de físicas ..."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="CombatCollisionManager.Configure\lEnemyPhysics",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$d2/d69/class_combat_collision_manager.html#af1cc08818fede0b5b10a5194f29d8075",tooltip="Configura las físicas de un enemigo individual:"];
+}

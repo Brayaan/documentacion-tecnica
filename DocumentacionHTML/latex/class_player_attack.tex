@@ -1,0 +1,500 @@
+\doxysection{Referencia de la clase Player\+Attack}
+\hypertarget{class_player_attack}{}\label{class_player_attack}\index{PlayerAttack@{PlayerAttack}}
+Diagrama de herencia de Player\+Attack\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player_attack}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_player_attack_a3996503d35edee7f2bf3020c89f21b2c}{Is\+Attacking}} ()
+\begin{DoxyCompactList}\small\item\em Expone el estado de ataque para que \doxylink{class_hitbox}{Hitbox} y \doxylink{class_extended_hitbox}{Extended\+Hitbox} puedan verificar si deben procesar colisiones. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a39e4a351c33a7c368bc59a7ad6813b38}{Activar\+Hitbox}} ()
+\begin{DoxyCompactList}\small\item\em Activa el hitbox de puñetazo. Llamado al inicio del puñetazo. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a98980a0f03c90eb2925958da9291c24a}{Desactivar\+Hitbox}} ()
+\begin{DoxyCompactList}\small\item\em Desactiva el hitbox de puñetazo. Llamado al terminar la ventana de daño. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a2cd42bfa233d139f791e4aeb0256c4dd}{Activar\+Kick\+Hitbox}} ()
+\begin{DoxyCompactList}\small\item\em Activa el hitbox de patada. Llamado al inicio de la patada. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a8d57eea8ca6e1759686d5811df9cdbf8}{Desactivar\+Kick\+Hitbox}} ()
+\begin{DoxyCompactList}\small\item\em Desactiva el hitbox de patada. Llamado al terminar la ventana de daño. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} \doxymbox{\hyperlink{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88}{player\+Movement}}
+\begin{DoxyCompactList}\small\item\em Referencia al script de movimiento del jugador. Necesaria para sincronizar el flag is\+Attacking con \doxylink{class_player_movement}{Player\+Movement}, que puede usar ese dato para modificar el comportamiento del movimiento. Debe asignarse desde el Inspector. \end{DoxyCompactList}\item 
+Game\+Object \doxymbox{\hyperlink{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}{punch\+Hitbox}}
+\begin{DoxyCompactList}\small\item\em Game\+Object del hitbox de puñetazo. Se activa/\+desactiva durante la ventana de daño del puñetazo. Debe asignarse desde el Inspector. El Game\+Object debe tener un Collider2D en modo Trigger y el script \doxylink{_hitbox_8cs}{Hitbox.\+cs}. \end{DoxyCompactList}\item 
+Game\+Object \doxymbox{\hyperlink{class_player_attack_a21c221493de8b4bfa86762dc82b98148}{kick\+Hitbox}}
+\begin{DoxyCompactList}\small\item\em Game\+Object del hitbox de patada. Se activa/\+desactiva durante la ventana de daño de la patada. Debe asignarse desde el Inspector. El Game\+Object debe tener un Collider2D en modo Trigger y el script \doxylink{_hitbox_8cs}{Hitbox.\+cs}. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_attack_aa4f16c2b62e0804898250fa244fdda4f}{punch\+Key}} = Key\+Code.\+J
+\begin{DoxyCompactList}\small\item\em Tecla asignada al puñetazo. Por defecto:\+ J. Configurable desde el Inspector para remapeo de controles. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_attack_a94d9fa546a1a4924f97f399919907ea2}{kick\+Key}} = Key\+Code.\+K
+\begin{DoxyCompactList}\small\item\em Tecla asignada a la patada. Por defecto:\+ K. Configurable desde el Inspector para remapeo de controles. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_attack_a08c43dc6d48e16d2439e77478432865c}{kick\+Cooldown}} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Tiempo en segundos que debe pasar antes de poder usar la patada de nuevo. Configurable desde el Inspector. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_attack_af5b081ae192a762efa4ff18a52702486}{punch\+Cooldown}} = 0.\+3f
+\begin{DoxyCompactList}\small\item\em Tiempo en segundos que debe pasar antes de poder usar el puñetazo de nuevo. Configurable desde el Inspector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{Start()} — Se ejecuta una vez al iniciar. Obtiene el Animator y asegura que ambos hitboxes están desactivados. Los hitboxes SIEMPRE deben comenzar desactivados para evitar detecciones falsas al iniciar la escena. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update()} — Se ejecuta cada frame. Lee el input de teclado para puñetazo y patada. Verifica cooldown, flag de ataque activo y disponibilidad antes de atacar. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{Start\+Attack}} ()
+\begin{DoxyCompactList}\small\item\em Inicia el estado de ataque global. Pone is\+Attacking en true y lo sincroniza con \doxylink{class_player_movement}{Player\+Movement}. Programa \doxylink{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}{End\+Attack()} para que se ejecute después de attack\+Duration. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}{End\+Attack}} ()
+\begin{DoxyCompactList}\small\item\em Finaliza el estado de ataque y libera el sistema para el próximo ataque. Se ejecuta automáticamente mediante Invoke() al vencer attack\+Duration. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a459675c82d206f79c42d1731e7719238}{Reset\+Kick}} ()
+\begin{DoxyCompactList}\small\item\em Reactiva la disponibilidad de la patada después de kick\+Cooldown segundos. Se ejecuta mediante Invoke() desde \doxylink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update()}. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_attack_a346cd11bc45e53189bba93dcad8bb6f9}{Reset\+Punch}} ()
+\begin{DoxyCompactList}\small\item\em Reactiva la disponibilidad del puñetazo después de punch\+Cooldown segundos. Se ejecuta mediante Invoke() desde \doxylink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}{kick\+Ready}} = true
+\begin{DoxyCompactList}\small\item\em Flag que indica si la patada está disponible para ejecutarse. Se pone en false al atacar y vuelve a true después de kick\+Cooldown segundos. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}{punch\+Ready}} = true
+\begin{DoxyCompactList}\small\item\em Flag que indica si el puñetazo está disponible para ejecutarse. Se pone en false al atacar y vuelve a true después de punch\+Cooldown segundos. \end{DoxyCompactList}\item 
+bool \doxymbox{\hyperlink{class_player_attack_aaee590364160623b374be01711cbea60}{is\+Attacking}} = false
+\begin{DoxyCompactList}\small\item\em Flag global de ataque activo. true = el jugador está ejecutando un ataque y no puede iniciar otro. false = el jugador puede iniciar un nuevo ataque. También se sincroniza con \doxylink{class_player_movement_a60d650ad178183e34255370ff8435eb4}{Player\+Movement.\+is\+Attacking}. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}{attack\+Duration}} = 0.\+3f
+\begin{DoxyCompactList}\small\item\em Tiempo en segundos que el hitbox permanece activo durante un ataque. Define la "{}ventana de daño"{}:\+ cuánto tiempo puede conectar el golpe. También controla la duración del estado is\+Attacking. \end{DoxyCompactList}\item 
+Animator \doxymbox{\hyperlink{class_player_attack_a6743019059d6443dbe846db5274a148f}{anim}}
+\begin{DoxyCompactList}\small\item\em Referencia al Animator del jugador. Se obtiene en \doxylink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{Start()}. Necesario para disparar triggers de animación. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00032}{32}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_player_attack_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_player_attack_a39e4a351c33a7c368bc59a7ad6813b38}\index{PlayerAttack@{PlayerAttack}!ActivarHitbox@{ActivarHitbox}}
+\index{ActivarHitbox@{ActivarHitbox}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{ActivarHitbox()}{ActivarHitbox()}}
+{\footnotesize\ttfamily \label{class_player_attack_a39e4a351c33a7c368bc59a7ad6813b38} 
+void Player\+Attack.\+Activar\+Hitbox (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Activa el hitbox de puñetazo. Llamado al inicio del puñetazo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00261}{261}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a2cd42bfa233d139f791e4aeb0256c4dd}\index{PlayerAttack@{PlayerAttack}!ActivarKickHitbox@{ActivarKickHitbox}}
+\index{ActivarKickHitbox@{ActivarKickHitbox}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{ActivarKickHitbox()}{ActivarKickHitbox()}}
+{\footnotesize\ttfamily \label{class_player_attack_a2cd42bfa233d139f791e4aeb0256c4dd} 
+void Player\+Attack.\+Activar\+Kick\+Hitbox (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Activa el hitbox de patada. Llamado al inicio de la patada. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00275}{275}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a98980a0f03c90eb2925958da9291c24a}\index{PlayerAttack@{PlayerAttack}!DesactivarHitbox@{DesactivarHitbox}}
+\index{DesactivarHitbox@{DesactivarHitbox}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{DesactivarHitbox()}{DesactivarHitbox()}}
+{\footnotesize\ttfamily \label{class_player_attack_a98980a0f03c90eb2925958da9291c24a} 
+void Player\+Attack.\+Desactivar\+Hitbox (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Desactiva el hitbox de puñetazo. Llamado al terminar la ventana de daño. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00268}{268}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a8d57eea8ca6e1759686d5811df9cdbf8}\index{PlayerAttack@{PlayerAttack}!DesactivarKickHitbox@{DesactivarKickHitbox}}
+\index{DesactivarKickHitbox@{DesactivarKickHitbox}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{DesactivarKickHitbox()}{DesactivarKickHitbox()}}
+{\footnotesize\ttfamily \label{class_player_attack_a8d57eea8ca6e1759686d5811df9cdbf8} 
+void Player\+Attack.\+Desactivar\+Kick\+Hitbox (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Desactiva el hitbox de patada. Llamado al terminar la ventana de daño. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00282}{282}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}\index{PlayerAttack@{PlayerAttack}!EndAttack@{EndAttack}}
+\index{EndAttack@{EndAttack}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{EndAttack()}{EndAttack()}}
+{\footnotesize\ttfamily \label{class_player_attack_af4fc8601a7670a16751ceea0c4e58804} 
+void Player\+Attack.\+End\+Attack (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Finaliza el estado de ataque y libera el sistema para el próximo ataque. Se ejecuta automáticamente mediante Invoke() al vencer attack\+Duration. 
+
+CUÁ\+NDO SE LLAMA:\+ Después de attack\+Duration segundos desde \doxylink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{Start\+Attack()}. QUÉ AFECTA:\+ is\+Attacking, \doxylink{class_player_movement_a60d650ad178183e34255370ff8435eb4}{Player\+Movement.\+is\+Attacking}. 
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00231}{231}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00211}{Start\+Attack()}}.
+
+\Hypertarget{class_player_attack_a3996503d35edee7f2bf3020c89f21b2c}\index{PlayerAttack@{PlayerAttack}!IsAttacking@{IsAttacking}}
+\index{IsAttacking@{IsAttacking}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{IsAttacking()}{IsAttacking()}}
+{\footnotesize\ttfamily \label{class_player_attack_a3996503d35edee7f2bf3020c89f21b2c} 
+bool Player\+Attack.\+Is\+Attacking (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Expone el estado de ataque para que \doxylink{class_hitbox}{Hitbox} y \doxylink{class_extended_hitbox}{Extended\+Hitbox} puedan verificar si deben procesar colisiones. 
+
+\begin{DoxyReturn}{Devuelve}
+true si hay un ataque en curso; false en caso contrario.
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00251}{251}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+\Hypertarget{class_player_attack_a459675c82d206f79c42d1731e7719238}\index{PlayerAttack@{PlayerAttack}!ResetKick@{ResetKick}}
+\index{ResetKick@{ResetKick}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{ResetKick()}{ResetKick()}}
+{\footnotesize\ttfamily \label{class_player_attack_a459675c82d206f79c42d1731e7719238} 
+void Player\+Attack.\+Reset\+Kick (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Reactiva la disponibilidad de la patada después de kick\+Cooldown segundos. Se ejecuta mediante Invoke() desde \doxylink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00296}{296}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a346cd11bc45e53189bba93dcad8bb6f9}\index{PlayerAttack@{PlayerAttack}!ResetPunch@{ResetPunch}}
+\index{ResetPunch@{ResetPunch}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{ResetPunch()}{ResetPunch()}}
+{\footnotesize\ttfamily \label{class_player_attack_a346cd11bc45e53189bba93dcad8bb6f9} 
+void Player\+Attack.\+Reset\+Punch (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Reactiva la disponibilidad del puñetazo después de punch\+Cooldown segundos. Se ejecuta mediante Invoke() desde \doxylink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00305}{305}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a6f870997319046f036f4422eba03c1ab}\index{PlayerAttack@{PlayerAttack}!Start@{Start}}
+\index{Start@{Start}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_player_attack_a6f870997319046f036f4422eba03c1ab} 
+void Player\+Attack.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{Start()} — Se ejecuta una vez al iniciar. Obtiene el Animator y asegura que ambos hitboxes están desactivados. Los hitboxes SIEMPRE deben comenzar desactivados para evitar detecciones falsas al iniciar la escena. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00145}{145}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+\Hypertarget{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}\index{PlayerAttack@{PlayerAttack}!StartAttack@{StartAttack}}
+\index{StartAttack@{StartAttack}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{StartAttack()}{StartAttack()}}
+{\footnotesize\ttfamily \label{class_player_attack_a76d6bb3ca79273e312d52229a75a538f} 
+void Player\+Attack.\+Start\+Attack (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Inicia el estado de ataque global. Pone is\+Attacking en true y lo sincroniza con \doxylink{class_player_movement}{Player\+Movement}. Programa \doxylink{class_player_attack_af4fc8601a7670a16751ceea0c4e58804}{End\+Attack()} para que se ejecute después de attack\+Duration. 
+
+CUÁ\+NDO SE LLAMA:\+ Al inicio de cada ataque (puñetazo o patada). QUÉ AFECTA:\+ is\+Attacking, \doxylink{class_player_movement_a60d650ad178183e34255370ff8435eb4}{Player\+Movement.\+is\+Attacking}. 
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00211}{211}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}\index{PlayerAttack@{PlayerAttack}!Update@{Update}}
+\index{Update@{Update}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f} 
+void Player\+Attack.\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_attack_a7990960c7cf75b2894827dd04fdd5c0f}{Update()} — Se ejecuta cada frame. Lee el input de teclado para puñetazo y patada. Verifica cooldown, flag de ataque activo y disponibilidad antes de atacar. 
+
+CUÁ\+NDO SE EJECUTA:\+ Cada frame durante la partida. QUÉ CONTROLA:\+ Input de ataques, inicio de \doxylink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{Start\+Attack()}, activación de hitboxes, triggers de animación y cooldowns.
+
+ORDEN DE VERIFICACIÓN (puñetazo):\+
+\begin{DoxyEnumerate}
+\item Input detectado (Get\+Key\+Down).
+\item No hay ataque en curso (!is\+Attacking).
+\item Puñetazo disponible (punch\+Ready). → \doxylink{class_player_attack_a76d6bb3ca79273e312d52229a75a538f}{Start\+Attack()} + animación + hitbox activo + cooldown. 
+\end{DoxyEnumerate}
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{172}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_attack_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_player_attack_a6743019059d6443dbe846db5274a148f}\index{PlayerAttack@{PlayerAttack}!anim@{anim}}
+\index{anim@{anim}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{anim}{anim}}
+{\footnotesize\ttfamily \label{class_player_attack_a6743019059d6443dbe846db5274a148f} 
+Animator Player\+Attack.\+anim\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al Animator del jugador. Se obtiene en \doxylink{class_player_attack_a6f870997319046f036f4422eba03c1ab}{Start()}. Necesario para disparar triggers de animación. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00133}{133}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00145}{Start()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6}\index{PlayerAttack@{PlayerAttack}!attackDuration@{attackDuration}}
+\index{attackDuration@{attackDuration}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{attackDuration}{attackDuration}}
+{\footnotesize\ttfamily \label{class_player_attack_aeba23a6eaebded14edd863b3e9a3e0f6} 
+float Player\+Attack.\+attack\+Duration = 0.\+3f\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Tiempo en segundos que el hitbox permanece activo durante un ataque. Define la "{}ventana de daño"{}:\+ cuánto tiempo puede conectar el golpe. También controla la duración del estado is\+Attacking. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00123}{123}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00211}{Start\+Attack()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_aaee590364160623b374be01711cbea60}\index{PlayerAttack@{PlayerAttack}!isAttacking@{isAttacking}}
+\index{isAttacking@{isAttacking}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{isAttacking}{isAttacking}}
+{\footnotesize\ttfamily \label{class_player_attack_aaee590364160623b374be01711cbea60} 
+bool Player\+Attack.\+is\+Attacking = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag global de ataque activo. true = el jugador está ejecutando un ataque y no puede iniciar otro. false = el jugador puede iniciar un nuevo ataque. También se sincroniza con \doxylink{class_player_movement_a60d650ad178183e34255370ff8435eb4}{Player\+Movement.\+is\+Attacking}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00116}{116}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00231}{End\+Attack()}}, \doxymbox{\hyperlink{_player_attack_8cs_source_l00251}{Is\+Attacking()}}, \doxymbox{\hyperlink{_player_attack_8cs_source_l00211}{Start\+Attack()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a08c43dc6d48e16d2439e77478432865c}\index{PlayerAttack@{PlayerAttack}!kickCooldown@{kickCooldown}}
+\index{kickCooldown@{kickCooldown}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{kickCooldown}{kickCooldown}}
+{\footnotesize\ttfamily \label{class_player_attack_a08c43dc6d48e16d2439e77478432865c} 
+float Player\+Attack.\+kick\+Cooldown = 0.\+5f}
+
+
+
+Tiempo en segundos que debe pasar antes de poder usar la patada de nuevo. Configurable desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00096}{96}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_a21c221493de8b4bfa86762dc82b98148}\index{PlayerAttack@{PlayerAttack}!kickHitbox@{kickHitbox}}
+\index{kickHitbox@{kickHitbox}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{kickHitbox}{kickHitbox}}
+{\footnotesize\ttfamily \label{class_player_attack_a21c221493de8b4bfa86762dc82b98148} 
+Game\+Object Player\+Attack.\+kick\+Hitbox}
+
+
+
+Game\+Object del hitbox de patada. Se activa/\+desactiva durante la ventana de daño de la patada. Debe asignarse desde el Inspector. El Game\+Object debe tener un Collider2D en modo Trigger y el script \doxylink{_hitbox_8cs}{Hitbox.\+cs}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00064}{64}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00275}{Activar\+Kick\+Hitbox()}}, \doxymbox{\hyperlink{_player_attack_8cs_source_l00282}{Desactivar\+Kick\+Hitbox()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00145}{Start()}}.
+
+\Hypertarget{class_player_attack_a94d9fa546a1a4924f97f399919907ea2}\index{PlayerAttack@{PlayerAttack}!kickKey@{kickKey}}
+\index{kickKey@{kickKey}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{kickKey}{kickKey}}
+{\footnotesize\ttfamily \label{class_player_attack_a94d9fa546a1a4924f97f399919907ea2} 
+Key\+Code Player\+Attack.\+kick\+Key = Key\+Code.\+K}
+
+
+
+Tecla asignada a la patada. Por defecto:\+ K. Configurable desde el Inspector para remapeo de controles. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00080}{80}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79}\index{PlayerAttack@{PlayerAttack}!kickReady@{kickReady}}
+\index{kickReady@{kickReady}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{kickReady}{kickReady}}
+{\footnotesize\ttfamily \label{class_player_attack_aabeb50cbe03461f2fdf319d860a2ab79} 
+bool Player\+Attack.\+kick\+Ready = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag que indica si la patada está disponible para ejecutarse. Se pone en false al atacar y vuelve a true después de kick\+Cooldown segundos. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00090}{90}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00296}{Reset\+Kick()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88}\index{PlayerAttack@{PlayerAttack}!playerMovement@{playerMovement}}
+\index{playerMovement@{playerMovement}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{playerMovement}{playerMovement}}
+{\footnotesize\ttfamily \label{class_player_attack_aff13fa0f28b4d333cd7e3d3ad6214f88} 
+\doxymbox{\hyperlink{class_player_movement}{Player\+Movement}} Player\+Attack.\+player\+Movement}
+
+
+
+Referencia al script de movimiento del jugador. Necesaria para sincronizar el flag is\+Attacking con \doxylink{class_player_movement}{Player\+Movement}, que puede usar ese dato para modificar el comportamiento del movimiento. Debe asignarse desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00044}{44}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00231}{End\+Attack()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00211}{Start\+Attack()}}.
+
+\Hypertarget{class_player_attack_af5b081ae192a762efa4ff18a52702486}\index{PlayerAttack@{PlayerAttack}!punchCooldown@{punchCooldown}}
+\index{punchCooldown@{punchCooldown}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{punchCooldown}{punchCooldown}}
+{\footnotesize\ttfamily \label{class_player_attack_af5b081ae192a762efa4ff18a52702486} 
+float Player\+Attack.\+punch\+Cooldown = 0.\+3f}
+
+
+
+Tiempo en segundos que debe pasar antes de poder usar el puñetazo de nuevo. Configurable desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00108}{108}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_af460ec9e43a1027044ac9a9b4e706933}\index{PlayerAttack@{PlayerAttack}!punchHitbox@{punchHitbox}}
+\index{punchHitbox@{punchHitbox}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{punchHitbox}{punchHitbox}}
+{\footnotesize\ttfamily \label{class_player_attack_af460ec9e43a1027044ac9a9b4e706933} 
+Game\+Object Player\+Attack.\+punch\+Hitbox}
+
+
+
+Game\+Object del hitbox de puñetazo. Se activa/\+desactiva durante la ventana de daño del puñetazo. Debe asignarse desde el Inspector. El Game\+Object debe tener un Collider2D en modo Trigger y el script \doxylink{_hitbox_8cs}{Hitbox.\+cs}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00056}{56}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00261}{Activar\+Hitbox()}}, \doxymbox{\hyperlink{_player_attack_8cs_source_l00268}{Desactivar\+Hitbox()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00145}{Start()}}.
+
+\Hypertarget{class_player_attack_aa4f16c2b62e0804898250fa244fdda4f}\index{PlayerAttack@{PlayerAttack}!punchKey@{punchKey}}
+\index{punchKey@{punchKey}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{punchKey}{punchKey}}
+{\footnotesize\ttfamily \label{class_player_attack_aa4f16c2b62e0804898250fa244fdda4f} 
+Key\+Code Player\+Attack.\+punch\+Key = Key\+Code.\+J}
+
+
+
+Tecla asignada al puñetazo. Por defecto:\+ J. Configurable desde el Inspector para remapeo de controles. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00074}{74}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+\Hypertarget{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9}\index{PlayerAttack@{PlayerAttack}!punchReady@{punchReady}}
+\index{punchReady@{punchReady}!PlayerAttack@{PlayerAttack}}
+\doxysubsubsection{\texorpdfstring{punchReady}{punchReady}}
+{\footnotesize\ttfamily \label{class_player_attack_ad1649114de2177e3c3ed68b45fc1f1f9} 
+bool Player\+Attack.\+punch\+Ready = true\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Flag que indica si el puñetazo está disponible para ejecutarse. Se pone en false al atacar y vuelve a true después de punch\+Cooldown segundos. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_attack_8cs_source_l00102}{102}} del archivo \doxymbox{\hyperlink{_player_attack_8cs_source}{Player\+Attack.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_attack_8cs_source_l00305}{Reset\+Punch()}} y \doxymbox{\hyperlink{_player_attack_8cs_source_l00172}{Update()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_player_attack_8cs}{Player\+Attack.\+cs}}\end{DoxyCompactItemize}

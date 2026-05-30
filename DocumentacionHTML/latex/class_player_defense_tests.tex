@@ -1,0 +1,107 @@
+\doxysection{Referencia de la clase Player\+Defense\+Tests}
+\hypertarget{class_player_defense_tests}{}\label{class_player_defense_tests}\index{PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_defense_tests_aa3bbf8f41b32694c4475d0026c14f95b}{Tear\+Down}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_defense_tests_ad18922e9dd1c926a97bf533556e75f56}{Block\+\_\+\+Deactivates\+When\+Key\+Is\+Released}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_defense_tests_a568695a67d631859b7dfcfa7d1cae630}{Block\+\_\+\+Grants\+Energy\+When\+Blocking\+Starts}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_defense_tests_abab2e04999e7e7477cf5a726989105bf}{Block\+\_\+\+Animation\+State\+Matches\+Blocking\+State}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_defense}{Player\+Defense}} \doxymbox{\hyperlink{class_player_defense_tests_a85f03bef313f29455ae0d3a2179e3434}{Create\+Player}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_player_defense_tests_a35e6a517feaa484bf16514e3f75c3657}{\+\_\+player\+GO}}
+\item 
+Field\+Info \doxymbox{\hyperlink{class_player_defense_tests_a99ffb57fd8397539196da98ff5de358f}{\+\_\+is\+Blocking\+Field}}
+\item 
+Method\+Info \doxymbox{\hyperlink{class_player_defense_tests_a2626ea7589a38f192bc165e4a4ab686a}{\+\_\+update\+Method}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+\hypertarget{class_player_defense_tests_autotoc_md1}{}\doxysubsection{\texorpdfstring{}{}}\label{class_player_defense_tests_autotoc_md1}
+\hypertarget{class_player_defense_tests_autotoc_md2}{}\doxysubsection{\texorpdfstring{SISTEMA:\+ PLAYER DEFENSE TESTS}{SISTEMA:\+ PLAYER DEFENSE TESTS}}\label{class_player_defense_tests_autotoc_md2}
+OBJETIVO:\+ Validar la lógica del sistema de defensa del jugador:\+
+\begin{DoxyItemize}
+\item Activación/\+desactivación del bloqueo
+\item Ganancia de energía al bloquear
+\item Consistencia del estado visual (hitbox + estado interno)
+\end{DoxyItemize}
+
+LIMITACIONES:\+
+\begin{DoxyItemize}
+\item Input.\+Get\+Key no se puede simular en Play\+Mode.
+\item Se usa Reflection para forzar estados internos. 
+\end{DoxyItemize}\hypertarget{class_player_defense_tests_autotoc_md3}{}\doxysubsection{\texorpdfstring{-\/ Update() se invoca manualmente para simular el ciclo real.}{-\/ Update() se invoca manualmente para simular el ciclo real.}}\label{class_player_defense_tests_autotoc_md3}
+
+
+\label{doc-func-members}
+\Hypertarget{class_player_defense_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_player_defense_tests_abab2e04999e7e7477cf5a726989105bf}\index{PlayerDefenseTests@{PlayerDefenseTests}!Block\_AnimationStateMatchesBlockingState@{Block\_AnimationStateMatchesBlockingState}}
+\index{Block\_AnimationStateMatchesBlockingState@{Block\_AnimationStateMatchesBlockingState}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{Block\_AnimationStateMatchesBlockingState()}{Block\_AnimationStateMatchesBlockingState()}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_abab2e04999e7e7477cf5a726989105bf} 
+IEnumerator Player\+Defense\+Tests.\+Block\+\_\+\+Animation\+State\+Matches\+Blocking\+State (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_defense_tests_ad18922e9dd1c926a97bf533556e75f56}\index{PlayerDefenseTests@{PlayerDefenseTests}!Block\_DeactivatesWhenKeyIsReleased@{Block\_DeactivatesWhenKeyIsReleased}}
+\index{Block\_DeactivatesWhenKeyIsReleased@{Block\_DeactivatesWhenKeyIsReleased}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{Block\_DeactivatesWhenKeyIsReleased()}{Block\_DeactivatesWhenKeyIsReleased()}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_ad18922e9dd1c926a97bf533556e75f56} 
+IEnumerator Player\+Defense\+Tests.\+Block\+\_\+\+Deactivates\+When\+Key\+Is\+Released (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_defense_tests_a568695a67d631859b7dfcfa7d1cae630}\index{PlayerDefenseTests@{PlayerDefenseTests}!Block\_GrantsEnergyWhenBlockingStarts@{Block\_GrantsEnergyWhenBlockingStarts}}
+\index{Block\_GrantsEnergyWhenBlockingStarts@{Block\_GrantsEnergyWhenBlockingStarts}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{Block\_GrantsEnergyWhenBlockingStarts()}{Block\_GrantsEnergyWhenBlockingStarts()}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_a568695a67d631859b7dfcfa7d1cae630} 
+IEnumerator Player\+Defense\+Tests.\+Block\+\_\+\+Grants\+Energy\+When\+Blocking\+Starts (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_defense_tests_a85f03bef313f29455ae0d3a2179e3434}\index{PlayerDefenseTests@{PlayerDefenseTests}!CreatePlayer@{CreatePlayer}}
+\index{CreatePlayer@{CreatePlayer}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{CreatePlayer()}{CreatePlayer()}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_a85f03bef313f29455ae0d3a2179e3434} 
+\doxymbox{\hyperlink{class_player_defense}{Player\+Defense}} Player\+Defense\+Tests.\+Create\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_defense_tests_aa3bbf8f41b32694c4475d0026c14f95b}\index{PlayerDefenseTests@{PlayerDefenseTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_aa3bbf8f41b32694c4475d0026c14f95b} 
+void Player\+Defense\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_defense_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_player_defense_tests_a99ffb57fd8397539196da98ff5de358f}\index{PlayerDefenseTests@{PlayerDefenseTests}!\_isBlockingField@{\_isBlockingField}}
+\index{\_isBlockingField@{\_isBlockingField}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{\_isBlockingField}{\_isBlockingField}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_a99ffb57fd8397539196da98ff5de358f} 
+Field\+Info Player\+Defense\+Tests.\+\_\+is\+Blocking\+Field\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_defense_tests_a35e6a517feaa484bf16514e3f75c3657}\index{PlayerDefenseTests@{PlayerDefenseTests}!\_playerGO@{\_playerGO}}
+\index{\_playerGO@{\_playerGO}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{\_playerGO}{\_playerGO}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_a35e6a517feaa484bf16514e3f75c3657} 
+Game\+Object Player\+Defense\+Tests.\+\_\+player\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_defense_tests_a2626ea7589a38f192bc165e4a4ab686a}\index{PlayerDefenseTests@{PlayerDefenseTests}!\_updateMethod@{\_updateMethod}}
+\index{\_updateMethod@{\_updateMethod}!PlayerDefenseTests@{PlayerDefenseTests}}
+\doxysubsubsection{\texorpdfstring{\_updateMethod}{\_updateMethod}}
+{\footnotesize\ttfamily \label{class_player_defense_tests_a2626ea7589a38f192bc165e4a4ab686a} 
+Method\+Info Player\+Defense\+Tests.\+\_\+update\+Method\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_player_defense_tests_8cs}{Player\+Defense\+Tests.\+cs}}\end{DoxyCompactItemize}

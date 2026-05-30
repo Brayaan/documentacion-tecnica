@@ -107,50 +107,59 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>TEST SUITE: <a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a>.  
+<p>Suite de pruebas para <a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a>.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ca883ba0df6a369535451f3bf5defe8" id="r_a6ca883ba0df6a369535451f3bf5defe8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6ca883ba0df6a369535451f3bf5defe8">TearDown</a> ()</td></tr>
-<tr class="memdesc:a6ca883ba0df6a369535451f3bf5defe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Se ejecuta después de cada test. Elimina el enemigo creado para evitar contaminación entre pruebas.  <br /></td></tr>
+<tr class="memdesc:a6ca883ba0df6a369535451f3bf5defe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia los recursos después de cada prueba.  <br /></td></tr>
 <tr class="memitem:aa56db58d85b120005a99eef60dddd2ae" id="r_aa56db58d85b120005a99eef60dddd2ae"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#aa56db58d85b120005a99eef60dddd2ae">TakeDamage_ReducesHealthByDamageAmount</a> ()</td></tr>
 <tr class="memdesc:aa56db58d85b120005a99eef60dddd2ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el enemigo pierde vida correctamente cuando recibe daño.  <br /></td></tr>
 <tr class="memitem:ad887d96a7669766d4976816bd1af0b5f" id="r_ad887d96a7669766d4976816bd1af0b5f"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#ad887d96a7669766d4976816bd1af0b5f">TakeDamage_HealthDoesNotGoBelowZero</a> ()</td></tr>
-<tr class="memdesc:ad887d96a7669766d4976816bd1af0b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que la vida nunca baja de 0, incluso si el daño es mayor que la vida actual.  <br /></td></tr>
+<tr class="memdesc:ad887d96a7669766d4976816bd1af0b5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que la vida nunca baja de 0.  <br /></td></tr>
 <tr class="memitem:a4cd38871e3a9b23c4ef71b16dd7f6302" id="r_a4cd38871e3a9b23c4ef71b16dd7f6302"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a4cd38871e3a9b23c4ef71b16dd7f6302">TakeDamage_KnockbackPushesAwayFromAttacker</a> ()</td></tr>
-<tr class="memdesc:a4cd38871e3a9b23c4ef71b16dd7f6302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el enemigo es empujado en dirección opuesta al atacante cuando recibe daño.  <br /></td></tr>
+<tr class="memdesc:a4cd38871e3a9b23c4ef71b16dd7f6302"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el enemigo es empujado en dirección opuesta al atacante.  <br /></td></tr>
 <tr class="memitem:a571eb43b09fc845cd276004685961f13" id="r_a571eb43b09fc845cd276004685961f13"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a571eb43b09fc845cd276004685961f13">TakeDamage_SecondHitDuringHitStun_DoesNotApplyKnockbackAgain</a> ()</td></tr>
-<tr class="memdesc:a571eb43b09fc845cd276004685961f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que durante el hit-stun el enemigo no recibe un segundo knockback inmediatamente.  <br /></td></tr>
+<tr class="memdesc:a571eb43b09fc845cd276004685961f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que durante el hit-stun el enemigo no recibe un segundo knockback.  <br /></td></tr>
 <tr class="memitem:ab0c0be3f728e61f46946aa4b04393590" id="r_ab0c0be3f728e61f46946aa4b04393590"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#ab0c0be3f728e61f46946aa4b04393590">TakeDamage_EnemyDiesWhenHealthReachesZero</a> ()</td></tr>
 <tr class="memdesc:ab0c0be3f728e61f46946aa4b04393590"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el enemigo se destruye cuando su vida llega a 0.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:aeb2600a1548fbe2d720924091c1c0a92" id="r_aeb2600a1548fbe2d720924091c1c0a92"><td class="memItemLeft"><a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a>&#160;</td><td class="memItemRight"><a class="el" href="#aeb2600a1548fbe2d720924091c1c0a92">CreateEnemy</a> (Vector3 position=default)</td></tr>
-<tr class="memdesc:aeb2600a1548fbe2d720924091c1c0a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un enemigo simulado con:  <br /></td></tr>
+<tr class="memdesc:aeb2600a1548fbe2d720924091c1c0a92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un enemigo simulado con todos los componentes necesarios.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:a5cff92ae367b3b110be8f03215874985" id="r_a5cff92ae367b3b110be8f03215874985"><td class="memItemLeft">GameObject&#160;</td><td class="memItemRight"><a class="el" href="#a5cff92ae367b3b110be8f03215874985">_enemyGO</a></td></tr>
+<tr class="memdesc:a5cff92ae367b3b110be8f03215874985"><td class="mdescLeft">&#160;</td><td class="mdescRight">Referencia al GameObject del enemigo de prueba.  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>TEST SUITE: <a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a>. </p>
-<p>PROPÓSITO: Validar el sistema de vida de los enemigos, incluyendo:</p><ul>
-<li>Aplicación de daño</li>
-<li>Límites de vida (no menor a 0)</li>
-<li>Knockback al recibir daño</li>
-<li>Hit-stun (inmunidad temporal)</li>
-<li>Muerte del enemigo cuando la vida llega a 0</li>
+<div class="textblock"><p>Suite de pruebas para <a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a>. </p>
+<p><b>Propósito:</b></p>
+<p>Validar el sistema de vida de los enemigos, incluyendo: </p><ul>
+<li>
+Aplicación de daño </li>
+<li>
+Límites de vida (no menor a 0) </li>
+<li>
+Knockback al recibir daño </li>
+<li>
+Hit-stun (inmunidad temporal) </li>
+<li>
+Muerte del enemigo cuando la vida llega a 0 </li>
 </ul>
-<p>USO: Estas pruebas simulan enemigos en runtime y verifican su comportamiento sin necesidad de escena Unity.</p>
-<p>DEPENDENCIAS:</p><ul>
+<p><b>Uso:</b></p>
+<p>Estas pruebas simulan enemigos en runtime y verifican su comportamiento sin necesidad de escena Unity.</p>
+<p><b>Dependencias:</b></p>
+<ul>
 <li>Rigidbody2D (para knockback físico)</li>
 <li>Unity Physics2D (FixedUpdate)</li>
 <li>Destrucción de GameObjects (Destroy) </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00026">26</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00029">29</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="aeb2600a1548fbe2d720924091c1c0a92" name="aeb2600a1548fbe2d720924091c1c0a92"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aeb2600a1548fbe2d720924091c1c0a92">&#9670;&#160;</a></span>CreateEnemy()</h2>
@@ -175,16 +184,25 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea un enemigo simulado con: </p>
-<ul>
-<li>Rigidbody2D sin gravedad (controlado)</li>
-<li><a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a> con knockback configurado</li>
+<p>Crea un enemigo simulado con todos los componentes necesarios. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>Posición inicial del enemigo (opcional).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Componente <a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a> del enemigo creado.</dd></dl>
+<p>El enemigo incluye: </p><ul>
+<li>
+Rigidbody2D sin gravedad (controlado) </li>
+<li>
+<a class="el" href="class_enemy_health_system.html">EnemyHealthSystem</a> con knockback configurado </li>
 </ul>
-<p>USO: Permite generar enemigos consistentes para todas las pruebas. </p>
+<p>Permite generar enemigos consistentes para todas las pruebas. </p>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00044">44</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00055">55</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00181">TakeDamage_EnemyDiesWhenHealthReachesZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00107">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00130">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00080">TakeDamage_ReducesHealthByDamageAmount()</a>, and <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00154">TakeDamage_SecondHitDuringHitStun_DoesNotApplyKnockbackAgain()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00214">TakeDamage_EnemyDiesWhenHealthReachesZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00128">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00156">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00096">TakeDamage_ReducesHealthByDamageAmount()</a>, and <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00185">TakeDamage_SecondHitDuringHitStun_DoesNotApplyKnockbackAgain()</a>.</p>
 
 </div>
 </div>
@@ -212,8 +230,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Verifica que el enemigo se destruye cuando su vida llega a 0. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00181">181</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00214">214</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -240,9 +259,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Verifica que la vida nunca baja de 0, incluso si el daño es mayor que la vida actual. </p>
+<p>Verifica que la vida nunca baja de 0. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>Incluso si el daño es mayor que la vida actual, la salud no debe ser negativa. </p>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00107">107</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00128">128</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -269,9 +290,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Verifica que el enemigo es empujado en dirección opuesta al atacante cuando recibe daño. </p>
+<p>Verifica que el enemigo es empujado en dirección opuesta al atacante. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>El knockback debe aplicar una fuerza física que aleje al enemigo del punto de impacto del ataque. </p>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00130">130</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00156">156</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -299,8 +322,9 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Verifica que el enemigo pierde vida correctamente cuando recibe daño. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00080">80</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00096">96</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -327,9 +351,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Verifica que durante el hit-stun el enemigo no recibe un segundo knockback inmediatamente. </p>
+<p>Verifica que durante el hit-stun el enemigo no recibe un segundo knockback. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>Durante el período de inmunidad tras recibir daño, el enemigo no debe ser empujado nuevamente. </p>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00154">154</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00185">185</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -356,9 +382,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Se ejecuta después de cada test. Elimina el enemigo creado para evitar contaminación entre pruebas. </p>
+<p>Limpia los recursos después de cada prueba. </p>
+<p>Se ejecuta automáticamente después de cada test. Elimina el enemigo creado para evitar contaminación entre pruebas. </p>
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00066">66</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00081">81</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -383,9 +410,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00031">31</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+<p>Referencia al GameObject del enemigo de prueba. </p>
 
-<p class="reference">Referenced by <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00044">CreateEnemy()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00181">TakeDamage_EnemyDiesWhenHealthReachesZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00107">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00130">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00080">TakeDamage_ReducesHealthByDamageAmount()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00154">TakeDamage_SecondHitDuringHitStun_DoesNotApplyKnockbackAgain()</a>, and <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00066">TearDown()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00036">36</a> of file <a class="el" href="_enemy_health_system_tests_8cs_source.html">EnemyHealthSystemTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00055">CreateEnemy()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00214">TakeDamage_EnemyDiesWhenHealthReachesZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00128">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00156">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00096">TakeDamage_ReducesHealthByDamageAmount()</a>, <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00185">TakeDamage_SecondHitDuringHitStun_DoesNotApplyKnockbackAgain()</a>, and <a class="el" href="_enemy_health_system_tests_8cs_source.html#l00081">TearDown()</a>.</p>
 
 </div>
 </div>

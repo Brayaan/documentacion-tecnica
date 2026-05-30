@@ -107,45 +107,53 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>TESTS: <a class="el" href="class_health_system.html">HealthSystem</a>.  
+<p>Suite de pruebas para <a class="el" href="class_health_system.html">HealthSystem</a>.  
  <a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ff7f336bb28c1417e2cc220a76f3d6a" id="r_a6ff7f336bb28c1417e2cc220a76f3d6a"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a6ff7f336bb28c1417e2cc220a76f3d6a">TearDown</a> ()</td></tr>
-<tr class="memdesc:a6ff7f336bb28c1417e2cc220a76f3d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpieza después de cada test para evitar interferencia entre pruebas.  <br /></td></tr>
+<tr class="memdesc:a6ff7f336bb28c1417e2cc220a76f3d6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpia los recursos después de cada prueba.  <br /></td></tr>
 <tr class="memitem:a48a12707311a9b9e48959949b6cf5057" id="r_a48a12707311a9b9e48959949b6cf5057"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a48a12707311a9b9e48959949b6cf5057">TakeDamage_ReducesHealthByDamageAmount</a> ()</td></tr>
-<tr class="memdesc:a48a12707311a9b9e48959949b6cf5057"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 1: El daño recibido debe reducir la vida correctamente.  <br /></td></tr>
+<tr class="memdesc:a48a12707311a9b9e48959949b6cf5057"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el daño recibido reduce la vida correctamente.  <br /></td></tr>
 <tr class="memitem:a29c481841c3a57901a9a19b4572164a4" id="r_a29c481841c3a57901a9a19b4572164a4"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a29c481841c3a57901a9a19b4572164a4">TakeDamage_HealthDoesNotGoBelowZero</a> ()</td></tr>
-<tr class="memdesc:a29c481841c3a57901a9a19b4572164a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 2: La vida nunca debe ser menor a 0 incluso con daño excesivo.  <br /></td></tr>
+<tr class="memdesc:a29c481841c3a57901a9a19b4572164a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que la vida nunca es menor a 0 incluso con daño excesivo.  <br /></td></tr>
 <tr class="memitem:a8d98147f63502ad768e6fb8fb40dd145" id="r_a8d98147f63502ad768e6fb8fb40dd145"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a8d98147f63502ad768e6fb8fb40dd145">TakeDamage_KnockbackPushesAwayFromAttacker</a> ()</td></tr>
-<tr class="memdesc:a8d98147f63502ad768e6fb8fb40dd145"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 3: El knockback debe empujar al jugador en dirección opuesta al atacante.  <br /></td></tr>
+<tr class="memdesc:a8d98147f63502ad768e6fb8fb40dd145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que el knockback empuja al jugador en dirección opuesta al atacante.  <br /></td></tr>
 <tr class="memitem:a0f6507f3b661b6f695df00e695f2cf6f" id="r_a0f6507f3b661b6f695df00e695f2cf6f"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a0f6507f3b661b6f695df00e695f2cf6f">TakeDamage_PlayerMovementDisabledDuringHitStun</a> ()</td></tr>
-<tr class="memdesc:a0f6507f3b661b6f695df00e695f2cf6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 4: Durante el hitstun, el movimiento del jugador debe quedar deshabilitado.  <br /></td></tr>
+<tr class="memdesc:a0f6507f3b661b6f695df00e695f2cf6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que durante el hitstun el movimiento del jugador queda deshabilitado.  <br /></td></tr>
 <tr class="memitem:a2d551ebb188040c0158764e2a3dad717" id="r_a2d551ebb188040c0158764e2a3dad717"><td class="memItemLeft">IEnumerator&#160;</td><td class="memItemRight"><a class="el" href="#a2d551ebb188040c0158764e2a3dad717">AfterKnockbackDuration_PlayerMovementIsReenabled</a> ()</td></tr>
-<tr class="memdesc:a2d551ebb188040c0158764e2a3dad717"><td class="mdescLeft">&#160;</td><td class="mdescRight">CASO 5: Después del knockback, el control del jugador debe restaurarse automáticamente.  <br /></td></tr>
+<tr class="memdesc:a2d551ebb188040c0158764e2a3dad717"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica que después del knockback el control del jugador se restaura automáticamente.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-methods" class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a697660210454b37147a554e4c470c844" id="r_a697660210454b37147a554e4c470c844"><td class="memItemLeft"><a class="el" href="class_health_system.html">HealthSystem</a>&#160;</td><td class="memItemRight"><a class="el" href="#a697660210454b37147a554e4c470c844">CreatePlayer</a> (Vector3 position=default)</td></tr>
-<tr class="memdesc:a697660210454b37147a554e4c470c844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un jugador completo con:  <br /></td></tr>
+<tr class="memdesc:a697660210454b37147a554e4c470c844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Crea un jugador completo con todos los componentes necesarios.  <br /></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pri-attribs" class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
 <tr class="memitem:ac6dc7d2f4f99df2863d79c64a08b40a3" id="r_ac6dc7d2f4f99df2863d79c64a08b40a3"><td class="memItemLeft">GameObject&#160;</td><td class="memItemRight"><a class="el" href="#ac6dc7d2f4f99df2863d79c64a08b40a3">_playerGO</a></td></tr>
+<tr class="memdesc:ac6dc7d2f4f99df2863d79c64a08b40a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objeto principal de prueba (GameObject del jugador).  <br /></td></tr>
 </table>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>TESTS: <a class="el" href="class_health_system.html">HealthSystem</a>. </p>
-<p>PROPÓSITO: Validar el sistema de vida del jugador:</p><ul>
-<li>Reducción de vida</li>
-<li>Límite mínimo (0)</li>
-<li>Knockback físico</li>
-<li>Estado de hitstun</li>
-<li>Restauración del control del jugador</li>
+<div class="textblock"><p>Suite de pruebas para <a class="el" href="class_health_system.html">HealthSystem</a>. </p>
+<p><b>Propósito:</b></p>
+<p>Validar el sistema de vida del jugador: </p><ul>
+<li>
+Reducción de vida </li>
+<li>
+Límite mínimo (0) </li>
+<li>
+Knockback físico </li>
+<li>
+Estado de hitstun </li>
+<li>
+Restauración del control del jugador </li>
 </ul>
-<p>USO: Ejecutar en Unity Test Runner (PlayMode). Cada test crea su propio jugador aislado. </p>
+<p><b>Uso:</b></p>
+<p>Ejecutar en Unity Test Runner (PlayMode). Cada test crea su propio jugador aislado. </p>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00021">21</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00024">24</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 </div><a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
 <a id="a2d551ebb188040c0158764e2a3dad717" name="a2d551ebb188040c0158764e2a3dad717"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d551ebb188040c0158764e2a3dad717">&#9670;&#160;</a></span>AfterKnockbackDuration_PlayerMovementIsReenabled()</h2>
@@ -170,9 +178,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 5: Después del knockback, el control del jugador debe restaurarse automáticamente. </p>
+<p>Verifica que después del knockback el control del jugador se restaura automáticamente. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>Tras la duración del knockback, el movimiento debe reactivarse. </p>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00171">171</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00193">193</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -199,17 +209,28 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Crea un jugador completo con: </p>
-<ul>
-<li>Rigidbody2D sin gravedad (determinista)</li>
-<li>Collider base</li>
-<li><a class="el" href="class_player_movement.html">PlayerMovement</a> (dependencia del sistema de daño)</li>
-<li><a class="el" href="class_health_system.html">HealthSystem</a> (sistema bajo prueba) </li>
+<p>Crea un jugador completo con todos los componentes necesarios. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">position</td><td>Posición inicial del jugador (opcional).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Componente <a class="el" href="class_health_system.html">HealthSystem</a> del jugador creado.</dd></dl>
+<p>El jugador incluye: </p><ul>
+<li>
+Rigidbody2D sin gravedad (determinista) </li>
+<li>
+Collider base </li>
+<li>
+<a class="el" href="class_player_movement.html">PlayerMovement</a> (dependencia del sistema de daño) </li>
+<li>
+<a class="el" href="class_health_system.html">HealthSystem</a> (sistema bajo prueba) </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00033">33</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00043">43</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="_health_system_tests_8cs_source.html#l00171">AfterKnockbackDuration_PlayerMovementIsReenabled()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00094">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00118">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00145">TakeDamage_PlayerMovementDisabledDuringHitStun()</a>, and <a class="el" href="_health_system_tests_8cs_source.html#l00067">TakeDamage_ReducesHealthByDamageAmount()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="_health_system_tests_8cs_source.html#l00193">AfterKnockbackDuration_PlayerMovementIsReenabled()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00110">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00134">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00164">TakeDamage_PlayerMovementDisabledDuringHitStun()</a>, and <a class="el" href="_health_system_tests_8cs_source.html#l00080">TakeDamage_ReducesHealthByDamageAmount()</a>.</p>
 
 </div>
 </div>
@@ -236,9 +257,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 2: La vida nunca debe ser menor a 0 incluso con daño excesivo. </p>
+<p>Verifica que la vida nunca es menor a 0 incluso con daño excesivo. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>Cuando el daño supera la vida máxima, la salud debe limitarse a 0. </p>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00094">94</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00110">110</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -265,9 +288,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 3: El knockback debe empujar al jugador en dirección opuesta al atacante. </p>
+<p>Verifica que el knockback empuja al jugador en dirección opuesta al atacante. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00118">118</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00134">134</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -294,9 +318,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 4: Durante el hitstun, el movimiento del jugador debe quedar deshabilitado. </p>
+<p>Verifica que durante el hitstun el movimiento del jugador queda deshabilitado. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
+<p>Al recibir daño, el jugador debe perder temporalmente el control. </p>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00145">145</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00164">164</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -323,9 +349,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>CASO 1: El daño recibido debe reducir la vida correctamente. </p>
+<p>Verifica que el daño recibido reduce la vida correctamente. </p>
+<dl class="section return"><dt>Returns</dt><dd>Coroutine para Unity Test Framework.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00067">67</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00080">80</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -352,9 +379,10 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Limpieza después de cada test para evitar interferencia entre pruebas. </p>
+<p>Limpia los recursos después de cada prueba. </p>
+<p>Evita interferencia entre pruebas eliminando el jugador creado. </p>
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00056">56</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00069">69</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
 
 </div>
 </div>
@@ -379,9 +407,11 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00024">24</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+<p>Objeto principal de prueba (GameObject del jugador). </p>
 
-<p class="reference">Referenced by <a class="el" href="_health_system_tests_8cs_source.html#l00171">AfterKnockbackDuration_PlayerMovementIsReenabled()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00033">CreatePlayer()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00094">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00118">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00145">TakeDamage_PlayerMovementDisabledDuringHitStun()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00067">TakeDamage_ReducesHealthByDamageAmount()</a>, and <a class="el" href="_health_system_tests_8cs_source.html#l00056">TearDown()</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_health_system_tests_8cs_source.html#l00027">27</a> of file <a class="el" href="_health_system_tests_8cs_source.html">HealthSystemTests.cs</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="_health_system_tests_8cs_source.html#l00193">AfterKnockbackDuration_PlayerMovementIsReenabled()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00043">CreatePlayer()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00110">TakeDamage_HealthDoesNotGoBelowZero()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00134">TakeDamage_KnockbackPushesAwayFromAttacker()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00164">TakeDamage_PlayerMovementDisabledDuringHitStun()</a>, <a class="el" href="_health_system_tests_8cs_source.html#l00080">TakeDamage_ReducesHealthByDamageAmount()</a>, and <a class="el" href="_health_system_tests_8cs_source.html#l00069">TearDown()</a>.</p>
 
 </div>
 </div>

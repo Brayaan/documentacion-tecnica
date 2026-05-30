@@ -1,0 +1,179 @@
+\doxysection{Referencia de la clase Player\+Defense}
+\hypertarget{class_player_defense}{}\label{class_player_defense}\index{PlayerDefense@{PlayerDefense}}
+Diagrama de herencia de Player\+Defense\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_player_defense}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{Is\+Blocking}} ()
+\begin{DoxyCompactList}\small\item\em Expone el estado de bloqueo para que \doxylink{_hitbox_8cs}{Hitbox.\+cs} pueda consultarlo durante la detección de colisiones y decidir si aplicar daño o hacer rebotar al atacante. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos públicos}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}{block\+Hitbox}}
+\begin{DoxyCompactList}\small\item\em Game\+Object del hitbox de bloqueo. Cuando está activo, \doxylink{_hitbox_8cs}{Hitbox.\+cs} lo detecta mediante \doxylink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{Player\+Defense.\+Is\+Blocking()} y aplica el rebote al atacante en lugar de dañar al bloqueador. Debe asignarse desde el Inspector. \end{DoxyCompactList}\item 
+Key\+Code \doxymbox{\hyperlink{class_player_defense_af7879d0a08a1ce2e63d152f8cfb068fa}{block\+Key}} = Key\+Code.\+L
+\begin{DoxyCompactList}\small\item\em Tecla asignada al bloqueo. Por defecto:\+ L. Configurable desde el Inspector para remapeo de controles. Usa Get\+Key (no Get\+Key\+Down) para detectar pulsación continua. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{Start}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{Start()} — Se ejecuta una vez al iniciar. Obtiene el Animator y desactiva el hitbox de bloqueo para asegurar que el personaje comienza sin guardia activa. \end{DoxyCompactList}\item 
+void \doxymbox{\hyperlink{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc}{Update}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc}{Update()} — Se ejecuta cada frame. Lee el input de bloqueo y compara con el estado anterior (is\+Blocking). Solo ejecuta la lógica de cambio de estado cuando el input cambia, evitando llamadas repetidas a \doxylink{class_energy_system}{Energy\+System} y al Animator cada frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+bool \doxymbox{\hyperlink{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}{is\+Blocking}} = false
+\begin{DoxyCompactList}\small\item\em Estado actual del bloqueo. true = el jugador está bloqueando activamente. false = el jugador no está en guardia. Este valor es el que \doxylink{_hitbox_8cs}{Hitbox.\+cs} consulta vía \doxylink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{Is\+Blocking()}. \end{DoxyCompactList}\item 
+Animator \doxymbox{\hyperlink{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}{anim}}
+\begin{DoxyCompactList}\small\item\em Referencia al Animator del jugador. Se obtiene en \doxylink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{Start()}. Necesario para sincronizar la animación de bloqueo. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00030}{30}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_player_defense_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}\index{PlayerDefense@{PlayerDefense}!IsBlocking@{IsBlocking}}
+\index{IsBlocking@{IsBlocking}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{IsBlocking()}{IsBlocking()}}
+{\footnotesize\ttfamily \label{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19} 
+bool Player\+Defense.\+Is\+Blocking (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Expone el estado de bloqueo para que \doxylink{_hitbox_8cs}{Hitbox.\+cs} pueda consultarlo durante la detección de colisiones y decidir si aplicar daño o hacer rebotar al atacante. 
+
+\begin{DoxyReturn}{Devuelve}
+true si el jugador está bloqueando; false si no.
+\end{DoxyReturn}
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00147}{147}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_hitbox_8cs_source_l00123}{Hitbox.\+On\+Trigger\+Stay2\+D()}}.
+
+\Hypertarget{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}\index{PlayerDefense@{PlayerDefense}!Start@{Start}}
+\index{Start@{Start}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{Start()}{Start()}}
+{\footnotesize\ttfamily \label{class_player_defense_af80af427f372fe78cf08d767b2ac1b94} 
+void Player\+Defense.\+Start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{Start()} — Se ejecuta una vez al iniciar. Obtiene el Animator y desactiva el hitbox de bloqueo para asegurar que el personaje comienza sin guardia activa. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00082}{82}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+\Hypertarget{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc}\index{PlayerDefense@{PlayerDefense}!Update@{Update}}
+\index{Update@{Update}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{Update()}{Update()}}
+{\footnotesize\ttfamily \label{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc} 
+void Player\+Defense.\+Update (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+\doxylink{class_player_defense_a0847901ac1d1ed8fb842577d78a1f5cc}{Update()} — Se ejecuta cada frame. Lee el input de bloqueo y compara con el estado anterior (is\+Blocking). Solo ejecuta la lógica de cambio de estado cuando el input cambia, evitando llamadas repetidas a \doxylink{class_energy_system}{Energy\+System} y al Animator cada frame. 
+
+CUÁ\+NDO SE EJECUTA:\+ Cada frame durante la partida. QUÉ CONTROLA:\+ Detección de cambio de estado de bloqueo, ganancia de energía al inicio, animación y hitbox.
+
+FLUJO DE CAMBIO DE ESTADO:\+ Input presionado (is\+Blocking = false → true):\+ → \doxylink{class_energy_system_a4c7d6a044c95a505e8fcef59c5e66c41}{Energy\+System.\+Gain\+Energy\+From\+Block()} (solo una vez) → Animator.\+Set\+Bool("{}is\+Blocking"{}, true) → block\+Hitbox.\+Set\+Active(true) Input soltado (is\+Blocking = true → false):\+ → Animator.\+Set\+Bool("{}is\+Blocking"{}, false) → block\+Hitbox.\+Set\+Active(false) 
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00110}{110}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_defense_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_player_defense_a433291ef24561a531fff0f90bb86bfd4}\index{PlayerDefense@{PlayerDefense}!anim@{anim}}
+\index{anim@{anim}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{anim}{anim}}
+{\footnotesize\ttfamily \label{class_player_defense_a433291ef24561a531fff0f90bb86bfd4} 
+Animator Player\+Defense.\+anim\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Referencia al Animator del jugador. Se obtiene en \doxylink{class_player_defense_af80af427f372fe78cf08d767b2ac1b94}{Start()}. Necesario para sincronizar la animación de bloqueo. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00071}{71}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_defense_8cs_source_l00082}{Start()}} y \doxymbox{\hyperlink{_player_defense_8cs_source_l00110}{Update()}}.
+
+\Hypertarget{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e}\index{PlayerDefense@{PlayerDefense}!blockHitbox@{blockHitbox}}
+\index{blockHitbox@{blockHitbox}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{blockHitbox}{blockHitbox}}
+{\footnotesize\ttfamily \label{class_player_defense_a0de56464e0f5ecaa194a99ea9b43960e} 
+Game\+Object Player\+Defense.\+block\+Hitbox}
+
+
+
+Game\+Object del hitbox de bloqueo. Cuando está activo, \doxylink{_hitbox_8cs}{Hitbox.\+cs} lo detecta mediante \doxylink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{Player\+Defense.\+Is\+Blocking()} y aplica el rebote al atacante en lugar de dañar al bloqueador. Debe asignarse desde el Inspector. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00042}{42}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_defense_8cs_source_l00082}{Start()}} y \doxymbox{\hyperlink{_player_defense_8cs_source_l00110}{Update()}}.
+
+\Hypertarget{class_player_defense_af7879d0a08a1ce2e63d152f8cfb068fa}\index{PlayerDefense@{PlayerDefense}!blockKey@{blockKey}}
+\index{blockKey@{blockKey}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{blockKey}{blockKey}}
+{\footnotesize\ttfamily \label{class_player_defense_af7879d0a08a1ce2e63d152f8cfb068fa} 
+Key\+Code Player\+Defense.\+block\+Key = Key\+Code.\+L}
+
+
+
+Tecla asignada al bloqueo. Por defecto:\+ L. Configurable desde el Inspector para remapeo de controles. Usa Get\+Key (no Get\+Key\+Down) para detectar pulsación continua. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00053}{53}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_defense_8cs_source_l00110}{Update()}}.
+
+\Hypertarget{class_player_defense_a52c32018f9e93756a4e6c20518d4e576}\index{PlayerDefense@{PlayerDefense}!isBlocking@{isBlocking}}
+\index{isBlocking@{isBlocking}!PlayerDefense@{PlayerDefense}}
+\doxysubsubsection{\texorpdfstring{isBlocking}{isBlocking}}
+{\footnotesize\ttfamily \label{class_player_defense_a52c32018f9e93756a4e6c20518d4e576} 
+bool Player\+Defense.\+is\+Blocking = false\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Estado actual del bloqueo. true = el jugador está bloqueando activamente. false = el jugador no está en guardia. Este valor es el que \doxylink{_hitbox_8cs}{Hitbox.\+cs} consulta vía \doxylink{class_player_defense_ac63d08c5d9045fc5c84a5d47dd17bc19}{Is\+Blocking()}. 
+
+
+
+Definición en la línea \doxymbox{\hyperlink{_player_defense_8cs_source_l00065}{65}} del archivo \doxymbox{\hyperlink{_player_defense_8cs_source}{Player\+Defense.\+cs}}.
+
+
+
+Referenciado por \doxymbox{\hyperlink{_player_defense_8cs_source_l00147}{Is\+Blocking()}} y \doxymbox{\hyperlink{_player_defense_8cs_source_l00110}{Update()}}.
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+spritesheets/\+\+Scripts/\+\doxymbox{\hyperlink{_player_defense_8cs}{Player\+Defense.\+cs}}\end{DoxyCompactItemize}

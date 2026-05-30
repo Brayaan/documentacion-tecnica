@@ -1,0 +1,117 @@
+\doxysection{Referencia de la clase Player\+Attack\+Tests}
+\hypertarget{class_player_attack_tests}{}\label{class_player_attack_tests}\index{PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+void \doxymbox{\hyperlink{class_player_attack_tests_a64e484d89c76b6525609d78aff07e315}{Tear\+Down}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_attack_tests_ad05b0e5c7a7698acaadd2c660ad45d08}{Punch\+Hitbox\+\_\+\+Deactivates\+After\+Attack\+Duration}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_attack_tests_a43e7ca35b5b68e2d5a3ad9595b2e9a22}{Start\+Attack\+\_\+\+While\+Already\+Attacking\+\_\+\+Does\+Not\+Reset\+Duration}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_attack_tests_a2e83e24b4869e75cd02d4f991960f8f2}{Punch\+Cooldown\+\_\+\+Punch\+Ready\+Restores\+After\+Cooldown}} ()
+\item 
+IEnumerator \doxymbox{\hyperlink{class_player_attack_tests_a7be857d133d3b0e3345026dd638a7c02}{Kick\+Cooldown\+\_\+\+Kick\+Ready\+Restores\+After\+Cooldown}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Métodos privados}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} \doxymbox{\hyperlink{class_player_attack_tests_a2321b387887adc0e8bea37c768c1932c}{Create\+Player}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_player_attack_tests_add6d5bc8c5e168a0e500bf46abd0863a}{\+\_\+player\+GO}}
+\item 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} \doxymbox{\hyperlink{class_player_attack_tests_a4f46a309cffc583952dee2f4fbfdf0e7}{\+\_\+attack}}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_player_attack_tests_a5120f4edb260a90e7241034226a44506}{\+\_\+punch\+Hitbox\+GO}}
+\item 
+Game\+Object \doxymbox{\hyperlink{class_player_attack_tests_a44130e6a23cd8966d4a4424dd4be5e41}{\+\_\+kick\+Hitbox\+GO}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Descripción detallada}
+\hypertarget{class_player_attack_tests_autotoc_md0}{}\doxysubsubsection{\texorpdfstring{PRUEBAS DE PLAYER ATTACK}{PRUEBAS DE PLAYER ATTACK}}\label{class_player_attack_tests_autotoc_md0}
+Este conjunto de pruebas valida la lógica de ataque del jugador:\+
+\begin{DoxyItemize}
+\item Activación y desactivación de hitboxes
+\item Control de cooldowns
+\item Estado de ataque (is\+Attacking)
+\end{DoxyItemize}
+
+LIMITACIÓN:\+ Unity Input no se puede simular directamente en Play\+Mode, por lo que la lógica se prueba llamando métodos internos (Invoke, API pública y estados internos). 
+
+\label{doc-func-members}
+\Hypertarget{class_player_attack_tests_doc-func-members}
+\doxysubsection{Documentación de funciones miembro}
+\Hypertarget{class_player_attack_tests_a2321b387887adc0e8bea37c768c1932c}\index{PlayerAttackTests@{PlayerAttackTests}!CreatePlayer@{CreatePlayer}}
+\index{CreatePlayer@{CreatePlayer}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{CreatePlayer()}{CreatePlayer()}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a2321b387887adc0e8bea37c768c1932c} 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} Player\+Attack\+Tests.\+Create\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+\Hypertarget{class_player_attack_tests_a7be857d133d3b0e3345026dd638a7c02}\index{PlayerAttackTests@{PlayerAttackTests}!KickCooldown\_KickReadyRestoresAfterCooldown@{KickCooldown\_KickReadyRestoresAfterCooldown}}
+\index{KickCooldown\_KickReadyRestoresAfterCooldown@{KickCooldown\_KickReadyRestoresAfterCooldown}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{KickCooldown\_KickReadyRestoresAfterCooldown()}{KickCooldown\_KickReadyRestoresAfterCooldown()}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a7be857d133d3b0e3345026dd638a7c02} 
+IEnumerator Player\+Attack\+Tests.\+Kick\+Cooldown\+\_\+\+Kick\+Ready\+Restores\+After\+Cooldown (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_attack_tests_a2e83e24b4869e75cd02d4f991960f8f2}\index{PlayerAttackTests@{PlayerAttackTests}!PunchCooldown\_PunchReadyRestoresAfterCooldown@{PunchCooldown\_PunchReadyRestoresAfterCooldown}}
+\index{PunchCooldown\_PunchReadyRestoresAfterCooldown@{PunchCooldown\_PunchReadyRestoresAfterCooldown}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{PunchCooldown\_PunchReadyRestoresAfterCooldown()}{PunchCooldown\_PunchReadyRestoresAfterCooldown()}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a2e83e24b4869e75cd02d4f991960f8f2} 
+IEnumerator Player\+Attack\+Tests.\+Punch\+Cooldown\+\_\+\+Punch\+Ready\+Restores\+After\+Cooldown (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_attack_tests_ad05b0e5c7a7698acaadd2c660ad45d08}\index{PlayerAttackTests@{PlayerAttackTests}!PunchHitbox\_DeactivatesAfterAttackDuration@{PunchHitbox\_DeactivatesAfterAttackDuration}}
+\index{PunchHitbox\_DeactivatesAfterAttackDuration@{PunchHitbox\_DeactivatesAfterAttackDuration}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{PunchHitbox\_DeactivatesAfterAttackDuration()}{PunchHitbox\_DeactivatesAfterAttackDuration()}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_ad05b0e5c7a7698acaadd2c660ad45d08} 
+IEnumerator Player\+Attack\+Tests.\+Punch\+Hitbox\+\_\+\+Deactivates\+After\+Attack\+Duration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_attack_tests_a43e7ca35b5b68e2d5a3ad9595b2e9a22}\index{PlayerAttackTests@{PlayerAttackTests}!StartAttack\_WhileAlreadyAttacking\_DoesNotResetDuration@{StartAttack\_WhileAlreadyAttacking\_DoesNotResetDuration}}
+\index{StartAttack\_WhileAlreadyAttacking\_DoesNotResetDuration@{StartAttack\_WhileAlreadyAttacking\_DoesNotResetDuration}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{StartAttack\_WhileAlreadyAttacking\_DoesNotResetDuration()}{StartAttack\_WhileAlreadyAttacking\_DoesNotResetDuration()}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a43e7ca35b5b68e2d5a3ad9595b2e9a22} 
+IEnumerator Player\+Attack\+Tests.\+Start\+Attack\+\_\+\+While\+Already\+Attacking\+\_\+\+Does\+Not\+Reset\+Duration (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_player_attack_tests_a64e484d89c76b6525609d78aff07e315}\index{PlayerAttackTests@{PlayerAttackTests}!TearDown@{TearDown}}
+\index{TearDown@{TearDown}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{TearDown()}{TearDown()}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a64e484d89c76b6525609d78aff07e315} 
+void Player\+Attack\+Tests.\+Tear\+Down (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\label{doc-variable-members}
+\Hypertarget{class_player_attack_tests_doc-variable-members}
+\doxysubsection{Documentación de datos miembro}
+\Hypertarget{class_player_attack_tests_a4f46a309cffc583952dee2f4fbfdf0e7}\index{PlayerAttackTests@{PlayerAttackTests}!\_attack@{\_attack}}
+\index{\_attack@{\_attack}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{\_attack}{\_attack}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a4f46a309cffc583952dee2f4fbfdf0e7} 
+\doxymbox{\hyperlink{class_player_attack}{Player\+Attack}} Player\+Attack\+Tests.\+\_\+attack\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_attack_tests_a44130e6a23cd8966d4a4424dd4be5e41}\index{PlayerAttackTests@{PlayerAttackTests}!\_kickHitboxGO@{\_kickHitboxGO}}
+\index{\_kickHitboxGO@{\_kickHitboxGO}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{\_kickHitboxGO}{\_kickHitboxGO}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a44130e6a23cd8966d4a4424dd4be5e41} 
+Game\+Object Player\+Attack\+Tests.\+\_\+kick\+Hitbox\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_attack_tests_add6d5bc8c5e168a0e500bf46abd0863a}\index{PlayerAttackTests@{PlayerAttackTests}!\_playerGO@{\_playerGO}}
+\index{\_playerGO@{\_playerGO}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{\_playerGO}{\_playerGO}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_add6d5bc8c5e168a0e500bf46abd0863a} 
+Game\+Object Player\+Attack\+Tests.\+\_\+player\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_player_attack_tests_a5120f4edb260a90e7241034226a44506}\index{PlayerAttackTests@{PlayerAttackTests}!\_punchHitboxGO@{\_punchHitboxGO}}
+\index{\_punchHitboxGO@{\_punchHitboxGO}!PlayerAttackTests@{PlayerAttackTests}}
+\doxysubsubsection{\texorpdfstring{\_punchHitboxGO}{\_punchHitboxGO}}
+{\footnotesize\ttfamily \label{class_player_attack_tests_a5120f4edb260a90e7241034226a44506} 
+Game\+Object Player\+Attack\+Tests.\+\_\+punch\+Hitbox\+GO\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+La documentación de esta clase está generada del siguiente archivo:\+\begin{DoxyCompactItemize}
+\item 
+Assets/\+\+Tests/\+\+Play\+Mode/\+\doxymbox{\hyperlink{_player_attack_tests_8cs}{Player\+Attack\+Tests.\+cs}}\end{DoxyCompactItemize}

@@ -1,0 +1,86 @@
+# ============================================
+# DOXYFILE CONFIGURACIÓN PROFESIONAL UI/UX
+# Diseño: Claro + Moderno + Accesible
+# Inspirado en: Microsoft Docs, Stripe, GitHub
+# ============================================
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "Documentación Técnica"
+PROJECT_BRIEF          = "API Reference & Developer Guide"
+OUTPUT_DIRECTORY       = ./DocumentacionHTML
+OUTPUT_LANGUAGE        = English
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = ./Assets/
+TAB_SIZE               = 4
+
+# ========== EXTRACCIÓN DE CÓDIGO ==========
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+RECURSIVE              = YES
+INPUT                  = ./Assets ./index.md
+FILE_PATTERNS          = *.cs
+# EXCLUDE_PATTERNS       = */Tests/*
+
+# ========== DISEÑO UI/UX PROFESIONAL ==========
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_COLORSTYLE        = LIGHT
+HTML_COLORSTYLE_HUE    = 210
+HTML_COLORSTYLE_SAT    = 60
+HTML_COLORSTYLE_GAMMA  = 95
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = YES
+HTML_CODE_FOLDING      = YES
+HTML_COPY_CLIPBOARD    = YES
+
+# ========== NAVEGACIÓN MODERNA ==========
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 280
+FULL_SIDEBAR           = YES
+DISABLE_INDEX          = NO
+PAGE_OUTLINE_PANEL     = YES
+
+# ========== BÚSQUEDA Y ORGANIZACIÓN ==========
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+ALPHABETICAL_INDEX     = YES
+IGNORE_PREFIX          =
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = NO
+SORT_GROUP_NAMES       = YES
+SHOW_FILES             = YES
+SHOW_NAMESPACES        = NO
+SHOW_USED_FILES        = YES
+
+# ========== LEGIBILIDAD Y ACCESIBILIDAD ==========
+BRIEF_MEMBER_DESC      = YES
+REPEAT_BRIEF           = YES
+INLINE_INFO            = YES
+SHOW_HEADERFILE        = YES
+SHOW_INCLUDE_FILES     = NO
+VERBATIM_HEADERS       = NO
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = NO
+
+# ========== DIAGRAMAS (OPCIONAL) ==========
+HAVE_DOT               = NO
+CLASS_GRAPH            = YES
+COLLABORATION_GRAPH    = NO
+GRAPHICAL_HIERARCHY    = YES
+
+# ========== WARNINGS (MÍNIMOS) ==========
+QUIET                  = YES
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+
+# ========== DESACTIVAR LATEX (EVITA ERROR epstopdf) ==========
+GENERATE_LATEX         = NO
+USE_MDFILE_AS_MAINPAGE = index.md
